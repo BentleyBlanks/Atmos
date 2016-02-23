@@ -20,6 +20,6 @@ README~
 *.psess
 *.vsp
 #bin
-build
+#build
 framework
 #resources

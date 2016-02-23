@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Atoms">
+      <UniqueIdentifier>{31a9ca48-366e-4598-896e-caca5b62b83e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{fe7c680b-0988-476e-b855-e943cd229b00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atoms\core">
+      <UniqueIdentifier>{e9c80a41-b90e-408a-a5eb-32f398f24f89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\t3Math">
+      <UniqueIdentifier>{3c500cc0-7437-44c6-9aff-b1f932d9f6be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\t3Math\core">
+      <UniqueIdentifier>{92340451-ba29-4b74-abf3-09dce1060772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atoms\test">
+      <UniqueIdentifier>{c39e220e-de80-4c50-837e-0af11255e80b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atoms\shapes">
+      <UniqueIdentifier>{833c5038-b483-47e7-96a7-773fbdfb17dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\t3DataStructures">
+      <UniqueIdentifier>{e0d24028-d12b-43cf-bc80-b95b6bd1c72e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\t3DataStructures\Common">
+      <UniqueIdentifier>{08e11f1f-a4d0-47d8-b595-627287ce59b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atoms\cameras">
+      <UniqueIdentifier>{bee9babb-bb26-407c-9bbc-c18387b8a2bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atoms\film">
+      <UniqueIdentifier>{f497dc4b-5060-49ef-84f9-4781e9675188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atoms\renderers">
+      <UniqueIdentifier>{0b60ee96-57e6-4603-bd6f-3af741d8e653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atoms\lights">
+      <UniqueIdentifier>{9910fc61-46ea-4cd2-9df0-68d840114cdf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Atoms\rayTest.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Ray.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Settings.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\shapes\a3Shape.h">
+      <Filter>Atoms\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\shapes\a3Sphere.h">
+      <Filter>Atoms\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\t3DataStructures\include\Common\t3Timer.h">
+      <Filter>ThirdParty\t3DataStructures\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\film\a3Image.h">
+      <Filter>Atoms\film</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\renderers\a3SamplerRenderer.h">
+      <Filter>Atoms\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\renderers\a3Renderer.h">
+      <Filter>Atoms\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Scene.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Intersection.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\lights\a3Light.h">
+      <Filter>Atoms\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\cameras\a3Camera.h">
+      <Filter>Atoms\cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Log.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Atoms\main.cpp">
+      <Filter>Atoms\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\shapes\a3Shape.cpp">
+      <Filter>Atoms\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\shapes\a3Sphere.cpp">
+      <Filter>Atoms\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3Settings.cpp">
+      <Filter>Atoms\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\film\a3Image.cpp">
+      <Filter>Atoms\film</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\renderers\a3SamplerRenderer.cpp">
+      <Filter>Atoms\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\renderers\a3Renderer.cpp">
+      <Filter>Atoms\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3Scene.cpp">
+      <Filter>Atoms\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4.cpp">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\lights\a3Light.cpp">
+      <Filter>Atoms\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\cameras\a3Camera.cpp">
+      <Filter>Atoms\cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3Log.cpp">
+      <Filter>Atoms\core</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
