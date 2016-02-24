@@ -83,11 +83,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Atoms\cameras\a3Camera.h" />
+    <ClInclude Include="..\..\..\Atoms\core\a3Common.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Intersection.h" />
-    <ClInclude Include="..\..\..\Atoms\core\a3Log.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Scene.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Settings.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Ray.h" />
+    <ClInclude Include="..\..\..\Atoms\core\log\a3Log.h" />
+    <ClInclude Include="..\..\..\Atoms\core\log\a3LogFile.h" />
+    <ClInclude Include="..\..\..\Atoms\core\log\a3LogHTML.h" />
     <ClInclude Include="..\..\..\Atoms\film\a3Image.h" />
     <ClInclude Include="..\..\..\Atoms\lights\a3Light.h" />
     <ClInclude Include="..\..\..\Atoms\rayTest.h" />
@@ -104,9 +107,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Atoms\cameras\a3Camera.cpp" />
-    <ClCompile Include="..\..\..\Atoms\core\a3Log.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Scene.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Settings.cpp" />
+    <ClCompile Include="..\..\..\Atoms\core\log\a3Log.cpp" />
+    <ClCompile Include="..\..\..\Atoms\core\log\a3LogFile.cpp" />
+    <ClCompile Include="..\..\..\Atoms\core\log\a3LogHTML.cpp" />
     <ClCompile Include="..\..\..\Atoms\film\a3Image.cpp" />
     <ClCompile Include="..\..\..\Atoms\lights\a3Light.cpp" />
     <ClCompile Include="..\..\..\Atoms\main.cpp" />
@@ -115,6 +120,9 @@
     <ClCompile Include="..\..\..\Atoms\shapes\a3Shape.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Sphere.cpp" />
     <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Atoms\core\a3Common.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

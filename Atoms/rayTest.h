@@ -1,7 +1,9 @@
 #include <shapes/a3Sphere.h>
 #include <film/a3Image.h>
 #include <core/a3Ray.h>
-#include <core/a3Log.h>
+#include <core/log/a3Log.h>
+#include <core/log/a3LogFile.h>
+#include <core/log/a3LogHTML.h>
 #include <random>
 
 int main()
@@ -58,14 +60,28 @@ int main()
     a3Log::success("这一段是成功Log, 紧接着一个int变量: a = %d\n", a);
     a3Log::info("这一段是信息Log, 紧接着一个int变量: a = %d\n", a);
     a3Log::debug("这一段是信息Log, 紧接着一个int变量: a = %d\n", a);
-    a3Log::debug("WTF", "log", "What are you talking about%d\n", a);
+    a3LogFile::debug("What are you talking about%d\n", a);
 
-    a3Log::log(A3_LOG_LEVEL_DEBUG, "WTF", "log", "This is a File Log. a = %d\n", a);
+    a3LogFile::log(A3_LOG_LEVEL_DEBUG, "WTF", "log", "This is a File Log. a = %d\n", a);
     
-    a3Log::log(A3_LOG_LEVEL_DEBUG, "WTF", "log", "AAAAAAAAAAAAA. a = %d\n", a);
-    a3Log::log(A3_LOG_LEVEL_DEBUG, "WTF", "log", "AAAAAAAAAAAAA. a = %d\n", a);
+    //a3LogFile::log(A3_LOG_LEVEL_DEBUG, "WTF", "log", "AAAAAAAAAAAAA. a = %d\n", a);
+    //a3LogFile::log(A3_LOG_LEVEL_DEBUG, "WTF", "log", "AAAAAAAAAAAAA. a = %d\n", a);
 
-    aa3Log("这一段是信息Log, 紧接着一个int变量: a = %d\n", a);
+    a3LogFile::error("This is a File Log. a = %d\n", a);
+    a3LogFile::warning("This is a File Log. a = %d\n", a);
+    a3LogFile::success("This is a File Log. a = %d\n", a);
+    a3LogFile::info("This is a File Log. a = %d\n", a);
+    a3LogFile::debug("This is a File Log. a = %d\n", a);
+
+    //t2Log("这一段是信息Log, 紧接着一个int变量: a = %d\n", a);
+
+    a3LogHTML::begin();
+    a3LogHTML::error("This is a File Log. a = %d\n", a);
+    a3LogHTML::warning("This is a File Log. a = %d\n", a);
+    a3LogHTML::success("This is a File Log. a = %d\n", a);
+    a3LogHTML::info("This is a File Log. a = %d\n", a);
+    a3LogHTML::debug("This is a File Log. a = %d\n", a);
+    a3LogHTML::end();
 
 	getchar();
 

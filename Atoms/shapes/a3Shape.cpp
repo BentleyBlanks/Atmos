@@ -1,6 +1,6 @@
 #include <shapes/a3Shape.h>
 #include <core/a3Ray.h>
-#include <core/a3Log.h>
+#include <core/log/a3Log.h>
 
 a3Shape::a3Shape()
 {

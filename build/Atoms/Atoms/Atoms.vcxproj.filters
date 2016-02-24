@@ -44,6 +44,9 @@
     <Filter Include="Atoms\lights">
       <UniqueIdentifier>{9910fc61-46ea-4cd2-9df0-68d840114cdf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Atoms\core\log">
+      <UniqueIdentifier>{419b5bbd-cc1f-498e-8663-3d1eb3ecfe03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Atoms\rayTest.h">
@@ -100,8 +103,17 @@
     <ClInclude Include="..\..\..\Atoms\cameras\a3Camera.h">
       <Filter>Atoms\cameras</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\core\a3Log.h">
+    <ClInclude Include="..\..\..\Atoms\core\a3Common.h">
       <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\log\a3LogFile.h">
+      <Filter>Atoms\core\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\log\a3LogHTML.h">
+      <Filter>Atoms\core\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\log\a3Log.h">
+      <Filter>Atoms\core\log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -138,8 +150,19 @@
     <ClCompile Include="..\..\..\Atoms\cameras\a3Camera.cpp">
       <Filter>Atoms\cameras</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\core\a3Log.cpp">
-      <Filter>Atoms\core</Filter>
+    <ClCompile Include="..\..\..\Atoms\core\log\a3LogFile.cpp">
+      <Filter>Atoms\core\log</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\log\a3LogHTML.cpp">
+      <Filter>Atoms\core\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\log\a3Log.cpp">
+      <Filter>Atoms\core\log</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Atoms\core\a3Common.inl">
+      <Filter>Atoms\core</Filter>
+    </None>
   </ItemGroup>
 </Project>
