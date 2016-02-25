@@ -43,7 +43,7 @@ void a3LogHTML::begin()
     cur = time(NULL);
     tm = localtime(&cur);
 
-    sprintf(name, "%02d-%02d-%02d-Atoms-%s.html", tm->tm_year + 1900, tm->tm_mon, tm->tm_mday, atomsVersion.get().c_str());
+    sprintf(name, "%02d-%02d-%02d-Atoms-%s.html", tm->tm_year + 1900, tm->tm_mon + 1, tm->tm_mday, atomsVersion.get().c_str());
 
     ofile->open(name);
 

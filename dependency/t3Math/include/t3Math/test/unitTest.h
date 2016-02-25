@@ -6,11 +6,19 @@
 // withnot using ant unit test lib
 using namespace std;
 
+#define VECTOR4_TEST
+//#define VECTOR3_TEST
 int main()
 {
+#ifdef VECTOR3_TEST
 	t3Vector3f a(10, 20, 30), b(0, 40, 50);
 
 	t3Vector3f c(5);
+#elif defined VECTOR4_TEST
+    t3Vector4f a(10, 20, 30, 5), b(0, 40, 50, 5);
+
+    t3Vector4f c(5);
+#endif
 
 	c.print("c");
 
@@ -18,7 +26,7 @@ int main()
 
 	a.set(c);
 	a.set(10);
-	a.set(10, 20, 30);
+	a.set(10, 20, 30, 40);
 
 	a.print("a");
 
@@ -31,8 +39,8 @@ int main()
 	c = a - b;
 	c -= a;
 
-	c = a * b;
-	c *= a;
+	float aaa = a * b;
+	//c *= a;
 	b.x = 10;
 	c = a / b;
 	c /= b;
@@ -56,18 +64,18 @@ int main()
 
 	std::cout << "c's length: " << c.length() << std::endl;
 
-	c.scale(10);
+	c.scale(20);
 
 	std::cout << "c's length: " << c.length() << std::endl;
 
 	std::cout << "distance: " << c.distance(a) << ", distanceSquared: " << c.squareDistance(a) << std::endl;
 
-	t3Vector3f d = c.getInterpolated(a, 0.5);
+	t3Vector4f d = c.getInterpolated(a, 0.5);
 	c.interpolate(a, 0.5);
 	d = c.getMiddle(a);
 	c.middle(a);
 	
-	t3Vector3f e[3];
+	t3Vector4f e[3];
 	d = d.average(e, 3);
 
 	b = a.getNormalized();
@@ -76,16 +84,14 @@ int main()
 	b = c.getLimited(10);
 	b.limit(10);
 
-	t3Vector3f f(1, 0, 0), g(0, 1, 0);
-	c = f.getCrossed(g);
-	c = f.cross(g);
-	c = f.getPerpendicular(g);
-	c = f.perpendicular(g);
+	t3Vector4f f(1, 0, 0, 0), g(0, 1, 0, 1);
 
 	std::cout << "dot: " << a.dot(b) << std::endl;
 
-	f = t3Vector3f::one();
-	f = t3Vector3f::zero();
+	f = t3Vector4f::one();
+	f = t3Vector4f::zero();
+
+    f.print("sfwefwef");
 
 	getchar();
 

@@ -79,21 +79,6 @@
     <ClInclude Include="..\..\..\Atoms\core\a3Scene.h">
       <Filter>Atoms\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Atoms\core\a3Intersection.h">
       <Filter>Atoms\core</Filter>
     </ClInclude>
@@ -114,6 +99,24 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Atoms\core\log\a3Log.h">
       <Filter>Atoms\core\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3MathSettings.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matri4x4.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector2.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector3.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector4.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -141,9 +144,6 @@
     <ClCompile Include="..\..\..\Atoms\core\a3Scene.cpp">
       <Filter>Atoms\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4.cpp">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Atoms\lights\a3Light.cpp">
       <Filter>Atoms\lights</Filter>
     </ClCompile>
@@ -159,10 +159,25 @@
     <ClCompile Include="..\..\..\Atoms\core\log\a3Log.cpp">
       <Filter>Atoms\core\log</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.cpp">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matri4x4.cpp">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Atoms\core\a3Common.inl">
       <Filter>Atoms\core</Filter>
+    </None>
+    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector2.inl">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </None>
+    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector3.inl">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </None>
+    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector4.inl">
+      <Filter>ThirdParty\t3Math\core</Filter>
     </None>
   </ItemGroup>
 </Project>

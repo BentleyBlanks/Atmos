@@ -82,6 +82,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.h" />
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3MathSettings.h" />
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matri4x4.h" />
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector2.h" />
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector3.h" />
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector4.h" />
     <ClInclude Include="..\..\..\Atoms\cameras\a3Camera.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Common.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Intersection.h" />
@@ -99,13 +105,10 @@
     <ClInclude Include="..\..\..\Atoms\shapes\a3Shape.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Sphere.h" />
     <ClInclude Include="..\..\..\dependency\t3DataStructures\include\Common\t3Timer.h" />
-    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.h" />
-    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4.h" />
-    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.h" />
-    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.h" />
-    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.cpp" />
+    <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matri4x4.cpp" />
     <ClCompile Include="..\..\..\Atoms\cameras\a3Camera.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Scene.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Settings.cpp" />
@@ -119,9 +122,11 @@
     <ClCompile Include="..\..\..\Atoms\renderers\a3SamplerRenderer.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Shape.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Sphere.cpp" />
-    <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector2.inl" />
+    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector3.inl" />
+    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector4.inl" />
     <None Include="..\..\..\Atoms\core\a3Common.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

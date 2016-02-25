@@ -20,7 +20,7 @@ t3Vector3f a3Shape::normal(const t3Vector3f& vector) const
 {
     a3Log::warning("Unimplemented a3Shape::normal() method called");
 
-	return t3Vector3fZero;
+	return t3Vector3f::zero();
 }
 
 void a3Shape::setMaterial(const t3Vector3f color, const float emission, int type)

@@ -118,7 +118,7 @@ void a3LogFile::log(a3LogLevel logLevel, const char* prefix, const char* suffix,
         static char name[128], contentBuffer[1024];
         char* content = NULL;
         //sprintf(name, ".\\%02d-%02d-%02d-%s-%s.%s", tm->tm_hour, tm->tm_min, tm->tm_sec, lv, prefix, suffix);
-        sprintf(name, "%02d-%02d-%02d-%s.%s", tm->tm_year + 1900, tm->tm_mon, tm->tm_mday, prefix, suffix);
+        sprintf(name, "%02d-%02d-%02d-%s.%s", tm->tm_year + 1900, tm->tm_mon + 1, tm->tm_mday, prefix, suffix);
 
         // save time + message + format(args) to content
         static char timeBuffer[30], messageBuffer[1024];
@@ -247,7 +247,7 @@ void a3LogFile::log(a3LogLevel logLevel, const char* message, va_list args)
         char* content = NULL;
         //sprintf(name, ".\\%02d-%02d-%02d-%s-%s.%s", tm->tm_hour, tm->tm_min, tm->tm_sec, lv, prefix, suffix);
 
-        sprintf(name, "%02d-%02d-%02d-Atoms-%s.log", tm->tm_year + 1900, tm->tm_mon, tm->tm_mday, atomsVersion.get().c_str());
+        sprintf(name, "%02d-%02d-%02d-Atoms-%s.log", tm->tm_year + 1900, tm->tm_mon + 1, tm->tm_mday, atomsVersion.get().c_str());
 
         // save time + message + format(args) to content
         static char timeBuffer[30], messageBuffer[1024];
