@@ -93,6 +93,9 @@ int main()
 
     f.print("sfwefwef");
 
+    t3Vector2f xxx;
+    xxx.print("dhvoiwe");
+
 	getchar();
 
 	return 0;

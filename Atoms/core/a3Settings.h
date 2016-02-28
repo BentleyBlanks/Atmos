@@ -56,6 +56,12 @@
 #include <assert.h>
 #include <math.h>
 
+// ------------------------Assert------------------------
+#ifndef A3ASSERT
+#define A3ASSERT(exp, errorMessage) assert(exp && errorMessage)
+#endif
+
+
 // ------------------------Deprecated------------------------
 // 弃用宏只在Windows平台上使用
 // 当然也可以选择将Deprecated宏全局关闭
@@ -124,8 +130,8 @@
 
 // 浮点数判断容差
 #define A3_TOLERANCE_INT 0
-#define A3_TOLERANCE_FLOAT 0.000001f
-#define A3_TOLERANCE_DOUBLE 0.00000001
+#define A3_TOLERANCE_FLOAT 1e-6
+#define A3_TOLERANCE_DOUBLE 1e-8
 
 // ------------------------Version------------------------
 // Atoms版本信息

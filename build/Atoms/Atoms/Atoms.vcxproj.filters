@@ -35,9 +35,6 @@
     <Filter Include="Atoms\cameras">
       <UniqueIdentifier>{bee9babb-bb26-407c-9bbc-c18387b8a2bb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Atoms\film">
-      <UniqueIdentifier>{f497dc4b-5060-49ef-84f9-4781e9675188}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Atoms\renderers">
       <UniqueIdentifier>{0b60ee96-57e6-4603-bd6f-3af741d8e653}</UniqueIdentifier>
     </Filter>
@@ -47,11 +44,14 @@
     <Filter Include="Atoms\core\log">
       <UniqueIdentifier>{419b5bbd-cc1f-498e-8663-3d1eb3ecfe03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Atoms\samples">
+      <UniqueIdentifier>{74ac5eb2-4ef6-40b3-b09d-f1ff1f6a271e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atoms\image">
+      <UniqueIdentifier>{f497dc4b-5060-49ef-84f9-4781e9675188}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Atoms\rayTest.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Atoms\core\a3Ray.h">
       <Filter>Atoms\core</Filter>
     </ClInclude>
@@ -66,9 +66,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\dependency\t3DataStructures\include\Common\t3Timer.h">
       <Filter>ThirdParty\t3DataStructures\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\film\a3Image.h">
-      <Filter>Atoms\film</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Atoms\renderers\a3SamplerRenderer.h">
       <Filter>Atoms\renderers</Filter>
@@ -100,6 +97,15 @@
     <ClInclude Include="..\..\..\Atoms\core\log\a3Log.h">
       <Filter>Atoms\core\log</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector2.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector3.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector4.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.h">
       <Filter>ThirdParty\t3Math\core</Filter>
     </ClInclude>
@@ -109,14 +115,26 @@
     <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matri4x4.h">
       <Filter>ThirdParty\t3Math\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector2.h">
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Quaternion.h">
       <Filter>ThirdParty\t3Math\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector3.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
+    <ClInclude Include="..\..\..\Atoms\samples\a3CameraSample.h">
+      <Filter>Atoms\samples</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector4.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
+    <ClInclude Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.h">
+      <Filter>Atoms\cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\samples\a3Sampler.h">
+      <Filter>Atoms\samples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\ray.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\image\a3Image.h">
+      <Filter>Atoms\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\render.h">
+      <Filter>Atoms\test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -131,9 +149,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\core\a3Settings.cpp">
       <Filter>Atoms\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\film\a3Image.cpp">
-      <Filter>Atoms\film</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\renderers\a3SamplerRenderer.cpp">
       <Filter>Atoms\renderers</Filter>
@@ -159,11 +174,23 @@
     <ClCompile Include="..\..\..\Atoms\core\log\a3Log.cpp">
       <Filter>Atoms\core\log</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.cpp">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matri4x4.cpp">
       <Filter>ThirdParty\t3Math\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Quaternion.cpp">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\samples\a3CameraSample.cpp">
+      <Filter>Atoms\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.cpp">
+      <Filter>Atoms\cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\samples\a3Sampler.cpp">
+      <Filter>Atoms\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\image\a3Image.cpp">
+      <Filter>Atoms\image</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +204,12 @@
       <Filter>ThirdParty\t3Math\core</Filter>
     </None>
     <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector4.inl">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </None>
+    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.inl">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </None>
+    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matrix4x4.inl">
       <Filter>ThirdParty\t3Math\core</Filter>
     </None>
   </ItemGroup>

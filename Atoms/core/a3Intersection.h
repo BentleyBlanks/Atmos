@@ -6,6 +6,8 @@ class a3Intersection
 public:
     a3Intersection() : shapeID(0){}
 
+    float t;
+
     unsigned int shapeID;
 };
 

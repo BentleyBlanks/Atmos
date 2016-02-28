@@ -5,16 +5,42 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Atoms", "Atoms\Atoms.vcxproj", "{2AB8C8F5-9DBC-4935-87B8-62AD8629BED0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "t3Math", "..\..\..\..\TattyUI\t3Math\build\t3Math.vcxproj", "{7046D249-5143-46CB-BCDB-5EE7B0A90CC2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "t3DataStructures", "..\..\..\..\TattyUI\t3DataStructures\build\t3DataStructures.vcxproj", "{E12F1455-E3B4-46D3-A03B-77B052E3A36C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
+		MinSizeRel|Win32 = MinSizeRel|Win32
 		Release|Win32 = Release|Win32
+		RelWithDebInfo|Win32 = RelWithDebInfo|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2AB8C8F5-9DBC-4935-87B8-62AD8629BED0}.Debug|Win32.ActiveCfg = Debug|Win32
 		{2AB8C8F5-9DBC-4935-87B8-62AD8629BED0}.Debug|Win32.Build.0 = Debug|Win32
+		{2AB8C8F5-9DBC-4935-87B8-62AD8629BED0}.MinSizeRel|Win32.ActiveCfg = Release|Win32
+		{2AB8C8F5-9DBC-4935-87B8-62AD8629BED0}.MinSizeRel|Win32.Build.0 = Release|Win32
 		{2AB8C8F5-9DBC-4935-87B8-62AD8629BED0}.Release|Win32.ActiveCfg = Release|Win32
 		{2AB8C8F5-9DBC-4935-87B8-62AD8629BED0}.Release|Win32.Build.0 = Release|Win32
+		{2AB8C8F5-9DBC-4935-87B8-62AD8629BED0}.RelWithDebInfo|Win32.ActiveCfg = Release|Win32
+		{2AB8C8F5-9DBC-4935-87B8-62AD8629BED0}.RelWithDebInfo|Win32.Build.0 = Release|Win32
+		{7046D249-5143-46CB-BCDB-5EE7B0A90CC2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7046D249-5143-46CB-BCDB-5EE7B0A90CC2}.Debug|Win32.Build.0 = Debug|Win32
+		{7046D249-5143-46CB-BCDB-5EE7B0A90CC2}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
+		{7046D249-5143-46CB-BCDB-5EE7B0A90CC2}.MinSizeRel|Win32.Build.0 = MinSizeRel|Win32
+		{7046D249-5143-46CB-BCDB-5EE7B0A90CC2}.Release|Win32.ActiveCfg = Release|Win32
+		{7046D249-5143-46CB-BCDB-5EE7B0A90CC2}.Release|Win32.Build.0 = Release|Win32
+		{7046D249-5143-46CB-BCDB-5EE7B0A90CC2}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
+		{7046D249-5143-46CB-BCDB-5EE7B0A90CC2}.RelWithDebInfo|Win32.Build.0 = RelWithDebInfo|Win32
+		{E12F1455-E3B4-46D3-A03B-77B052E3A36C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E12F1455-E3B4-46D3-A03B-77B052E3A36C}.Debug|Win32.Build.0 = Debug|Win32
+		{E12F1455-E3B4-46D3-A03B-77B052E3A36C}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
+		{E12F1455-E3B4-46D3-A03B-77B052E3A36C}.MinSizeRel|Win32.Build.0 = MinSizeRel|Win32
+		{E12F1455-E3B4-46D3-A03B-77B052E3A36C}.Release|Win32.ActiveCfg = Release|Win32
+		{E12F1455-E3B4-46D3-A03B-77B052E3A36C}.Release|Win32.Build.0 = Release|Win32
+		{E12F1455-E3B4-46D3-A03B-77B052E3A36C}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
+		{E12F1455-E3B4-46D3-A03B-77B052E3A36C}.RelWithDebInfo|Win32.Build.0 = RelWithDebInfo|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

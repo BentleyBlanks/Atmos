@@ -52,9 +52,9 @@ void a3LogFile::log(a3LogLevel logLevel, const char* prefix, const char* suffix,
 
     switch(logLevel)
     {
-    case A3_LOG_LEVEL_FATALERROR: lv = "System"; break;
+    case A3_LOG_LEVEL_FATALERROR: lv = "Fatal Error"; break;
     case A3_LOG_LEVEL_ERROR: lv = "Error"; break;
-    case A3_LOG_LEVEL_SERIOUSWARNING: lv = "SeriousWarning"; break;
+    case A3_LOG_LEVEL_SERIOUSWARNING: lv = "Serious Warning"; break;
     case A3_LOG_LEVEL_WARNING: lv = "Warning"; break;
     case A3_LOG_LEVEL_SUCCESS: lv = "Success"; break;
     case A3_LOG_LEVEL_INFO: lv = "Info"; break;

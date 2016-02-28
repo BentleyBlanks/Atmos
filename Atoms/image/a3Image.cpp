@@ -1,4 +1,6 @@
-#include <film/a3Image.h>
+#include <image/a3Image.h>
+#include <samples/a3CameraSample.h>
+#include <core/log/a3Log.h>
 
 a3Image::a3Image(int width, int height, const std::string& fileName) : width(width), height(height), fileName(fileName)
 {
@@ -26,5 +28,15 @@ void a3Image::write()
 
 		fprintf(f, "\n");
 	}
+
+    a3Log::success("文件%s保存成功", fileName.c_str());
+
 	fclose(f);
+}
+
+void a3Image::addSample(const a3CameraSample* sample, const t3Vector3f& L)
+{
+    int x = sample->imageX, y = sample->imageY;
+
+    pixels[x][y] = L;
 }

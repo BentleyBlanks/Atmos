@@ -13,7 +13,7 @@ float a3Sphere::intersect(const a3Ray& ray) const
 	float B = 2 * (ray.origin - center) * ray.direction;
 	float C = (ray.origin - center)*(ray.origin - center) - radius*radius;
 
-	float discriminant = B * B - 4 * C;
+	float discriminant = B * B - 4.0f * C;
 
 	//--!有局限 若测试线是人为指定 那么就可能出现origin在面上的情况 此时判别式不为0 但返回值为0
 	if(discriminant < 0)
@@ -25,7 +25,7 @@ float a3Sphere::intersect(const a3Ray& ray) const
 	float solution2 = -B - discriminant;
 
 	// 舍弃与方向向量相反的解
-	return (solution2 > A3_TOLERANCE_FLOAT) ? solution2 * 0.5f : ((solution1 > A3_TOLERANCE_FLOAT) ? solution1 * 0.5f : 0.0f);
+	return (solution2 > A3_TOLERANCE_FLOAT) ? solution2 / 2 : ((solution1 > A3_TOLERANCE_FLOAT) ? solution1 / 2 : 0.0f);
 }
 
 t3Vector3f a3Sphere::normal(const t3Vector3f& vector) const

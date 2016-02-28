@@ -47,15 +47,15 @@ void a3Log::log(a3LogLevel logLevel, const char* message, va_list args)
 
     switch(logLevel)
     {
-    case A3_LOG_LEVEL_FATALERROR: lv = "system"; break;
-    case A3_LOG_LEVEL_ERROR: lv = "error"; break;
-    case A3_LOG_LEVEL_SERIOUSWARNING: lv = "warn"; break;
-    case A3_LOG_LEVEL_WARNING: lv = "info"; break;
-    case A3_LOG_LEVEL_SUCCESS: lv = "success"; break;
-    case A3_LOG_LEVEL_INFO: lv = "info"; break;
-    case A3_LOG_LEVEL_DEV: lv = "dev"; break;
-    case A3_LOG_LEVEL_DEBUG: lv = "debug"; break;
-    default: lv = "other"; break;
+    case A3_LOG_LEVEL_FATALERROR: lv = "Fatal Error"; break;
+    case A3_LOG_LEVEL_ERROR: lv = "Error"; break;
+    case A3_LOG_LEVEL_SERIOUSWARNING: lv = "Serious Warning"; break;
+    case A3_LOG_LEVEL_WARNING: lv = "Warning"; break;
+    case A3_LOG_LEVEL_SUCCESS: lv = "Success"; break;
+    case A3_LOG_LEVEL_INFO: lv = "Info"; break;
+    case A3_LOG_LEVEL_DEV: lv = "Dev"; break;
+    case A3_LOG_LEVEL_DEBUG: lv = "Debug"; break;
+    default: lv = "Other"; break;
     }
 
     cur = time(NULL);
@@ -80,7 +80,9 @@ void a3Log::log(a3LogLevel logLevel, const char* message, va_list args)
             break;
 
         case A3_LOG_LEVEL_DEV:
-        case A3_LOG_LEVEL_DEBUG:
+        case A3_LOG_LEVEL_DEBUG: attr = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
+            break;
+
         case A3_LOG_LEVEL_ALLMESSAGES: attr = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
             break;
 
@@ -90,7 +92,25 @@ void a3Log::log(a3LogLevel logLevel, const char* message, va_list args)
 
         SetConsoleTextAttribute(GetStdHandle(STD_ERROR_HANDLE), attr);
 
-        vprintf(message, args);
+        static char contentBuffer[1024];
+        char* content = NULL;
+
+        // save time + message + format(args) to content
+        static char timeBuffer[30], messageBuffer[1024];
+        sprintf(timeBuffer, "%02d:%02d:%02d    %s    ", tm->tm_hour, tm->tm_min, tm->tm_sec, lv);
+        // messageBuffer:[hour]:[minute]:[second]
+        strcpy(messageBuffer, timeBuffer);
+        // messageBuffer:[hour]:[minute]:[second] message ...
+        strcat(messageBuffer, message);
+        // messageBuffer:[hour]:[minute]:[second] message'
+        vsprintf(contentBuffer, messageBuffer, args);
+        // allocate true content array
+        int t = strlen(contentBuffer);
+        content = new char[t + 1];
+        strncpy(content, contentBuffer, t);
+        content[t] = '\0';
+
+        vprintf(content, args);
 
 #ifdef A3_LOG_UTF8
         {

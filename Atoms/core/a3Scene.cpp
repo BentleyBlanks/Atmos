@@ -4,6 +4,11 @@
 #include <core/a3Intersection.h>
 #include <lights/a3Light.h>
 
+a3Scene::a3Scene()
+{
+
+}
+
 bool a3Scene::intersect(const a3Ray& ray, a3Intersection* intersection) const
 {
     float minT = FLT_MAX;
@@ -20,7 +25,16 @@ bool a3Scene::intersect(const a3Ray& ray, a3Intersection* intersection) const
         }
     }
 
-    return minT < FLT_MAX;
+    if(minT < FLT_MAX)
+    {
+        intersection->t = minT;
+        return true;
+    }
+    else
+    {
+        intersection->t = 0;
+        return false;
+    }
 }
 
 bool a3Scene::intersect(const a3Ray& ray) const

@@ -1,5 +1,5 @@
 #include <shapes/a3Sphere.h>
-#include <film/a3Image.h>
+#include <image/a3Image.h>
 #include <core/a3Ray.h>
 #include <core/log/a3Log.h>
 #include <core/log/a3LogFile.h>

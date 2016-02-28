@@ -1,5 +1,5 @@
-#ifndef A3_MATH_H
-#define A3_MATH_H
+#ifndef T3_MATH_H
+#define T3_MATH_H
 
 #include <t3Math/core/t3MathSettings.h>
 
@@ -15,10 +15,10 @@ public:
     static T3_FORCE_INLINE float pi();
 
     // Returns the largest positive value that a 32 Bit float can represent. 
-    static T3_FORCE_INLINE float FloatMaxPos();
+    //static T3_FORCE_INLINE float FloatMaxPos();
 
     // Returns the largest negative value that a 32 Bit float can represent. 
-    static T3_FORCE_INLINE float FloatMaxNeg();
+    //static T3_FORCE_INLINE float FloatMaxNeg();
 
     // -----------------------Trigonometric Functions-----------------------
     // Converts a given value from degree to radians. 
@@ -277,6 +277,8 @@ public:
     // Returns a float NaN (Not-A-Number). Can be used to set values to an invalid state. 
     static T3_FORCE_INLINE float generateNaN(void);
 
+    static T3_FORCE_INLINE float generateInfinity(void);
+
     // -----------------------Utility Functions-----------------------
     // Swaps the values of the variables t1 and t2.in place. 
     template<class T >
@@ -291,5 +293,8 @@ public:
     static T3_FORCE_INLINE T interpolate(const T &val1, const T &val2, double fInterpolation);
 
 };
+
+
+#include <t3Math/core/t3Math.inl>
 
 #endif

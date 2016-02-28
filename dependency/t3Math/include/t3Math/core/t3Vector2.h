@@ -1,6 +1,8 @@
 ﻿#ifndef T3_VECTOR2_H
 #define T3_VECTOR2_H
 
+#include <iostream>
+#include <string>
 #include <t3Math/core/t3MathSettings.h>
 
 template <class Type>

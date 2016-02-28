@@ -85,10 +85,12 @@
     <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.h" />
     <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3MathSettings.h" />
     <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matri4x4.h" />
+    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Quaternion.h" />
     <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector2.h" />
     <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector3.h" />
     <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector4.h" />
     <ClInclude Include="..\..\..\Atoms\cameras\a3Camera.h" />
+    <ClInclude Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Common.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Intersection.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Scene.h" />
@@ -97,33 +99,41 @@
     <ClInclude Include="..\..\..\Atoms\core\log\a3Log.h" />
     <ClInclude Include="..\..\..\Atoms\core\log\a3LogFile.h" />
     <ClInclude Include="..\..\..\Atoms\core\log\a3LogHTML.h" />
-    <ClInclude Include="..\..\..\Atoms\film\a3Image.h" />
+    <ClInclude Include="..\..\..\Atoms\image\a3Image.h" />
     <ClInclude Include="..\..\..\Atoms\lights\a3Light.h" />
-    <ClInclude Include="..\..\..\Atoms\rayTest.h" />
+    <ClInclude Include="..\..\..\Atoms\ray.h" />
+    <ClInclude Include="..\..\..\Atoms\render.h" />
     <ClInclude Include="..\..\..\Atoms\renderers\a3Renderer.h" />
     <ClInclude Include="..\..\..\Atoms\renderers\a3SamplerRenderer.h" />
+    <ClInclude Include="..\..\..\Atoms\samples\a3CameraSample.h" />
+    <ClInclude Include="..\..\..\Atoms\samples\a3Sampler.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Shape.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Sphere.h" />
     <ClInclude Include="..\..\..\dependency\t3DataStructures\include\Common\t3Timer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.cpp" />
     <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matri4x4.cpp" />
+    <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Quaternion.cpp" />
     <ClCompile Include="..\..\..\Atoms\cameras\a3Camera.cpp" />
+    <ClCompile Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Scene.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Settings.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3Log.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3LogFile.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3LogHTML.cpp" />
-    <ClCompile Include="..\..\..\Atoms\film\a3Image.cpp" />
+    <ClCompile Include="..\..\..\Atoms\image\a3Image.cpp" />
     <ClCompile Include="..\..\..\Atoms\lights\a3Light.cpp" />
     <ClCompile Include="..\..\..\Atoms\main.cpp" />
     <ClCompile Include="..\..\..\Atoms\renderers\a3Renderer.cpp" />
     <ClCompile Include="..\..\..\Atoms\renderers\a3SamplerRenderer.cpp" />
+    <ClCompile Include="..\..\..\Atoms\samples\a3CameraSample.cpp" />
+    <ClCompile Include="..\..\..\Atoms\samples\a3Sampler.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Shape.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Sphere.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.inl" />
+    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matrix4x4.inl" />
     <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector2.inl" />
     <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector3.inl" />
     <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector4.inl" />
