@@ -70,9 +70,9 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, const a
 {
     if(!scene->intersect(*ray, intersection))
         // black
-        return t3Vector3f(0, 0, 0);
+        return t3Vector3f(255, 255, 255);
 
-    a3Log::debug("Intersection: x:%f y:%f\n", sample->imageX, sample->imageY);
+    //a3Log::debug("Intersection: x:%f y:%f\n", sample->imageX, sample->imageY);
 
     return t3Vector3f(255, 0, 0);
 }
