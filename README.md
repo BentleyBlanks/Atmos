@@ -3,6 +3,10 @@
 A Simple Physically Based Renderer.
 
 ![](https://farm2.staticflickr.com/1542/25389305206_85f8558be1_b.jpg)
+SPP = 2048
+
+![](https://farm2.staticflickr.com/1467/25389498816_36ab5ea6c7_b.jpg)
+SPP = 8, 64, 256
 
 ## 构建说明
 
