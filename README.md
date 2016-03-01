@@ -2,7 +2,7 @@
 
 A Simple Physically Based Renderer.
 
-![](https://farm2.staticflickr.com/1691/25352087485_db69748e59_b.jpg)
+![](https://farm2.staticflickr.com/1542/25389305206_85f8558be1_b.jpg)
 
 ## 构建说明
 
