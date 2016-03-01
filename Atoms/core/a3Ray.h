@@ -9,10 +9,10 @@ class a3Ray
 public:
 	a3Ray() : mint(0.0f), maxt(0.0f), depth(0){}
 
-	a3Ray(const t3Vector3f& origin, const t3Vector3f& direction, float start, float end = A3_INFINITY, int depth = 0) 
+	a3Ray(const t3Vector3f& origin, const t3Vector3f& direction, float start = 0, float end = A3_INFINITY, int depth = 0) 
         : origin(origin), direction(direction), mint(start), maxt(end), depth(depth){}
 
-	a3Ray(const t3Vector3f& origin, const t3Vector3f& direction, const a3Ray& parent, float start, float end = A3_INFINITY) 
+	a3Ray(const t3Vector3f& origin, const t3Vector3f& direction, const a3Ray& parent, float start = 0, float end = A3_INFINITY) 
         : origin(origin), direction(direction), mint(start), maxt(end), depth(parent.depth + 1){}
 
 	t3Vector3f operator()(float t) const

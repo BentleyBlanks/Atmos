@@ -16,7 +16,8 @@ README~
 #*.vcxproj
 #*.filters
 *.user
-#*.png
+*.png
+*.ppm
 *.psess
 *.vsp
 #bin

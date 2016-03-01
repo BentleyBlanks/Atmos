@@ -4,7 +4,7 @@
 
 a3Shape::a3Shape()
 {
-    emission = 0.0f;
+    emission.set(0, 0, 0);
 
     type = A3_MATERIAL_NONE;
 }
@@ -23,7 +23,7 @@ t3Vector3f a3Shape::normal(const t3Vector3f& vector) const
 	return t3Vector3f::zero();
 }
 
-void a3Shape::setMaterial(const t3Vector3f color, const float emission, int type)
+void a3Shape::setMaterial(const t3Vector3f color, const t3Vector3f emission, int type)
 {
 	this->color = color;
 	this->emission = emission;
@@ -34,6 +34,7 @@ void a3Shape::print() const
 {
 #ifdef _DEBUG
     color.print("a3Shape.color");
-    std::cout << "a3Shape.emission:" << emission << ", type:" << type << std::endl;
+    emission.print("a3Shape.emission:");
+    std::cout << ", type:" << type << std::endl;
 #endif 
 }

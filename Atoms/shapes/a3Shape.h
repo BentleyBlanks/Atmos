@@ -24,14 +24,14 @@ public:
 
 	virtual t3Vector3f normal(const t3Vector3f& vector) const; 
 
-	void setMaterial(const t3Vector3f color, const float emission = 0.0f, int type = A3_MATERIAL_NONE);
+    void setMaterial(const t3Vector3f color, const t3Vector3f emission = t3Vector3f::zero(), int type = A3_MATERIAL_NONE);
 
     virtual void print() const;
 
 	t3Vector3f color;
 
 	// 自发光系数
-	float emission;
+	t3Vector3f emission;
 
 	// BSDF类型
 	int type;

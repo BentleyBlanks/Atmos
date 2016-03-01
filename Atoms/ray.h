@@ -5,9 +5,17 @@
 #include <core/log/a3LogFile.h>
 #include <core/log/a3LogHTML.h>
 #include <random>
+#include <core/a3Random.h>
 
 int main()
 {
+    a3Random random;
+    for(size_t i = 0; i < 20; i++)
+        a3Log::debug("%f\n", random.randomFloat());
+
+    for(size_t i = 0; i < 20; i++)
+        a3Log::debug("%d\n", random.randomInt());
+
 	a3Sphere sphere(t3Vector3f(0, 10, 0), 10);
 
 	sphere.normal(t3Vector3f(20, 10, 0)).print();
@@ -21,7 +29,7 @@ int main()
 	std::mt19937 mt(random()), mersenneTwister(random());
 	// uniform distribution
 	std::uniform_int_distribution<> uniformi(1, 6);
-	std::uniform_real_distribution<float> uniformf(0, 255);
+	std::uniform_real_distribution<float> uniformf(0, 1);
 	// normal distribution
 	std::normal_distribution<> d(5, 2);
 

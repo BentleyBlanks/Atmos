@@ -136,6 +136,9 @@
     <ClInclude Include="..\..\..\Atoms\render.h">
       <Filter>Atoms\test</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Random.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Atoms\main.cpp">
@@ -191,6 +194,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\image\a3Image.cpp">
       <Filter>Atoms\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3Random.cpp">
+      <Filter>Atoms\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

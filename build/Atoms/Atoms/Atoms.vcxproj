@@ -73,12 +73,16 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Program\Renderer\Atmos\Atoms;D:\Program\Renderer\Atmos\dependency\t3Math\include;D:\Program\Renderer\Atmos\dependency\t3DataStructures\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>D:\Program\Renderer\Atmos\dependency\t3DataStructures\lib;D:\Program\Renderer\Atmos\dependency\t3Math\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>t3Math.lib;t3DataStructures.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -93,6 +97,7 @@
     <ClInclude Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Common.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Intersection.h" />
+    <ClInclude Include="..\..\..\Atoms\core\a3Random.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Scene.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Settings.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Ray.h" />
@@ -116,6 +121,7 @@
     <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Quaternion.cpp" />
     <ClCompile Include="..\..\..\Atoms\cameras\a3Camera.cpp" />
     <ClCompile Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.cpp" />
+    <ClCompile Include="..\..\..\Atoms\core\a3Random.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Scene.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Settings.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3Log.cpp" />
