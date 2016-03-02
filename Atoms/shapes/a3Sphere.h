@@ -10,7 +10,7 @@ public:
 
 	float intersect(const a3Ray& ray) const;
 
-	t3Vector3f normal(const t3Vector3f& vector) const;
+    t3Vector3f getNormal(const t3Vector3f& vector) const;
 
     virtual void print() const;
 

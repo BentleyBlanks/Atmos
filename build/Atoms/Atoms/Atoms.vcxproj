@@ -112,6 +112,8 @@
     <ClInclude Include="..\..\..\Atoms\renderers\a3SamplerRenderer.h" />
     <ClInclude Include="..\..\..\Atoms\samples\a3CameraSample.h" />
     <ClInclude Include="..\..\..\Atoms\samples\a3Sampler.h" />
+    <ClInclude Include="..\..\..\Atoms\shapes\a3Disk.h" />
+    <ClInclude Include="..\..\..\Atoms\shapes\a3Plane.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Shape.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Sphere.h" />
     <ClInclude Include="..\..\..\dependency\t3DataStructures\include\Common\t3Timer.h" />
@@ -134,6 +136,8 @@
     <ClCompile Include="..\..\..\Atoms\renderers\a3SamplerRenderer.cpp" />
     <ClCompile Include="..\..\..\Atoms\samples\a3CameraSample.cpp" />
     <ClCompile Include="..\..\..\Atoms\samples\a3Sampler.cpp" />
+    <ClCompile Include="..\..\..\Atoms\shapes\a3Disk.cpp" />
+    <ClCompile Include="..\..\..\Atoms\shapes\a3Plane.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Shape.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Sphere.cpp" />
   </ItemGroup>

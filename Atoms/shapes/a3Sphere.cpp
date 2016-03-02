@@ -28,7 +28,7 @@ float a3Sphere::intersect(const a3Ray& ray) const
 	return (solution2 > A3_TOLERANCE_FLOAT) ? solution2 / 2 : ((solution1 > A3_TOLERANCE_FLOAT) ? solution1 / 2 : 0.0f);
 }
 
-t3Vector3f a3Sphere::normal(const t3Vector3f& vector) const
+t3Vector3f a3Sphere::getNormal(const t3Vector3f& vector) const
 {
 	return (vector - center).normalize();
 }

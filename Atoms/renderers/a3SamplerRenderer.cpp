@@ -10,8 +10,8 @@
 #include <core/a3Random.h>
 #include <shapes/a3Shape.h>
 
-#define DEPTH 5
-#define SPP 2048
+#define DEPTH 8
+#define SPP 1024
 
 a3Random random;
 
@@ -122,8 +122,20 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int dep
     // 接触点
     t3Vector3f intersectPoint = (*ray)(intersection->t);
 
-    // Diffuse BRDF
-    t3Vector3f sampleDirection = hemisphere(random.randomFloat(), random.randomFloat());
+    if(obj->type == A3_MATERIAL_DIFFUSS)
+    {
+        // Diffuse BRDF
+        t3Vector3f sampleDirection = hemisphere(random.randomFloat(), random.randomFloat());
 
-    return obj->emission + Li(scene, &a3Ray(intersectPoint, sampleDirection.normalize()), depth, sample, intersection);
+        return obj->emission + Li(scene, &a3Ray(intersectPoint, sampleDirection.normalize()), depth, sample, intersection);
+    }
+    else if(obj->type == A3_MATERIAL_SPECULAR)
+    {
+        // 假定所有给定obj上求得的normal都为方向向量
+        t3Vector3f normal = obj->getNormal(intersectPoint);
+
+        t3Vector3f sampleDirection = ray->direction - 2 * (ray->direction * normal) * normal;
+
+        return obj->emission + Li(scene, &a3Ray(intersectPoint, sampleDirection.normalize()), depth, sample, intersection);
+    }
 }

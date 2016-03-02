@@ -4,6 +4,8 @@
 #include <core/a3Scene.h>
 #include <shapes/a3Sphere.h>
 #include <core/log/a3Log.h>
+#include <shapes/a3Plane.h>
+#include <shapes/a3Disk.h>
 
 int main()
 {
@@ -14,29 +16,32 @@ int main()
 
     a3Scene* scene = new a3Scene();
 
-    auto addSphere = [&scene](a3Shape* s, t3Vector3f color, t3Vector3f emission, int type)
+    auto addShape = [&scene](a3Shape* s, t3Vector3f color, t3Vector3f emission, int type)
     {
         s->emission = emission;
         s->color = color;
+        s->type = type;
         scene->objects.push_back(s);
     };
 
-    // 极大的圆近似做Plane
-    //addSphere(new a3Sphere(t3Vector3f(1e5+1, 40.8, 81.6), 1e5), t3Vector3f(0.75, 0.25, 0.25), t3Vector3f(0, 0, 0), 0);
-    //addSphere(new a3Sphere(t3Vector3f(-1e5+99, 40.8, 81.6), 1e5), t3Vector3f(0.25, 0.25, 0.75), t3Vector3f(0, 0, 0), 0);
-    //addSphere(new a3Sphere(t3Vector3f(50, 40.8, 1e5), 1e5), t3Vector3f(0.75, 0.75, 0.75), t3Vector3f(0, 0, 0), 0);
-    //addSphere(new a3Sphere(t3Vector3f(50, 40.8, -1e5+170), 1e5), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), 0);
-    //addSphere(new a3Sphere(t3Vector3f(50, 1e5, 81.6), 1e5), t3Vector3f(0.75, 0.75, 0.75), t3Vector3f(0, 0, 0), 0);
-    //addSphere(new a3Sphere(t3Vector3f(50, -1e5 + 81.6, 81.6), 1e5), t3Vector3f(0.75, 0.75, 0.75), t3Vector3f(0, 0, 0), 0);
 
-    // 实体球
-    addSphere(new a3Sphere(t3Vector3f(0, 0, 100), 15), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), 0);
-    addSphere(new a3Sphere(t3Vector3f(-20, 0, 100), 15), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), 0);
-    addSphere(new a3Sphere(t3Vector3f(20, 0, 100), 15), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), 0);
+    // Sphere/Disk    
+    addShape(new a3Sphere(t3Vector3f(-30, -74, 100), 15), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Sphere(t3Vector3f(0, 0, 100), 15), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+    addShape(new a3Disk(t3Vector3f(30, 74, 100), 15, t3Vector3f(0, 0, 1)), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Sphere(t3Vector3f(-30, 74, 100), 15), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+    addShape(new a3Sphere(t3Vector3f(30, -74, 100), 15), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+
+    // Plane
+    addShape(new a3Plane(t3Vector3f(-70, 0, 100), t3Vector3f(-1, 0, 0)), t3Vector3f(9, 2, 2), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Plane(t3Vector3f(70, 0, 100), t3Vector3f(1, 0, 0)), t3Vector3f(2, 2, 9), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Plane(t3Vector3f(0, 0, 140), t3Vector3f(0, 0, 1)), t3Vector3f(9, 9, 9), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Plane(t3Vector3f(0, 90, 0), t3Vector3f(0, 1, 0)), t3Vector3f(9, 9, 9), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Plane(t3Vector3f(0, -90, 0), t3Vector3f(0, -1, 0)), t3Vector3f(9, 9, 9), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
 
     // 光源 自发光
-    addSphere(new a3Sphere(t3Vector3f(0, 200, 100), 150), t3Vector3f(0, 0, 0), t3Vector3f(100, 100, 100), 0);
-    //addSphere(new a3Sphere(t3Vector3f(0, -160, 100), 80), t3Vector3f(0, 0, 0), t3Vector3f(50, 50, 50), 0);
+    addShape(new a3Disk(t3Vector3f(0, 89, 100), 100, t3Vector3f(0, 1, 0)), t3Vector3f(0, 0, 0), t3Vector3f(160, 60, 60), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Disk(t3Vector3f(0, -89, 100), 100, t3Vector3f(0, -1, 0)), t3Vector3f(0, 0, 0), t3Vector3f(60, 160, 60), A3_MATERIAL_DIFFUSS);
 
     a3SamplerRenderer* renderer = new a3SamplerRenderer();
     renderer->camera = camera;

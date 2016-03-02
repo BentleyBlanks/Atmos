@@ -16,9 +16,9 @@ float a3Shape::intersect(const a3Ray& ray) const
 	return 0.0f;
 }
 
-t3Vector3f a3Shape::normal(const t3Vector3f& vector) const
+t3Vector3f a3Shape::getNormal(const t3Vector3f& vector) const
 {
-    a3Log::warning("Unimplemented a3Shape::normal() method called");
+    a3Log::warning("Unimplemented a3Shape::getNormal() method called");
 
 	return t3Vector3f::zero();
 }
