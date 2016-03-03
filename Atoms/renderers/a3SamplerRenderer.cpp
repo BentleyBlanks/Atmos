@@ -1,7 +1,7 @@
 #include <renderers/a3SamplerRenderer.h>
 #include <samples/a3Sampler.h>
 #include <core/a3Ray.h>
-#include <image/a3Image.h>
+#include <core/image/a3Image.h>
 #include <cameras/a3PerspectiveCamera.h>
 #include <samples/a3CameraSample.h>
 #include <core/a3Scene.h>

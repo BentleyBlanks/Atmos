@@ -2,7 +2,7 @@
 #include <samples/a3CameraSample.h>
 #include <t3Math/core/t3Vector3.h>
 #include <samples/a3CameraSample.h>
-#include <image/a3Image.h>
+#include <core/image/a3Image.h>
 #include <core/a3Ray.h>
 
 a3PerspectiveCamera::a3PerspectiveCamera(const t3Vector3f& origin, const t3Vector3f& direction,

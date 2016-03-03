@@ -47,11 +47,11 @@
     <Filter Include="Atoms\samples">
       <UniqueIdentifier>{74ac5eb2-4ef6-40b3-b09d-f1ff1f6a271e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Atoms\image">
-      <UniqueIdentifier>{f497dc4b-5060-49ef-84f9-4781e9675188}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ThirdParty\png++">
       <UniqueIdentifier>{fcd1c4ca-58ac-4660-ac30-c6db3dc3ea23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atoms\core\image">
+      <UniqueIdentifier>{f497dc4b-5060-49ef-84f9-4781e9675188}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -108,9 +108,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Atoms\samples\a3Sampler.h">
       <Filter>Atoms\samples</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\image\a3Image.h">
-      <Filter>Atoms\image</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Atoms\core\a3Random.h">
       <Filter>Atoms\core</Filter>
@@ -238,6 +235,9 @@
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h">
       <Filter>ThirdParty\t3Math\core</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\image\a3Image.h">
+      <Filter>Atoms\core\image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Atoms\main.cpp">
@@ -285,9 +285,6 @@
     <ClCompile Include="..\..\..\Atoms\samples\a3Sampler.cpp">
       <Filter>Atoms\samples</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\image\a3Image.cpp">
-      <Filter>Atoms\image</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Atoms\core\a3Random.cpp">
       <Filter>Atoms\core</Filter>
     </ClCompile>
@@ -302,6 +299,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp">
       <Filter>ThirdParty\t3Math\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\image\a3Image.cpp">
+      <Filter>Atoms\core\image</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

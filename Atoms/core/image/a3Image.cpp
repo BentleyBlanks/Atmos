@@ -1,4 +1,4 @@
-#include <image/a3Image.h>
+#include <core/image/a3Image.h>
 #include <samples/a3CameraSample.h>
 #include <core/log/a3Log.h>
 #include <png.hpp>

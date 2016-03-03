@@ -95,10 +95,10 @@
     <ClInclude Include="..\..\..\Atoms\core\a3Scene.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Settings.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Ray.h" />
+    <ClInclude Include="..\..\..\Atoms\core\image\a3Image.h" />
     <ClInclude Include="..\..\..\Atoms\core\log\a3Log.h" />
     <ClInclude Include="..\..\..\Atoms\core\log\a3LogFile.h" />
     <ClInclude Include="..\..\..\Atoms\core\log\a3LogHTML.h" />
-    <ClInclude Include="..\..\..\Atoms\image\a3Image.h" />
     <ClInclude Include="..\..\..\Atoms\lights\a3Light.h" />
     <ClInclude Include="..\..\..\Atoms\renderers\a3Renderer.h" />
     <ClInclude Include="..\..\..\Atoms\renderers\a3SamplerRenderer.h" />
@@ -155,10 +155,10 @@
     <ClCompile Include="..\..\..\Atoms\core\a3Random.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Scene.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Settings.cpp" />
+    <ClCompile Include="..\..\..\Atoms\core\image\a3Image.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3Log.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3LogFile.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3LogHTML.cpp" />
-    <ClCompile Include="..\..\..\Atoms\image\a3Image.cpp" />
     <ClCompile Include="..\..\..\Atoms\lights\a3Light.cpp" />
     <ClCompile Include="..\..\..\Atoms\main.cpp" />
     <ClCompile Include="..\..\..\Atoms\renderers\a3Renderer.cpp" />

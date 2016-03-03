@@ -1,6 +1,6 @@
 #include <renderers/a3SamplerRenderer.h>
 #include <cameras/a3PerspectiveCamera.h>
-#include <image/a3Image.h>
+#include <core/image/a3Image.h>
 #include <core/a3Scene.h>
 #include <shapes/a3Sphere.h>
 #include <core/log/a3Log.h>
