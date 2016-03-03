@@ -54,13 +54,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\Program\Renderer\Atmos\dependency\t3Math\include;D:\Program\Renderer\Atmos\dependency\t3DataStructures\include;D:\Program\Renderer\Atmos\Atoms;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\dependency\t3Math\include;..\..\..\dependency\t3DataStructures\include;..\..\..\dependency\libpng\include;..\..\..\dependency\png++\include;..\..\..\Atoms;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>t3Mathd.lib;t3DataStructuresd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\Program\Renderer\Atmos\dependency\t3Math\lib;D:\Program\Renderer\Atmos\dependency\t3DataStructures\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>t3Mathd.lib;t3DataStructuresd.lib;libpng16d.lib;pngLibd.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\dependency\t3Math\lib;..\..\..\dependency\png++\lib;..\..\..\dependency\libpng\lib;..\..\..\dependency\t3DataStructures\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -73,7 +74,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\Program\Renderer\Atmos\Atoms;D:\Program\Renderer\Atmos\dependency\t3Math\include;D:\Program\Renderer\Atmos\dependency\t3DataStructures\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\dependency\png++\include;..\..\..\dependency\libpng\include;..\..\..\Atoms;..\..\..\dependency\t3Math\include;..\..\..\dependency\t3DataStructures\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -81,18 +82,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>D:\Program\Renderer\Atmos\dependency\t3DataStructures\lib;D:\Program\Renderer\Atmos\dependency\t3Math\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>t3Math.lib;t3DataStructures.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\dependency\png++\lib;..\..\..\dependency\t3DataStructures\lib;..\..\..\dependency\libpng\lib;..\..\..\dependency\t3Math\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>t3Math.lib;t3DataStructures.lib;libpng16.lib;zlib.lib;pngLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.h" />
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3MathSettings.h" />
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matri4x4.h" />
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Quaternion.h" />
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector2.h" />
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector3.h" />
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector4.h" />
     <ClInclude Include="..\..\..\Atoms\cameras\a3Camera.h" />
     <ClInclude Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Common.h" />
@@ -106,8 +100,6 @@
     <ClInclude Include="..\..\..\Atoms\core\log\a3LogHTML.h" />
     <ClInclude Include="..\..\..\Atoms\image\a3Image.h" />
     <ClInclude Include="..\..\..\Atoms\lights\a3Light.h" />
-    <ClInclude Include="..\..\..\Atoms\ray.h" />
-    <ClInclude Include="..\..\..\Atoms\render.h" />
     <ClInclude Include="..\..\..\Atoms\renderers\a3Renderer.h" />
     <ClInclude Include="..\..\..\Atoms\renderers\a3SamplerRenderer.h" />
     <ClInclude Include="..\..\..\Atoms\samples\a3CameraSample.h" />
@@ -116,11 +108,48 @@
     <ClInclude Include="..\..\..\Atoms\shapes\a3Plane.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Shape.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Sphere.h" />
+    <ClInclude Include="..\..\..\Atoms\test\png.h" />
+    <ClInclude Include="..\..\..\Atoms\test\ray.h" />
+    <ClInclude Include="..\..\..\Atoms\test\render.h" />
+    <ClInclude Include="..\..\..\dependency\png++\include\color.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\config.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\consumer.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\convert_color_space.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\end_info.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\error.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\ga_pixel.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\generator.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\gray_pixel.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\image.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\image_info.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\index_pixel.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\info.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\info_base.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\io_base.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\packed_pixel.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\palette.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\pixel_buffer.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\pixel_traits.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\png.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\reader.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\require_color_space.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\rgba_pixel.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\rgb_pixel.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\solid_pixel_buffer.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\streaming_base.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\tRNS.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\types.hpp" />
+    <ClInclude Include="..\..\..\dependency\png++\include\writer.hpp" />
     <ClInclude Include="..\..\..\dependency\t3DataStructures\include\Common\t3Timer.h" />
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.h" />
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3MathSettings.h" />
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.h" />
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.h" />
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.h" />
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.h" />
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matri4x4.cpp" />
-    <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Quaternion.cpp" />
     <ClCompile Include="..\..\..\Atoms\cameras\a3Camera.cpp" />
     <ClCompile Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Random.cpp" />
@@ -140,14 +169,16 @@
     <ClCompile Include="..\..\..\Atoms\shapes\a3Plane.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Shape.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Sphere.cpp" />
+    <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp" />
+    <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.inl" />
-    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matrix4x4.inl" />
-    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector2.inl" />
-    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector3.inl" />
-    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector4.inl" />
     <None Include="..\..\..\Atoms\core\a3Common.inl" />
+    <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.inl" />
+    <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4x4.inl" />
+    <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.inl" />
+    <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.inl" />
+    <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

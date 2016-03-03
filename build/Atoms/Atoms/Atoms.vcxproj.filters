@@ -50,6 +50,9 @@
     <Filter Include="Atoms\image">
       <UniqueIdentifier>{f497dc4b-5060-49ef-84f9-4781e9675188}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\png++">
+      <UniqueIdentifier>{fcd1c4ca-58ac-4660-ac30-c6db3dc3ea23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Atoms\core\a3Ray.h">
@@ -97,27 +100,6 @@
     <ClInclude Include="..\..\..\Atoms\core\log\a3Log.h">
       <Filter>Atoms\core\log</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector2.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector3.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector4.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3MathSettings.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matri4x4.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Quaternion.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Atoms\samples\a3CameraSample.h">
       <Filter>Atoms\samples</Filter>
     </ClInclude>
@@ -127,14 +109,8 @@
     <ClInclude Include="..\..\..\Atoms\samples\a3Sampler.h">
       <Filter>Atoms\samples</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\ray.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Atoms\image\a3Image.h">
       <Filter>Atoms\image</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\render.h">
-      <Filter>Atoms\test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Atoms\core\a3Random.h">
       <Filter>Atoms\core</Filter>
@@ -144,6 +120,123 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Atoms\shapes\a3Disk.h">
       <Filter>Atoms\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\image.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\image_info.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\index_pixel.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\info.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\info_base.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\io_base.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\packed_pixel.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\palette.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\pixel_buffer.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\pixel_traits.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\png.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\reader.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\require_color_space.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\rgb_pixel.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\rgba_pixel.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\solid_pixel_buffer.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\streaming_base.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\tRNS.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\types.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\writer.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\color.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\config.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\consumer.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\convert_color_space.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\end_info.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\error.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\ga_pixel.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\generator.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\gray_pixel.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\ray.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\render.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\png.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3MathSettings.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h">
+      <Filter>ThirdParty\t3Math\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -183,12 +276,6 @@
     <ClCompile Include="..\..\..\Atoms\core\log\a3Log.cpp">
       <Filter>Atoms\core\log</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matri4x4.cpp">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Quaternion.cpp">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Atoms\samples\a3CameraSample.cpp">
       <Filter>Atoms\samples</Filter>
     </ClCompile>
@@ -210,24 +297,30 @@
     <ClCompile Include="..\..\..\Atoms\shapes\a3Disk.cpp">
       <Filter>Atoms\shapes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp">
+      <Filter>ThirdParty\t3Math\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Atoms\core\a3Common.inl">
       <Filter>Atoms\core</Filter>
     </None>
-    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector2.inl">
+    <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.inl">
       <Filter>ThirdParty\t3Math\core</Filter>
     </None>
-    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector3.inl">
+    <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4x4.inl">
       <Filter>ThirdParty\t3Math\core</Filter>
     </None>
-    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Vector4.inl">
+    <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.inl">
       <Filter>ThirdParty\t3Math\core</Filter>
     </None>
-    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Math.inl">
+    <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.inl">
       <Filter>ThirdParty\t3Math\core</Filter>
     </None>
-    <None Include="..\..\..\..\..\TattyUI\t3Math\t3Math\core\t3Matrix4x4.inl">
+    <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.inl">
       <Filter>ThirdParty\t3Math\core</Filter>
     </None>
   </ItemGroup>

@@ -95,8 +95,8 @@ int main()
 
     t3Vector2f xxx;
     xxx.print("dhvoiwe");
-
-	getchar();
+    
+    getchar();
 
 	return 0;
 }

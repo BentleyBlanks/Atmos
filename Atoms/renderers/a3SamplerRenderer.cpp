@@ -10,8 +10,8 @@
 #include <core/a3Random.h>
 #include <shapes/a3Shape.h>
 
-#define DEPTH 8
-#define SPP 1024
+#define DEPTH 5
+#define SPP 128
 
 a3Random random;
 

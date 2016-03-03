@@ -189,53 +189,53 @@ public:
     template<class T >
     static T3_FORCE_INLINE T Max(T t1, T t2, T t3, T t4, T t5);
 
-    // Returns the smallest of the given values. 
-    static T3_FORCE_INLINE int 	Min(int t1, int t2);
+    //// Returns the smallest of the given values. 
+    //static T3_FORCE_INLINE int 	Min(int t1, int t2);
 
-    // Returns the smallest of the given values. 
-    static T3_FORCE_INLINE int 	Min(int t1, int t2, int t3);
+    //// Returns the smallest of the given values. 
+    //static T3_FORCE_INLINE int 	Min(int t1, int t2, int t3);
 
-    // Returns the smallest of the given values. 
-    static T3_FORCE_INLINE int 	Min(int t1, int t2, int t3, int t4);
+    //// Returns the smallest of the given values. 
+    //static T3_FORCE_INLINE int 	Min(int t1, int t2, int t3, int t4);
 
-    // Returns the smallest of the given values. 
-    static T3_FORCE_INLINE int 	Min(int t1, int t2, int t3, int t4, int t5);
+    //// Returns the smallest of the given values. 
+    //static T3_FORCE_INLINE int 	Min(int t1, int t2, int t3, int t4, int t5);
 
-    // Returns the largest of the given values. 
-    static T3_FORCE_INLINE int 	Max(int t1, int t2);
+    //// Returns the largest of the given values. 
+    //static T3_FORCE_INLINE int 	Max(int t1, int t2);
 
-    // Returns the largest of the given values. 
-    static T3_FORCE_INLINE int 	Max(int t1, int t2, int t3);
+    //// Returns the largest of the given values. 
+    //static T3_FORCE_INLINE int 	Max(int t1, int t2, int t3);
 
-    // Returns the largest of the given values. 
-    static T3_FORCE_INLINE int 	Max(int t1, int t2, int t3, int t4);
+    //// Returns the largest of the given values. 
+    //static T3_FORCE_INLINE int 	Max(int t1, int t2, int t3, int t4);
 
-    // Returns the largest of the given values. 
-    static T3_FORCE_INLINE int 	Max(int t1, int t2, int t3, int t4, int t5);
+    //// Returns the largest of the given values. 
+    //static T3_FORCE_INLINE int 	Max(int t1, int t2, int t3, int t4, int t5);
 
-    // Returns the smallest of the given values. 
-    static T3_FORCE_INLINE unsigned int Min(unsigned int t1, unsigned int t2);
+    //// Returns the smallest of the given values. 
+    //static T3_FORCE_INLINE unsigned int Min(unsigned int t1, unsigned int t2);
 
-    // Returns the smallest of the given values. 
-    static T3_FORCE_INLINE unsigned int Min(unsigned int t1, unsigned int t2, unsigned int t3);
+    //// Returns the smallest of the given values. 
+    //static T3_FORCE_INLINE unsigned int Min(unsigned int t1, unsigned int t2, unsigned int t3);
 
-    // Returns the smallest of the given values. 
-    static T3_FORCE_INLINE unsigned int Min(unsigned int t1, unsigned int t2, unsigned int t3, unsigned int t4);
+    //// Returns the smallest of the given values. 
+    //static T3_FORCE_INLINE unsigned int Min(unsigned int t1, unsigned int t2, unsigned int t3, unsigned int t4);
 
-    // Returns the smallest of the given values. 
-    static T3_FORCE_INLINE unsigned int Min(unsigned int t1, unsigned int t2, unsigned int t3, unsigned int t4, unsigned int t5);
+    //// Returns the smallest of the given values. 
+    //static T3_FORCE_INLINE unsigned int Min(unsigned int t1, unsigned int t2, unsigned int t3, unsigned int t4, unsigned int t5);
 
-    // Returns the largest of the given values. 
-    static T3_FORCE_INLINE unsigned int Max(unsigned int t1, unsigned int t2);
+    //// Returns the largest of the given values. 
+    //static T3_FORCE_INLINE unsigned int Max(unsigned int t1, unsigned int t2);
 
-    // Returns the largest of the given values. 
-    static T3_FORCE_INLINE unsigned int Max(unsigned int t1, unsigned int t2, unsigned int t3);
+    //// Returns the largest of the given values. 
+    //static T3_FORCE_INLINE unsigned int Max(unsigned int t1, unsigned int t2, unsigned int t3);
 
-    // Returns the largest of the given values. 
-    static T3_FORCE_INLINE unsigned int Max(unsigned int t1, unsigned int t2, unsigned int t3, unsigned int t4);
+    //// Returns the largest of the given values. 
+    //static T3_FORCE_INLINE unsigned int Max(unsigned int t1, unsigned int t2, unsigned int t3, unsigned int t4);
 
-    // Returns the largest of the given values.
-    static T3_FORCE_INLINE unsigned int Max(unsigned int t1, unsigned int t2, unsigned int t3, unsigned int t4, unsigned int t5);
+    //// Returns the largest of the given values.
+    //static T3_FORCE_INLINE unsigned int Max(unsigned int t1, unsigned int t2, unsigned int t3, unsigned int t4, unsigned int t5);
 
     // Returns val clamped to the range [tMin;tMax]. 
     template<class T >

@@ -55,6 +55,8 @@ public:
     inline t3Vector3<Type>& operator/=(const t3Vector3<Type>& vector);
     inline t3Vector3<Type>  operator-() const;
 
+    //inline t3Vector3<Type>& operator=(const t3Vector3<Type>& vector);
+
 	// Operator overloading for <Type>
     inline t3Vector3<Type>  operator+(const Type scalar) const;
     inline t3Vector3<Type>& operator+=(const Type scalar);

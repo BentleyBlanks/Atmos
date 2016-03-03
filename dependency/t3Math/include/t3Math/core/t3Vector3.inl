@@ -133,6 +133,15 @@ inline t3Vector3<Type> t3Vector3<Type>::operator-() const
     return t3Vector3<Type>(-x, -y, -z);
 }
 
+//template<typename Type>
+//inline t3Vector3<Type>& operator=(const t3Vector3<Type>& vector)
+//{
+//    x = vector.x;
+//    y = vector.y;
+//    z = vector.z;
+//    return *this;
+//}
+
 // operator overloading for float
 template<typename Type>
 inline t3Vector3<Type> t3Vector3<Type>::operator+(const Type scalar) const
