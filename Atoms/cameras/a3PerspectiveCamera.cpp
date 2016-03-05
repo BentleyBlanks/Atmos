@@ -25,7 +25,7 @@ float a3PerspectiveCamera::castRay(const a3CameraSample* sample, a3Ray* ray) con
 
     cameraPosition.y = -2 * rasterPosition.y * canvasSize.y / image->height + canvasSize.y;
 
-    cameraPosition.z = canvasDistance;
+    cameraPosition.z = origin.z + canvasDistance;
 
     // 从摄像机位置到画布上出射光线
     ray->direction = cameraPosition - origin;

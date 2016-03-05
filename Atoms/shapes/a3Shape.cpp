@@ -7,6 +7,9 @@ a3Shape::a3Shape()
     emission.set(0, 0, 0);
 
     type = A3_MATERIAL_NONE;
+
+    // Glass
+    refractiveIndex = 1.5f;
 }
 
 float a3Shape::intersect(const a3Ray& ray) const

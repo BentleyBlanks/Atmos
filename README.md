@@ -2,7 +2,7 @@
 
 A Simple Physically Based Renderer.
 
-![](https://farm2.staticflickr.com/1700/24819906013_c3ffe86c68_z.jpg)
+![](https://farm2.staticflickr.com/1474/25151015169_7efcfeaa0e_z.jpg)
 
 SPP = 1024
 

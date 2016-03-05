@@ -10,8 +10,8 @@
 #include <core/a3Random.h>
 #include <shapes/a3Shape.h>
 
-#define DEPTH 5
-#define SPP 128
+#define DEPTH 7
+#define SPP 1024
 
 a3Random random;
 
@@ -60,7 +60,7 @@ void a3SamplerRenderer::render(const a3Scene* scene)
 #pragma omp parallel for schedule(dynamic)
     for(int x = 0; x < camera->image->width; x++)
     {
-        a3Log::info("Rendering: %8.2f %%\r", (double) x / camera->image->width * 100);
+        a3Log::info("Spp:%d    Rendering: %8.2f \r", SPP, (double) x / camera->image->width * 100);
 
         for(int y = 0; y < camera->image->height; y++)
         {
@@ -126,8 +126,11 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int dep
     {
         // Diffuse BRDF
         t3Vector3f sampleDirection = hemisphere(random.randomFloat(), random.randomFloat());
-
-        return obj->emission + Li(scene, &a3Ray(intersectPoint, sampleDirection.normalize()), depth, sample, intersection);
+        sampleDirection.normalize();
+        
+        float cosTheta = sampleDirection * obj->getNormal(intersectPoint);
+        
+        return obj->emission + Li(scene, &a3Ray(intersectPoint, sampleDirection), depth, sample, intersection);
     }
     else if(obj->type == A3_MATERIAL_SPECULAR)
     {
@@ -137,5 +140,48 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int dep
         t3Vector3f sampleDirection = ray->direction - 2 * (ray->direction * normal) * normal;
 
         return obj->emission + Li(scene, &a3Ray(intersectPoint, sampleDirection.normalize()), depth, sample, intersection);
+    }
+    else if(obj->type == A3_METERIAL_REFRACTION)
+    {
+        // 折射与反射概率可求 通过[0, 1)之间生成随机数 根据大小间接完成折射反射选择
+        // 一次迭代只进行折射或反射迭代
+        // n = n2 / n1 假定在介质外 n1 = 1
+        float n = obj->refractiveIndex;
+
+        // Schlick的近似方程
+        float R0 = (1.0f - n) / (1.0 + n);
+        R0 = R0 * R0;
+
+        t3Vector3f normal = obj->getNormal(intersectPoint);
+
+        // 出射方向取决于当前光线位置是否处于物体中
+        if(normal * ray->direction > 0)
+        {
+            // 处于介质当中 反转表面法线方向
+            normal = -normal;
+            // n = n2 / n1 介质内 n2 = 1
+            n = 1 / n;
+        }
+
+        n = 1 / n;
+
+        // 入射角(光疏到光密: cosTheta1 < 0，而角度[0, 90]，需调制*-1; 光密到光疏: cosTheta1 > 0, 而normal被反转, 需调制*-1)
+        float cosTheta1 = normal * ray->direction * -1;
+        // 折射角(cosTheta2^2) 
+        float cosTheta2 = 1 - n * n * (1 - cosTheta1 * cosTheta1);
+
+        // 发生反射的概率
+        float probablity = R0 + (1 - R0)*t3Math::pow((1 - cosTheta1), 5);
+        
+        t3Vector3f outDirection;
+        // 折射光线方向(且未发生全反射)
+        if(cosTheta2 > 0 && random.randomFloat() > probablity)
+            outDirection = ray->direction * n + normal * (n * cosTheta1 - t3Math::sqrt(cosTheta2));
+        // 反射光线方向
+        else
+            // d - 2*(l · N)·N; l · N = -cosTheta1; 
+            outDirection = ray->direction + normal * (2 * cosTheta1);
+        
+        return obj->emission + 1.15 * Li(scene, &a3Ray(intersectPoint, outDirection.normalize()), depth, sample, intersection);
     }
 }
