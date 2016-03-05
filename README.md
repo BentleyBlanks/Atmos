@@ -6,7 +6,7 @@ A Simple Physically Based Renderer.
 
 SPP = 1024
 
-> 原图可见[Flickr](https://farm2.staticflickr.com/1474/25151015169_7efcfeaa0e_z.jpg)
+> 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25151015169/in/dateposted-public/)
 
 ## 构建说明
 
