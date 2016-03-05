@@ -3,9 +3,10 @@
 #include <core/log/a3Log.h>
 
 a3Camera::a3Camera(const t3Vector3f& origin, const t3Vector3f& direction,
-                   float focalLength, float apretureWidth, float apretureHeight, float canvasDistance,
+                   float focalLength, float apretureWidth, float apretureHeight, float canvasDistance, 
+                   float focalDistance, float lensRadius,
                    a3Image* image)
-                   : origin(origin), direction(direction), focalLength(focalLength), apreture(apretureWidth, apretureHeight), canvasDistance(canvasDistance), image(image)
+                   : origin(origin), direction(direction), focalLength(focalLength), apreture(apretureWidth, apretureHeight), canvasDistance(canvasDistance), focalDistance(focalDistance), lensRadius(lensRadius), image(image)
 {
     // 这里不直接给出fov而是间接计算
     // 详情可见 http://www.scratchapixel.com/lessons/3d-basic-rendering/3d-viewing-pinhole-camera/virtual-pinhole-camera-model

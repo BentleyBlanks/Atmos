@@ -95,6 +95,7 @@
     <ClInclude Include="..\..\..\Atoms\core\a3Scene.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Settings.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Ray.h" />
+    <ClInclude Include="..\..\..\Atoms\core\a3Warp.h" />
     <ClInclude Include="..\..\..\Atoms\core\image\a3Image.h" />
     <ClInclude Include="..\..\..\Atoms\core\log\a3Log.h" />
     <ClInclude Include="..\..\..\Atoms\core\log\a3LogFile.h" />
@@ -155,6 +156,7 @@
     <ClCompile Include="..\..\..\Atoms\core\a3Random.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Scene.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Settings.cpp" />
+    <ClCompile Include="..\..\..\Atoms\core\a3Warp.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\image\a3Image.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3Log.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3LogFile.cpp" />

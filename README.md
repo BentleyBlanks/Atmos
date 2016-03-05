@@ -6,6 +6,10 @@ A Simple Physically Based Renderer.
 
 SPP = 1024
 
+![](https://farm2.staticflickr.com/1531/25509064516_8314deedf1_z.jpg)
+
+SPP = 128 Depth of Field: f = 180.0f r = 20.0f
+
 > 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25151015169/in/dateposted-public/)
 
 ## 构建说明

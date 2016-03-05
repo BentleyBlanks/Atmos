@@ -238,6 +238,9 @@
     <ClInclude Include="..\..\..\Atoms\core\image\a3Image.h">
       <Filter>Atoms\core\image</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Warp.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Atoms\main.cpp">
@@ -302,6 +305,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\core\image\a3Image.cpp">
       <Filter>Atoms\core\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3Warp.cpp">
+      <Filter>Atoms\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

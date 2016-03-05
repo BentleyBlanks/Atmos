@@ -9,9 +9,9 @@
 
 int main()
 {
-    a3Image* image = new a3Image(1920, 1920, "hello", A3_IMAGE_PNG);
+    a3Image* image = new a3Image(900, 900, "hello", A3_IMAGE_PNG);
 
-    a3PerspectiveCamera* camera = new a3PerspectiveCamera(t3Vector3f(0, 0, -120), t3Vector3f(0, 0, 1), 1.0f, 3.89332f, 3.89332f * image->width / image->height, 1.0f, image);
+    a3PerspectiveCamera* camera = new a3PerspectiveCamera(t3Vector3f(0, 0, -120), t3Vector3f(0, 0, 1), 1.0f, 3.89332f, 3.89332f * image->width / image->height, 1.0f, 180.0f, 20.0f, image);
     a3Log::debug("fov: %f, %f\n", t3Math::Rad2Deg(camera->fov.x), t3Math::Rad2Deg(camera->fov.y));
 
     a3Scene* scene = new a3Scene();
@@ -27,10 +27,10 @@ int main()
 
     // Sphere/Disk    
     addShape(new a3Sphere(t3Vector3f(-30, -74, 100), 15), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
-    addShape(new a3Sphere(t3Vector3f(0, 0, 100), 15), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
-    addShape(new a3Disk(t3Vector3f(30, 74, 100), 15, t3Vector3f(0, 0, 1)), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
-    addShape(new a3Sphere(t3Vector3f(-30, 74, 100), 15), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
-    addShape(new a3Sphere(t3Vector3f(30, -59, 100), 30), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
+    addShape(new a3Sphere(t3Vector3f(0, 0, 90), 15), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
+    addShape(new a3Disk(t3Vector3f(30, 74, 80), 15, t3Vector3f(0, 0, 1)), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
+    addShape(new a3Sphere(t3Vector3f(-30, 74, 70), 15), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
+    addShape(new a3Sphere(t3Vector3f(30, -59, 60), 30), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
 
     // Plane
     addShape(new a3Plane(t3Vector3f(-70, 0, 100), t3Vector3f(-1, 0, 0)), t3Vector3f(7, 2, 2), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);

@@ -16,6 +16,7 @@ public:
     // fov + canvasDistance -> canvasSize
     a3Camera(const t3Vector3f& origin, const t3Vector3f& direction, 
              float focalLength, float apretureWidth, float apretureHeight, float canvasDistance, 
+             float focalDistance, float lensRadius,
              a3Image* image);
 
     virtual float castRay(const a3CameraSample* sample, a3Ray* ray) const;
@@ -38,6 +39,10 @@ public:
 
     // 摄像机在xy方向上的增量
     //t3Vector3f dx, dy;
+
+    // 焦距，透镜半径 用于构造景深
+    float focalDistance;
+    float lensRadius;
 };
 
 #endif

@@ -12,6 +12,9 @@ public:
     // [0, 10]
     unsigned int randomInt() const;
 
+private:
+    class a3RandomPrivate;
+    a3RandomPrivate* random;
 };
 
 #endif

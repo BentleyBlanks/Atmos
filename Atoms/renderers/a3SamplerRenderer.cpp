@@ -10,9 +10,16 @@
 #include <core/a3Random.h>
 #include <shapes/a3Shape.h>
 
-#define DEPTH 7
-#define SPP 1024
+#define A3_RANDOM_SAMPLING
 
+#ifdef A3_RANDOM_SAMPLING
+#define SPP 128
+#define DEPTH 7
+
+#else
+#define SPP 1
+#define DEPTH 1
+#endif
 a3Random random;
 
 // 均匀分布半球采样
@@ -122,6 +129,7 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int dep
     // 接触点
     t3Vector3f intersectPoint = (*ray)(intersection->t);
 
+#ifdef A3_RANDOM_SAMPLING
     if(obj->type == A3_MATERIAL_DIFFUSS)
     {
         // Diffuse BRDF
@@ -184,4 +192,8 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int dep
         
         return obj->emission + 1.15 * Li(scene, &a3Ray(intersectPoint, outDirection.normalize()), depth, sample, intersection);
     }
+
+#else        
+    return obj->emission + obj->color;
+#endif
 }
