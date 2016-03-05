@@ -10,7 +10,7 @@ SPP = 1024
 
 ![](https://farm2.staticflickr.com/1531/25509064516_8314deedf1_z.jpg)
 
-SPP = 128 Depth of Field: f = 180.0f r = 20.0f
+SPP = 128，Depth of Field: f = 180.0f，r = 20.0f
 
 
 ## 构建说明
