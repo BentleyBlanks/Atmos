@@ -136,20 +136,20 @@ inline t3Vector4<Type> t3Vector4<Type>::operator-() const
 
 // Scalings
 template<typename Type>
-inline Type t3Vector4<Type>::operator*(const t3Vector4<Type>& vec) const
+inline t3Vector4<Type> t3Vector4<Type>::operator*(const t3Vector4<Type>& vec) const
 {
-    return x*vec.x + y*vec.y + z*vec.z + w*vec.w;
+    return t3Vector4<Type>(x*vec.x + y*vec.y + z*vec.z + w*vec.w);
 }
 
-//template<typename Type>
-//inline t3Vector4<Type>& t3Vector4<Type>::operator*=(const t3Vector4<Type>& vec)
-//{
-//    x *= vec.x;
-//    y *= vec.y;
-//    z *= vec.z;
-//    w *= vec.w;
-//    return *this;
-//}
+template<typename Type>
+inline t3Vector4<Type>& t3Vector4<Type>::operator*=(const t3Vector4<Type>& vec)
+{
+    x *= vec.x;
+    y *= vec.y;
+    z *= vec.z;
+    w *= vec.w;
+    return *this;
+}
 
 template<typename Type>
 inline t3Vector4<Type> t3Vector4<Type>::operator*(const Type f) const

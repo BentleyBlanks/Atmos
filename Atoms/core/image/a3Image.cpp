@@ -18,7 +18,8 @@ public:
         //int one = L.x + temp.red, two = L.y + temp.green, three = L.z + temp.blue;
         //a3Log::debug("r:%d g:%d b:%d\n", one, two, three);
         
-        (*im)[y][x] = png::rgb_pixel(t3Math::Min<unsigned int>(L.x + temp.red, 255), t3Math::Min<unsigned int>(L.y + temp.green, 255), t3Math::Min<unsigned int>(L.z + temp.blue, 255));
+        //(*im)[y][x] = png::rgb_pixel(t3Math::Min<unsigned int>(L.x + temp.red, 255), t3Math::Min<unsigned int>(L.y + temp.green, 255), t3Math::Min<unsigned int>(L.z + temp.blue, 255));
+        (*im)[y][x] = png::rgb_pixel(L.x + temp.red, L.y + temp.green, L.z + temp.blue);
     }
 
     void write(std::string& fileName)

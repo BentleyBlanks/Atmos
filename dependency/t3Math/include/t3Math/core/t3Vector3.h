@@ -36,7 +36,7 @@ public:
     T3_FORCE_INLINE void set(Type scalar);
 
 	// Check similarity/equality.
-    inline bool operator==(const t3Vector3<Type>& vector);
+    inline bool operator==(const t3Vector3<Type>& vector) const;
 	inline bool operator!=(const t3Vector3<Type>& vector) const;
 	bool match(const t3Vector3<Type>& vector, float tolerance = 0.0001) const;
 
@@ -46,16 +46,15 @@ public:
     inline t3Vector3<Type>& operator+=(const t3Vector3<Type>& vector);
     inline t3Vector3<Type>  operator-(const t3Vector3<Type>& vector) const;
     inline t3Vector3<Type>& operator-=(const t3Vector3<Type>& vector);
-	// Dot Product
-    inline Type operator*(const t3Vector3<Type>& vector) const;
-    // *= Not Exist
-	//t3Vector3<Type>& operator*=(const t3Vector3<Type>& vector);
+
+    inline t3Vector3<Type> operator*(const t3Vector3<Type>& vector) const;
+    inline t3Vector3<Type>& operator*=(const t3Vector3<Type>& vector);
 	// Not valid in mathmatics
     inline t3Vector3<Type>  operator/(const t3Vector3<Type>& vector) const;
     inline t3Vector3<Type>& operator/=(const t3Vector3<Type>& vector);
     inline t3Vector3<Type>  operator-() const;
 
-    //inline t3Vector3<Type>& operator=(const t3Vector3<Type>& vector);
+    inline t3Vector3<Type>& operator=(const t3Vector3<Type>& vector);
 
 	// Operator overloading for <Type>
     inline t3Vector3<Type>  operator+(const Type scalar) const;

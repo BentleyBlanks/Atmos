@@ -39,7 +39,7 @@ int main()
 	c = a - b;
 	c -= a;
 
-	float aaa = a * b;
+	t3Vector4f aaa = a * b;
 	//c *= a;
 	b.x = 10;
 	c = a / b;

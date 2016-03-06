@@ -17,9 +17,6 @@
     <Filter Include="ThirdParty\t3Math">
       <UniqueIdentifier>{3c500cc0-7437-44c6-9aff-b1f932d9f6be}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\t3Math\core">
-      <UniqueIdentifier>{92340451-ba29-4b74-abf3-09dce1060772}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Atoms\test">
       <UniqueIdentifier>{c39e220e-de80-4c50-837e-0af11255e80b}</UniqueIdentifier>
     </Filter>
@@ -47,11 +44,11 @@
     <Filter Include="Atoms\samples">
       <UniqueIdentifier>{74ac5eb2-4ef6-40b3-b09d-f1ff1f6a271e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\png++">
-      <UniqueIdentifier>{fcd1c4ca-58ac-4660-ac30-c6db3dc3ea23}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Atoms\core\image">
       <UniqueIdentifier>{f497dc4b-5060-49ef-84f9-4781e9675188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\png++">
+      <UniqueIdentifier>{514ab194-e564-4da8-a47f-606297dfa6d4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +115,45 @@
     <ClInclude Include="..\..\..\Atoms\shapes\a3Disk.h">
       <Filter>Atoms\shapes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\ray.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\render.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\png.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\image\a3Image.h">
+      <Filter>Atoms\core\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Warp.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\config.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\consumer.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\convert_color_space.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\end_info.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\error.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\ga_pixel.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\generator.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\png++\include\gray_pixel.hpp">
+      <Filter>ThirdParty\png++</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\dependency\png++\include\image.hpp">
       <Filter>ThirdParty\png++</Filter>
     </ClInclude>
@@ -181,65 +217,26 @@
     <ClInclude Include="..\..\..\dependency\png++\include\color.hpp">
       <Filter>ThirdParty\png++</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\config.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\consumer.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\convert_color_space.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\end_info.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\error.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\ga_pixel.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\generator.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\gray_pixel.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\test\ray.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\test\render.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\test\png.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
+      <Filter>ThirdParty\t3Math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3MathSettings.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
+      <Filter>ThirdParty\t3Math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
+      <Filter>ThirdParty\t3Math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
+      <Filter>ThirdParty\t3Math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
+      <Filter>ThirdParty\t3Math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
+      <Filter>ThirdParty\t3Math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\core\image\a3Image.h">
-      <Filter>Atoms\core\image</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\core\a3Warp.h">
-      <Filter>Atoms\core</Filter>
+      <Filter>ThirdParty\t3Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -297,17 +294,17 @@
     <ClCompile Include="..\..\..\Atoms\shapes\a3Disk.cpp">
       <Filter>Atoms\shapes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp">
-      <Filter>ThirdParty\t3Math\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Atoms\core\image\a3Image.cpp">
       <Filter>Atoms\core\image</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\core\a3Warp.cpp">
       <Filter>Atoms\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp">
+      <Filter>ThirdParty\t3Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -315,19 +312,19 @@
       <Filter>Atoms\core</Filter>
     </None>
     <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.inl">
-      <Filter>ThirdParty\t3Math\core</Filter>
+      <Filter>ThirdParty\t3Math</Filter>
     </None>
     <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4x4.inl">
-      <Filter>ThirdParty\t3Math\core</Filter>
+      <Filter>ThirdParty\t3Math</Filter>
     </None>
     <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.inl">
-      <Filter>ThirdParty\t3Math\core</Filter>
+      <Filter>ThirdParty\t3Math</Filter>
     </None>
     <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.inl">
-      <Filter>ThirdParty\t3Math\core</Filter>
+      <Filter>ThirdParty\t3Math</Filter>
     </None>
     <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.inl">
-      <Filter>ThirdParty\t3Math\core</Filter>
+      <Filter>ThirdParty\t3Math</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -9,14 +9,14 @@ a3Disk::a3Disk(const t3Vector3f& center, const float radius, const t3Vector3f& n
 float a3Disk::intersect(const a3Ray& ray) const
 {
     // 判断圆盘与直线平行关系
-    float denominator = normal * ray.direction, t = 0.0f;
+    float denominator = normal.dot(ray.direction), t = 0.0f;
 
 
     if(denominator > T3MATH_DEFAULT_EPSILON)
     {
         t3Vector3f dir = center - ray.origin;
 
-        t = dir * normal / denominator;
+        t = dir.dot(normal) / denominator;
 
         t3Vector3f p = ray(t), d = p - center;
 

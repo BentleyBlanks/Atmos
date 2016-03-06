@@ -42,7 +42,7 @@ inline void t3Vector3<Type>::set(Type scalar)
 
 // Check similarity/equality.
 template<typename Type>
-inline bool t3Vector3<Type>::operator==(const t3Vector3<Type>& vector)
+inline bool t3Vector3<Type>::operator==(const t3Vector3<Type>& vector) const
 {
     return (x == vector.x) && (y == vector.y) && (z == vector.z);
 }
@@ -54,7 +54,7 @@ inline bool t3Vector3<Type>::operator!=(const t3Vector3<Type>& vector) const
 }
 
 template<typename Type>
-T3_FORCE_INLINE bool t3Vector3<Type>::match(const t3Vector3<Type>& vector, float tolerance = 0.0001) const
+T3_FORCE_INLINE bool t3Vector3<Type>::match(const t3Vector3<Type>& vector, float tolerance/* = 0.0001*/) const
 {
     return (fabs(x - vector.x) < tolerance)
         && (fabs(y - vector.y) < tolerance)
@@ -93,19 +93,19 @@ inline t3Vector3<Type>& t3Vector3<Type>::operator-=(const t3Vector3<Type>& vecto
 }
 
 template<typename Type>
-inline Type t3Vector3<Type>::operator*(const t3Vector3<Type>& vector) const
+inline t3Vector3<Type> t3Vector3<Type>::operator*(const t3Vector3<Type>& vector) const
 {
-    return x*vector.x + y*vector.y + z*vector.z;
+    return t3Vector3<Type>(x*vector.x + y*vector.y + z*vector.z);
 }
 
-//template<typename Type>
-//inline t3Vector3<Type>& t3Vector3<Type>::operator*=(const t3Vector3<Type>& vector)
-//{
-//	x *= vector.x;
-//	y *= vector.y;
-//	z *= vector.z;
-//	return *this;
-//}
+template<typename Type>
+inline t3Vector3<Type>& t3Vector3<Type>::operator*=(const t3Vector3<Type>& vector)
+{
+	x *= vector.x;
+	y *= vector.y;
+	z *= vector.z;
+	return *this;
+}
 
 template<typename Type>
 inline t3Vector3<Type> t3Vector3<Type>::operator/(const t3Vector3<Type>& vector) const
@@ -133,14 +133,14 @@ inline t3Vector3<Type> t3Vector3<Type>::operator-() const
     return t3Vector3<Type>(-x, -y, -z);
 }
 
-//template<typename Type>
-//inline t3Vector3<Type>& operator=(const t3Vector3<Type>& vector)
-//{
-//    x = vector.x;
-//    y = vector.y;
-//    z = vector.z;
-//    return *this;
-//}
+template<typename Type>
+inline t3Vector3<Type>& t3Vector3<Type>::operator=(const t3Vector3<Type>& vector)
+{
+    x = vector.x;
+    y = vector.y;
+    z = vector.z;
+    return *this;
+}
 
 // operator overloading for float
 template<typename Type>

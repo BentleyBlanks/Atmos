@@ -48,3 +48,15 @@ t3Vector2f squareToUniformDisk(const float sampleU, const float sampleV)
     v = r* sin(phi);
     return t3Vector2f(u, v);
 }
+
+t3Vector3f tonemap(t3Vector3f x)
+{
+    float A = 0.15f;
+    float B = 0.5f;
+    float C = 0.1f;
+    float D = 0.2f;
+    float _E = 0.02f;
+    float F = 0.3f;
+
+    return ((x * (A * x + C * B) + D * _E) / (x * (A * x + B) + D * F)) - _E / F;
+}

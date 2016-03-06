@@ -9,11 +9,12 @@
 #include <core/log/a3Log.h>
 #include <core/a3Random.h>
 #include <shapes/a3Shape.h>
+#include <core/a3Warp.h>
 
 #define A3_RANDOM_SAMPLING
 
 #ifdef A3_RANDOM_SAMPLING
-#define SPP 128
+#define SPP 2048
 #define DEPTH 7
 
 #else
@@ -99,11 +100,24 @@ void a3SamplerRenderer::render(const a3Scene* scene)
                 color = color + Li(scene, &ray, 0, &sample, &intersection) * (1.0f / SPP);
             }
 
-            t3Math::clamp(color.x, 0.0f, 255.0f);
-            t3Math::clamp(color.y, 0.0f, 255.0f);
-            t3Math::clamp(color.z, 0.0f, 255.0f);
+            color.x = t3Math::clamp(color.x, 0.0f, 255.0f);
+            color.y = t3Math::clamp(color.y, 0.0f, 255.0f);
+            color.z = t3Math::clamp(color.z, 0.0f, 255.0f);
+            
+            t3Vector3f toneColor = color;
+            //t3Vector3f toneColor = tonemap(color / 255.0f);
 
-            camera->image->addSample(&sample, color);
+            //toneColor.x = t3Math::pow(toneColor.x, 2.2);
+            //toneColor.y = t3Math::pow(toneColor.y, 2.2);
+            //toneColor.z = t3Math::pow(toneColor.z, 2.2);
+
+            toneColor.x = t3Math::pow(toneColor.x / 255.0f, 1/2.2f);
+            toneColor.y = t3Math::pow(toneColor.y / 255.0f, 1/2.2f);
+            toneColor.z = t3Math::pow(toneColor.z / 255.0f, 1/2.2f);
+
+            toneColor *= 255;
+
+            camera->image->addSample(&sample, toneColor);
         }
     }
     a3Log::info("\n");
@@ -136,7 +150,7 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int dep
         t3Vector3f sampleDirection = hemisphere(random.randomFloat(), random.randomFloat());
         sampleDirection.normalize();
         
-        float cosTheta = sampleDirection * obj->getNormal(intersectPoint);
+        float cosTheta = sampleDirection.dot(obj->getNormal(intersectPoint));
         
         return obj->emission + Li(scene, &a3Ray(intersectPoint, sampleDirection), depth, sample, intersection);
     }
@@ -163,7 +177,7 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int dep
         t3Vector3f normal = obj->getNormal(intersectPoint);
 
         // 出射方向取决于当前光线位置是否处于物体中
-        if(normal * ray->direction > 0)
+        if(normal.dot(ray->direction) > 0)
         {
             // 处于介质当中 反转表面法线方向
             normal = -normal;
@@ -174,7 +188,7 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int dep
         n = 1 / n;
 
         // 入射角(光疏到光密: cosTheta1 < 0，而角度[0, 90]，需调制*-1; 光密到光疏: cosTheta1 > 0, 而normal被反转, 需调制*-1)
-        float cosTheta1 = normal * ray->direction * -1;
+        float cosTheta1 = normal.dot(ray->direction) * -1;
         // 折射角(cosTheta2^2) 
         float cosTheta2 = 1 - n * n * (1 - cosTheta1 * cosTheta1);
 

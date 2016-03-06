@@ -50,10 +50,8 @@ public:
     inline t3Vector4<Type>  operator-() const;
     inline t3Vector4<Type>  operator/(const t3Vector4<Type>& vector) const;
     inline t3Vector4<Type>& operator/=(const t3Vector4<Type>& vector);
-
-    // Dot Product
-    inline Type operator*(const t3Vector4<Type>& vector) const;
-    //inline t3Vector4<Type>& operator*=(const t3Vector4<Type>& vector);
+    inline t3Vector4<Type> operator*(const t3Vector4<Type>& vector) const;
+    inline t3Vector4<Type>& operator*=(const t3Vector4<Type>& vector);
 
     inline t3Vector4<Type>  operator+(const Type scalar) const;
     inline t3Vector4<Type>& operator+=(const Type scalar);

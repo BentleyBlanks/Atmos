@@ -9,7 +9,7 @@ a3Plane::a3Plane(const t3Vector3f& p, const t3Vector3f& normal) :p(p), normal(no
 float a3Plane::intersect(const a3Ray& ray) const
 {
     // 判断圆盘与直线平行关系
-    float denominator = normal * ray.direction, t = 0.0f;
+    float denominator = normal.dot(ray.direction), t = 0.0f;
 
     // 无限远平面不适用双面
     //denominator = t3Math::Abs(denominator);
@@ -18,7 +18,7 @@ float a3Plane::intersect(const a3Ray& ray) const
     {
         t3Vector3f dir = p - ray.origin;
 
-        return (dir * normal / denominator);
+        return (dir.dot(normal) / denominator);
     }
 
     return 0.0f;
