@@ -13,7 +13,8 @@ SPP = 1024
 SPP = 128，Depth of Field: f = 180.0f，r = 20.0f
 
 ![](https://farm2.staticflickr.com/1479/25253904469_6b7bf1585b_z.jpg)
-SPP = 512 of Field: f = 180.0f，r = 20.0f
+
+SPP = 512，Shape + triangle
 
 ## 构建说明
 
