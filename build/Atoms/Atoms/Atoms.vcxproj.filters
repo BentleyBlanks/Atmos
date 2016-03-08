@@ -238,6 +238,9 @@
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h">
       <Filter>ThirdParty\t3Math</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\shapes\a3Triangle.h">
+      <Filter>Atoms\shapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Atoms\main.cpp">
@@ -305,6 +308,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp">
       <Filter>ThirdParty\t3Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\shapes\a3Triangle.cpp">
+      <Filter>Atoms\shapes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

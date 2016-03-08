@@ -109,6 +109,7 @@
     <ClInclude Include="..\..\..\Atoms\shapes\a3Plane.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Shape.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Sphere.h" />
+    <ClInclude Include="..\..\..\Atoms\shapes\a3Triangle.h" />
     <ClInclude Include="..\..\..\Atoms\test\png.h" />
     <ClInclude Include="..\..\..\Atoms\test\ray.h" />
     <ClInclude Include="..\..\..\Atoms\test\render.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="..\..\..\Atoms\shapes\a3Plane.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Shape.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Sphere.cpp" />
+    <ClCompile Include="..\..\..\Atoms\shapes\a3Triangle.cpp" />
     <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp" />
     <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp" />
   </ItemGroup>

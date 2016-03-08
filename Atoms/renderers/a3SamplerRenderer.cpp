@@ -14,13 +14,16 @@
 #define A3_RANDOM_SAMPLING
 
 #ifdef A3_RANDOM_SAMPLING
-#define SPP 2048
+#define SPP 512
 #define DEPTH 7
 
 #else
 #define SPP 1
 #define DEPTH 1
 #endif
+
+//#define A3_GAMMA_CORRECTION
+
 a3Random random;
 
 // 均匀分布半球采样
@@ -104,6 +107,7 @@ void a3SamplerRenderer::render(const a3Scene* scene)
             color.y = t3Math::clamp(color.y, 0.0f, 255.0f);
             color.z = t3Math::clamp(color.z, 0.0f, 255.0f);
             
+#ifdef A3_GAMMA_CORRECTION
             t3Vector3f toneColor = color;
             //t3Vector3f toneColor = tonemap(color / 255.0f);
 
@@ -111,13 +115,16 @@ void a3SamplerRenderer::render(const a3Scene* scene)
             //toneColor.y = t3Math::pow(toneColor.y, 2.2);
             //toneColor.z = t3Math::pow(toneColor.z, 2.2);
 
-            toneColor.x = t3Math::pow(toneColor.x / 255.0f, 1/2.2f);
-            toneColor.y = t3Math::pow(toneColor.y / 255.0f, 1/2.2f);
-            toneColor.z = t3Math::pow(toneColor.z / 255.0f, 1/2.2f);
+            toneColor.x = t3Math::pow(toneColor.x / 255.0f, 1 / 2.2f);
+            toneColor.y = t3Math::pow(toneColor.y / 255.0f, 1 / 2.2f);
+            toneColor.z = t3Math::pow(toneColor.z / 255.0f, 1 / 2.2f);
 
             toneColor *= 255;
 
             camera->image->addSample(&sample, toneColor);
+#else
+            camera->image->addSample(&sample, color);
+#endif
         }
     }
     a3Log::info("\n");

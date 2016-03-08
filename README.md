@@ -12,6 +12,8 @@ SPP = 1024
 
 SPP = 128，Depth of Field: f = 180.0f，r = 20.0f
 
+![](https://farm2.staticflickr.com/1479/25253904469_6b7bf1585b_z.jpg)
+SPP = 512 of Field: f = 180.0f，r = 20.0f
 
 ## 构建说明
 
@@ -35,6 +37,8 @@ SPP = 128，Depth of Field: f = 180.0f，r = 20.0f
 但输出到文件部分目前不支持中文或者其他UTF8字符
 
 2.```a3SamplerRenderer.cpp```中定义了跟踪深度，潜在BRDF(未封装)以及SPP, 尚未开放可自行更改。
+
+3.目前Atoms支持Triangle Mesh, Sphere, Disk, Plane等基本几何形状
 
 ## 关于作者
 
