@@ -47,8 +47,17 @@
     <Filter Include="Atoms\core\image">
       <UniqueIdentifier>{f497dc4b-5060-49ef-84f9-4781e9675188}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\png++">
-      <UniqueIdentifier>{514ab194-e564-4da8-a47f-606297dfa6d4}</UniqueIdentifier>
+    <Filter Include="ThirdParty\assimp">
+      <UniqueIdentifier>{8054c58e-32cf-43de-8a36-d9be79e58b96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\assimp\Compiler">
+      <UniqueIdentifier>{f87e5bf8-5e0a-45a6-9f65-3dd9f931e1cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\assimp\port">
+      <UniqueIdentifier>{9cbf31b7-3a22-4d89-9cbd-96d08b5b8767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\loadpng">
+      <UniqueIdentifier>{695a5772-8b26-4823-8d12-0f8847222660}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -124,98 +133,8 @@
     <ClInclude Include="..\..\..\Atoms\test\png.h">
       <Filter>Atoms\test</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\core\image\a3Image.h">
-      <Filter>Atoms\core\image</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Atoms\core\a3Warp.h">
       <Filter>Atoms\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\config.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\consumer.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\convert_color_space.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\end_info.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\error.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\ga_pixel.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\generator.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\gray_pixel.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\image.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\image_info.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\index_pixel.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\info.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\info_base.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\io_base.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\packed_pixel.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\palette.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\pixel_buffer.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\pixel_traits.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\png.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\reader.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\require_color_space.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\rgb_pixel.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\rgba_pixel.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\solid_pixel_buffer.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\streaming_base.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\tRNS.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\types.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\writer.hpp">
-      <Filter>ThirdParty\png++</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\dependency\png++\include\color.hpp">
-      <Filter>ThirdParty\png++</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.h">
       <Filter>ThirdParty\t3Math</Filter>
@@ -240,6 +159,141 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Atoms\shapes\a3Triangle.h">
       <Filter>Atoms\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\shapes\a3TriangleMesh.h">
+      <Filter>Atoms\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\port\AndroidJNI\AndroidJNIIOSystem.h">
+      <Filter>ThirdParty\assimp\port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\Compiler\poppack1.h">
+      <Filter>ThirdParty\assimp\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\Compiler\pstdint.h">
+      <Filter>ThirdParty\assimp\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\Compiler\pushpack1.h">
+      <Filter>ThirdParty\assimp\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\ai_assert.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\anim.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\camera.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\cexport.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\cfileio.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\cimport.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\color4.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\config.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\DefaultLogger.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\defs.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\Exporter.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\Importer.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\importerdesc.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\IOStream.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\IOSystem.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\light.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\Logger.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\LogStream.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\material.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\matrix3x3.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\matrix4x4.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\mesh.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\metadata.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\NullLogger.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\postprocess.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\ProgressHandler.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\quaternion.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\scene.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\texture.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\types.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\vector2.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\vector3.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\version.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3ModelImporter.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\model.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dependency\loadpng\include\lodepng.h">
+      <Filter>ThirdParty\loadpng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\image\a3Film.h">
+      <Filter>Atoms\core\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\image\a3ImageEncoder.h">
+      <Filter>Atoms\core\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\image\a3ImageDecoder.h">
+      <Filter>Atoms\core\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\lights\a3InfiniteAreaLight.h">
+      <Filter>Atoms\lights</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -297,12 +351,6 @@
     <ClCompile Include="..\..\..\Atoms\shapes\a3Disk.cpp">
       <Filter>Atoms\shapes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\core\image\a3Image.cpp">
-      <Filter>Atoms\core\image</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\core\a3Warp.cpp">
-      <Filter>Atoms\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp">
       <Filter>ThirdParty\t3Math</Filter>
     </ClCompile>
@@ -311,6 +359,27 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\shapes\a3Triangle.cpp">
       <Filter>Atoms\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\shapes\a3TriangleMesh.cpp">
+      <Filter>Atoms\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3ModelImporter.cpp">
+      <Filter>Atoms\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\image\a3Film.cpp">
+      <Filter>Atoms\core\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\image\a3ImageEncoder.cpp">
+      <Filter>Atoms\core\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\image\a3ImageDecoder.cpp">
+      <Filter>Atoms\core\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\lights\a3InfiniteAreaLight.cpp">
+      <Filter>Atoms\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3Warp.cpp">
+      <Filter>Atoms\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +400,27 @@
     </None>
     <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.inl">
       <Filter>ThirdParty\t3Math</Filter>
+    </None>
+    <None Include="..\..\..\dependency\assimp\include\assimp\color4.inl">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\dependency\assimp\include\assimp\material.inl">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\dependency\assimp\include\assimp\matrix3x3.inl">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\dependency\assimp\include\assimp\matrix4x4.inl">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\dependency\assimp\include\assimp\quaternion.inl">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\dependency\assimp\include\assimp\vector2.inl">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\dependency\assimp\include\assimp\vector3.inl">
+      <Filter>ThirdParty\assimp</Filter>
     </None>
   </ItemGroup>
 </Project>

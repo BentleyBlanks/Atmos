@@ -42,6 +42,8 @@ public:
 
     static void debug(const char* message, ...);
 
+    // replacement for printf
+    static void print(const char* message, ...);
 private:
     a3Log() {}
     a3Log(const a3Log&) {}

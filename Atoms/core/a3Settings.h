@@ -133,6 +133,20 @@
 #define A3_TOLERANCE_FLOAT 1e-6
 #define A3_TOLERANCE_DOUBLE 1e-8
 
+// ------------------------Image------------------------
+//#define A3_IMAGE_LIB_PNGPP
+#define A3_IMAGE_LIB_LODEPNG
+
+enum a3ImageType
+{
+    A3_IMAGE_ERROR = -1,
+    A3_IMAGE_PPM = 0,
+    A3_IMAGE_PNG = 1
+};
+
+// ------------------------Scene------------------------
+#define A3_SCENE_WORLDRADIUS 100000
+
 // ------------------------Version------------------------
 // Atoms版本信息
 // --!来自box2d http://en.wikipedia.org/wiki/Software_versioning

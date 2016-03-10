@@ -1,7 +1,6 @@
 ﻿#include <core/a3Warp.h>
 
-
-t3Vector2f squareToUniformDisk(const float sampleU, const float sampleV)
+t3Vector2f a3SquareToUniformDisk(const float sampleU, const float sampleV)
 {
     float phi, r, u, v;
     // (a,b) is now on [-1,1]ˆ2
@@ -49,7 +48,7 @@ t3Vector2f squareToUniformDisk(const float sampleU, const float sampleV)
     return t3Vector2f(u, v);
 }
 
-t3Vector3f tonemap(t3Vector3f x)
+t3Vector3f a3Tonemap(t3Vector3f x)
 {
     float A = 0.15f;
     float B = 0.5f;
@@ -59,4 +58,16 @@ t3Vector3f tonemap(t3Vector3f x)
     float F = 0.3f;
 
     return ((x * (A * x + C * B) + D * _E) / (x * (A * x + B) + D * F)) - _E / F;
+}
+
+float a3SphericalTheta(const t3Vector3f &v)
+{
+    return t3Math::acosRad(t3Math::clamp(v.z, -1.f, 1.f));
+}
+
+float a3SphericalPhi(const t3Vector3f &v)
+{
+    // 等价于atan(y/x)
+    float p = t3Math::atan2Rad(v.y, v.x);
+    return (p < 0.f) ? p + 2.f * T3MATH_PI : p;
 }

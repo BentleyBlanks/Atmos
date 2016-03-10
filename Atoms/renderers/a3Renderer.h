@@ -16,7 +16,7 @@ public:
 
 	~a3Renderer();
 
-    virtual t3Vector3f Li(const a3Scene* scene, const a3Ray* ray, int depth, const a3CameraSample* sample, a3Intersection* intersection) = 0;
+    virtual t3Vector3f Li(const a3Scene* scene, a3Ray* ray, int depth, const a3CameraSample* sample, a3Intersection* intersection) = 0;
 
     virtual void render(const a3Scene* scene) = 0;
 };

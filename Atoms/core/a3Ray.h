@@ -15,6 +15,12 @@ public:
 	a3Ray(const t3Vector3f& origin, const t3Vector3f& direction, const a3Ray& parent, float start = 0, float end = A3_INFINITY) 
         : origin(origin), direction(direction), mint(start), maxt(end), depth(parent.depth + 1){}
 
+    void set(const t3Vector3f& origin, const t3Vector3f& direction)
+    {
+        this->origin = origin;
+        this->direction = direction;
+    }
+
 	t3Vector3f operator()(float t) const
 	{
 		return origin + direction * t;

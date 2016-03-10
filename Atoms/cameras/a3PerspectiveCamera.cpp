@@ -2,7 +2,7 @@
 #include <samples/a3CameraSample.h>
 #include <t3Math/core/t3Vector3.h>
 #include <samples/a3CameraSample.h>
-#include <core/image/a3Image.h>
+#include <core/image/a3Film.h>
 #include <core/a3Ray.h>
 #include <core/a3Warp.h>
 #include <core/a3Random.h>
@@ -10,7 +10,7 @@
 a3PerspectiveCamera::a3PerspectiveCamera(const t3Vector3f& origin, const t3Vector3f& direction,
                                          float focalLength, float apretureWidth, float apretureHeight, float canvasDistance, 
                                          float focalDistance, float lensRadius,
-                                         a3Image* image)
+                                         a3Film* image)
                                          : a3Camera(origin, direction, focalLength, apretureWidth, apretureHeight, canvasDistance, focalDistance, lensRadius, image)
 {
     random = new a3Random();
@@ -43,7 +43,7 @@ float a3PerspectiveCamera::castRay(const a3CameraSample* sample, a3Ray* ray) con
         float sampleU = random->randomFloat();
         float sampleV = random->randomFloat();
 
-        t3Vector2f lens = squareToUniformDisk(sampleU, sampleV);
+        t3Vector2f lens = a3SquareToUniformDisk(sampleU, sampleV);
 
         lens.x *= lensRadius;
         lens.y *= lensRadius;

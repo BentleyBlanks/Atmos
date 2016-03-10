@@ -54,14 +54,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\dependency\t3Math\include;..\..\..\dependency\t3DataStructures\include;..\..\..\dependency\libpng\include;..\..\..\dependency\png++\include;..\..\..\Atoms;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\dependency\loadpng\include;..\..\..\dependency\assimp\include;..\..\..\dependency\t3Math\include;..\..\..\dependency\t3DataStructures\include;..\..\..\Atoms;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>t3Mathd.lib;t3DataStructuresd.lib;libpng16d.lib;pngLibd.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\dependency\t3Math\lib;..\..\..\dependency\png++\lib;..\..\..\dependency\libpng\lib;..\..\..\dependency\t3DataStructures\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>t3Mathd.lib;t3DataStructuresd.lib;assimpd.lib;loadpngd.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\dependency\loadpng\lib;..\..\..\dependency\assimp\lib;..\..\..\dependency\t3Math\lib;..\..\..\dependency\t3DataStructures\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -74,7 +74,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\dependency\png++\include;..\..\..\dependency\libpng\include;..\..\..\Atoms;..\..\..\dependency\t3Math\include;..\..\..\dependency\t3DataStructures\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\dependency\loadpng\include;..\..\..\dependency\assimp\include;..\..\..\Atoms;..\..\..\dependency\t3Math\include;..\..\..\dependency\t3DataStructures\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -82,8 +82,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\..\..\dependency\png++\lib;..\..\..\dependency\t3DataStructures\lib;..\..\..\dependency\libpng\lib;..\..\..\dependency\t3Math\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>t3Math.lib;t3DataStructures.lib;libpng16.lib;zlib.lib;pngLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\dependency\loadpng\lib;..\..\..\dependency\assimp\lib;..\..\..\dependency\t3DataStructures\lib;..\..\..\dependency\t3Math\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>t3Math.lib;t3DataStructures.lib;assimp.lib;loadpng.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -91,15 +91,19 @@
     <ClInclude Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Common.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Intersection.h" />
+    <ClInclude Include="..\..\..\Atoms\core\a3ModelImporter.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Random.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Scene.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Settings.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Ray.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Warp.h" />
-    <ClInclude Include="..\..\..\Atoms\core\image\a3Image.h" />
+    <ClInclude Include="..\..\..\Atoms\core\image\a3Film.h" />
+    <ClInclude Include="..\..\..\Atoms\core\image\a3ImageDecoder.h" />
+    <ClInclude Include="..\..\..\Atoms\core\image\a3ImageEncoder.h" />
     <ClInclude Include="..\..\..\Atoms\core\log\a3Log.h" />
     <ClInclude Include="..\..\..\Atoms\core\log\a3LogFile.h" />
     <ClInclude Include="..\..\..\Atoms\core\log\a3LogHTML.h" />
+    <ClInclude Include="..\..\..\Atoms\lights\a3InfiniteAreaLight.h" />
     <ClInclude Include="..\..\..\Atoms\lights\a3Light.h" />
     <ClInclude Include="..\..\..\Atoms\renderers\a3Renderer.h" />
     <ClInclude Include="..\..\..\Atoms\renderers\a3SamplerRenderer.h" />
@@ -110,38 +114,49 @@
     <ClInclude Include="..\..\..\Atoms\shapes\a3Shape.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Sphere.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Triangle.h" />
+    <ClInclude Include="..\..\..\Atoms\shapes\a3TriangleMesh.h" />
+    <ClInclude Include="..\..\..\Atoms\test\model.h" />
     <ClInclude Include="..\..\..\Atoms\test\png.h" />
     <ClInclude Include="..\..\..\Atoms\test\ray.h" />
     <ClInclude Include="..\..\..\Atoms\test\render.h" />
-    <ClInclude Include="..\..\..\dependency\png++\include\color.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\config.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\consumer.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\convert_color_space.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\end_info.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\error.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\ga_pixel.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\generator.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\gray_pixel.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\image.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\image_info.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\index_pixel.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\info.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\info_base.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\io_base.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\packed_pixel.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\palette.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\pixel_buffer.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\pixel_traits.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\png.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\reader.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\require_color_space.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\rgba_pixel.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\rgb_pixel.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\solid_pixel_buffer.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\streaming_base.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\tRNS.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\types.hpp" />
-    <ClInclude Include="..\..\..\dependency\png++\include\writer.hpp" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\ai_assert.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\anim.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\camera.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\cexport.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\cfileio.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\cimport.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\color4.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\Compiler\poppack1.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\Compiler\pstdint.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\Compiler\pushpack1.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\config.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\DefaultLogger.hpp" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\defs.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\Exporter.hpp" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\Importer.hpp" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\importerdesc.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\IOStream.hpp" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\IOSystem.hpp" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\light.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\Logger.hpp" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\LogStream.hpp" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\material.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\matrix3x3.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\matrix4x4.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\mesh.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\metadata.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\NullLogger.hpp" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\port\AndroidJNI\AndroidJNIIOSystem.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\postprocess.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\ProgressHandler.hpp" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\quaternion.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\scene.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\texture.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\types.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\vector2.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\vector3.h" />
+    <ClInclude Include="..\..\..\dependency\assimp\include\assimp\version.h" />
+    <ClInclude Include="..\..\..\dependency\loadpng\include\lodepng.h" />
     <ClInclude Include="..\..\..\dependency\t3DataStructures\include\Common\t3Timer.h" />
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.h" />
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3MathSettings.h" />
@@ -154,14 +169,18 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\Atoms\cameras\a3Camera.cpp" />
     <ClCompile Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.cpp" />
+    <ClCompile Include="..\..\..\Atoms\core\a3ModelImporter.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Random.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Scene.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Settings.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Warp.cpp" />
-    <ClCompile Include="..\..\..\Atoms\core\image\a3Image.cpp" />
+    <ClCompile Include="..\..\..\Atoms\core\image\a3Film.cpp" />
+    <ClCompile Include="..\..\..\Atoms\core\image\a3ImageDecoder.cpp" />
+    <ClCompile Include="..\..\..\Atoms\core\image\a3ImageEncoder.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3Log.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3LogFile.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3LogHTML.cpp" />
+    <ClCompile Include="..\..\..\Atoms\lights\a3InfiniteAreaLight.cpp" />
     <ClCompile Include="..\..\..\Atoms\lights\a3Light.cpp" />
     <ClCompile Include="..\..\..\Atoms\main.cpp" />
     <ClCompile Include="..\..\..\Atoms\renderers\a3Renderer.cpp" />
@@ -173,11 +192,19 @@
     <ClCompile Include="..\..\..\Atoms\shapes\a3Shape.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Sphere.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Triangle.cpp" />
+    <ClCompile Include="..\..\..\Atoms\shapes\a3TriangleMesh.cpp" />
     <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp" />
     <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Atoms\core\a3Common.inl" />
+    <None Include="..\..\..\dependency\assimp\include\assimp\color4.inl" />
+    <None Include="..\..\..\dependency\assimp\include\assimp\material.inl" />
+    <None Include="..\..\..\dependency\assimp\include\assimp\matrix3x3.inl" />
+    <None Include="..\..\..\dependency\assimp\include\assimp\matrix4x4.inl" />
+    <None Include="..\..\..\dependency\assimp\include\assimp\quaternion.inl" />
+    <None Include="..\..\..\dependency\assimp\include\assimp\vector2.inl" />
+    <None Include="..\..\..\dependency\assimp\include\assimp\vector3.inl" />
     <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.inl" />
     <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4x4.inl" />
     <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.inl" />

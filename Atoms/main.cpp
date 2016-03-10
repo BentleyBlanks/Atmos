@@ -4,5 +4,8 @@
 // 基本渲染管线检测
 #include "test/render.h"
 
-// png文件保存测试
+// png文件导入保存测试
 //#include "test/png.h"
+
+// 模型导入测试
+//#include "test/model.h"

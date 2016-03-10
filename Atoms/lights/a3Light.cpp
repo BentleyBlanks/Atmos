@@ -1,18 +1,12 @@
 #include <lights/a3Light.h>
 #include <core/a3Ray.h>
 
-a3Light::a3Light(const t3Vector3f& center, const float radius) :a3Sphere(center, radius)
+a3Light::a3Light()
 {
 
 }
 
-void a3Light::print() const
+t3Vector3f a3Light::Le(const a3Ray& ray)
 {
-#ifdef _DEBUG
-    center.print("a3Light:center");
-
-    std::cout << "a3Light:radius:" << radius << std::endl;
-
-    a3Shape::print();
-#endif
+    return t3Vector3f::zero();
 }

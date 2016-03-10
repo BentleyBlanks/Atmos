@@ -97,7 +97,7 @@ void a3Log::log(a3LogLevel logLevel, const char* message, va_list args)
 
         // save time + message + format(args) to content
         static char timeBuffer[30], messageBuffer[1024];
-        sprintf(timeBuffer, "%02d:%02d:%02d    %s    ", tm->tm_hour, tm->tm_min, tm->tm_sec, lv);
+        sprintf(timeBuffer, "%02d:%02d:%02d %10s       ", tm->tm_hour, tm->tm_min, tm->tm_sec, lv);
         // messageBuffer:[hour]:[minute]:[second]
         strcpy(messageBuffer, timeBuffer);
         // messageBuffer:[hour]:[minute]:[second] message ...
@@ -249,5 +249,19 @@ void a3Log::debug(const char* message, ...)
     va_list args;
     va_start(args, message);
     log(A3_LOG_LEVEL_DEBUG, message, args);
+    va_end(args);
+}
+
+void a3Log::print(const char* message, ...)
+{
+    va_list args;
+    va_start(args, message);
+
+#ifdef _MSC_VER
+    WORD attr = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+    SetConsoleTextAttribute(GetStdHandle(STD_ERROR_HANDLE), attr);
+#endif
+
+    vprintf(message, args);
     va_end(args);
 }

@@ -1,5 +1,5 @@
 #include <shapes/a3Sphere.h>
-#include <image/a3Image.h>
+#include <image/a3Film.h>
 #include <core/a3Ray.h>
 #include <core/log/a3Log.h>
 #include <core/log/a3LogFile.h>
@@ -20,7 +20,7 @@ int main()
 
 	sphere.normal(t3Vector3f(20, 10, 0)).print();
 
-	a3Image image(900, 900, "Atoms.ppm");
+	a3Film image(900, 900, "Atoms.ppm");
 
 
 	// 产生随机数种子

@@ -17,8 +17,14 @@ public:
 
     bool intersect(const a3Ray& ray) const;
 
-    // 场景所有对象和光源(临时球型光源也是Shape)
+    bool addShape(a3Shape* shape);
+
+    bool addLight(a3Light* light);
+
+    // 场景所有对象和光源
     std::vector<a3Shape*> objects;
+
+    std::vector<a3Light*> lights;
 };
 
 #endif

@@ -1,15 +1,18 @@
 #ifndef A3_LIGHT_H
 #define A3_LIGHT_H
 
-#include <shapes/a3Sphere.h>
+#include <t3Math/core/t3Vector3.h>
+#include <shapes/a3Shape.h>
 
-// 临时的球型光源 
-class a3Light : public a3Sphere
+class a3Ray;
+
+class a3Light
 {
 public:
-    a3Light(const t3Vector3f& center, const float radius = 0.0f);
+    a3Light();
 
-    virtual void print() const;
+    // a function for infinite area light
+    virtual t3Vector3f Le(const a3Ray& ray);
 };
 
 #endif

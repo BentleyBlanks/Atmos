@@ -1,11 +1,11 @@
 #include <cameras/a3Camera.h>
-#include <core/image/a3Image.h>
+#include <core/image/a3Film.h>
 #include <core/log/a3Log.h>
 
 a3Camera::a3Camera(const t3Vector3f& origin, const t3Vector3f& direction,
                    float focalLength, float apretureWidth, float apretureHeight, float canvasDistance, 
                    float focalDistance, float lensRadius,
-                   a3Image* image)
+                   a3Film* image)
                    : origin(origin), direction(direction), focalLength(focalLength), apreture(apretureWidth, apretureHeight), canvasDistance(canvasDistance), focalDistance(focalDistance), lensRadius(lensRadius), image(image)
 {
     // 这里不直接给出fov而是间接计算

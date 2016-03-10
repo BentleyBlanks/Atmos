@@ -12,7 +12,7 @@ public:
 
 	~a3SamplerRenderer();
 
-    t3Vector3f Li(const a3Scene* scene, const a3Ray* ray, int depth, const a3CameraSample* sample, a3Intersection* intersection);
+    t3Vector3f Li(const a3Scene* scene, a3Ray* ray, int depth, const a3CameraSample* sample, a3Intersection* intersection);
 
 	void render(const a3Scene* scene);
 
