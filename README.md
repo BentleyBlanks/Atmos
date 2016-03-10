@@ -3,6 +3,7 @@
 A Simple Physically Based Renderer.
 
 ![](https://farm2.staticflickr.com/1672/25560276222_eea6d5b8a5_z.jpg)
+
 SPP = 256 width: 4000 height: 4000
 
 > 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25560276222/in/dateposted-public/)
