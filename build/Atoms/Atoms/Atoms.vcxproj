@@ -54,14 +54,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\dependency\loadpng\include;..\..\..\dependency\assimp\include;..\..\..\dependency\t3Math\include;..\..\..\dependency\t3DataStructures\include;..\..\..\Atoms;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\dependency\lodepng\include;..\..\..\dependency\assimp\include;..\..\..\dependency\t3Math\include;..\..\..\dependency\t3DataStructures\include;..\..\..\Atoms;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>t3Mathd.lib;t3DataStructuresd.lib;assimpd.lib;loadpngd.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\dependency\loadpng\lib;..\..\..\dependency\assimp\lib;..\..\..\dependency\t3Math\lib;..\..\..\dependency\t3DataStructures\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\dependency\lodepng\lib;..\..\..\dependency\assimp\lib;..\..\..\dependency\t3Math\lib;..\..\..\dependency\t3DataStructures\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -74,7 +74,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\dependency\loadpng\include;..\..\..\dependency\assimp\include;..\..\..\Atoms;..\..\..\dependency\t3Math\include;..\..\..\dependency\t3DataStructures\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\dependency\lodepng\include;..\..\..\dependency\assimp\include;..\..\..\Atoms;..\..\..\dependency\t3Math\include;..\..\..\dependency\t3DataStructures\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -82,7 +82,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\..\..\dependency\loadpng\lib;..\..\..\dependency\assimp\lib;..\..\..\dependency\t3DataStructures\lib;..\..\..\dependency\t3Math\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\dependency\lodepng\lib;..\..\..\dependency\assimp\lib;..\..\..\dependency\t3DataStructures\lib;..\..\..\dependency\t3Math\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>t3Math.lib;t3DataStructures.lib;assimp.lib;loadpng.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -156,7 +156,7 @@
     <ClInclude Include="..\..\..\dependency\assimp\include\assimp\vector2.h" />
     <ClInclude Include="..\..\..\dependency\assimp\include\assimp\vector3.h" />
     <ClInclude Include="..\..\..\dependency\assimp\include\assimp\version.h" />
-    <ClInclude Include="..\..\..\dependency\loadpng\include\lodepng.h" />
+    <ClInclude Include="..\..\..\dependency\lodepng\include\lodepng.h" />
     <ClInclude Include="..\..\..\dependency\t3DataStructures\include\Common\t3Timer.h" />
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.h" />
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3MathSettings.h" />

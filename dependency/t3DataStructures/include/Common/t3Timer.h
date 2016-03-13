@@ -1,4 +1,4 @@
-#ifndef T3_TIMER_H
+﻿#ifndef T3_TIMER_H
 #define T3_TIMER_H
 
 class t3Timer
