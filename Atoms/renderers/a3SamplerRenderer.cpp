@@ -15,7 +15,7 @@
 #define A3_RANDOM_SAMPLING
 
 #ifdef A3_RANDOM_SAMPLING
-#define SPP 256
+#define SPP 16
 #define DEPTH 7
 
 #else

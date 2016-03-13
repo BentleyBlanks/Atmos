@@ -25,3 +25,8 @@ void a3Film::addSample(const a3CameraSample* sample, const t3Vector3f& L)
 
     picture->setColor(x, y, L);
 }
+
+void a3Film::setFileName(const std::string& fileName)
+{
+    this->fileName = fileName;
+}

@@ -7,11 +7,11 @@
 #include <core/a3Warp.h>
 #include <core/a3Random.h>
 
-a3PerspectiveCamera::a3PerspectiveCamera(const t3Vector3f& origin, const t3Vector3f& direction,
+a3PerspectiveCamera::a3PerspectiveCamera(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up,
                                          float focalLength, float apretureWidth, float apretureHeight, float canvasDistance, 
                                          float focalDistance, float lensRadius,
                                          a3Film* image)
-                                         : a3Camera(origin, direction, focalLength, apretureWidth, apretureHeight, canvasDistance, focalDistance, lensRadius, image)
+                                         : a3Camera(origin, lookat, up, focalLength, apretureWidth, apretureHeight, canvasDistance, focalDistance, lensRadius, image)
 {
     random = new a3Random();
 }
@@ -24,17 +24,18 @@ float a3PerspectiveCamera::castRay(const a3CameraSample* sample, a3Ray* ray) con
     t3Vector3f cameraPosition;
 
     // 成像空间到摄像机空间(画布空间)的转换
-    cameraPosition.x = 2 * rasterPosition.x * canvasSize.x / image->width - canvasSize.x + origin.x;
+    cameraPosition.x = 2 * rasterPosition.x * canvasSize.x / image->width - canvasSize.x;
 
-    cameraPosition.y = -2 * rasterPosition.y * canvasSize.y / image->height + canvasSize.y + origin.y;
+    cameraPosition.y = -2 * rasterPosition.y * canvasSize.y / image->height + canvasSize.y;
 
-    cameraPosition.z = canvasDistance + origin.z;
+    cameraPosition.z = canvasDistance;
 
     // 从摄像机位置到画布上出射光线
-    ray->direction = cameraPosition - origin;
+    ray->direction = cameraPosition;
     ray->direction.normalize();
 
-    ray->origin = origin;
+    // 相机空间原点
+    ray->origin = t3Vector3f::zero();
 
     // 凸透镜相机模型存在景深
     if(lensRadius > 0.0f)
@@ -48,13 +49,17 @@ float a3PerspectiveCamera::castRay(const a3CameraSample* sample, a3Ray* ray) con
         lens.x *= lensRadius;
         lens.y *= lensRadius;
 
-        t3Vector3f focusPoint = origin + ((canvasDistance + focalDistance) / ray->direction.z) * ray->direction;
+        t3Vector3f focusPoint = ((canvasDistance + focalDistance) / ray->direction.z) * ray->direction;
 
-        ray->origin = t3Vector3f(lens.x + origin.x, lens.y + origin.y, origin.z);
+        ray->origin = t3Vector3f(lens.x, lens.y, 0);
 
         ray->direction = focusPoint - ray->origin;
         ray->direction.normalize();
     }
+
+    // camera to world
+    ray->origin += origin;
+    ray->direction = ray->direction * cameraToWorld;
 
     return 1.0f;
 }

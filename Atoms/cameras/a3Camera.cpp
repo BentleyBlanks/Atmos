@@ -2,11 +2,11 @@
 #include <core/image/a3Film.h>
 #include <core/log/a3Log.h>
 
-a3Camera::a3Camera(const t3Vector3f& origin, const t3Vector3f& direction,
+a3Camera::a3Camera(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up,
                    float focalLength, float apretureWidth, float apretureHeight, float canvasDistance, 
                    float focalDistance, float lensRadius,
                    a3Film* image)
-                   : origin(origin), direction(direction), focalLength(focalLength), apreture(apretureWidth, apretureHeight), canvasDistance(canvasDistance), focalDistance(focalDistance), lensRadius(lensRadius), image(image)
+                   : origin(origin), up(up), focalLength(focalLength), apreture(apretureWidth, apretureHeight), canvasDistance(canvasDistance), focalDistance(focalDistance), lensRadius(lensRadius), image(image)
 {
     // 这里不直接给出fov而是间接计算
     // 详情可见 http://www.scratchapixel.com/lessons/3d-basic-rendering/3d-viewing-pinhole-camera/virtual-pinhole-camera-model
@@ -15,6 +15,8 @@ a3Camera::a3Camera(const t3Vector3f& origin, const t3Vector3f& direction,
 
     canvasSize.x = canvasDistance * t3Math::tanRad(fov.x / 2);
     canvasSize.y = canvasDistance * t3Math::tanRad(fov.y / 2);
+
+    setCameraToWorld(origin, lookat, up);
 }
 
 float a3Camera::castRay(const a3CameraSample* sample, a3Ray* ray) const
@@ -22,4 +24,24 @@ float a3Camera::castRay(const a3CameraSample* sample, a3Ray* ray) const
     a3Log::warning("Unimplemented a3Camera::generateRay() method called");
 
     return 0.0f;
+}
+
+void a3Camera::setCameraToWorld(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up)
+{
+    this->origin = origin;
+    this->lookat = lookat;
+    this->direction = (lookat - origin).getNormalized();
+
+    this->right = up.getCrossed(this->direction).getNormalized();
+    this->up = this->direction.getCrossed(this->right).getNormalized();
+
+    // 平移矩阵直接可直接作用光线原点 减少矩阵计算量
+    // world to camera
+    cameraToWorld._mat[0].set(right.x, right.y, right.z, 0);
+    cameraToWorld._mat[1].set(up.x, up.y, up.z, 0);
+    cameraToWorld._mat[2].set(direction.x, direction.y, direction.z, 0);
+    cameraToWorld._mat[3].set(0, 0, 0, 1);
+
+    // camera to world
+    //cameraToWorld = cameraToWorld.getInverse();
 }

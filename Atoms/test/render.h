@@ -10,16 +10,19 @@
 #include <Common/t3Timer.h>
 #include <core/a3ModelImporter.h>
 #include <lights/a3InfiniteAreaLight.h>
+#include <core/a3Common.h>
 
 //#define SCENE_1
 #define SCENE_2
 
+#define FRAME_ANIMATION
+
 int main()
 {
-    a3Film* image = new a3Film(4000, 4000, "hello", A3_IMAGE_PNG);
+    a3Film* image = new a3Film(900, 900, "hello", A3_IMAGE_PNG);
 
-    a3PerspectiveCamera* camera = new a3PerspectiveCamera(t3Vector3f(0, 0, -100), t3Vector3f(0, 0, 1), 1.0f, 2, 2 * image->width / image->height, 1.0f, 210.0f, 0.0f, image);
-    
+    a3PerspectiveCamera* camera = new a3PerspectiveCamera(t3Vector3f(-100, 0, 0), t3Vector3f(0, 0, 0), t3Vector3f(0, 1, 0), 1.0f, 2, 2 * image->width / image->height, 1.0f, 210.0f, 0.0f, image);
+
     a3Log::debug("fov: %f, %f\n", t3Math::Rad2Deg(camera->fov.x), t3Math::Rad2Deg(camera->fov.y));
     a3Log::debug("focal distance: %f, lens radius: %f\n", camera->focalDistance, camera->lensRadius);
 
@@ -33,7 +36,7 @@ int main()
         scene->addShape(s);
     };
 
-    scene->addLight(new a3InfiniteAreaLight("1.png"));
+    //scene->addLight(new a3InfiniteAreaLight("10.png"));
 
 #ifdef SCENE_1
     a3ModelImporter importer;
@@ -69,8 +72,8 @@ int main()
 #endif
 
 #ifdef SCENE_2
-    addShape(new a3Sphere(t3Vector3f(0, 0, 0), 35), t3Vector3f(4, 8, 4), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
-    addShape(new a3Disk(t3Vector3f(0, -35, 0), 70, t3Vector3f(0, -1, 0)), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+    addShape(new a3Sphere(t3Vector3f(0, 0, 0), 35), t3Vector3f(4, 8, 4), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Disk(t3Vector3f(0, -35, 0), 70, t3Vector3f(0, -1, 0)), t3Vector3f(0, 0, 0), t3Vector3f(140, 40, 40), A3_MATERIAL_SPECULAR);
     //addShape(new a3Plane(t3Vector3f(0, -35, 0), t3Vector3f(0, -1, 0)), t3Vector3f(7, 2, 2), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
 #endif
 
@@ -80,7 +83,21 @@ int main()
 
     t3Timer timer;
     timer.start();
-    renderer->render(scene);
+
+#ifdef FRAME_ANIMATION
+    for(int i = -300; i < 300; i+=9)
+    {
+        camera->setCameraToWorld(t3Vector3f(i, 0, -100), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 1));
+
+        image->setFileName("frames/" + a3ToString(i));
+#endif
+        renderer->render(scene);
+
+#ifdef FRAME_ANIMATION
+    }
+#endif
+
+
     timer.end();
 
     a3Log::info("Cost time: %f sec", timer.difference());

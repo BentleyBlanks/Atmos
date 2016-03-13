@@ -3,6 +3,7 @@
 
 #include <t3Math/core/t3Vector2.h>
 #include <t3Math/core/t3Vector3.h>
+#include <t3Math/core/t3Matri4x4.h>
 
 class a3Ray;
 class a3CameraSample;
@@ -14,14 +15,22 @@ class a3Camera
 public:
     // focalLength + apreture -> fov
     // fov + canvasDistance -> canvasSize
-    a3Camera(const t3Vector3f& origin, const t3Vector3f& direction, 
+    a3Camera(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up,
              float focalLength, float apretureWidth, float apretureHeight, float canvasDistance, 
              float focalDistance, float lensRadius,
              a3Film* image);
 
     virtual float castRay(const a3CameraSample* sample, a3Ray* ray) const;
 
-    t3Vector3f origin, direction;
+    void setCameraToWorld(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up);
+
+    // camera's position / eye's position
+    t3Vector3f origin;
+
+    // camera coordinate system
+    t3Vector3f direction, up, right, lookat;
+    // （同一坐标原点）从相机坐标系转换到世界坐标系
+    t3Matrix4x4 cameraToWorld;
 
     a3Film* image;
 

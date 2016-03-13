@@ -1,3 +1,6 @@
+#ifndef A3_COMMON_H
+#define A3_COMMON_H
+
 #include <core/a3Settings.h>
 #include <assert.h>
 
@@ -105,4 +108,5 @@ std::string a3ToString(const T& value);
 //    } \
 //}
 
-
+#include <core/a3Common.inl>
+#endif

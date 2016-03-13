@@ -11,7 +11,7 @@ class a3Random;
 class a3PerspectiveCamera : public a3Camera
 {
 public:
-    a3PerspectiveCamera(const t3Vector3f& origin, const t3Vector3f& direction,
+    a3PerspectiveCamera(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up,
                         float focalLength, float apretureWidth, float apretureHeight, float canvasDistance, 
                         float focalDistance, float lensRadius,
                         a3Film* image);

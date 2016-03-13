@@ -17,6 +17,8 @@ public:
 
     void addSample(const a3CameraSample* sample, const t3Vector3f& L);
 
+    void setFileName(const std::string& fileName);
+
 	void write();
 
 	int width, height;

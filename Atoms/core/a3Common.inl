@@ -1,7 +1,11 @@
+#ifndef A3_COMMON_INL
+#define A3_COMMON_INL
+
 #include <core/a3Common.h>
+#include <sstream>
 
 template<class T>
-string a3ToString(const std::vector<T>& values)
+std::string a3ToString(const std::vector<T>& values)
 {
     stringstream out;
     int n = values.size();
@@ -19,9 +23,11 @@ string a3ToString(const std::vector<T>& values)
 }
 
 template <class T>
-string a3ToString(const T& value)
+std::string a3ToString(const T& value)
 {
-    ostringstream out;
+    std::ostringstream out;
     out << value;
     return out.str();
 }
+
+#endif
