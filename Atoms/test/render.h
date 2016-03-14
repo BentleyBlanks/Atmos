@@ -36,7 +36,7 @@ int main()
         scene->addShape(s);
     };
 
-    //scene->addLight(new a3InfiniteAreaLight("10.png"));
+    scene->addLight(new a3InfiniteAreaLight("10.png"));
 
 #ifdef SCENE_1
     a3ModelImporter importer;

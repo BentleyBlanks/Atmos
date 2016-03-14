@@ -48,7 +48,7 @@ float a3PerspectiveCamera::castRay(const a3CameraSample* sample, a3Ray* ray) con
 
         t3Vector3f focusPoint = ((canvasDistance + focalDistance) / ray->direction.z) * ray->direction;
 
-        ray->origin = t3Vector3f(lens.x, lens.y, 0);
+        ray->origin = t3Vector3f(lens.x + origin.x, lens.y + +origin.y, origin.z);
 
         // camera to world
         focusPoint = focusPoint * cameraToWorld;
