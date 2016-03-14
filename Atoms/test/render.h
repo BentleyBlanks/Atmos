@@ -15,13 +15,13 @@
 //#define SCENE_1
 #define SCENE_2
 
-#define FRAME_ANIMATION
+//#define FRAME_ANIMATION
 
 int main()
 {
     a3Film* image = new a3Film(900, 900, "hello", A3_IMAGE_PNG);
 
-    a3PerspectiveCamera* camera = new a3PerspectiveCamera(t3Vector3f(-100, 0, 0), t3Vector3f(0, 0, 0), t3Vector3f(0, 1, 0), 1.0f, 2, 2 * image->width / image->height, 1.0f, 210.0f, 0.0f, image);
+    a3PerspectiveCamera* camera = new a3PerspectiveCamera(t3Vector3f(0, 1000, -100), t3Vector3f(0, 0, 0), t3Vector3f(0, 1, 0), 1.0f, 2, 2 * image->width / image->height, 1.0f, 210.0f, 0.0f, image);
 
     a3Log::debug("fov: %f, %f\n", t3Math::Rad2Deg(camera->fov.x), t3Math::Rad2Deg(camera->fov.y));
     a3Log::debug("focal distance: %f, lens radius: %f\n", camera->focalDistance, camera->lensRadius);
@@ -85,9 +85,9 @@ int main()
     timer.start();
 
 #ifdef FRAME_ANIMATION
-    for(int i = -300; i < 300; i+=9)
+    for(int i = 1; i < 3000; i+=20)
     {
-        camera->setCameraToWorld(t3Vector3f(i, 0, -100), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 1));
+        camera->setCameraToWorld(t3Vector3f(0, i, -100), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 1));
 
         image->setFileName("frames/" + a3ToString(i));
 #endif

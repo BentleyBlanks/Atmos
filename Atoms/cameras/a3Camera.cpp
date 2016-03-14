@@ -32,15 +32,24 @@ void a3Camera::setCameraToWorld(const t3Vector3f& origin, const t3Vector3f& look
     this->lookat = lookat;
     this->direction = (lookat - origin).getNormalized();
 
-    this->right = up.getCrossed(this->direction).getNormalized();
-    this->up = this->direction.getCrossed(this->right).getNormalized();
+    if((up.getNormalized()).getCrossed(this->direction).length() == 0)
+    {
+        a3Log::error("\"up\" vector (%f, %f, %f) and viewing direction (%f, %f, %f) "
+              "passed to LookAt are pointing in the same direction.  Using "
+              "the identity transformation.", up.x, up.y, up.z, direction.x, direction.y,
+              direction.z);
+        return;
+    }
+
+    this->right = (up.getNormalized()).getCrossed(this->direction).getNormalized();
+    this->up = this->direction.getCrossed(this->right);
 
     // 平移矩阵直接可直接作用光线原点 减少矩阵计算量
     // world to camera
-    cameraToWorld._mat[0].set(right.x, right.y, right.z, 0);
-    cameraToWorld._mat[1].set(up.x, up.y, up.z, 0);
-    cameraToWorld._mat[2].set(direction.x, direction.y, direction.z, 0);
-    cameraToWorld._mat[3].set(0, 0, 0, 1);
+    cameraToWorld._mat[0].set(this->right.x, this->right.y, this->right.z, 0);
+    cameraToWorld._mat[1].set(this->up.x, this->up.y, this->up.z, 0);
+    cameraToWorld._mat[2].set(this->direction.x, this->direction.y, this->direction.z, 0);
+    cameraToWorld._mat[3].set(this->origin.x, this->origin.y, this->origin.z, 1);
 
     // camera to world
     //cameraToWorld = cameraToWorld.getInverse();

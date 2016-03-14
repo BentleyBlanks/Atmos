@@ -8,7 +8,7 @@
 #include <core/a3Random.h>
 
 a3PerspectiveCamera::a3PerspectiveCamera(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up,
-                                         float focalLength, float apretureWidth, float apretureHeight, float canvasDistance, 
+                                         float focalLength, float apretureWidth, float apretureHeight, float canvasDistance,
                                          float focalDistance, float lensRadius,
                                          a3Film* image)
                                          : a3Camera(origin, lookat, up, focalLength, apretureWidth, apretureHeight, canvasDistance, focalDistance, lensRadius, image)
@@ -30,16 +30,13 @@ float a3PerspectiveCamera::castRay(const a3CameraSample* sample, a3Ray* ray) con
 
     cameraPosition.z = canvasDistance;
 
-    // 从摄像机位置到画布上出射光线
-    ray->direction = cameraPosition;
-    ray->direction.normalize();
-
-    // 相机空间原点
-    ray->origin = t3Vector3f::zero();
-
     // 凸透镜相机模型存在景深
     if(lensRadius > 0.0f)
-    {
+    {        
+        // 从摄像机位置到画布上出射光线
+        ray->direction = cameraPosition;
+        ray->direction.normalize();
+
         // 在Square平面[0, 1]生成随机采样点
         float sampleU = random->randomFloat();
         float sampleV = random->randomFloat();
@@ -53,13 +50,26 @@ float a3PerspectiveCamera::castRay(const a3CameraSample* sample, a3Ray* ray) con
 
         ray->origin = t3Vector3f(lens.x, lens.y, 0);
 
-        ray->direction = focusPoint - ray->origin;
-        ray->direction.normalize();
+        // camera to world
+        focusPoint = focusPoint * cameraToWorld;
+
+        ray->direction = (focusPoint - ray->origin).normalize();
     }
+    else
+    {
+        // camera to world
+        cameraPosition = cameraPosition * cameraToWorld;
 
-    // camera to world
-    ray->origin += origin;
-    ray->direction = ray->direction * cameraToWorld;
+        // 从摄像机位置到画布上出射光线
+        ray->direction = cameraPosition;
+        ray->direction.normalize();
 
+        //// 相机空间原点
+        //ray->origin = t3Vector3f::zero();
+
+        ray->origin = origin;
+        ray->direction = (cameraPosition - ray->origin).normalize();
+    }  
+    
     return 1.0f;
 }
