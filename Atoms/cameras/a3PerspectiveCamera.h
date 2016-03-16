@@ -14,7 +14,7 @@ public:
     a3PerspectiveCamera(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up,
                         float focalLength, float apretureWidth, float apretureHeight, float canvasDistance, 
                         float focalDistance, float lensRadius,
-                        a3Film* image);
+                        a3Film* image, a3NormalMap* normalMap = NULL);
 
     virtual float castRay(const a3CameraSample* sample, a3Ray* ray) const;
 

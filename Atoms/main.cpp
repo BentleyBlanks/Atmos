@@ -2,7 +2,7 @@
 // #include "test/ray.h"
 
 // 基本渲染管线检测
-//#include "test/render.h"
+#include "test/render.h"
 
 // png文件导入保存测试
 //#include "test/png.h"
@@ -11,4 +11,4 @@
 //#include "test/model.h"
 
 // 基本场景渲染队列演示
-#include "test/renderQueue.h"
+//#include "test/renderQueue.h"

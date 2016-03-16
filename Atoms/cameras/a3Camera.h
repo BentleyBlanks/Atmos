@@ -8,6 +8,7 @@
 class a3Ray;
 class a3CameraSample;
 class a3Film;
+class a3NormalMap;
 
 // 远近裁剪面分别为0.01与1000.0
 class a3Camera
@@ -18,7 +19,7 @@ public:
     a3Camera(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up,
              float focalLength, float apretureWidth, float apretureHeight, float canvasDistance, 
              float focalDistance, float lensRadius,
-             a3Film* image);
+             a3Film* image, a3NormalMap* normalMap = NULL);
 
     virtual float castRay(const a3CameraSample* sample, a3Ray* ray) const;
 
@@ -33,6 +34,7 @@ public:
     t3Matrix4x4 cameraToWorld;
 
     a3Film* image;
+    a3NormalMap* normalMap;
 
     // 光圈用于确定film gate aspect ratio
     float focalLength;

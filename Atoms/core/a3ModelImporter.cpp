@@ -16,7 +16,7 @@ public:
 
     std::vector<a3Shape*>* load(const char* filePath)
     {
-        a3Log::debug("Parsering model file...\n");
+        a3Log::debug("Parsering model file \"%s\"...\n", filePath);
 
 		scene = aiImportFile(filePath, aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_ConvertToLeftHanded);
 

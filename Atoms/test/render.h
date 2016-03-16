@@ -11,17 +11,20 @@
 #include <core/a3ModelImporter.h>
 #include <lights/a3InfiniteAreaLight.h>
 #include <core/a3Common.h>
+#include <core/image/a3NormalMap.h>
 
-//#define SCENE_1
-#define SCENE_2
+#define SCENE_1
+//#define SCENE_2
 
-#define FRAME_ANIMATION
+//#define FRAME_ANIMATION
 
 int main()
 {
-	a3Film* image = new a3Film(900, 900, "hello", A3_IMAGE_PNG);
+	a3Film* image = new a3Film(900, 900, "../../../resources/results/hello", A3_IMAGE_PNG);
+    a3NormalMap* normalMap = new a3NormalMap(*image);
+    normalMap->setFileName("../../../resources/results/normalMap");
 
-    a3PerspectiveCamera* camera = new a3PerspectiveCamera(t3Vector3f(0, 100, 0), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 1), 1.0f, 2, 2 * image->width / image->height, 1.0f, 210.0f, 0.0f, image);
+    a3PerspectiveCamera* camera = new a3PerspectiveCamera(t3Vector3f(0, 0, 80), t3Vector3f(0, 0, 0), t3Vector3f(0, 1, 0), 1.0f, 2, 2 * image->width / image->height, 1.0f, 210.0f, 0.0f, image, normalMap);
 
     a3Log::debug("fov: %f, %f\n", t3Math::Rad2Deg(camera->fov.x), t3Math::Rad2Deg(camera->fov.y));
     a3Log::debug("focal distance: %f, lens radius: %f\n", camera->focalDistance, camera->lensRadius);
@@ -36,22 +39,22 @@ int main()
         scene->addShape(s);
     };
 
-    scene->addLight(new a3InfiniteAreaLight("1.png"));
+    scene->addLight(new a3InfiniteAreaLight("../../../resources/images/1.png"));
 
 #ifdef SCENE_1
     a3ModelImporter importer;
-    std::vector<a3Shape*>* shapes = importer.load("./sphere.obj");
+    std::vector<a3Shape*>* shapes = importer.load("../../../resources/models/carBig.obj");
 
-   // if(shapes)
-   // {
-   //     for(auto s : *shapes)
-			//addShape(s, t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
-   // }
+    if(shapes)
+    {
+        for(auto s : *shapes)
+			addShape(s, t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+    }
 
-    // Sphere/Disk    
-	addShape(new a3Sphere(t3Vector3f(-0, -0, 0), 35), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+ //   // Sphere/Disk    
+	//addShape(new a3Sphere(t3Vector3f(-0, -0, 0), 35), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
  //   addShape(new a3Sphere(t3Vector3f(0, 0, 90), 15), t3Vector3f(9, 9, 9), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
-	addShape(new a3Disk(t3Vector3f(0, 0, -35), 60, t3Vector3f(0, 0, -1)), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+	//addShape(new a3Disk(t3Vector3f(0, 0, -35), 60, t3Vector3f(0, 0, -1)), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
  //   //addShape(new a3Triangle(t3Vector3f(25, 0, 100), t3Vector3f(25, 90, 80), t3Vector3f(45, 90, 90)), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
 	//addShape(new a3Sphere(t3Vector3f(-30, 74, 70), 15), t3Vector3f(9, 9, 9), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
  //   addShape(new a3Sphere(t3Vector3f(30, -59, 60), 30), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
@@ -89,7 +92,7 @@ int main()
     {
         camera->setCameraToWorld(t3Vector3f(i, 100, 0), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 1));
 
-        image->setFileName("frames/" + a3ToString(i));
+        image->setFileName("../../../resources/results/" + a3ToString(i));
 #endif
 		//image->setFileName("frames/4000-2048-20");
 		//renderer->render(scene);

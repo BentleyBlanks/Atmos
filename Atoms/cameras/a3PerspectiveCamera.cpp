@@ -10,8 +10,8 @@
 a3PerspectiveCamera::a3PerspectiveCamera(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up,
                                          float focalLength, float apretureWidth, float apretureHeight, float canvasDistance,
                                          float focalDistance, float lensRadius,
-                                         a3Film* image)
-                                         : a3Camera(origin, lookat, up, focalLength, apretureWidth, apretureHeight, canvasDistance, focalDistance, lensRadius, image)
+                                         a3Film* image, a3NormalMap* normalMap)
+                                         : a3Camera(origin, lookat, up, focalLength, apretureWidth, apretureHeight, canvasDistance, focalDistance, lensRadius, image, normalMap)
 {
     random = new a3Random();
 }

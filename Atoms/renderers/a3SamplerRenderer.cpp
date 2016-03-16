@@ -11,11 +11,12 @@
 #include <shapes/a3Shape.h>
 #include <core/a3Warp.h>
 #include <lights/a3Light.h>
+#include <core/image/a3NormalMap.h>
 
 #define A3_RANDOM_SAMPLING
 
 #ifdef A3_RANDOM_SAMPLING
-#define SPP 2048
+#define SPP 32
 #define DEPTH 7
 
 #else
@@ -23,6 +24,8 @@
 #define DEPTH 1
 #endif
 
+#define A3_RENDERING_NORMALMAP
+//#define A3_RENDERING_REALISTICIMAGE
 //#define A3_GAMMA_CORRECTION
 
 a3Random random;
@@ -87,6 +90,36 @@ void a3SamplerRenderer::render(const a3Scene* scene)
     // spp暂时关闭
     sampler = new a3Sampler(0, 0, camera->image->width, camera->image->height, 0);
 
+#ifdef A3_RENDERING_NORMALMAP
+    // 渲染法线贴图用于检测法线
+#pragma omp parallel for schedule(dynamic)
+    for(int x = 0; x < camera->image->width; x++)
+    {
+        a3Log::info("Normal Map    Rendering: %8.2f \r", (double) x / camera->image->width * 100);
+
+        for(int y = 0; y < camera->image->height; y++)
+        {
+            // 当前采样位置
+            a3CameraSample sample; 
+            a3Ray ray;
+
+            // 获取下一个采样位置
+            sampler->getSample(x, y, &sample);
+
+            camera->castRay(&sample, &ray);
+
+            t3Vector3f n = getNormal(scene, &ray, &sample);
+
+            camera->normalMap->addSample(&sample, n);
+        }
+    }
+
+    a3Log::print("\n");
+    // 保存法线图像文件
+    camera->normalMap->write();
+#endif
+
+#ifdef A3_RENDERING_REALISTICIMAGE
 #pragma omp parallel for schedule(dynamic)
     for(int x = 0; x < camera->image->width; x++)
     {
@@ -148,8 +181,9 @@ void a3SamplerRenderer::render(const a3Scene* scene)
     }
     a3Log::print("\n");
 
-    // 保存图像文件
+    // 保存真实渲染图像文件
     camera->image->write();
+#endif
 }
 
 t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, a3Ray* ray, int depth, const a3CameraSample* sample, a3Intersection* intersection)
@@ -251,4 +285,20 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, a3Ray* ray, int depth, co
 #else        
     return obj->emission + obj->color;
 #endif
+}
+
+t3Vector3f a3SamplerRenderer::getNormal(const a3Scene* scene, a3Ray* ray, const a3CameraSample* sample)
+{
+    a3Intersection intersection;
+
+    if(!scene->intersect(*ray, &intersection))
+        // zero normal
+        return t3Vector3f(0, 0, 0);
+
+    a3Shape* obj = scene->objects[intersection.shapeID];
+
+    // 接触点
+    t3Vector3f intersectPoint = (*ray)(intersection.t);
+
+    return obj->getNormal(intersectPoint);
 }

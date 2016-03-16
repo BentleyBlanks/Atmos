@@ -5,8 +5,11 @@
 a3Camera::a3Camera(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up,
                    float focalLength, float apretureWidth, float apretureHeight, float canvasDistance, 
                    float focalDistance, float lensRadius,
-                   a3Film* image)
-                   : origin(origin), up(up), focalLength(focalLength), apreture(apretureWidth, apretureHeight), canvasDistance(canvasDistance), focalDistance(focalDistance), lensRadius(lensRadius), image(image)
+                   a3Film* image, a3NormalMap* normalMap)
+                   : origin(origin), up(up), 
+                   focalLength(focalLength), apreture(apretureWidth, apretureHeight), canvasDistance(canvasDistance), 
+                   focalDistance(focalDistance), lensRadius(lensRadius), 
+                   image(image), normalMap(normalMap)
 {
     // 这里不直接给出fov而是间接计算
     // 详情可见 http://www.scratchapixel.com/lessons/3d-basic-rendering/3d-viewing-pinhole-camera/virtual-pinhole-camera-model

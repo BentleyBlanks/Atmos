@@ -11,7 +11,7 @@ public:
 
     virtual float intersect(const a3Ray& ray) const;
 
-    virtual t3Vector3f getNormal(const t3Vector3f& vector) const;
+    virtual t3Vector3f getNormal(const t3Vector3f& hitPoint) const;
 
     // 平面上一点及其朝向
     t3Vector3f p, normal;

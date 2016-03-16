@@ -21,5 +21,6 @@ README~
 *.psess
 *.vsp
 dependency/assimp
+resources/*.*
 #build
 #resources

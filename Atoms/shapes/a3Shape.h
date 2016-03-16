@@ -22,7 +22,8 @@ public:
 
 	virtual float intersect(const a3Ray& ray) const;
 
-	virtual t3Vector3f getNormal(const t3Vector3f& vector) const; 
+    // return normal
+    virtual t3Vector3f getNormal(const t3Vector3f& hitPoint) const;
 
     void setMaterial(const t3Vector3f color, const t3Vector3f emission = t3Vector3f::zero(), int type = A3_MATERIAL_NONE);
 

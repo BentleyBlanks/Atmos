@@ -10,7 +10,8 @@ public:
 
     virtual float intersect(const a3Ray& ray) const;
 
-    virtual t3Vector3f getNormal(const t3Vector3f& vector) const;
+    //--! u1 u2参数未开放
+    virtual t3Vector3f getNormal(const t3Vector3f& hitPoint) const;
 
     // 圆盘上中点及其朝向
     t3Vector3f center, normal;

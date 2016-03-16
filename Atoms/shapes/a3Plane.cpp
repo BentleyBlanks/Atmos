@@ -24,7 +24,7 @@ float a3Plane::intersect(const a3Ray& ray) const
     return 0.0f;
 }
 
-t3Vector3f a3Plane::getNormal(const t3Vector3f& vector) const
+t3Vector3f a3Plane::getNormal(const t3Vector3f& hitPoint) const
 {
     return normal;
 }

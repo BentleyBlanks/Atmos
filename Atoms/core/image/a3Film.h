@@ -7,7 +7,6 @@
 class a3CameraSample;
 class a3ImageEncoder;
 
-
 class a3Film
 {
 public:
@@ -15,7 +14,7 @@ public:
 
 	~a3Film();
 
-    void addSample(const a3CameraSample* sample, const t3Vector3f& L);
+    virtual void addSample(const a3CameraSample* sample, const t3Vector3f& L);
 
     void setFileName(const std::string& fileName);
 
@@ -25,7 +24,7 @@ public:
 
 	std::string fileName;
     
-private:
+//protected:
     a3ImageEncoder* picture;
 };
 

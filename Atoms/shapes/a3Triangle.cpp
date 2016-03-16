@@ -42,10 +42,20 @@ float a3Triangle::intersect(const a3Ray& ray) const
     return false;
 }
 
-t3Vector3f a3Triangle::getNormal(const t3Vector3f& vector) const
+t3Vector3f a3Triangle::getNormal(const t3Vector3f& hitPoint) const
 {
     //// 左手坐标系
-    t3Vector3f temp = (v1 - v0).getCrossed(v2 - v0).getNormalized();
-    return temp;
-    //return n0;
+    //t3Vector3f temp = (v1 - v0).getCrossed(v2 - v0).getNormalized();
+    //return temp;
+
+    // 外部保证hitPoint在三角形内部
+    // --!效率低的像狗
+    //t3Vector3f pv0 = v0 - hitPoint, pv1 = v1 - hitPoint, pv2 = v2 - hitPoint;
+    //float S0 = pv0.getCrossed(pv1).length(), S1 = pv1.getCrossed(pv2).length(), S2 = pv2.getCrossed(pv0).length();
+    //float S = S0 + S1 + S2;
+    //float u = S1 / S, v = S2 / S;
+
+    //return (u * n0 + (1 - u - v)* n1 + v * n2);
+
+    return n0;
 }

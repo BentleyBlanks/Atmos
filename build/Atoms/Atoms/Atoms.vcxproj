@@ -100,6 +100,7 @@
     <ClInclude Include="..\..\..\Atoms\core\image\a3Film.h" />
     <ClInclude Include="..\..\..\Atoms\core\image\a3ImageDecoder.h" />
     <ClInclude Include="..\..\..\Atoms\core\image\a3ImageEncoder.h" />
+    <ClInclude Include="..\..\..\Atoms\core\image\a3NormalMap.h" />
     <ClInclude Include="..\..\..\Atoms\core\log\a3Log.h" />
     <ClInclude Include="..\..\..\Atoms\core\log\a3LogFile.h" />
     <ClInclude Include="..\..\..\Atoms\core\log\a3LogHTML.h" />
@@ -178,6 +179,7 @@
     <ClCompile Include="..\..\..\Atoms\core\image\a3Film.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\image\a3ImageDecoder.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\image\a3ImageEncoder.cpp" />
+    <ClCompile Include="..\..\..\Atoms\core\image\a3NormalMap.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3Log.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3LogFile.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\log\a3LogHTML.cpp" />

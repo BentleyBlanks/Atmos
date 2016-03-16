@@ -14,6 +14,8 @@ public:
 
     t3Vector3f Li(const a3Scene* scene, a3Ray* ray, int depth, const a3CameraSample* sample, a3Intersection* intersection);
 
+    t3Vector3f getNormal(const a3Scene* scene, a3Ray* ray, const a3CameraSample* sample);
+
 	void render(const a3Scene* scene);
 
     a3Sampler* sampler;
