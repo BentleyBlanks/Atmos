@@ -8,13 +8,11 @@ SPP = 2048 width: 3200 height: 3200
 
 > 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25151015169/in/dateposted-public/)
 
-----------
 
 ## 构建说明
 
 无
 
-----------
 
 ## 效果图
 
@@ -34,7 +32,7 @@ SPP = 256 width: 1000 height: 1000
 
 Scene's Normal Map
 
-----------
+
 
 ## 使用说明
 
@@ -55,7 +53,7 @@ Scene's Normal Map
 
 3.目前Atoms支持Triangle Mesh, Sphere, Disk, Plane等基本几何形状
 
-----------
+
 
 ##待办事项
 
@@ -83,7 +81,7 @@ Scene's Normal Map
 
 12.参数方程形式的形状支持
 
-----------
+
 
 ## 关于作者
 
