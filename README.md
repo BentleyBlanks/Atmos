@@ -1,28 +1,40 @@
 # Atmos
 
-A Simple Physically Based Renderer.
+A Simple Physically Based Renderer.(Not Finished Yet)
 
-![](https://farm2.staticflickr.com/1672/25560276222_eea6d5b8a5_z.jpg)
+![](https://farm2.staticflickr.com/1463/25207503294_b30be85aa8_z.jpg)
 
-SPP = 256 width: 4000 height: 4000
-
-> 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25560276222/in/dateposted-public/)
-
-![](https://farm2.staticflickr.com/1474/25151015169_7efcfeaa0e_z.jpg)
-
-SPP = 1024
+SPP = 2048 width: 3200 height: 3200
 
 > 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25151015169/in/dateposted-public/)
 
-![](https://farm2.staticflickr.com/1531/25509064516_8314deedf1_z.jpg)
-
-SPP = 128，Depth of Field: f = 180.0f，r = 20.0f
+----------
 
 ## 构建说明
 
 无
 
+----------
 
+## 效果图
+
+![](https://farm2.staticflickr.com/1486/25742938521_7161856337_z.jpg)
+
+SPP = 2048 Depth of Field: f = 180.0f，r = 20.0f width: 3200 height: 3200
+
+> 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25742938521/in/dateposted-public/)
+
+![](https://farm2.staticflickr.com/1648/25539708580_9dd04535fd_z.jpg)
+
+SPP = 256 width: 1000 height: 1000
+
+> 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25539708580/in/dateposted-public/)
+
+![](https://farm2.staticflickr.com/1680/25539770910_482c4da26f_z.jpg)
+
+Scene's Normal Map
+
+----------
 
 ## 使用说明
 
@@ -42,6 +54,8 @@ SPP = 128，Depth of Field: f = 180.0f，r = 20.0f
 2.```a3SamplerRenderer.cpp```中定义了跟踪深度，潜在BRDF(未封装)以及SPP, 尚未开放可自行更改。
 
 3.目前Atoms支持Triangle Mesh, Sphere, Disk, Plane等基本几何形状
+
+----------
 
 ##待办事项
 
@@ -68,6 +82,8 @@ SPP = 128，Depth of Field: f = 180.0f，r = 20.0f
 11.不同随机分布采样的支持
 
 12.参数方程形式的形状支持
+
+----------
 
 ## 关于作者
 
