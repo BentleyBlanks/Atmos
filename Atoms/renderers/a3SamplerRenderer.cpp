@@ -15,7 +15,7 @@
 #define A3_RANDOM_SAMPLING
 
 #ifdef A3_RANDOM_SAMPLING
-#define SPP 16
+#define SPP 2048
 #define DEPTH 7
 
 #else
@@ -196,7 +196,7 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, a3Ray* ray, int depth, co
         // 假定所有给定obj上求得的normal都为方向向量
         t3Vector3f normal = obj->getNormal(intersectPoint);
 
-        t3Vector3f sampleDirection = ray->direction - 2 * (ray->direction * normal) * normal;
+        t3Vector3f sampleDirection = ray->direction - 2 * (ray->direction.dot(normal)) * normal;
 
         ray->set(intersectPoint, sampleDirection.normalize());
 

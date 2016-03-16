@@ -18,7 +18,7 @@ public:
     {
         a3Log::debug("Parsering model file...\n");
 
-        scene = aiImportFile(filePath, aiProcessPreset_TargetRealtime_MaxQuality);
+		scene = aiImportFile(filePath, aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_ConvertToLeftHanded);
 
         if(!scene)
         {

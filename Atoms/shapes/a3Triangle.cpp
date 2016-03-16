@@ -36,13 +36,16 @@ float a3Triangle::intersect(const a3Ray& ray) const
     // 可直接返回
     t = v0v2.dot(qvec) * invDet;
 
-    return t;
+	if (t > A3_TOLERANCE_DOUBLE)
+		return t;
+
+    return false;
 }
 
 t3Vector3f a3Triangle::getNormal(const t3Vector3f& vector) const
 {
     //// 左手坐标系
-    //t3Vector3f temp = (v1 - v0).getCrossed(v2 - v0);
-    //return temp;
-    return n0;
+    t3Vector3f temp = (v1 - v0).getCrossed(v2 - v0).getNormalized();
+    return temp;
+    //return n0;
 }

@@ -36,7 +36,7 @@ void a3Version::print()
 }
 
 // --！重大革新:小改动:BUG修复
-a3Version::a3Version() : major(0), minor(0), revision(1), type("Alpha")
+a3Version::a3Version() : major(0), minor(0), revision(2), type("Alpha")
 {
 
 }

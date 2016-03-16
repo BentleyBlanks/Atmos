@@ -119,6 +119,7 @@
     <ClInclude Include="..\..\..\Atoms\test\png.h" />
     <ClInclude Include="..\..\..\Atoms\test\ray.h" />
     <ClInclude Include="..\..\..\Atoms\test\render.h" />
+    <ClInclude Include="..\..\..\Atoms\test\renderQueue.h" />
     <ClInclude Include="..\..\..\dependency\assimp\include\assimp\ai_assert.h" />
     <ClInclude Include="..\..\..\dependency\assimp\include\assimp\anim.h" />
     <ClInclude Include="..\..\..\dependency\assimp\include\assimp\camera.h" />

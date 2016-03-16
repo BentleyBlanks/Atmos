@@ -295,6 +295,9 @@
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h">
       <Filter>ThirdParty\t3Math</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\renderQueue.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Atoms\main.cpp">
