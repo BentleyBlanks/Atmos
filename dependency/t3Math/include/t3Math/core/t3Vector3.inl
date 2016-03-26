@@ -95,7 +95,7 @@ inline t3Vector3<Type>& t3Vector3<Type>::operator-=(const t3Vector3<Type>& vecto
 template<typename Type>
 inline t3Vector3<Type> t3Vector3<Type>::operator*(const t3Vector3<Type>& vector) const
 {
-    return t3Vector3<Type>(x*vector.x + y*vector.y + z*vector.z);
+    return t3Vector3<Type>(x*vector.x, y*vector.y, z*vector.z);
 }
 
 template<typename Type>

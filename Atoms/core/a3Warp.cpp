@@ -48,6 +48,18 @@ t3Vector2f a3SquareToUniformDisk(const float sampleU, const float sampleV)
     return t3Vector2f(u, v);
 }
 
+float a3SphericalTheta(const t3Vector3f &v)
+{
+    return t3Math::acosRad(t3Math::clamp(v.z, -1.f, 1.f));
+}
+
+float a3SphericalPhi(const t3Vector3f &v)
+{
+    // 等价于atan(y/x)
+    float p = t3Math::atan2Rad(v.y, v.x);
+    return (p < 0.f) ? p + 2.f * T3MATH_PI : p;
+}
+
 t3Vector3f a3Tonemap(t3Vector3f x)
 {
     float A = 0.15f;
@@ -60,14 +72,45 @@ t3Vector3f a3Tonemap(t3Vector3f x)
     return ((x * (A * x + C * B) + D * _E) / (x * (A * x + B) + D * F)) - _E / F;
 }
 
-float a3SphericalTheta(const t3Vector3f &v)
+void a3GammaCorrection(t3Vector3f& color)
 {
-    return t3Math::acosRad(t3Math::clamp(v.z, -1.f, 1.f));
+    t3Vector3f& toneColor = color;
+
+    toneColor.x = t3Math::pow(toneColor.x / 255.0f, 1 / 2.2f);
+    toneColor.y = t3Math::pow(toneColor.y / 255.0f, 1 / 2.2f);
+    toneColor.z = t3Math::pow(toneColor.z / 255.0f, 1 / 2.2f);
+
+    toneColor *= 255;
 }
 
-float a3SphericalPhi(const t3Vector3f &v)
+// 均匀分布半球采样
+// 与sinPhi^2 + cosPhi^2球上随机均匀分布采样投影至半球, u1 u2代表球坐标两参数(可任意指定sin/cos), 返回结果即为半球随机采样方向
+// 此处u1:cosTheta u2:代表占据一圆周的角度百分比
+t3Vector3f a3Hemisphere(float u1, float u2)
 {
-    // 等价于atan(y/x)
-    float p = t3Math::atan2Rad(v.y, v.x);
-    return (p < 0.f) ? p + 2.f * T3MATH_PI : p;
+    // 1 - cosThta^2 = sinTheta
+    const float r = t3Math::sqrt(1.0f - u1 * u1);
+
+    // phi = 2Pi * percent
+    const float phi = 2 * T3MATH_PI * u2;
+
+    // x = sinTheta * cosPhi; y = sinTheta * sinPhi; z = cosTheta
+    return t3Vector3f(t3Math::cosRad(phi) * r, t3Math::sinRad(phi) * r, u1);
+}
+
+void a3OrthonomalSystem(const t3Vector3f& v1, t3Vector3f& v2, t3Vector3f& v3)
+{
+    if(t3Math::Abs(v1.x) > t3Math::Abs(v1.y))
+    {
+        // project to the y = 0 plane and construct a normalized orthogonal vector in this plane
+        float invLen = 1.f / sqrtf(v1.x * v1.x + v1.z * v1.z);
+        v2 = t3Vector3f(-v1.z * invLen, 0.0f, v1.x * invLen);
+    }
+    else
+    {
+        // project to the x = 0 plane and construct a normalized orthogonal vector in this plane
+        float invLen = 1.0f / sqrtf(v1.y * v1.y + v1.z * v1.z);
+        v2 = t3Vector3f(0.0f, v1.z * invLen, -v1.y * invLen);
+    }
+    v3 = v1.getCrossed(v2);
 }

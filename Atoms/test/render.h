@@ -13,18 +13,13 @@
 #include <core/a3Common.h>
 #include <core/image/a3NormalMap.h>
 
-#define SCENE_1
-//#define SCENE_2
-
-//#define FRAME_ANIMATION
-
 int main()
 {
-	a3Film* image = new a3Film(900, 900, "../../../resources/results/hello", A3_IMAGE_PNG);
+	a3Film* image = new a3Film(1024, 768, "../../../resources/results/hello", A3_IMAGE_PNG);
     a3NormalMap* normalMap = new a3NormalMap(*image);
     normalMap->setFileName("../../../resources/results/normalMap");
 
-    a3PerspectiveCamera* camera = new a3PerspectiveCamera(t3Vector3f(0, 0, 80), t3Vector3f(0, 0, 0), t3Vector3f(0, 1, 0), 1.0f, 2, 2 * image->width / image->height, 1.0f, 210.0f, 0.0f, image, normalMap);
+    a3PerspectiveCamera* camera = new a3PerspectiveCamera(t3Vector3f(0, 80, -120), t3Vector3f(0, 0, 0), t3Vector3f(0, 1, 0), 1.0f, 3.8, 3.8 * image->width / image->height, 1.0f, 210.0f, 0.0f, image, normalMap);
 
     a3Log::debug("fov: %f, %f\n", t3Math::Rad2Deg(camera->fov.x), t3Math::Rad2Deg(camera->fov.y));
     a3Log::debug("focal distance: %f, lens radius: %f\n", camera->focalDistance, camera->lensRadius);
@@ -39,46 +34,38 @@ int main()
         scene->addShape(s);
     };
 
-    scene->addLight(new a3InfiniteAreaLight("../../../resources/images/1.png"));
+    scene->addLight(new a3InfiniteAreaLight("../../../resources/images/skylightBlue.png"));
 
-#ifdef SCENE_1
     a3ModelImporter importer;
-    std::vector<a3Shape*>* shapes = importer.load("../../../resources/models/carBig.obj");
+    std::vector<a3Shape*>* shapes = importer.load("../../../resources/models/test.obj");
 
     if(shapes)
     {
         for(auto s : *shapes)
-			addShape(s, t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+            addShape(s, t3Vector3f(1.5, 1.5, 1.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+
+        // 无限远平面
+        addShape(new a3Plane(t3Vector3f(0, 0, 0), t3Vector3f(0, 1, 0)), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
     }
 
- //   // Sphere/Disk    
+    //// Sphere/Disk    
 	//addShape(new a3Sphere(t3Vector3f(-0, -0, 0), 35), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
- //   addShape(new a3Sphere(t3Vector3f(0, 0, 90), 15), t3Vector3f(9, 9, 9), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+    //addShape(new a3Sphere(t3Vector3f(0, 0, 90), 15), t3Vector3f(9, 9, 9), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
 	//addShape(new a3Disk(t3Vector3f(0, 0, -35), 60, t3Vector3f(0, 0, -1)), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
- //   //addShape(new a3Triangle(t3Vector3f(25, 0, 100), t3Vector3f(25, 90, 80), t3Vector3f(45, 90, 90)), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
 	//addShape(new a3Sphere(t3Vector3f(-30, 74, 70), 15), t3Vector3f(9, 9, 9), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
- //   addShape(new a3Sphere(t3Vector3f(30, -59, 60), 30), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
- //   //addShape(new a3Triangle(t3Vector3f(0.8058, -7.3278, -19.7270), t3Vector3f(19.7270, -7.3278, -0.8058), t3Vector3f(-0.8058, -7.3278, 19.7270)), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+    //addShape(new a3Sphere(t3Vector3f(30, -59, 60), 30), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+    
+    //// Plane
+    //addShape(new a3Plane(t3Vector3f(-48, 0, 81.6), t3Vector3f(1, 0, 0)), t3Vector3f(1.5, 1, 1), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    //addShape(new a3Plane(t3Vector3f(48, 0, 81.6), t3Vector3f(-1, 0, 0)), t3Vector3f(1, 1, 1.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    //addShape(new a3Plane(t3Vector3f(0, 0, 170), t3Vector3f(0, 0, -1)), t3Vector3f(1.5, 1.5, 1.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    //addShape(new a3Plane(t3Vector3f(0, 40.8, 0), t3Vector3f(0, -1, 0)), t3Vector3f(1.5, 1.5, 1.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    //addShape(new a3Plane(t3Vector3f(0, -40.8, 0), t3Vector3f(0, 1, 0)), t3Vector3f(1.5, 1.5, 1.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
 
- //   // Plane
- //   addShape(new a3Plane(t3Vector3f(-70, 0, 100), t3Vector3f(-1, 0, 0)), t3Vector3f(7, 2, 2), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
- //   addShape(new a3Plane(t3Vector3f(70, 0, 100), t3Vector3f(1, 0, 0)), t3Vector3f(2, 2, 7), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
- //   addShape(new a3Plane(t3Vector3f(0, 0, 140), t3Vector3f(0, 0, 1)), t3Vector3f(7, 7, 9), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
- //   addShape(new a3Plane(t3Vector3f(0, 90, 0), t3Vector3f(0, 1, 0)), t3Vector3f(7, 7, 7), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
- //   addShape(new a3Plane(t3Vector3f(0, -90, 0), t3Vector3f(0, -1, 0)), t3Vector3f(7, 7, 7), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-
- //   // 光源 自发光
- //   addShape(new a3Disk(t3Vector3f(-69, 0, 100), 100, t3Vector3f(-1, 0, 0)), t3Vector3f(0, 0, 0), t3Vector3f(160, 40, 40), A3_MATERIAL_DIFFUSS);
- //   addShape(new a3Disk(t3Vector3f(69, 0, 100), 100, t3Vector3f(1, 0, 0)), t3Vector3f(0, 0, 0), t3Vector3f(40, 160, 40), A3_MATERIAL_DIFFUSS);
- //   addShape(new a3Disk(t3Vector3f(-69, 0, 100), 100, t3Vector3f(-1, 0, 0)), t3Vector3f(0, 0, 0), t3Vector3f(140, 40, 40), A3_MATERIAL_DIFFUSS);
-
-#endif
-
-#ifdef SCENE_2
-	addShape(new a3Sphere(t3Vector3f(-0, -0, 0), 35), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
-	addShape(new a3Disk(t3Vector3f(0, 0, -35), 60, t3Vector3f(0, 0, -1)), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
-    //addShape(new a3Plane(t3Vector3f(0, -35, 0), t3Vector3f(0, -1, 0)), t3Vector3f(7, 2, 2), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
-#endif
+    //// 光源 自发光
+    //addShape(new a3Sphere(t3Vector3f(0, 640.8 - 0.27, 125), 600), t3Vector3f(0, 0, 0), t3Vector3f(1000, 1000, 1000), A3_MATERIAL_DIFFUSS);
+    //addShape(new a3Disk(t3Vector3f(0, 89.995, 100), 30, t3Vector3f(0, -1, 0)), t3Vector3f(0, 0, 0), t3Vector3f(10000, 10000, 10000), A3_MATERIAL_DIFFUSS);
+    //addShape(new a3Disk(t3Vector3f(69, 0, 100), 50, t3Vector3f(1, 0, 0)), t3Vector3f(0, 0, 0), t3Vector3f(10000, 10000, 10000), A3_MATERIAL_DIFFUSS);
 
 
     a3SamplerRenderer* renderer = new a3SamplerRenderer();
@@ -87,26 +74,7 @@ int main()
     t3Timer timer;
     timer.start();
 
-#ifdef FRAME_ANIMATION
-    for(int i = -100; i < 100; i+=2)
-    {
-        camera->setCameraToWorld(t3Vector3f(i, 100, 0), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 1));
-
-        image->setFileName("../../../resources/results/" + a3ToString(i));
-#endif
-		//image->setFileName("frames/4000-2048-20");
-		//renderer->render(scene);
-
-
-		//a3PerspectiveCamera* camera2 = new a3PerspectiveCamera(t3Vector3f(100, 0, 0), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 1), 1.0f, 3.8, 3.8 * image->width / image->height, 1.0f, 210.0f, 25.0f, image);
-		//image->setFileName("frames/4000-2048-0");
-		//renderer->camera = camera2;
-        renderer->render(scene);
-
-#ifdef FRAME_ANIMATION
-    }
-#endif
-
+    renderer->render(scene);
 
     timer.end();
 

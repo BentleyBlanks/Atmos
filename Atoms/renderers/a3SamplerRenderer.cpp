@@ -7,64 +7,20 @@
 #include <core/a3Scene.h>
 #include <core/a3Intersection.h>
 #include <core/log/a3Log.h>
-#include <core/a3Random.h>
 #include <shapes/a3Shape.h>
 #include <core/a3Warp.h>
 #include <lights/a3Light.h>
+#include <core/a3Random.h>
 #include <core/image/a3NormalMap.h>
-
-#define A3_RANDOM_SAMPLING
-
-#ifdef A3_RANDOM_SAMPLING
-#define SPP 32
-#define DEPTH 7
-
-#else
-#define SPP 1
-#define DEPTH 1
-#endif
-
-#define A3_RENDERING_NORMALMAP
-//#define A3_RENDERING_REALISTICIMAGE
-//#define A3_GAMMA_CORRECTION
 
 a3Random random;
 
-// 均匀分布半球采样
-// 与sinPhi^2 + cosPhi^2球上随机均匀分布采样投影至半球, u1 u2代表球坐标两参数(可任意指定sin/cos), 返回结果即为半球随机采样方向
-// 此处u1:cosTheta u2:代表占据一圆周的角度百分比
-t3Vector3f hemisphere(float u1, float u2)
+//#define A3_RENDERING_NORMALMAP
+#define A3_RENDERING_REALISTICIMAGE
+
+a3SamplerRenderer::a3SamplerRenderer() : spp(128), bounces(7), sampler(NULL), camera(NULL), enableGammaCorrection(false)
 {
-    // 1 - cosThta^2 = sinTheta
-    const float r = t3Math::sqrt(1.0f - u1 * u1);
-    
-    // phi = 2Pi * percent
-    const float phi = 2 * T3MATH_PI * u2;
 
-    // x = sinTheta * cosPhi; y = sinTheta * sinPhi; z = cosTheta
-    return t3Vector3f(t3Math::cosRad(phi) * r, t3Math::sinRad(phi) * r, u1);
-}
-
-void ons(const t3Vector3f& v1, t3Vector3f& v2, t3Vector3f& v3)
-{
-    if(std::abs(v1.x) > std::abs(v1.y))
-    {
-        // project to the y = 0 plane and construct a normalized orthogonal vector in this plane
-        float invLen = 1.f / sqrtf(v1.x * v1.x + v1.z * v1.z);
-        v2 = t3Vector3f(-v1.z * invLen, 0.0f, v1.x * invLen);
-    }
-    else
-    {
-        // project to the x = 0 plane and construct a normalized orthogonal vector in this plane
-        float invLen = 1.0f / sqrtf(v1.y * v1.y + v1.z * v1.z);
-        v2 = t3Vector3f(0.0f, v1.z * invLen, -v1.y * invLen);
-    }
-
-    v3 = v1.getCrossed(v2);
-}
-
-a3SamplerRenderer::a3SamplerRenderer()
-{
 }
 
 a3SamplerRenderer::~a3SamplerRenderer()
@@ -73,6 +29,8 @@ a3SamplerRenderer::~a3SamplerRenderer()
 }
 // pbrt划分渲染队列独立任务的渲染管线
 // |Task.run()| |Task.run()| ... |Task.run()|
+// ------------------------------------------
+// Task.run()
 //      sample = RandomSampler.getSubSampler()
 //      ray = Camera.generateRayDiffererntial(sample)
 //      intersection = Scene.Intersect(ray)
@@ -123,7 +81,7 @@ void a3SamplerRenderer::render(const a3Scene* scene)
 #pragma omp parallel for schedule(dynamic)
     for(int x = 0; x < camera->image->width; x++)
     {
-        a3Log::info("Spp:%d    Rendering: %8.2f \r", SPP, (double) x / camera->image->width * 100);
+        a3Log::info("Spp:%d    Rendering: %8.2f \r", spp, (double) x / camera->image->width * 100);
 
         for(int y = 0; y < camera->image->height; y++)
         {
@@ -135,7 +93,7 @@ void a3SamplerRenderer::render(const a3Scene* scene)
             // 获取下一个采样位置
             sampler->getSample(x, y, &sample);
 
-            for(int z = 0; z < SPP; z++)
+            for(int z = 0; z < spp; z++)
             {
                 // memory allocating
                 a3Ray ray;
@@ -151,32 +109,24 @@ void a3SamplerRenderer::render(const a3Scene* scene)
                 // 生成光线
                 camera->castRay(&sampleTentFilter, &ray);
 
+                t3Vector3f temp;
                 // 暂不启用光谱转换
-                color = color + Li(scene, &ray, 0, &sample, &intersection) * (1.0f / SPP);
+                Li(scene, &ray, 0, temp, &sample, &intersection);
+
+                color += temp / spp;
             }
 
             color.x = t3Math::clamp(color.x, 0.0f, 255.0f);
             color.y = t3Math::clamp(color.y, 0.0f, 255.0f);
             color.z = t3Math::clamp(color.z, 0.0f, 255.0f);
-            
-#ifdef A3_GAMMA_CORRECTION
-            t3Vector3f toneColor = color;
-            //t3Vector3f toneColor = a3Tonemap(color / 255.0f);
 
-            //toneColor.x = t3Math::pow(toneColor.x, 2.2);
-            //toneColor.y = t3Math::pow(toneColor.y, 2.2);
-            //toneColor.z = t3Math::pow(toneColor.z, 2.2);
+            //t3Vector3f toneColor = color;
+            //t3Vector3f color = a3Tonemap(color / 255.0f);
 
-            toneColor.x = t3Math::pow(toneColor.x / 255.0f, 1 / 2.2f);
-            toneColor.y = t3Math::pow(toneColor.y / 255.0f, 1 / 2.2f);
-            toneColor.z = t3Math::pow(toneColor.z / 255.0f, 1 / 2.2f);
+            if(enableGammaCorrection)
+                a3GammaCorrection(color);
 
-            toneColor *= 255;
-
-            camera->image->addSample(&sample, toneColor);
-#else
             camera->image->addSample(&sample, color);
-#endif
         }
     }
     a3Log::print("\n");
@@ -186,44 +136,61 @@ void a3SamplerRenderer::render(const a3Scene* scene)
 #endif
 }
 
-t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, a3Ray* ray, int depth, const a3CameraSample* sample, a3Intersection* intersection)
+void a3SamplerRenderer::Li(const a3Scene* scene, a3Ray* ray, int depth, t3Vector3f& color, const a3CameraSample* sample, a3Intersection* intersection)
 {
-    // 暂不启用Russian Roulette
-    if(++depth > DEPTH)
-        return t3Vector3f(0, 0, 0);
+    if(++depth > bounces)
+    {
+        color = t3Vector3f::zero();
+        return;
+    }
 
+    // 暂不启用Russian Roulette
     if(!scene->intersect(*ray, intersection))
     {
-        //// black
-        //return t3Vector3f(0, 0, 0);
-
         // 处理光线未击中任何光源情况(仅有无限远区域光实现此方法)
         t3Vector3f Le;
         for(auto l : scene->lights)
             Le += l->Le(*ray);
 
-        return Le;
-    }
+        color += Le;
 
-    //a3Log::debug("Intersection: x:%f y:%f\n", sample->imageX, sample->imageY);
+        return;
+    }
 
     a3Shape* obj = scene->objects[intersection->shapeID];
 
     // 接触点
     t3Vector3f intersectPoint = (*ray)(intersection->t);
 
-#ifdef A3_RANDOM_SAMPLING
+    // 自发光系数
+    color += obj->emission;
+
     if(obj->type == A3_MATERIAL_DIFFUSS)
     {
         // Diffuse BRDF
-        t3Vector3f sampleDirection = hemisphere(random.randomFloat(), random.randomFloat());
+        t3Vector3f normal = obj->getNormal(intersectPoint), rotatedX, rotatedY;
+        a3OrthonomalSystem(normal, rotatedX, rotatedY);
+
+        t3Vector3f sampleDirection = a3Hemisphere(random.randomFloat(), random.randomFloat());
         sampleDirection.normalize();
 
-        ray->set(intersectPoint, sampleDirection);
+        // sampleDirection转换到Normal坐标系下
+        t3Vector3f rotatedDirection;
+        rotatedDirection.x = t3Vector3f(rotatedX.x, rotatedY.x, normal.x).dot(sampleDirection);
+        rotatedDirection.y = t3Vector3f(rotatedX.y, rotatedY.y, normal.y).dot(sampleDirection);
+        rotatedDirection.z = t3Vector3f(rotatedX.z, rotatedY.z, normal.z).dot(sampleDirection);
 
-        float cosTheta = ray->direction.dot(obj->getNormal(intersectPoint));
-        
-        return obj->emission + Li(scene, ray, depth, sample, intersection);
+        ray->set(intersectPoint, rotatedDirection);
+
+        float cosTheta = ray->direction.dot(normal);
+
+        t3Vector3f temp;
+        Li(scene, ray, depth, temp, sample, intersection);
+        //if(temp != t3Vector3f::zero())
+        //    printf("dwdw");
+
+        //color += (temp * obj->color) * cosTheta * 0.1;
+        color += (temp * obj->color) * 0.9;
     }
     else if(obj->type == A3_MATERIAL_SPECULAR)
     {
@@ -234,7 +201,9 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, a3Ray* ray, int depth, co
 
         ray->set(intersectPoint, sampleDirection.normalize());
 
-        return obj->emission + Li(scene, ray, depth, sample, intersection);
+        t3Vector3f temp;
+        Li(scene, ray, depth, temp, sample, intersection);
+        color += temp;
     }
     else if(obj->type == A3_METERIAL_REFRACTION)
     {
@@ -267,7 +236,7 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, a3Ray* ray, int depth, co
 
         // 发生反射的概率
         float probablity = R0 + (1 - R0)*t3Math::pow((1 - cosTheta1), 5);
-        
+
         t3Vector3f outDirection;
         // 折射光线方向(且未发生全反射)
         if(cosTheta2 > 0 && random.randomFloat() > probablity)
@@ -276,15 +245,13 @@ t3Vector3f a3SamplerRenderer::Li(const a3Scene* scene, a3Ray* ray, int depth, co
         else
             // d - 2*(l · N)·N; l · N = -cosTheta1; 
             outDirection = ray->direction + normal * (2 * cosTheta1);
-        
+
         ray->set(intersectPoint, outDirection.normalize());
 
-        return obj->emission + 1.15 * Li(scene, ray, depth, sample, intersection);
+        t3Vector3f temp;
+        Li(scene, ray, depth, temp, sample, intersection);
+        color += temp;
     }
-
-#else        
-    return obj->emission + obj->color;
-#endif
 }
 
 t3Vector3f a3SamplerRenderer::getNormal(const a3Scene* scene, a3Ray* ray, const a3CameraSample* sample)

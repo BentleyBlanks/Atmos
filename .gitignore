@@ -20,6 +20,7 @@ README~
 *.ppm
 *.psess
 *.vsp
+*.mp4
 dependency/assimp
 resources/*.*
 #build
