@@ -21,7 +21,7 @@ float a3Triangle::intersect(const a3Ray& ray) const
     float det = v0v1.dot(pvec);
 
     // 右手坐标系 三角形唯有在行列式>0时才可见
-    if(det < A3_TOLERANCE_DOUBLE) return false;
+    if(det < A3_TOLERANCE_FLOAT) return false;
     float invDet = 1.0f / det;
 
     // 克莱姆法则计算[t, u, v]三分量
@@ -36,7 +36,7 @@ float a3Triangle::intersect(const a3Ray& ray) const
     // 可直接返回
     t = v0v2.dot(qvec) * invDet;
 
-	if (t > A3_TOLERANCE_DOUBLE)
+	if (t > A3_TOLERANCE_FLOAT)
 		return t;
 
     return false;

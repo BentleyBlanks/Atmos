@@ -34,7 +34,9 @@ public:
 	// 自发光系数
 	t3Vector3f emission;
 
+    // 折射率
     float refractiveIndex;
+
 	// BSDF类型
 	int type;
 };

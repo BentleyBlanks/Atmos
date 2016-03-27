@@ -6,6 +6,8 @@
 #include <core/a3Ray.h>
 #include <core/a3Warp.h>
 #include <core/a3Random.h>
+#include <core/log/a3Log.h>
+#include <core/image/a3NormalMap.h>
 
 a3PerspectiveCamera::a3PerspectiveCamera(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up,
                                          float focalLength, float apretureWidth, float apretureHeight, float canvasDistance,
@@ -14,6 +16,12 @@ a3PerspectiveCamera::a3PerspectiveCamera(const t3Vector3f& origin, const t3Vecto
                                          : a3Camera(origin, lookat, up, focalLength, apretureWidth, apretureHeight, canvasDistance, focalDistance, lensRadius, image, normalMap)
 {
     random = new a3Random();
+
+    if(image)
+        a3Log::debug("Generating rendered image, width:%d, height:%d", image->width, image->height);
+
+    if(normalMap)
+        a3Log::debug("Generating normal map, width:%d, height:%d", normalMap->width, normalMap->height);
 }
 
 float a3PerspectiveCamera::castRay(const a3CameraSample* sample, a3Ray* ray) const

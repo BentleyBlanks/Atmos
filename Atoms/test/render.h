@@ -15,7 +15,7 @@
 
 int main()
 {
-	a3Film* image = new a3Film(1024, 768, "../../../resources/results/hello", A3_IMAGE_PNG);
+    a3Film* image = new a3Film(2000, 2000, "../../../resources/results/hello", A3_IMAGE_PNG);
     a3NormalMap* normalMap = new a3NormalMap(*image);
     normalMap->setFileName("../../../resources/results/normalMap");
 
@@ -34,7 +34,7 @@ int main()
         scene->addShape(s);
     };
 
-    scene->addLight(new a3InfiniteAreaLight("../../../resources/images/skylightBlue.png"));
+    scene->addLight(new a3InfiniteAreaLight("../../../resources/images/skylightPollution.png"));
 
     a3ModelImporter importer;
     std::vector<a3Shape*>* shapes = importer.load("../../../resources/models/test.obj");
@@ -42,7 +42,10 @@ int main()
     if(shapes)
     {
         for(auto s : *shapes)
-            addShape(s, t3Vector3f(1.5, 1.5, 1.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+            addShape(s, t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
+
+        addShape(new a3Sphere(t3Vector3f(-30, 20, 30), 20), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+        addShape(new a3Sphere(t3Vector3f(30, 20, -30), 20), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
 
         // 无限远平面
         addShape(new a3Plane(t3Vector3f(0, 0, 0), t3Vector3f(0, 1, 0)), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);

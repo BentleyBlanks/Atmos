@@ -20,6 +20,8 @@ README~
 *.ppm
 *.psess
 *.vsp
+*.rar
+*.psd
 *.mp4
 dependency/assimp
 resources/*.*

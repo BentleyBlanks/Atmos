@@ -18,14 +18,14 @@ a3Random random;
 //#define A3_RENDERING_NORMALMAP
 #define A3_RENDERING_REALISTICIMAGE
 
-a3SamplerRenderer::a3SamplerRenderer() : spp(128), bounces(7), sampler(NULL), camera(NULL), enableGammaCorrection(false)
+a3SamplerRenderer::a3SamplerRenderer() : spp(1024), bounces(7), sampler(NULL), camera(NULL), enableGammaCorrection(false)
 {
 
 }
 
 a3SamplerRenderer::~a3SamplerRenderer()
 {
-
+        
 }
 // pbrt划分渲染队列独立任务的渲染管线
 // |Task.run()| |Task.run()| ... |Task.run()|
@@ -165,92 +165,101 @@ void a3SamplerRenderer::Li(const a3Scene* scene, a3Ray* ray, int depth, t3Vector
     // 自发光系数
     color += obj->emission;
 
+    // 假定所有给定obj上求得的normal都为方向向量
+    t3Vector3f normal = obj->getNormal(intersectPoint);
+
     if(obj->type == A3_MATERIAL_DIFFUSS)
     {
         // Diffuse BRDF
-        t3Vector3f normal = obj->getNormal(intersectPoint), rotatedX, rotatedY;
+        t3Vector3f rotatedX, rotatedY;
         a3OrthonomalSystem(normal, rotatedX, rotatedY);
 
         t3Vector3f sampleDirection = a3Hemisphere(random.randomFloat(), random.randomFloat());
         sampleDirection.normalize();
 
         // sampleDirection转换到Normal坐标系下
-        t3Vector3f rotatedDirection;
-        rotatedDirection.x = t3Vector3f(rotatedX.x, rotatedY.x, normal.x).dot(sampleDirection);
-        rotatedDirection.y = t3Vector3f(rotatedX.y, rotatedY.y, normal.y).dot(sampleDirection);
-        rotatedDirection.z = t3Vector3f(rotatedX.z, rotatedY.z, normal.z).dot(sampleDirection);
+        t3Vector3f wo;
+        wo.x = t3Vector3f(rotatedX.x, rotatedY.x, normal.x).dot(sampleDirection);
+        wo.y = t3Vector3f(rotatedX.y, rotatedY.y, normal.y).dot(sampleDirection);
+        wo.z = t3Vector3f(rotatedX.z, rotatedY.z, normal.z).dot(sampleDirection);
 
-        ray->set(intersectPoint, rotatedDirection);
+        ray->set(intersectPoint, wo);
 
         float cosTheta = ray->direction.dot(normal);
 
-        t3Vector3f temp;
-        Li(scene, ray, depth, temp, sample, intersection);
-        //if(temp != t3Vector3f::zero())
-        //    printf("dwdw");
-
+        t3Vector3f radiance;
+        Li(scene, ray, depth, radiance, sample, intersection);
+        
         //color += (temp * obj->color) * cosTheta * 0.1;
-        color += (temp * obj->color) * 0.9;
+        color += (radiance * obj->color) * 0.9;
     }
     else if(obj->type == A3_MATERIAL_SPECULAR)
     {
-        // 假定所有给定obj上求得的normal都为方向向量
-        t3Vector3f normal = obj->getNormal(intersectPoint);
+        t3Vector3f wo = ray->direction - 2 * (ray->direction.dot(normal)) * normal;
 
-        t3Vector3f sampleDirection = ray->direction - 2 * (ray->direction.dot(normal)) * normal;
+        ray->set(intersectPoint, wo.normalize());
 
-        ray->set(intersectPoint, sampleDirection.normalize());
-
-        t3Vector3f temp;
-        Li(scene, ray, depth, temp, sample, intersection);
-        color += temp;
+        t3Vector3f radiance;
+        Li(scene, ray, depth, radiance, sample, intersection);
+        color += radiance * obj->color;
     }
     else if(obj->type == A3_METERIAL_REFRACTION)
     {
-        // 折射与反射概率可求 通过[0, 1)之间生成随机数 根据大小间接完成折射反射选择
-        // 一次迭代只进行折射或反射迭代
-        // n = n2 / n1 假定在介质外 n1 = 1
-        float n = obj->refractiveIndex;
+        float cosTheta1 = ray->direction.dot(normal);
+
+        // 是否在光密介质内部
+        bool into = cosTheta1 < 0;
+
+        // n = 入射光所在材质折射率 / 出射材质折射率
+        float n1 = 1.0f, n2 = obj->refractiveIndex;
+        float n = into ? n1 / n2 : n2 / n1;
+
+        float cosTheta2 = 1 - n * n * (1 - cosTheta1 * cosTheta1);
+
+        // 全反射
+        if(cosTheta2 < 0)
+        {
+            ray->set(intersectPoint, (ray->direction - 2 * (ray->direction.dot(normal)) * normal).normalize());
+
+            t3Vector3f radiance;
+            Li(scene, ray, depth, radiance, sample, intersection);
+            color += radiance * obj->color;
+            return;
+        }
 
         // Schlick的近似方程
         float R0 = (1.0f - n) / (1.0 + n);
         R0 = R0 * R0;
 
-        t3Vector3f normal = obj->getNormal(intersectPoint);
+        
+        // 折射与反射概率可求 通过[0, 1)之间生成随机数 根据大小间接完成折射反射选择
+        // --!详情可见 http://www.kevinbeason.com/smallpt/
+        t3Vector3f wo, wr;
 
-        // 出射方向取决于当前光线位置是否处于物体中
-        if(normal.dot(ray->direction) > 0)
-        {
-            // 处于介质当中 反转表面法线方向
-            normal = -normal;
-            // n = n2 / n1 介质内 n2 = 1
-            n = 1 / n;
-        }
-
-        n = 1 / n;
-
-        // 入射角(光疏到光密: cosTheta1 < 0，而角度[0, 90]，需调制*-1; 光密到光疏: cosTheta1 > 0, 而normal被反转, 需调制*-1)
-        float cosTheta1 = normal.dot(ray->direction) * -1;
-        // 折射角(cosTheta2^2) 
-        float cosTheta2 = 1 - n * n * (1 - cosTheta1 * cosTheta1);
+        wo = n * (ray->direction - normal * cosTheta1) - (into ? normal : -normal) * t3Math::sqrt(cosTheta2);
+        
+        // 反射光线方向
+        wr = ray->direction - 2 * (ray->direction.dot(normal)) * normal;
 
         // 发生反射的概率
-        float probablity = R0 + (1 - R0)*t3Math::pow((1 - cosTheta1), 5);
+        float probablity = R0 + (1 - R0) * t3Math::pow((1 - t3Math::Abs(cosTheta1)), 5);
 
-        t3Vector3f outDirection;
-        // 折射光线方向(且未发生全反射)
-        if(cosTheta2 > 0 && random.randomFloat() > probablity)
-            outDirection = ray->direction * n + normal * (n * cosTheta1 - t3Math::sqrt(cosTheta2));
-        // 反射光线方向
+
+        ray->set(intersectPoint, wo.normalize());
+
+        t3Vector3f radianceT, radianceR;
+
+        Li(scene, ray, depth, radianceT, sample, intersection);
+        Li(scene, ray, depth, radianceR, sample, intersection);
+
+        if(depth > 2)
+        {
+            float P = 0.25 + 0.5 * probablity, RP = probablity / P, TP = (1 - probablity) / (1 - P);
+            // 不明所以
+            color += (radianceT * RP + radianceR * TP) * obj->color;
+        }
         else
-            // d - 2*(l · N)·N; l · N = -cosTheta1; 
-            outDirection = ray->direction + normal * (2 * cosTheta1);
-
-        ray->set(intersectPoint, outDirection.normalize());
-
-        t3Vector3f temp;
-        Li(scene, ray, depth, temp, sample, intersection);
-        color += temp;
+            color += (radianceT * probablity + radianceR * (1 - probablity)) * obj->color;
     }
 }
 

@@ -1,5 +1,5 @@
 #include <shapes/a3Sphere.h>
-#include <image/a3Film.h>
+#include <core/image/a3Film.h>
 #include <core/a3Ray.h>
 #include <core/log/a3Log.h>
 #include <core/log/a3LogFile.h>
@@ -18,20 +18,23 @@ int main()
 
 	a3Sphere sphere(t3Vector3f(0, 10, 0), 10);
 
-	sphere.normal(t3Vector3f(20, 10, 0)).print();
+	sphere.getNormal(t3Vector3f(20, 10, 0)).print();
 
 	a3Film image(900, 900, "Atoms.ppm");
 
 
 	// 产生随机数种子
-	std::random_device random;
+	std::random_device randoms;
 	// mersenne twister engine
-	std::mt19937 mt(random()), mersenneTwister(random());
+	std::mt19937 mt(randoms()), mersenneTwister(randoms());
 	// uniform distribution
 	std::uniform_int_distribution<> uniformi(1, 6);
 	std::uniform_real_distribution<float> uniformf(0, 1);
 	// normal distribution
 	std::normal_distribution<> d(5, 2);
+
+#define RND (2.0*uniform(mersenneTwister)-1.0)
+#define RND2 (uniform(mersenneTwister))
 
 #define A3RANDOM uniformf(mersenneTwister)
 
@@ -48,7 +51,8 @@ int main()
 	{
 		for(int j = 0; j < image.height; j++)
 		{
-            image.pixels[i][j].set(A3RANDOM, A3RANDOM, A3RANDOM);
+            // deprecated
+            //image.pixels[i][j].set(A3RANDOM, A3RANDOM, A3RANDOM);
 		}
 	}
 
