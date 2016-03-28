@@ -19,7 +19,7 @@
 
 int main()
 {
-    a3Film* image = new a3Film(1024, 768, "../../../resources/results/hello", A3_IMAGE_PNG);
+    a3Film* image = new a3Film(2048, 1536, "../../../resources/results/hello", A3_IMAGE_PNG);
     a3NormalMap* normalMap = new a3NormalMap(*image);
     normalMap->setFileName("../../../resources/results/normalMap");
 #ifdef INFINITEAREA_LIGHT
