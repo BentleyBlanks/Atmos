@@ -25,6 +25,8 @@ public:
 
     void setCameraToWorld(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up);
 
+    void print();
+
     // camera's position / eye's position
     t3Vector3f origin;
 

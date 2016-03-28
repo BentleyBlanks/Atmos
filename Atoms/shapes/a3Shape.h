@@ -20,7 +20,7 @@ class a3Shape
 public:
 	a3Shape();
 
-	virtual float intersect(const a3Ray& ray) const;
+    virtual float intersect(const a3Ray& ray) const;
 
     // return normal
     virtual t3Vector3f getNormal(const t3Vector3f& hitPoint) const;

@@ -57,3 +57,14 @@ void a3Camera::setCameraToWorld(const t3Vector3f& origin, const t3Vector3f& look
     // camera to world
     //cameraToWorld = cameraToWorld.getInverse();
 }
+
+void a3Camera::print()
+{
+    a3Log::debug("Camera position: %f, %f, %f\n", origin.x, origin.y, origin.z);
+    a3Log::debug("Camera lookat : %f, %f, %f\n", lookat.x, lookat.y, lookat.z);
+    t3Vector3f oritation = (lookat - origin).getNormalized();
+    a3Log::debug("Camera oritation : %f, %f, %f\n", oritation.x, oritation.y, oritation.z);
+    a3Log::debug("Camera up : %f, %f, %f\n", up.x, up.y, up.z);
+    a3Log::debug("fov: %f, %f\n", t3Math::Rad2Deg(fov.x), t3Math::Rad2Deg(fov.y));
+    a3Log::debug("focal distance: %f, lens radius: %f\n", focalDistance, lensRadius);
+}

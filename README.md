@@ -2,11 +2,9 @@
 
 A Simple Physically Based Renderer.(Not Finished Yet)
 
-![](https://farm2.staticflickr.com/1685/25799919190_88442e7c53_z.jpg)
+![](https://farm2.staticflickr.com/1669/25496307463_ed3d0a61e4_z.jpg)
 
-SPP = 1024 width: 2000 height: 2000
-
-> 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25799919190/in/dateposted-public/)
+SPP = 256 width: 900 height: 900 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25496307463/in/dateposted-public/)
 
 ## 构建说明
 
@@ -15,17 +13,19 @@ SPP = 1024 width: 2000 height: 2000
 
 ## 效果图
 
+![](https://farm2.staticflickr.com/1719/26072294146_37565d104a_z.jpg)
+SPP = 128 width: 900 height: 900
+
+![](https://farm2.staticflickr.com/1540/25493615434_59b96306f5_z.jpg)
+SPP = 128 width:1000 height:500
+
 ![](https://farm2.staticflickr.com/1463/25207503294_b30be85aa8_z.jpg)
 
-SPP = 2048 width: 3200 height: 3200
-
-> 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25151015169/in/dateposted-public/)
+SPP = 2048 width: 3200 height: 3200 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25151015169/in/dateposted-public/)
 
 ![](https://farm2.staticflickr.com/1486/25742938521_7161856337_z.jpg)
 
-SPP = 2048 Depth of Field: f = 180.0f，r = 20.0f width: 3200 height: 3200
-
-> 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25742938521/in/dateposted-public/)
+SPP = 2048 Depth of Field: f = 180.0f，r = 20.0f width: 3200 height: 3200 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25742938521/in/dateposted-public/)
 
 ![](https://farm2.staticflickr.com/1680/25539770910_482c4da26f_z.jpg)
 

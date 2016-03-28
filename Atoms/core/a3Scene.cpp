@@ -17,7 +17,7 @@ bool a3Scene::intersect(const a3Ray& ray, a3Intersection* intersection) const
 
     for(int i = 0; i<objects.size(); i++)
     {
-        if((t = objects[i]->intersect(ray)) && t < minT)
+        if((t = objects[i]->intersect(ray)) && t > A3_TOLERANCE_FLOAT && t < minT)
         {
             minT = t;
 
@@ -26,14 +26,14 @@ bool a3Scene::intersect(const a3Ray& ray, a3Intersection* intersection) const
         }
     }
 
-    if(minT < FLT_MAX)
+    if(minT < FLT_MAX && minT > A3_TOLERANCE_FLOAT)
     {
         intersection->t = minT;
         return true;
     }
     else
     {
-        intersection->t = 0;
+        intersection->t = FLT_MAX;
         return false;
     }
 }

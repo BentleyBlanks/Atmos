@@ -88,14 +88,22 @@ void a3GammaCorrection(t3Vector3f& color)
 // 此处u1:cosTheta u2:代表占据一圆周的角度百分比
 t3Vector3f a3Hemisphere(float u1, float u2)
 {
-    // 1 - cosThta^2 = sinTheta
-    const float r = t3Math::sqrt(1.0f - u1 * u1);
+    //// 1 - cosThta^2 = sinTheta
+    //const float r = t3Math::sqrt(1.0f - u1 * u1);
 
-    // phi = 2Pi * percent
-    const float phi = 2 * T3MATH_PI * u2;
+    //// phi = 2Pi * percent
+    //const float phi = 2 * T3MATH_PI * u2;
 
-    // x = sinTheta * cosPhi; y = sinTheta * sinPhi; z = cosTheta
-    return t3Vector3f(t3Math::cosRad(phi) * r, t3Math::sinRad(phi) * r, u1);
+    //// x = sinTheta * cosPhi; y = sinTheta * sinPhi; z = cosTheta
+    //return t3Vector3f(t3Math::cosRad(phi) * r, t3Math::sinRad(phi) * r, u1);
+
+    const float r = t3Math::sqrt(u1);
+    const float theta = 2 * T3MATH_PI * u2;
+
+    const float x = r * t3Math::cosRad(theta);
+    const float y = r * t3Math::sinRad(theta);
+
+    return t3Vector3f(x, y, t3Math::sqrt(t3Math::Max(0.0f, 1 - u1)));
 }
 
 void a3OrthonomalSystem(const t3Vector3f& v1, t3Vector3f& v2, t3Vector3f& v3)

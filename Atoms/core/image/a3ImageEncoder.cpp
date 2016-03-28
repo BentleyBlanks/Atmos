@@ -47,11 +47,16 @@ public:
 
         //if there's an error, display it
         if(error)
+        {
             a3Log::error("encoder error %d: %s\n", error, lodepng_error_text(error));
+            a3Log::error("Image %s.png saved failed\n", fileName.c_str());
+        }
+        else
+        {
+            a3Log::success("Image %s.png saved succeed\n", fileName.c_str());
+            a3Log::success("width:%d, height:%d\n", width, height);
+        }
 #endif
-
-        a3Log::success("Image %s.png saved succeed\n", fileName.c_str());
-        a3Log::success("width:%d, height:%d\n", width, height);
     }
 
 #ifdef A3_IMAGE_LIB_PNGPP

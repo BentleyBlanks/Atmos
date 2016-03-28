@@ -132,6 +132,9 @@
 #define A3_TOLERANCE_INT 0
 #define A3_TOLERANCE_FLOAT 1e-6
 #define A3_TOLERANCE_DOUBLE 1e-8
+#define A3_TOLERANCE_ERROR 1e-3
+
+
 
 // ------------------------Image------------------------
 //#define A3_IMAGE_LIB_PNGPP

@@ -33,7 +33,6 @@ t3Vector3f a3Shape::getNormal(const t3Vector3f& hitPoint) const
     return t3Vector3f::zero();
 }
 
-
 void a3Shape::setMaterial(const t3Vector3f color, const t3Vector3f emission, int type)
 {
 	this->color = color;

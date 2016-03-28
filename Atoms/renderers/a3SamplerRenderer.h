@@ -13,7 +13,7 @@ public:
 
 	~a3SamplerRenderer();
 
-    void Li(const a3Scene* scene, a3Ray* ray, int depth, t3Vector3f& color, const a3CameraSample* sample, a3Intersection* intersection);
+    void Li(const a3Scene* scene, const a3Ray* ray, int depth, t3Vector3f& color, const a3CameraSample* sample, a3Intersection* intersection);
 
     t3Vector3f getNormal(const a3Scene* scene, a3Ray* ray, const a3CameraSample* sample);
 

@@ -10,7 +10,7 @@ float a3Sphere::intersect(const a3Ray& ray) const
 {
 	// direction为单位向量，长度为1
 	//float A = ray.direction * ray.direction;
-	float B = 2 * (ray.origin - center).dot(ray.direction);
+    float B = ((ray.origin - center) * 2).dot(ray.direction);
 	float C = (ray.origin - center).dot((ray.origin - center)) - radius*radius;
 
 	float discriminant = B * B - 4.0f * C;
