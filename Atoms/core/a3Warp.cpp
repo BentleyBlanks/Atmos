@@ -122,3 +122,94 @@ void a3OrthonomalSystem(const t3Vector3f& v1, t3Vector3f& v2, t3Vector3f& v3)
     }
     v3 = v1.getCrossed(v2);
 }
+
+bool a3SolveQuadratic(float A, float B, float C, float* t0, float* t1)
+{
+    // --!Copied from Mitsuba(util.cpp 447)
+    /* Linear case */
+    if(A == 0)
+    {
+        if(B != 0)
+        {
+            *t0 = *t1 = -C / B;
+            return true;
+        }
+        return false;
+    }
+
+    float discrim = B * B - 4.0f * A * C;
+
+    /* Leave if there is no solution */
+    if(discrim < 0)
+        return false;
+
+    float temp, sqrtDiscrim = t3Math::sqrt(discrim);
+
+    /* Numerically stable version of (-b (+/-) sqrtDiscrim) / (2 * a)
+    *
+    * Based on the observation that one solution is always
+    * accurate while the other is not. Finds the solution of
+    * greater magnitude which does not suffer from loss of
+    * precision and then uses the identity x1 * x2 = c / a
+    */
+    // 通过B的状态求得更大的temp来避免出现精度丢失问题
+    if(B < 0)
+        temp = -0.5f * (B - sqrtDiscrim);
+    else
+        temp = -0.5f * (B + sqrtDiscrim);
+
+    *t0 = temp / A;
+    *t1 = C / temp;
+
+    /* Return the results so that t0 < t1 */
+    if(*t0 > *t1)
+        t3Math::swap(*t0, *t1);
+
+    return true;
+
+}
+
+bool a3SolveQuadraticDouble(double A, double B, double C, double* t0, double* t1)
+{
+    // --!Copied from Mitsuba(util.cpp 447)
+    /* Linear case */
+    if(A == 0)
+    {
+        if(B != 0)
+        {
+            *t0 = *t1 = -C / B;
+            return true;
+        }
+        return false;
+    }
+
+    double discrim = B * B - 4.0f * A * C;
+
+    /* Leave if there is no solution */
+    if(discrim < 0)
+        return false;
+
+    double temp, sqrtDiscrim = t3Math::sqrtd(discrim);
+
+    /* Numerically stable version of (-b (+/-) sqrtDiscrim) / (2 * a)
+    *
+    * Based on the observation that one solution is always
+    * accurate while the other is not. Finds the solution of
+    * greater magnitude which does not suffer from loss of
+    * precision and then uses the identity x1 * x2 = c / a
+    */
+    // 通过B的状态求得更大的temp来避免出现精度丢失问题
+    if(B < 0)
+        temp = -0.5f * (B - sqrtDiscrim);
+    else
+        temp = -0.5f * (B + sqrtDiscrim);
+
+    *t0 = temp / A;
+    *t1 = C / temp;
+
+    /* Return the results so that t0 < t1 */
+    if(*t0 > *t1)
+        t3Math::swap(*t0, *t1);
+
+    return true;
+}

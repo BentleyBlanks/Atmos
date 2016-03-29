@@ -6,26 +6,33 @@ a3Disk::a3Disk(const t3Vector3f& center, const float radius, const t3Vector3f& n
 
 }
 
-float a3Disk::intersect(const a3Ray& ray) const
+bool a3Disk::intersect(const a3Ray& ray, float* t) const
 {
+    t3Vector3d _normal(-normal), direction(ray.direction);
+
     // 判断圆盘与直线平行关系
-    float denominator = (-normal).dot(ray.direction), t = 0.0f;
+    double denominator = _normal.dot(direction), tHit = 0.0f;
 
-
-    if(denominator > A3_TOLERANCE_FLOAT)
+    if(denominator > A3_TOLERANCE_DOUBLE)
     {
-        t3Vector3f dir = center - ray.origin;
+        t3Vector3d dir(center - ray.origin);
 
-        t = dir.dot(-normal) / denominator;
+        tHit = dir.dot(_normal) / denominator;
 
-        t3Vector3f p = ray(t), d = p - center;
+        if(tHit < ray.minT || tHit > ray.maxT)
+            return false;
+
+        t3Vector3d p(ray(tHit)), d = p - t3Vector3d(center);
 
         // 求取平面上相交点p与中心点center距离
         if(d.lengthSquared() <= radius * radius)
-            return t;
+        {
+            *t = tHit;
+            return true;
+        }
     }
 
-    return 0.0f;
+    return false;
 }
 
 t3Vector3f a3Disk::getNormal(const t3Vector3f& hitPoint) const

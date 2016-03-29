@@ -63,7 +63,9 @@ int main()
 
     ray.print();
     sphere1.print();
-    std::cout << "相交测试最近点为: " << sphere1.intersect(ray) << std::endl;
+    float t;
+    sphere1.intersect(ray, &t);
+    std::cout << "相交测试最近点为: " << t << std::endl;
 
     // log test
     int a = 10;

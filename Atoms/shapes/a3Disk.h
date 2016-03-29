@@ -8,7 +8,7 @@ class a3Disk :public a3Shape
 public:
     a3Disk(const t3Vector3f& center, const float radius, const t3Vector3f& normal);
 
-    virtual float intersect(const a3Ray& ray) const;
+    virtual bool intersect(const a3Ray& ray, float* t) const;
 
     //--! u1 u2参数未开放
     virtual t3Vector3f getNormal(const t3Vector3f& hitPoint) const;

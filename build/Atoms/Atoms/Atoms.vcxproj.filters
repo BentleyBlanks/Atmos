@@ -274,6 +274,12 @@
     <ClInclude Include="..\..\..\dependency\lodepng\include\lodepng.h">
       <Filter>ThirdParty\loadpng</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\renderQueue.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\image\a3NormalMap.h">
+      <Filter>Atoms\core\image</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Math.h">
       <Filter>ThirdParty\t3Math</Filter>
     </ClInclude>
@@ -294,12 +300,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h">
       <Filter>ThirdParty\t3Math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\test\renderQueue.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\core\image\a3NormalMap.h">
-      <Filter>Atoms\core\image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -381,14 +381,14 @@
     <ClCompile Include="..\..\..\Atoms\core\a3Warp.cpp">
       <Filter>Atoms\core</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\image\a3NormalMap.cpp">
+      <Filter>Atoms\core\image</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp">
       <Filter>ThirdParty\t3Math</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp">
       <Filter>ThirdParty\t3Math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\core\image\a3NormalMap.cpp">
-      <Filter>Atoms\core\image</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

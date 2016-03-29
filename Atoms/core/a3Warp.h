@@ -27,4 +27,9 @@ t3Vector3f a3Hemisphere(float u1, float u2);
 // 给定v1坐标轴 与v2v3构建一正交坐标系
 void a3OrthonomalSystem(const t3Vector3f& v1, t3Vector3f& v2, t3Vector3f& v3);
 
+// 计算判别式求解二次方程(若有解则t0 <= t1)
+bool a3SolveQuadratic(float A, float B, float C, float* t0, float* t1);
+
+bool a3SolveQuadraticDouble(double A, double B, double C, double* t0, double* t1);
+
 #endif

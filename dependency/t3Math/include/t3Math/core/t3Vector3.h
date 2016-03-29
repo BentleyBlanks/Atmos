@@ -20,7 +20,11 @@ public:
 	// assigns scalar to x, y, and z
 	explicit t3Vector3(Type scalar);
 
-	t3Vector3(const t3Vector3<Type>& vector);
+    // t3Vector3<Type>->t3Vector3<Type2>
+    template <typename Type2> 
+    explicit t3Vector3(const t3Vector3<Type2> &p);
+
+    t3Vector3(const t3Vector3<Type>& vector);
 
     T3_FORCE_INLINE Type* getPtr() { return (Type*) &x; }
 
@@ -100,8 +104,8 @@ public:
     T3_FORCE_INLINE t3Vector3<Type>& map(const t3Vector3<Type>& origin, const t3Vector3<Type>& vx, const t3Vector3<Type>& vy, const t3Vector3<Type>& vz) {}
 
 	// Distance between two points.
-    T3_FORCE_INLINE float distance(const t3Vector3<Type>& point) const;
-    T3_FORCE_INLINE float squareDistance(const t3Vector3<Type>& point) const;
+    T3_FORCE_INLINE Type distance(const t3Vector3<Type>& point) const;
+    T3_FORCE_INLINE Type squareDistance(const t3Vector3<Type>& point) const;
 
 	// Linear interpolation.
     T3_FORCE_INLINE t3Vector3<Type> getInterpolated(const t3Vector3<Type>& point, float t) const;
@@ -127,15 +131,15 @@ public:
     T3_FORCE_INLINE t3Vector3<Type>& perpendicular(const t3Vector3<Type>& vector);
 
 	// Length
-    T3_FORCE_INLINE float length() const;
-    T3_FORCE_INLINE float lengthSquared() const;
+    T3_FORCE_INLINE Type length() const;
+    T3_FORCE_INLINE Type lengthSquared() const;
 
 	// Angle between two vectors
-    T3_FORCE_INLINE float angle(const t3Vector3<Type>& vector) const;
-    T3_FORCE_INLINE float angleRad(const t3Vector3<Type>& vector) const;
+    T3_FORCE_INLINE Type angle(const t3Vector3<Type>& vector) const;
+    T3_FORCE_INLINE Type angleRad(const t3Vector3<Type>& vector) const;
 
 	// Dot Product
-    T3_FORCE_INLINE float dot(const t3Vector3<Type>& vector) const;
+    T3_FORCE_INLINE Type dot(const t3Vector3<Type>& vector) const;
 
 	// return all zero vector
     T3_FORCE_INLINE static t3Vector3<Type> zero() { return t3Vector3<float>(0, 0, 0); }
@@ -190,10 +194,12 @@ T3_FORCE_INLINE t3Vector3<Type> operator/(float scalar, const t3Vector3<Type>& v
 #include <t3Math/core/t3Vector3.inl>
 
 // 特化
+typedef t3Vector3<double> t3Vector3d;
 typedef t3Vector3<float> t3Vector3f;
 typedef t3Vector3<int> t3Vector3i;
 
 // t2Point
+typedef t3Vector3d t2Point3d;
 typedef t3Vector3f t2Point3f;
 typedef t3Vector3i t2Point3i;
 

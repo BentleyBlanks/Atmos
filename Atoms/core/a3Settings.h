@@ -132,7 +132,9 @@
 #define A3_TOLERANCE_INT 0
 #define A3_TOLERANCE_FLOAT 1e-6
 #define A3_TOLERANCE_DOUBLE 1e-8
-#define A3_TOLERANCE_ERROR 1e-3
+// --!详见 https://www.zhihu.com/question/41895326
+// Atoms全局相交测试模仿Mitsuba采用double精度
+#define A3_RAY_BIAS 1e-4
 
 
 

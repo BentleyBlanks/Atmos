@@ -18,7 +18,7 @@ a3Random random;
 //#define A3_RENDERING_NORMALMAP
 #define A3_RENDERING_REALISTICIMAGE
 
-a3SamplerRenderer::a3SamplerRenderer() : spp(256), bounces(10), sampler(NULL), camera(NULL), enableGammaCorrection(true)
+a3SamplerRenderer::a3SamplerRenderer() : spp(256), bounces(12), sampler(NULL), camera(NULL), enableGammaCorrection(true)
 {
 
 }
@@ -183,7 +183,7 @@ void a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int depth, t3
         wo.y = t3Vector3f(rotatedX.y, rotatedY.y, normal.y).dot(sampleDirection);
         wo.z = t3Vector3f(rotatedX.z, rotatedY.z, normal.z).dot(sampleDirection);
 
-        a3Ray reflectRay(intersectPoint + wo * A3_TOLERANCE_ERROR, wo);
+        a3Ray reflectRay(intersectPoint, wo);
 
         float cosTheta = ray->direction.dot(normal);
 
@@ -195,7 +195,7 @@ void a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int depth, t3
     {
         t3Vector3f wo = (ray->direction - 2 * (normal.dot(ray->direction)) * normal).normalize();
 
-        a3Ray reflectRay(intersectPoint + wo * A3_TOLERANCE_ERROR, wo);
+        a3Ray reflectRay(intersectPoint, wo);
 
         t3Vector3f radiance;
         Li(scene, &reflectRay, depth, radiance, sample, intersection);
@@ -220,7 +220,7 @@ void a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int depth, t3
         if(cosTheta2 < 0)
         {
             t3Vector3f totalReflec = (ray->direction - normal * 2 * (ray->direction.dot(normal))).normalize();
-            reflectRay.set(intersectPoint + totalReflec * A3_TOLERANCE_ERROR, totalReflec);
+            reflectRay.set(intersectPoint, totalReflec);
 
             t3Vector3f radiance;
             Li(scene, &reflectRay, depth, radiance, sample, intersection);
@@ -249,12 +249,12 @@ void a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int depth, t3
 
         //if(random.randomFloat() > probablity)
         //{
-            transmittedRay.set(intersectPoint + wo * A3_TOLERANCE_ERROR, wo.normalize());
+            transmittedRay.set(intersectPoint, wo.normalize());
             Li(scene, &transmittedRay, depth, radianceT, sample, intersection);
         //}
         //else
         //{
-            reflectRay.set(intersectPoint + wr * A3_TOLERANCE_ERROR, wr.normalize());
+            reflectRay.set(intersectPoint, wr.normalize());
             Li(scene, &reflectRay, depth, radianceR, sample, intersection);
         //}
         //color += radianceT * obj->color;

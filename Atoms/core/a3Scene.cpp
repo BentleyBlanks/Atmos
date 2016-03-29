@@ -17,7 +17,7 @@ bool a3Scene::intersect(const a3Ray& ray, a3Intersection* intersection) const
 
     for(int i = 0; i<objects.size(); i++)
     {
-        if((t = objects[i]->intersect(ray)) && t > A3_TOLERANCE_FLOAT && t < minT)
+        if((objects[i]->intersect(ray, &t)) && t > A3_TOLERANCE_FLOAT && t < minT)
         {
             minT = t;
 
@@ -45,7 +45,7 @@ bool a3Scene::intersect(const a3Ray& ray) const
 
     for(int i = 0; i < objects.size(); i++)
     {
-        if((t = objects[i]->intersect(ray)) && t < minT)
+        if((objects[i]->intersect(ray, &t)) && t < minT)
             minT = t;
     }
 
@@ -61,6 +61,7 @@ bool a3Scene::addShape(a3Shape* shape)
     }
 
     objects.push_back(shape);
+    return true;
 }
 
 bool a3Scene::addLight(a3Light* light)

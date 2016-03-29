@@ -10,7 +10,7 @@ public:
 
     a3Triangle(t3Vector3f v0, t3Vector3f v1, t3Vector3f v2);
 
-    virtual float intersect(const a3Ray& ray) const;
+    virtual bool intersect(const a3Ray& ray, float* t) const;
 
     virtual t3Vector3f getNormal(const t3Vector3f& hitPoint) const;
 

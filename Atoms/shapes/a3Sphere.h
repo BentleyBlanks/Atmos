@@ -8,7 +8,7 @@ class a3Sphere : public a3Shape
 public:
 	a3Sphere(const t3Vector3f& center, const float radius = 0.0f);
 
-	float intersect(const a3Ray& ray) const;
+	bool intersect(const a3Ray& ray, float* t) const;
 
     //t3Vector3f getNormal(const t3Vector3f& vector) const;
 

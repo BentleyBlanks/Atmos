@@ -12,7 +12,7 @@ a3Shape::a3Shape()
     refractiveIndex = 1.5f;
 }
 
-float a3Shape::intersect(const a3Ray& ray) const
+bool a3Shape::intersect(const a3Ray& ray, float* t) const
 {
 	a3Log::warning("Unimplemented a3Shape::intersect() method called");
 

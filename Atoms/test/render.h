@@ -19,7 +19,7 @@
 
 int main()
 {
-    a3Film* image = new a3Film(2048, 1536, "../../../resources/results/hello", A3_IMAGE_PNG);
+    a3Film* image = new a3Film(1024, 768, "../../../resources/results/hello", A3_IMAGE_PNG);
     a3NormalMap* normalMap = new a3NormalMap(*image);
     normalMap->setFileName("../../../resources/results/normalMap");
 #ifdef INFINITEAREA_LIGHT
@@ -31,7 +31,7 @@ int main()
 #endif
 
 #ifdef CORNEL_BOX
-    a3PerspectiveCamera* camera = new a3PerspectiveCamera(t3Vector3f(50, 52, 295.6), t3Vector3f(50, 52 - 0.042612, 295.6 - 1), t3Vector3f(0, 1, 0), 1.0f, 5.84, 5.84 * image->width / image->height, 1.0f, 210.0f, 0.0f, image, normalMap);
+    a3PerspectiveCamera* camera = new a3PerspectiveCamera(t3Vector3f(50.0f, 52.0f, 295.6f), t3Vector3f(50.0f, 52.0f - 0.042612f, 295.6f - 1.0f), t3Vector3f(0, 1, 0), 1.0f, 5.84f, 5.84f * image->width / image->height, 1.0f, 210.0f, 0.0f, image, normalMap);
 #endif
     camera->print();
 
@@ -76,19 +76,19 @@ int main()
 
 #ifdef CORNEL_BOX
     // Spheres  
-    addShape(new a3Sphere(t3Vector3f(73, 16.5, 47), 16.5), t3Vector3f(.999, .999, .999), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
-    addShape(new a3Sphere(t3Vector3f(27, 16.5, 78), 16.5), t3Vector3f(.999, .999, .999), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
+    addShape(new a3Sphere(t3Vector3f(73.0f, 16.5f, 47.0f), 16.5f), t3Vector3f(.999f, .999f, .999f), t3Vector3f(0.0f, 0.0f, 0.0f), A3_MATERIAL_SPECULAR);
+    addShape(new a3Sphere(t3Vector3f(27.0f, 16.5f, 78.0f), 16.5f), t3Vector3f(.999f, .999f, .999f), t3Vector3f(0.0f, 0.0f, 0.0f), A3_METERIAL_REFRACTION);
 
     // Plane
-    addShape(new a3Plane(t3Vector3f(1, 40.8, 81.6), t3Vector3f(1, 0, 0)), t3Vector3f(0.25, 0.25, 0.75), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-    addShape(new a3Plane(t3Vector3f(99, 40.8, 81.6), t3Vector3f(-1, 0, 0)), t3Vector3f(0.75, 0.25, 0.25), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-    addShape(new a3Plane(t3Vector3f(50, 40.8, 0), t3Vector3f(0, 0, 1)), t3Vector3f(0.75, 0.75, 0.75), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-    addShape(new a3Plane(t3Vector3f(50, 40.8, 310), t3Vector3f(0, 0, 1)), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-    addShape(new a3Plane(t3Vector3f(50, 0, 81.6), t3Vector3f(0, 1, 0)), t3Vector3f(0.75, 0.75, 0.75), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-    addShape(new a3Plane(t3Vector3f(50, 81.6, 81.6), t3Vector3f(0, -1, 0)), t3Vector3f(0.75, 0.75, 0.75), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Plane(t3Vector3f(1.0f, 40.8f, 81.6f), t3Vector3f(1.0f, 0.0f, 0.0f)), t3Vector3f(0.25f, 0.25f, 0.75f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Plane(t3Vector3f(99.0f, 40.8f, 81.6f), t3Vector3f(-1.0f, 0.0f, 0.0f)), t3Vector3f(0.75f, 0.25f, 0.25f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Plane(t3Vector3f(50.0f, 40.8f, 0.0f), t3Vector3f(0.0f, 0.0f, 1.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Plane(t3Vector3f(50.0f, 40.8f, 310.0f), t3Vector3f(0.0f, 0.0f, 1)), t3Vector3f(0.0f, 0.0f, 0.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Plane(t3Vector3f(50.0f, 0.0f, 81.6f), t3Vector3f(0.0f, 1.0f, 0.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Plane(t3Vector3f(50.0f, 81.6f, 81.6f), t3Vector3f(0.0f, -1.0f, 0.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
 
     // 光源 自发光
-    addShape(new a3Sphere(t3Vector3f(50, 681.6 - 0.27, 81.6), 600), t3Vector3f(0, 0, 0), t3Vector3f(5000, 5000, 5000), A3_MATERIAL_DIFFUSS);
+    addShape(new a3Sphere(t3Vector3f(50.0f, 681.6f - 0.27f, 81.6f), 600.0f), t3Vector3f(0.0f, 0.0f, 0.0f), t3Vector3f(5000.0f, 5000.0f, 5000.0f), A3_MATERIAL_DIFFUSS);
 #endif
 
     a3SamplerRenderer* renderer = new a3SamplerRenderer();

@@ -123,10 +123,12 @@ inline t3Vector4<Type> operator/(float f, const t3Vector4<Type>& vec);
 #include <t3Math/core/t3Vector4.inl>
 
 // 特化
+typedef t3Vector4<double> t3Vector4d;
 typedef t3Vector4<float> t3Vector4f;
 typedef t3Vector4<int> t3Vector4i;
 
 // t2Point
+typedef t3Vector4d t2Point4d;
 typedef t3Vector4f t2Point4f;
 typedef t3Vector4i t2Point4i;
 
