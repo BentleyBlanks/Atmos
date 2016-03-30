@@ -13,9 +13,9 @@
 #include <core/a3Common.h>
 #include <core/image/a3NormalMap.h>
 
-#define WENDAOQIUER
+//#define WENDAOQIUER
 //#define INFINITEAREA_LIGHT
-//#define CORNEL_BOX
+#define CORNEL_BOX
 
 int main()
 {
@@ -66,7 +66,7 @@ int main()
 #endif
 
 #ifdef WENDAOQIUER
-    scene->addLight(new a3InfiniteAreaLight("../../../resources/images/9.png"));
+    scene->addLight(new a3InfiniteAreaLight("../../../resources/images/pisaLatlong.png"));
 
     addShape(new a3Sphere(t3Vector3f(-30, -8, 0), 37), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
 

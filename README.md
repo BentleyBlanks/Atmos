@@ -13,6 +13,9 @@ SPP = 256 width: 2048 height: 1536 原图可见[Flickr](https://www.flickr.com/p
 
 ## 效果图
 
+![](https://farm2.staticflickr.com/1532/25519761274_41cfb1dd5a_o.png)
+SPP = 2000 width: 1024 height: 768 time: 3679.64s
+
 ![](https://farm2.staticflickr.com/1719/26072294146_37565d104a_z.jpg)
 
 SPP = 128 width: 900 height: 900

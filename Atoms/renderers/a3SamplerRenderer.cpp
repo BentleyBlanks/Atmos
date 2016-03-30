@@ -18,7 +18,7 @@ a3Random random;
 //#define A3_RENDERING_NORMALMAP
 #define A3_RENDERING_REALISTICIMAGE
 
-a3SamplerRenderer::a3SamplerRenderer() : spp(256), bounces(12), sampler(NULL), camera(NULL), enableGammaCorrection(true)
+a3SamplerRenderer::a3SamplerRenderer() : spp(2000), bounces(10), sampler(NULL), camera(NULL), enableGammaCorrection(true)
 {
 
 }
