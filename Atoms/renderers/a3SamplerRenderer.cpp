@@ -17,8 +17,9 @@ a3Random random;
 
 //#define A3_RENDERING_NORMALMAP
 #define A3_RENDERING_REALISTICIMAGE
+//#define A3_RENDERING_SINGLERAY
 
-a3SamplerRenderer::a3SamplerRenderer() : spp(2000), bounces(10), sampler(NULL), camera(NULL), enableGammaCorrection(true)
+a3SamplerRenderer::a3SamplerRenderer() : spp(32), bounces(10), sampler(NULL), camera(NULL), enableGammaCorrection(true)
 {
 
 }
@@ -134,6 +135,39 @@ void a3SamplerRenderer::render(const a3Scene* scene)
     // 保存真实渲染图像文件
     camera->image->write();
 #endif
+
+#ifdef A3_RENDERING_SINGLERAY
+    int singleRayX = 104, singleRayY = 367;
+
+    a3Intersection intersection;
+    a3CameraSample sample;
+
+    sample.imageX = singleRayX;
+    sample.imageY = singleRayY;
+
+    // memory allocating
+    a3Ray ray;
+    t3Vector3f temp;
+
+    // 生成光线
+    camera->castRay(&sample, &ray);
+
+    Li(scene, &ray, 0, temp, &sample, &intersection);
+
+    temp.x = t3Math::clamp(temp.x, 0.0f, 255.0f);
+    temp.y = t3Math::clamp(temp.y, 0.0f, 255.0f);
+    temp.z = t3Math::clamp(temp.z, 0.0f, 255.0f);
+
+    if(enableGammaCorrection)
+        a3GammaCorrection(temp);
+
+    //color.print("SingleRay Color");
+
+    a3Log::info("SingleRay Pos: %d, %d\n", singleRayX, singleRayY);
+
+    a3Log::info("SingleRay Color: %f, %f, %f\n", temp.x, temp.y, temp.z);
+#endif
+
 }
 
 void a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int depth, t3Vector3f& color, const a3CameraSample* sample, a3Intersection* intersection)
@@ -185,11 +219,13 @@ void a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int depth, t3
 
         a3Ray reflectRay(intersectPoint, wo);
 
-        float cosTheta = ray->direction.dot(normal);
+        float cosTheta = wo.dot(normal);
 
         t3Vector3f radiance;
         Li(scene, &reflectRay, depth, radiance, sample, intersection);
-        color += radiance * obj->color;
+        
+        if(cosTheta > 0.0f)
+            color += radiance * cosTheta * obj->color;
     }
     else if(obj->type == A3_MATERIAL_SPECULAR)
     {

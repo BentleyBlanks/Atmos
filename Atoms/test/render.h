@@ -14,8 +14,8 @@
 #include <core/image/a3NormalMap.h>
 
 //#define WENDAOQIUER
-//#define INFINITEAREA_LIGHT
-#define CORNEL_BOX
+#define INFINITEAREA_LIGHT
+//#define CORNEL_BOX
 
 int main()
 {
@@ -48,20 +48,20 @@ int main()
 #ifdef INFINITEAREA_LIGHT
     scene->addLight(new a3InfiniteAreaLight("../../../resources/images/skylightSurreal.png"));
 
-    a3ModelImporter importer;
-    std::vector<a3Shape*>* shapes = importer.load("../../../resources/models/test.obj");
+    //a3ModelImporter importer;
+    //std::vector<a3Shape*>* shapes = importer.load("../../../resources/models/test.obj");
 
-    if(shapes)
-    {
-        for(auto s : *shapes)
-            addShape(s, t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
+    //if(shapes)
+    //{
+    //    for(auto s : *shapes)
+    //        addShape(s, t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
 
-        addShape(new a3Sphere(t3Vector3f(-40, -60, 25), 25), t3Vector3f(0.75, 0.75, 0.75), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
-        addShape(new a3Sphere(t3Vector3f(40, 30, 25), 25), t3Vector3f(0.75, 0.75, 0.75), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
+    addShape(new a3Sphere(t3Vector3f(-40, -60, 25), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+    addShape(new a3Sphere(t3Vector3f(40, 30, 25), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
 
-        // ÎÞÏÞÔ¶Æ½Ãæ
-        addShape(new a3Plane(t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 1)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-    }
+    // ÎÞÏÞÔ¶Æ½Ãæ
+    addShape(new a3Plane(t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 1)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+    //}
 
 #endif
 
