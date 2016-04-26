@@ -17,7 +17,7 @@ SPP = 256 width: 2048 height: 1536 原图可见[Flickr](https://www.flickr.com/p
 
 SPP = 2000 width: 1024 height: 768 time: 3679.64s 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25519761274/in/dateposted-public/)
 
-![](https://farm2.staticflickr.com/1690/26392433210_28ee1c7db5.jpg)
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26392433210/in/dateposted-public/" title="hello"><img src="https://farm2.staticflickr.com/1690/26392433210_28ee1c7db5_z.jpg" width="640" height="480" alt="hello"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 
 SPP = 128 width:1024 height: 768 time: 29.6s 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26392433210/in/dateposted-public/)
 
