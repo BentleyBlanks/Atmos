@@ -39,17 +39,19 @@ SPP = 2048 Depth of Field: f = 180.0f，r = 20.0f width: 3200 height: 3200 原�
     a3LogHTML::debug("What are you talking about. %d\n", a);
     a3LogHTML::end();
 ```
-但输出到文件部分目前```不支持```中文或者其他UTF8字符
+输出到文件部分目前```不支持```中文或者其他UTF8字符
 
-2.```a3SamplerRenderer.cpp```中定义了跟踪深度(bounces)，三类BRDF(未封装)以及spp, 可自行更改。
+2.```a3SamplerRenderer.cpp```中定义了```A3_RENDERING_NORMALMAP```和```A3_RENDERING_SINGLERAY```模式用于调试(全局渲染为法线, 单光线跟踪)，以及正常渲染模式```A3_RENDERING_REALISTICIMAGE```
 
 3.目前Atoms支持Triangle(Mesh暂不支持), Sphere, Disk, Plane等基本几何形状
 
 4.Atoms支持景深，透视等基本相机效果
 
-5.Atoms目前仅支持显式的无限远区域光光照(未提供其他基本光源)
+5.Atoms目前仅支持显式的无限远区域光光照和点光源(其他基本光源暂未实现)
 
 6.Atoms采用[Assimp](https://github.com/assimp/assimp), [loadpng](http://lodev.org/lodepng/)等第三方库完成模型导入以及贴图导入
+
+7.渲染需要完成对```a3SamplerRenderer```中camera, integrator, sampler根据需求实际分配内存
 
 ##待办事项
 
