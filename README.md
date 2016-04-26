@@ -17,26 +17,13 @@ SPP = 256 width: 2048 height: 1536 原图可见[Flickr](https://www.flickr.com/p
 
 SPP = 2000 width: 1024 height: 768 time: 3679.64s原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25519761274/in/dateposted-public/)
 
-![](https://farm2.staticflickr.com/1719/26072294146_37565d104a_z.jpg)
-
-SPP = 128 width: 900 height: 900
-
 ![](https://farm2.staticflickr.com/1540/25493615434_59b96306f5_z.jpg)
 
 SPP = 128 width:1000 height:500
 
-![](https://farm2.staticflickr.com/1463/25207503294_b30be85aa8_z.jpg)
-
-SPP = 2048 width: 3200 height: 3200 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25151015169/in/dateposted-public/)
-
 ![](https://farm2.staticflickr.com/1486/25742938521_7161856337_z.jpg)
 
 SPP = 2048 Depth of Field: f = 180.0f，r = 20.0f width: 3200 height: 3200 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25742938521/in/dateposted-public/)
-
-![](https://farm2.staticflickr.com/1680/25539770910_482c4da26f_z.jpg)
-
-Scene's Normal Map
-
 
 
 ## 使用说明
