@@ -1,6 +1,6 @@
 # Atmos
 
-A Simple Physically Based Renderer.(Not Finished Yet)
+A Physically Based Renderer.(Not Finished Yet)
 
 ![](https://farm2.staticflickr.com/1549/26033000861_130b76788b_z.jpg)
 
