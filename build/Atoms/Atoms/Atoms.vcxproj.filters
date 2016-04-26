@@ -59,20 +59,14 @@
     <Filter Include="ThirdParty\loadpng">
       <UniqueIdentifier>{695a5772-8b26-4823-8d12-0f8847222660}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Atoms\integrator">
+      <UniqueIdentifier>{6c128d76-bc37-4480-b24a-5389c36b3133}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atoms\bsdf">
+      <UniqueIdentifier>{2419c1fe-e3d6-4c2c-942e-0d34a82787ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Atoms\core\a3Ray.h">
-      <Filter>Atoms\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\core\a3Settings.h">
-      <Filter>Atoms\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\shapes\a3Shape.h">
-      <Filter>Atoms\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\shapes\a3Sphere.h">
-      <Filter>Atoms\shapes</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\dependency\t3DataStructures\include\Common\t3Timer.h">
       <Filter>ThirdParty\t3DataStructures\Common</Filter>
     </ClInclude>
@@ -82,20 +76,8 @@
     <ClInclude Include="..\..\..\Atoms\renderers\a3Renderer.h">
       <Filter>Atoms\renderers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\core\a3Scene.h">
-      <Filter>Atoms\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\core\a3Intersection.h">
-      <Filter>Atoms\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\lights\a3Light.h">
-      <Filter>Atoms\lights</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Atoms\cameras\a3Camera.h">
       <Filter>Atoms\cameras</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\core\a3Common.h">
-      <Filter>Atoms\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Atoms\core\log\a3LogFile.h">
       <Filter>Atoms\core\log</Filter>
@@ -106,41 +88,8 @@
     <ClInclude Include="..\..\..\Atoms\core\log\a3Log.h">
       <Filter>Atoms\core\log</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\samples\a3CameraSample.h">
-      <Filter>Atoms\samples</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.h">
       <Filter>Atoms\cameras</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\samples\a3Sampler.h">
-      <Filter>Atoms\samples</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\core\a3Random.h">
-      <Filter>Atoms\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\shapes\a3Plane.h">
-      <Filter>Atoms\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\shapes\a3Disk.h">
-      <Filter>Atoms\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\test\ray.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\test\render.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\test\png.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\core\a3Warp.h">
-      <Filter>Atoms\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\shapes\a3Triangle.h">
-      <Filter>Atoms\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\shapes\a3TriangleMesh.h">
-      <Filter>Atoms\shapes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\dependency\assimp\include\assimp\port\AndroidJNI\AndroidJNIIOSystem.h">
       <Filter>ThirdParty\assimp\port</Filter>
@@ -253,12 +202,6 @@
     <ClInclude Include="..\..\..\dependency\assimp\include\assimp\version.h">
       <Filter>ThirdParty\assimp</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\core\a3ModelImporter.h">
-      <Filter>Atoms\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\test\model.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Atoms\core\image\a3Film.h">
       <Filter>Atoms\core\image</Filter>
     </ClInclude>
@@ -268,14 +211,8 @@
     <ClInclude Include="..\..\..\Atoms\core\image\a3ImageDecoder.h">
       <Filter>Atoms\core\image</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\lights\a3InfiniteAreaLight.h">
-      <Filter>Atoms\lights</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\dependency\lodepng\include\lodepng.h">
       <Filter>ThirdParty\loadpng</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\test\renderQueue.h">
-      <Filter>Atoms\test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Atoms\core\image\a3NormalMap.h">
       <Filter>Atoms\core\image</Filter>
@@ -301,31 +238,121 @@
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h">
       <Filter>ThirdParty\t3Math</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\integrator\a3DirectLighting.h">
+      <Filter>Atoms\integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\integrator\a3Integrator.h">
+      <Filter>Atoms\integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\integrator\a3PathIntegrator.h">
+      <Filter>Atoms\integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\samples\a3CameraSample.h">
+      <Filter>Atoms\samples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\samples\a3LightSample.h">
+      <Filter>Atoms\samples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\samples\a3RandomSampler.h">
+      <Filter>Atoms\samples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\samples\a3Sampler.h">
+      <Filter>Atoms\samples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\shapes\a3Disk.h">
+      <Filter>Atoms\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\shapes\a3Plane.h">
+      <Filter>Atoms\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\shapes\a3Shape.h">
+      <Filter>Atoms\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\shapes\a3Sphere.h">
+      <Filter>Atoms\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\shapes\a3Triangle.h">
+      <Filter>Atoms\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\shapes\a3TriangleMesh.h">
+      <Filter>Atoms\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\integrator.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\model.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\png.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\ray.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\render.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\renderQueue.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\bsdf\a3BSDF.h">
+      <Filter>Atoms\bsdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\bsdf\a3Conductor.h">
+      <Filter>Atoms\bsdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\bsdf\a3Dielectric.h">
+      <Filter>Atoms\bsdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\bsdf\a3Diffuse.h">
+      <Filter>Atoms\bsdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Dimension.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Intersection.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3ModelImporter.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Random.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Ray.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Scene.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Settings.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Spectrum.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Warp.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\core\a3Common.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3InfiniteAreaLight.h">
+      <Filter>Atoms\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3Light.h">
+      <Filter>Atoms\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3PointLight.h">
+      <Filter>Atoms\lights</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Atoms\main.cpp">
-      <Filter>Atoms\test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\shapes\a3Shape.cpp">
-      <Filter>Atoms\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\shapes\a3Sphere.cpp">
-      <Filter>Atoms\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\core\a3Settings.cpp">
-      <Filter>Atoms\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Atoms\renderers\a3SamplerRenderer.cpp">
       <Filter>Atoms\renderers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\renderers\a3Renderer.cpp">
       <Filter>Atoms\renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\core\a3Scene.cpp">
-      <Filter>Atoms\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\lights\a3Light.cpp">
-      <Filter>Atoms\lights</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\cameras\a3Camera.cpp">
       <Filter>Atoms\cameras</Filter>
@@ -339,32 +366,8 @@
     <ClCompile Include="..\..\..\Atoms\core\log\a3Log.cpp">
       <Filter>Atoms\core\log</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\samples\a3CameraSample.cpp">
-      <Filter>Atoms\samples</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.cpp">
       <Filter>Atoms\cameras</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\samples\a3Sampler.cpp">
-      <Filter>Atoms\samples</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\core\a3Random.cpp">
-      <Filter>Atoms\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\shapes\a3Plane.cpp">
-      <Filter>Atoms\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\shapes\a3Disk.cpp">
-      <Filter>Atoms\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\shapes\a3Triangle.cpp">
-      <Filter>Atoms\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\shapes\a3TriangleMesh.cpp">
-      <Filter>Atoms\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\core\a3ModelImporter.cpp">
-      <Filter>Atoms\core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\core\image\a3Film.cpp">
       <Filter>Atoms\core\image</Filter>
@@ -375,12 +378,6 @@
     <ClCompile Include="..\..\..\Atoms\core\image\a3ImageDecoder.cpp">
       <Filter>Atoms\core\image</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\lights\a3InfiniteAreaLight.cpp">
-      <Filter>Atoms\lights</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\core\a3Warp.cpp">
-      <Filter>Atoms\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Atoms\core\image\a3NormalMap.cpp">
       <Filter>Atoms\core\image</Filter>
     </ClCompile>
@@ -390,11 +387,92 @@
     <ClCompile Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp">
       <Filter>ThirdParty\t3Math</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\integrator\a3DirectLighting.cpp">
+      <Filter>Atoms\integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\integrator\a3Integrator.cpp">
+      <Filter>Atoms\integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\integrator\a3PathIntegrator.cpp">
+      <Filter>Atoms\integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\samples\a3CameraSample.cpp">
+      <Filter>Atoms\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\samples\a3LightSample.cpp">
+      <Filter>Atoms\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\samples\a3RandomSampler.cpp">
+      <Filter>Atoms\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\samples\a3Sampler.cpp">
+      <Filter>Atoms\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\shapes\a3Disk.cpp">
+      <Filter>Atoms\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\shapes\a3Plane.cpp">
+      <Filter>Atoms\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\shapes\a3Shape.cpp">
+      <Filter>Atoms\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\shapes\a3Sphere.cpp">
+      <Filter>Atoms\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\shapes\a3Triangle.cpp">
+      <Filter>Atoms\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\shapes\a3TriangleMesh.cpp">
+      <Filter>Atoms\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\main.cpp">
+      <Filter>Atoms\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\bsdf\a3BSDF.cpp">
+      <Filter>Atoms\bsdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\bsdf\a3Conductor.cpp">
+      <Filter>Atoms\bsdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\bsdf\a3Dielectric.cpp">
+      <Filter>Atoms\bsdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\bsdf\a3Diffuse.cpp">
+      <Filter>Atoms\bsdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3Intersection.cpp">
+      <Filter>Atoms\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3ModelImporter.cpp">
+      <Filter>Atoms\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3Random.cpp">
+      <Filter>Atoms\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3Scene.cpp">
+      <Filter>Atoms\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3Settings.cpp">
+      <Filter>Atoms\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3Spectrum.cpp">
+      <Filter>Atoms\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\core\a3Warp.cpp">
+      <Filter>Atoms\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3InfiniteAreaLight.cpp">
+      <Filter>Atoms\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3Light.cpp">
+      <Filter>Atoms\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3PointLight.cpp">
+      <Filter>Atoms\lights</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\Atoms\core\a3Common.inl">
-      <Filter>Atoms\core</Filter>
-    </None>
     <None Include="..\..\..\dependency\assimp\include\assimp\color4.inl">
       <Filter>ThirdParty\assimp</Filter>
     </None>
@@ -430,6 +508,9 @@
     </None>
     <None Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.inl">
       <Filter>ThirdParty\t3Math</Filter>
+    </None>
+    <None Include="..\..\..\Atoms\core\a3Common.inl">
+      <Filter>Atoms\core</Filter>
     </None>
   </ItemGroup>
 </Project>

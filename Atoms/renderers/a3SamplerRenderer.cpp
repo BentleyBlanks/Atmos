@@ -1,34 +1,42 @@
-#include <renderers/a3SamplerRenderer.h>
-#include <samples/a3Sampler.h>
+ï»¿#include <renderers/a3SamplerRenderer.h>
+
 #include <core/a3Ray.h>
 #include <core/image/a3Film.h>
-#include <cameras/a3PerspectiveCamera.h>
-#include <samples/a3CameraSample.h>
-#include <core/a3Scene.h>
-#include <core/a3Intersection.h>
 #include <core/log/a3Log.h>
-#include <shapes/a3Shape.h>
 #include <core/a3Warp.h>
-#include <lights/a3Light.h>
 #include <core/a3Random.h>
 #include <core/image/a3NormalMap.h>
+#include <core/a3Spectrum.h>
 
-a3Random random;
+#include <cameras/a3PerspectiveCamera.h>
+#include <lights/a3Light.h>
+#include <shapes/a3Shape.h>
+#include <integrator/a3Integrator.h>
+
+#include <samples/a3Sampler.h>
+#include <samples/a3CameraSample.h>
 
 //#define A3_RENDERING_NORMALMAP
 #define A3_RENDERING_REALISTICIMAGE
 //#define A3_RENDERING_SINGLERAY
 
-a3SamplerRenderer::a3SamplerRenderer() : spp(32), bounces(10), sampler(NULL), camera(NULL), enableGammaCorrection(true)
+a3SamplerRenderer::a3SamplerRenderer()
+: spp(128), sampler(NULL), camera(NULL), enableGammaCorrection(true)
+{
+
+}
+
+a3SamplerRenderer::a3SamplerRenderer(int spp)
+: spp(spp), sampler(NULL), camera(NULL), enableGammaCorrection(true)
 {
 
 }
 
 a3SamplerRenderer::~a3SamplerRenderer()
 {
-        
+
 }
-// pbrt»®·ÖäÖÈ¾¶ÓÁĞ¶ÀÁ¢ÈÎÎñµÄäÖÈ¾¹ÜÏß
+// pbrtåˆ’åˆ†æ¸²æŸ“é˜Ÿåˆ—ç‹¬ç«‹ä»»åŠ¡çš„æ¸²æŸ“ç®¡çº¿
 // |Task.run()| |Task.run()| ... |Task.run()|
 // ------------------------------------------
 // Task.run()
@@ -40,17 +48,10 @@ a3SamplerRenderer::~a3SamplerRenderer()
 //      Reporter.Update()
 void a3SamplerRenderer::render(const a3Scene* scene)
 {
-    if(!camera)
-    {
-        a3Log::error("a3SamplerRenderer::render()Ç°camera: %dÄÚ´æÉĞÎ´·ÖÅä", camera);
-        return;
-    }
-
-    // sppÔİÊ±¹Ø±Õ
-    sampler = new a3Sampler(0, 0, camera->image->width, camera->image->height, 0);
+    if(!check()) return;
 
 #ifdef A3_RENDERING_NORMALMAP
-    // äÖÈ¾·¨ÏßÌùÍ¼ÓÃÓÚ¼ì²â·¨Ïß
+    // æ¸²æŸ“æ³•çº¿è´´å›¾ç”¨äºæ£€æµ‹æ³•çº¿
 #pragma omp parallel for schedule(dynamic)
     for(int x = 0; x < camera->image->width; x++)
     {
@@ -58,11 +59,11 @@ void a3SamplerRenderer::render(const a3Scene* scene)
 
         for(int y = 0; y < camera->image->height; y++)
         {
-            // µ±Ç°²ÉÑùÎ»ÖÃ
-            a3CameraSample sample; 
+            // å½“å‰é‡‡æ ·ä½ç½®
+            a3CameraSample sample;
             a3Ray ray;
 
-            // »ñÈ¡ÏÂÒ»¸ö²ÉÑùÎ»ÖÃ
+            // è·å–ä¸‹ä¸€ä¸ªé‡‡æ ·ä½ç½®
             sampler->getSample(x, y, &sample);
 
             camera->castRay(&sample, &ray);
@@ -74,7 +75,7 @@ void a3SamplerRenderer::render(const a3Scene* scene)
     }
 
     a3Log::print("\n");
-    // ±£´æ·¨ÏßÍ¼ÏñÎÄ¼ş
+    // ä¿å­˜æ³•çº¿å›¾åƒæ–‡ä»¶
     camera->normalMap->write();
 #endif
 
@@ -82,39 +83,29 @@ void a3SamplerRenderer::render(const a3Scene* scene)
 #pragma omp parallel for schedule(dynamic)
     for(int x = 0; x < camera->image->width; x++)
     {
-        a3Log::info("Spp:%d, depth:%d    Rendering: %8.2f \r", spp, bounces, (double) x / camera->image->width * 100);
+        a3Log::info("Spp:%d    Rendering: %8.2f \r", spp, (double) x / camera->image->width * 100);
 
         for(int y = 0; y < camera->image->height; y++)
         {
-            t3Vector3f color;
+            a3Spectrum color;
 
-            // µ±Ç°²ÉÑùÎ»ÖÃ
-            a3CameraSample sample;
-
-            // »ñÈ¡ÏÂÒ»¸ö²ÉÑùÎ»ÖÃ
-            sampler->getSample(x, y, &sample);
+            // å½“å‰é‡‡æ ·ä½ç½®
+            a3CameraSample sampleTentFilter, sample;
 
             for(int z = 0; z < spp; z++)
             {
+                // è·å–ä¸‹ä¸€ä¸ªé‡‡æ ·ä½ç½®
+                sampler->getMoreSamples(x, y, &sample, &sampleTentFilter);
+
                 // memory allocating
                 a3Ray ray;
 
-                a3Intersection intersection;
-
-                // ÔÚÔ­ÓĞ²ÉÑùÎ»ÖÃ´¦[-1, 1]×öËæ»ú²ÉÑù
-                a3CameraSample sampleTentFilter;
-
-                sampleTentFilter.imageX = sample.imageX + random.randomFloat() * 2 - 1;
-                sampleTentFilter.imageY = sample.imageY + random.randomFloat() * 2 - 1;
-
-                // Éú³É¹âÏß
+                // ç”Ÿæˆå…‰çº¿
                 camera->castRay(&sampleTentFilter, &ray);
 
-                t3Vector3f temp;
-                // Ôİ²»ÆôÓÃ¹âÆ××ª»»
-                Li(scene, &ray, 0, temp, &sample, &intersection);
+                //a3RadianceQueryRecord record(scene, sampler);
 
-                color += temp / spp;
+                color += integrator->li(ray, *scene) / spp;
             }
 
             color.x = t3Math::clamp(color.x, 0.0f, 255.0f);
@@ -127,197 +118,69 @@ void a3SamplerRenderer::render(const a3Scene* scene)
             if(enableGammaCorrection)
                 a3GammaCorrection(color);
 
+            //if((color.x > 254 || color.y > 254 || color.z > 254) && y < 100)
+            //{
+            //    a3Log::error("Fuck!!!!! %d, %d\n", x, y);
+            //}
+
             camera->image->addSample(&sample, color);
         }
     }
     a3Log::print("\n");
 
-    // ±£´æÕæÊµäÖÈ¾Í¼ÏñÎÄ¼ş
+    // ä¿å­˜çœŸå®æ¸²æŸ“å›¾åƒæ–‡ä»¶
     camera->image->write();
 #endif
 
 #ifdef A3_RENDERING_SINGLERAY
     int singleRayX = 104, singleRayY = 367;
 
-    a3Intersection intersection;
     a3CameraSample sample;
 
-    sample.imageX = singleRayX;
-    sample.imageY = singleRayY;
+    sampler->getMoreSamples(singleRayX, singleRayY, &sample, NULL);
 
     // memory allocating
     a3Ray ray;
-    t3Vector3f temp;
 
-    // Éú³É¹âÏß
+    // ç”Ÿæˆå…‰çº¿
     camera->castRay(&sample, &ray);
 
-    Li(scene, &ray, 0, temp, &sample, &intersection);
+    t3Vector3f color = integrator->li(ray, *scene);
 
-    temp.x = t3Math::clamp(temp.x, 0.0f, 255.0f);
-    temp.y = t3Math::clamp(temp.y, 0.0f, 255.0f);
-    temp.z = t3Math::clamp(temp.z, 0.0f, 255.0f);
+    color.x = t3Math::clamp(color.x, 0.0f, 255.0f);
+    color.y = t3Math::clamp(color.y, 0.0f, 255.0f);
+    color.z = t3Math::clamp(color.z, 0.0f, 255.0f);
 
     if(enableGammaCorrection)
-        a3GammaCorrection(temp);
+        a3GammaCorrection(color);
 
     //color.print("SingleRay Color");
 
     a3Log::info("SingleRay Pos: %d, %d\n", singleRayX, singleRayY);
 
-    a3Log::info("SingleRay Color: %f, %f, %f\n", temp.x, temp.y, temp.z);
+    a3Log::info("SingleRay Color: %f, %f, %f\n", color.x, color.y, color.z);
 #endif
-
 }
 
-void a3SamplerRenderer::Li(const a3Scene* scene, const a3Ray* ray, int depth, t3Vector3f& color, const a3CameraSample* sample, a3Intersection* intersection)
+bool a3SamplerRenderer::check()
 {
-    if(++depth > bounces)
+    if(!camera)
     {
-        color = t3Vector3f::zero();
-        return;
+        a3Log::error("a3SamplerRenderer::render()å‰camera: %då°šæœªåˆ†é…æŒ‡å®š\n", camera);
+        return false;
     }
 
-    // Ôİ²»ÆôÓÃRussian Roulette
-    if(!scene->intersect(*ray, intersection))
+    if(!sampler)
     {
-        // ´¦Àí¹âÏßÎ´»÷ÖĞÈÎºÎ¹âÔ´Çé¿ö(½öÓĞÎŞÏŞÔ¶ÇøÓò¹âÊµÏÖ´Ë·½·¨)
-        t3Vector3f Le;
-        for(auto l : scene->lights)
-            Le += l->Le(*ray);
-
-        color += Le;
-
-        return;
+        a3Log::error("a3SamplerRenderer::render()å‰sampler: %då°šæœªåˆ†é…æŒ‡å®š\n", sampler);
+        return false;
     }
 
-    a3Shape* obj = scene->objects[intersection->shapeID];
-
-    // ½Ó´¥µã
-    t3Vector3f intersectPoint = (*ray)(intersection->t);
-
-    // ×Ô·¢¹âÏµÊı
-    color += obj->emission;
-
-    // ¼Ù¶¨ËùÓĞ¸ø¶¨objÉÏÇóµÃµÄnormal¶¼Îª·½ÏòÏòÁ¿
-    t3Vector3f normal = obj->getNormal(intersectPoint);
-
-    if(obj->type == A3_MATERIAL_DIFFUSS)
+    if(!integrator)
     {
-        // Diffuse BRDF
-        t3Vector3f rotatedX, rotatedY;
-        a3OrthonomalSystem(normal, rotatedX, rotatedY);
-
-        t3Vector3f sampleDirection = a3Hemisphere(random.randomFloat(), random.randomFloat());
-        sampleDirection.normalize();
-
-        // sampleDirection×ª»»µ½Normal×ø±êÏµÏÂ
-        t3Vector3f wo;
-        wo.x = t3Vector3f(rotatedX.x, rotatedY.x, normal.x).dot(sampleDirection);
-        wo.y = t3Vector3f(rotatedX.y, rotatedY.y, normal.y).dot(sampleDirection);
-        wo.z = t3Vector3f(rotatedX.z, rotatedY.z, normal.z).dot(sampleDirection);
-
-        a3Ray reflectRay(intersectPoint, wo);
-
-        float cosTheta = wo.dot(normal);
-
-        t3Vector3f radiance;
-        Li(scene, &reflectRay, depth, radiance, sample, intersection);
-        
-        if(cosTheta > 0.0f)
-            color += radiance * cosTheta * obj->color;
+        a3Log::error("a3SamplerRenderer::render()å‰integrator: %då°šæœªåˆ†é…æŒ‡å®š\n", integrator);
+        return false;
     }
-    else if(obj->type == A3_MATERIAL_SPECULAR)
-    {
-        t3Vector3f wo = (ray->direction - 2 * (normal.dot(ray->direction)) * normal).normalize();
 
-        a3Ray reflectRay(intersectPoint, wo);
-
-        t3Vector3f radiance;
-        Li(scene, &reflectRay, depth, radiance, sample, intersection);
-        color += radiance * obj->color;
-    }
-    else if(obj->type == A3_METERIAL_REFRACTION)
-    {
-        a3Ray reflectRay, transmittedRay;
-
-        float cosTheta1 = ray->direction.dot(normal);
-
-        // ÊÇ·ñÔÚ¹âÃÜ½éÖÊÄÚ²¿
-        bool into = cosTheta1 < 0;
-
-        // n = ÈëÉä¹âËùÔÚ²ÄÖÊÕÛÉäÂÊ / ³öÉä²ÄÖÊÕÛÉäÂÊ
-        float n1 = 1.0f, n2 = obj->refractiveIndex;
-        float n = into ? n1 / n2 : n2 / n1;
-
-        float cosTheta2 = 1 - n * n * (1 - cosTheta1 * cosTheta1);
-
-        // È«·´Éä
-        if(cosTheta2 < 0)
-        {
-            t3Vector3f totalReflec = (ray->direction - normal * 2 * (ray->direction.dot(normal))).normalize();
-            reflectRay.set(intersectPoint, totalReflec);
-
-            t3Vector3f radiance;
-            Li(scene, &reflectRay, depth, radiance, sample, intersection);
-            color += radiance * obj->color;
-            return;
-        }
-
-        // SchlickµÄ½üËÆ·½³Ì
-        float R0 = (1.0f - n) / (1.0 + n);
-        R0 = R0 * R0;
-
-        
-        // ÕÛÉäÓë·´Éä¸ÅÂÊ¿ÉÇó Í¨¹ı[0, 1)Ö®¼äÉú³ÉËæ»úÊı ¸ù¾İ´óĞ¡¼ä½ÓÍê³ÉÕÛÉä·´ÉäÑ¡Ôñ
-        // --!ÏêÇé¿É¼û http://www.kevinbeason.com/smallpt/
-        t3Vector3f wo, wr;
-
-        wo = n * (ray->direction - normal * cosTheta1) - (into ? normal : -normal) * t3Math::sqrt(cosTheta2);
-        
-        // ·´Éä¹âÏß·½Ïò
-        wr = ray->direction - 2 * (ray->direction.dot(normal)) * normal;
-
-        // ·¢Éú·´ÉäµÄ¸ÅÂÊ
-        float probablity = R0 + (1 - R0) * t3Math::pow((1 - t3Math::Abs(cosTheta1)), 5);
-
-        t3Vector3f radianceT, radianceR;
-
-        //if(random.randomFloat() > probablity)
-        //{
-            transmittedRay.set(intersectPoint, wo.normalize());
-            Li(scene, &transmittedRay, depth, radianceT, sample, intersection);
-        //}
-        //else
-        //{
-            reflectRay.set(intersectPoint, wr.normalize());
-            Li(scene, &reflectRay, depth, radianceR, sample, intersection);
-        //}
-        //color += radianceT * obj->color;
-
-        //if(depth > 2)
-        //{
-        //    float P = 0.25 + 0.5 * probablity, RP = probablity / P, TP = (1 - probablity) / (1 - P);
-        //    // ²»Ã÷ËùÒÔ
-        //    color += (radianceT * RP + radianceR * TP) * obj->color;
-        //}
-        //else
-            color += (radianceR * probablity + radianceT * (1 - probablity)) * obj->color;
-    }
-}
-
-t3Vector3f a3SamplerRenderer::getNormal(const a3Scene* scene, a3Ray* ray, const a3CameraSample* sample)
-{
-    a3Intersection intersection;
-
-    if(!scene->intersect(*ray, &intersection))
-        // zero normal
-        return t3Vector3f(0, 0, 0);
-
-    a3Shape* obj = scene->objects[intersection.shapeID];
-
-    // ½Ó´¥µã
-    t3Vector3f intersectPoint = (*ray)(intersection.t);
-
-    return obj->getNormal(intersectPoint);
+    return true;
 }

@@ -6,7 +6,7 @@ t3Vector2f a3SquareToUniformDisk(const float sampleU, const float sampleV)
     // (a,b) is now on [-1,1]ˆ2
     float a = 2 * sampleU - 1;
     float b = 2 * sampleV - 1;
-    
+
     // region 1 or 2
     if(a > -b)
     {
@@ -33,7 +33,7 @@ t3Vector2f a3SquareToUniformDisk(const float sampleU, const float sampleV)
             phi = (T3MATH_PI / 4) * (4 + (b / a));
         }
         // region 4, |b| >= |a|, but a==0 and b==0 could occur.
-        else 
+        else
         {
             r = -b;
             if(b != 0)
@@ -212,4 +212,15 @@ bool a3SolveQuadraticDouble(double A, double B, double C, double* t0, double* t1
         t3Math::swap(*t0, *t1);
 
     return true;
+}
+
+float a3PowerHeuristic(int nf, float fPdf, int ng, float gPdf)
+{
+    float f = nf * fPdf, g = ng * gPdf;
+    return (f*f) / (f*f + g*g);
+}
+
+float a3UniformSpherePdf()
+{
+    return 1.f / (4.f * T3MATH_PI);
 }

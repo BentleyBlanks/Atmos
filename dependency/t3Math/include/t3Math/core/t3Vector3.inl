@@ -15,6 +15,7 @@ template<typename Type>
 template <typename Type2>
 inline t3Vector3<Type>::t3Vector3(const t3Vector3<Type2>& vector) : x((Type2) vector.x), y((Type2) vector.y), z((Type2) vector.z) {}
 
+inline t3Vector3<float>::t3Vector3(const t3Vector3<float>& vector) : x(vector.x), y(vector.y), z(vector.z) {}
 
 // Getters and Setters.
 template<typename Type>

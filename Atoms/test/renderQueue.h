@@ -1,4 +1,4 @@
-#include <renderers/a3SamplerRenderer.h>
+Ôªø#include <renderers/a3SamplerRenderer.h>
 #include <cameras/a3PerspectiveCamera.h>
 #include <core/image/a3Film.h>
 #include <core/a3Scene.h>
@@ -28,7 +28,7 @@ int main()
 	a3LogFile::debug("fov: %f, %f\n", t3Math::Rad2Deg(camera->fov.x), t3Math::Rad2Deg(camera->fov.y));
 	a3LogFile::debug("focal distance: %f, lens radius: %f\n", camera->focalDistance, camera->lensRadius);
 
-	// ≥°æ∞¡–±Ì
+	// Âú∫ÊôØÂàóË°®
 	a3Scene* scene = new a3Scene();
 	a3Scene* scene2 = new a3Scene();
 	a3Scene* scene3 = new a3Scene();
@@ -80,7 +80,7 @@ int main()
 	addShape2(new a3Plane(t3Vector3f(0, 90, 0), t3Vector3f(0, 1, 0)), t3Vector3f(7, 7, 7), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
 	addShape2(new a3Plane(t3Vector3f(0, -90, 0), t3Vector3f(0, -1, 0)), t3Vector3f(7, 7, 7), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
 
-	// π‚‘¥ ◊‘∑¢π‚
+	// ÂÖâÊ∫ê Ëá™ÂèëÂÖâ
 	addShape2(new a3Disk(t3Vector3f(-69, 0, 100), 100, t3Vector3f(-1, 0, 0)), t3Vector3f(0, 0, 0), t3Vector3f(160, 40, 40), A3_MATERIAL_DIFFUSS);
 	addShape2(new a3Disk(t3Vector3f(69, 0, 100), 100, t3Vector3f(1, 0, 0)), t3Vector3f(0, 0, 0), t3Vector3f(40, 160, 40), A3_MATERIAL_DIFFUSS);
 	addShape2(new a3Disk(t3Vector3f(-69, 0, 100), 100, t3Vector3f(-1, 0, 0)), t3Vector3f(0, 0, 0), t3Vector3f(140, 40, 40), A3_MATERIAL_DIFFUSS);
@@ -121,7 +121,7 @@ int main()
 	addShape3(new a3Plane(t3Vector3f(0, 90, 0), t3Vector3f(0, 1, 0)), t3Vector3f(7, 7, 7), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
 	addShape3(new a3Plane(t3Vector3f(0, -90, 0), t3Vector3f(0, -1, 0)), t3Vector3f(7, 7, 7), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
 
-	// π‚‘¥ ◊‘∑¢π‚
+	// ÂÖâÊ∫ê Ëá™ÂèëÂÖâ
 	addShape3(new a3Disk(t3Vector3f(-69, 0, 100), 100, t3Vector3f(-1, 0, 0)), t3Vector3f(0, 0, 0), t3Vector3f(160, 40, 40), A3_MATERIAL_DIFFUSS);
 	addShape3(new a3Disk(t3Vector3f(69, 0, 100), 100, t3Vector3f(1, 0, 0)), t3Vector3f(0, 0, 0), t3Vector3f(40, 160, 40), A3_MATERIAL_DIFFUSS);
 	addShape3(new a3Disk(t3Vector3f(-69, 0, 100), 100, t3Vector3f(-1, 0, 0)), t3Vector3f(0, 0, 0), t3Vector3f(140, 40, 40), A3_MATERIAL_DIFFUSS);
@@ -175,4 +175,4 @@ int main()
 
 	getchar();
 	return 0;
-}
+} 
