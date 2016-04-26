@@ -17,7 +17,7 @@ SPP = 256 width: 2048 height: 1536 原图可见[Flickr](https://www.flickr.com/p
 
 SPP = 2000 width: 1024 height: 768 time: 3679.64s 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25519761274/in/dateposted-public/)
 
-![](https://farm2.staticflickr.com/1690/26392433210_28ee1c7db5_z.jpg)
+![](https://farm2.staticflickr.com/1690/26392433210_28ee1c7db5_b.jpg)
 
 SPP = 128 width:1024 height: 768 time: 29.6s 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26392433210/in/dateposted-public/)
 
