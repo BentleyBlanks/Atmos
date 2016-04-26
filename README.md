@@ -2,7 +2,7 @@
 
 A Simple Physically Based Renderer.(Not Finished Yet)
 
-![](https://farm2.staticflickr.com/1549/26033000861_2fa780aaf5_z.png)
+![](https://farm2.staticflickr.com/1549/26033000861_130b76788b_z.jpg)
 
 SPP = 256 width: 2048 height: 1536 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26033000861/in/dateposted-public/)
 
