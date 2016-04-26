@@ -13,13 +13,13 @@ SPP = 256 width: 2048 height: 1536 原图可见[Flickr](https://www.flickr.com/p
 
 ## 效果图
 
-![](https://farm2.staticflickr.com/1532/25519761274_13b60a86a5_c.jpg)
+![](https://farm2.staticflickr.com/1532/25519761274_13b60a86a5.jpg)
 
 SPP = 2000 width: 1024 height: 768 time: 3679.64s 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25519761274/in/dateposted-public/)
 
-![](https://farm2.staticflickr.com/1573/26599859271_44885bd203_o.png)
+![](https://farm2.staticflickr.com/1573/26599859271_f6e841456c.jpg)
 
-SPP = 128 width:900 height: 900 time: 28.7s
+SPP = 128 width:900 height: 900 time: 28.7s 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26599859271/in/dateposted-public/)
 
 ![](https://farm2.staticflickr.com/1540/25493615434_59b96306f5_z.jpg)
 
