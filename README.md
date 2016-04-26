@@ -8,7 +8,7 @@ SPP = 256 width: 2048 height: 1536 原图可见[Flickr](https://www.flickr.com/p
 
 ## 构建说明
 
-无
+所有第三方库都为Visual Studio 2013下编译所得，暂不支持[CMake](https://cmake.org/)形式构建。其他版本VS需自行编译三方库
 
 
 ## 效果图
