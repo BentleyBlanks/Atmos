@@ -1,6 +1,6 @@
 #include <renderers/a3NormalMapRenderer.h>
 #include <shapes/a3Shape.h>
-#include <cameras/a3Sensor.h>
+#include <sensors/a3Sensor.h>
 
 #include <core/a3Scene.h>
 #include <core/log/a3Log.h>

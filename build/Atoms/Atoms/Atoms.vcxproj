@@ -93,8 +93,6 @@
     <ClInclude Include="..\..\..\Atoms\bsdf\a3Conductor.h" />
     <ClInclude Include="..\..\..\Atoms\bsdf\a3Dielectric.h" />
     <ClInclude Include="..\..\..\Atoms\bsdf\a3Diffuse.h" />
-    <ClInclude Include="..\..\..\Atoms\cameras\a3Sensor.h" />
-    <ClInclude Include="..\..\..\Atoms\cameras\a3PerspectiveSensor.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Common.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Dimension.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Intersection.h" />
@@ -127,6 +125,8 @@
     <ClInclude Include="..\..\..\Atoms\samples\a3LightSample.h" />
     <ClInclude Include="..\..\..\Atoms\samples\a3RandomSampler.h" />
     <ClInclude Include="..\..\..\Atoms\samples\a3Sampler.h" />
+    <ClInclude Include="..\..\..\Atoms\sensors\a3PerspectiveSensor.h" />
+    <ClInclude Include="..\..\..\Atoms\sensors\a3Sensor.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Disk.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Plane.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Shape.h" />
@@ -192,8 +192,6 @@
     <ClCompile Include="..\..\..\Atoms\bsdf\a3Conductor.cpp" />
     <ClCompile Include="..\..\..\Atoms\bsdf\a3Dielectric.cpp" />
     <ClCompile Include="..\..\..\Atoms\bsdf\a3Diffuse.cpp" />
-    <ClCompile Include="..\..\..\Atoms\cameras\a3Sensor.cpp" />
-    <ClCompile Include="..\..\..\Atoms\cameras\a3PerspectiveSensor.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Intersection.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3ModelImporter.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Random.cpp" />
@@ -224,6 +222,8 @@
     <ClCompile Include="..\..\..\Atoms\samples\a3LightSample.cpp" />
     <ClCompile Include="..\..\..\Atoms\samples\a3RandomSampler.cpp" />
     <ClCompile Include="..\..\..\Atoms\samples\a3Sampler.cpp" />
+    <ClCompile Include="..\..\..\Atoms\sensors\a3PerspectiveSensor.cpp" />
+    <ClCompile Include="..\..\..\Atoms\sensors\a3Sensor.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Disk.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Plane.cpp" />
     <ClCompile Include="..\..\..\Atoms\shapes\a3Shape.cpp" />

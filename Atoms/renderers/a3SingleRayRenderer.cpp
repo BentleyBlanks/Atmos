@@ -1,6 +1,6 @@
 #include <renderers/a3SingleRayRenderer.h>
 #include <integrator/a3Integrator.h>
-#include <cameras/a3Sensor.h>
+#include <sensors/a3Sensor.h>
 
 #include <core/image/a3Film.h>
 #include <core/a3Warp.h>
