@@ -331,20 +331,32 @@
     <ClInclude Include="..\..\..\Atoms\core\a3Common.h">
       <Filter>Atoms\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3InfiniteAreaLight.h">
-      <Filter>Atoms\lights</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3Light.h">
-      <Filter>Atoms\lights</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3PointLight.h">
-      <Filter>Atoms\lights</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Atoms\cameras\a3Sensor.h">
       <Filter>Atoms\cameras</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Atoms\cameras\a3PerspectiveSensor.h">
       <Filter>Atoms\cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\lights\a3InfiniteAreaLight.h">
+      <Filter>Atoms\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\lights\a3Light.h">
+      <Filter>Atoms\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\lights\a3PointLight.h">
+      <Filter>Atoms\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\lights\a3SpotLight.h">
+      <Filter>Atoms\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\test\coordinate.h">
+      <Filter>Atoms\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\renderers\a3NormalMapRenderer.h">
+      <Filter>Atoms\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\renderers\a3SingleRayRenderer.h">
+      <Filter>Atoms\renderers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -456,20 +468,29 @@
     <ClCompile Include="..\..\..\Atoms\core\a3Warp.cpp">
       <Filter>Atoms\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3InfiniteAreaLight.cpp">
-      <Filter>Atoms\lights</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3Light.cpp">
-      <Filter>Atoms\lights</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3PointLight.cpp">
-      <Filter>Atoms\lights</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Atoms\cameras\a3Sensor.cpp">
       <Filter>Atoms\cameras</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\cameras\a3PerspectiveSensor.cpp">
       <Filter>Atoms\cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\lights\a3InfiniteAreaLight.cpp">
+      <Filter>Atoms\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\lights\a3Light.cpp">
+      <Filter>Atoms\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\lights\a3PointLight.cpp">
+      <Filter>Atoms\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\lights\a3SpotLight.h.cpp">
+      <Filter>Atoms\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\renderers\a3NormalMapRenderer.cpp">
+      <Filter>Atoms\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\renderers\a3SingleRayRenderer.cpp">
+      <Filter>Atoms\renderers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

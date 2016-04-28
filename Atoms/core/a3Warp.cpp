@@ -110,16 +110,18 @@ void a3OrthonomalSystem(const t3Vector3f& v1, t3Vector3f& v2, t3Vector3f& v3)
 {
     if(t3Math::Abs(v1.x) > t3Math::Abs(v1.y))
     {
-        // project to the y = 0 plane and construct a normalized orthogonal vector in this plane
+        // 向y = 0平面投影, 找到一个垂直于原向量的单位向量
         float invLen = 1.f / sqrtf(v1.x * v1.x + v1.z * v1.z);
         v2 = t3Vector3f(-v1.z * invLen, 0.0f, v1.x * invLen);
     }
     else
     {
-        // project to the x = 0 plane and construct a normalized orthogonal vector in this plane
+        // 向x = 0平面投影, 找到一个垂直于原向量的单位向量
         float invLen = 1.0f / sqrtf(v1.y * v1.y + v1.z * v1.z);
         v2 = t3Vector3f(0.0f, v1.z * invLen, -v1.y * invLen);
     }
+
+    // 叉积求第三个单位向量
     v3 = v1.getCrossed(v2);
 }
 

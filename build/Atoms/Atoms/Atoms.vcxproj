@@ -42,9 +42,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>F:\Program\Engine\Graphics Engine\Atmos\dependency\t3Math\include;$(IncludePath)</IncludePath>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -87,9 +89,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3InfiniteAreaLight.h" />
-    <ClInclude Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3Light.h" />
-    <ClInclude Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3PointLight.h" />
     <ClInclude Include="..\..\..\Atoms\bsdf\a3BSDF.h" />
     <ClInclude Include="..\..\..\Atoms\bsdf\a3Conductor.h" />
     <ClInclude Include="..\..\..\Atoms\bsdf\a3Dielectric.h" />
@@ -116,8 +115,14 @@
     <ClInclude Include="..\..\..\Atoms\integrator\a3DirectLighting.h" />
     <ClInclude Include="..\..\..\Atoms\integrator\a3Integrator.h" />
     <ClInclude Include="..\..\..\Atoms\integrator\a3PathIntegrator.h" />
+    <ClInclude Include="..\..\..\Atoms\lights\a3InfiniteAreaLight.h" />
+    <ClInclude Include="..\..\..\Atoms\lights\a3Light.h" />
+    <ClInclude Include="..\..\..\Atoms\lights\a3PointLight.h" />
+    <ClInclude Include="..\..\..\Atoms\lights\a3SpotLight.h" />
+    <ClInclude Include="..\..\..\Atoms\renderers\a3NormalMapRenderer.h" />
     <ClInclude Include="..\..\..\Atoms\renderers\a3Renderer.h" />
     <ClInclude Include="..\..\..\Atoms\renderers\a3SamplerRenderer.h" />
+    <ClInclude Include="..\..\..\Atoms\renderers\a3SingleRayRenderer.h" />
     <ClInclude Include="..\..\..\Atoms\samples\a3CameraSample.h" />
     <ClInclude Include="..\..\..\Atoms\samples\a3LightSample.h" />
     <ClInclude Include="..\..\..\Atoms\samples\a3RandomSampler.h" />
@@ -128,6 +133,7 @@
     <ClInclude Include="..\..\..\Atoms\shapes\a3Sphere.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3Triangle.h" />
     <ClInclude Include="..\..\..\Atoms\shapes\a3TriangleMesh.h" />
+    <ClInclude Include="..\..\..\Atoms\test\coordinate.h" />
     <ClInclude Include="..\..\..\Atoms\test\integrator.h" />
     <ClInclude Include="..\..\..\Atoms\test\model.h" />
     <ClInclude Include="..\..\..\Atoms\test\png.h" />
@@ -182,9 +188,6 @@
     <ClInclude Include="..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3InfiniteAreaLight.cpp" />
-    <ClCompile Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3Light.cpp" />
-    <ClCompile Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3PointLight.cpp" />
     <ClCompile Include="..\..\..\Atoms\bsdf\a3BSDF.cpp" />
     <ClCompile Include="..\..\..\Atoms\bsdf\a3Conductor.cpp" />
     <ClCompile Include="..\..\..\Atoms\bsdf\a3Dielectric.cpp" />
@@ -208,9 +211,15 @@
     <ClCompile Include="..\..\..\Atoms\integrator\a3DirectLighting.cpp" />
     <ClCompile Include="..\..\..\Atoms\integrator\a3Integrator.cpp" />
     <ClCompile Include="..\..\..\Atoms\integrator\a3PathIntegrator.cpp" />
+    <ClCompile Include="..\..\..\Atoms\lights\a3InfiniteAreaLight.cpp" />
+    <ClCompile Include="..\..\..\Atoms\lights\a3Light.cpp" />
+    <ClCompile Include="..\..\..\Atoms\lights\a3PointLight.cpp" />
+    <ClCompile Include="..\..\..\Atoms\lights\a3SpotLight.h.cpp" />
     <ClCompile Include="..\..\..\Atoms\main.cpp" />
+    <ClCompile Include="..\..\..\Atoms\renderers\a3NormalMapRenderer.cpp" />
     <ClCompile Include="..\..\..\Atoms\renderers\a3Renderer.cpp" />
     <ClCompile Include="..\..\..\Atoms\renderers\a3SamplerRenderer.cpp" />
+    <ClCompile Include="..\..\..\Atoms\renderers\a3SingleRayRenderer.cpp" />
     <ClCompile Include="..\..\..\Atoms\samples\a3CameraSample.cpp" />
     <ClCompile Include="..\..\..\Atoms\samples\a3LightSample.cpp" />
     <ClCompile Include="..\..\..\Atoms\samples\a3RandomSampler.cpp" />

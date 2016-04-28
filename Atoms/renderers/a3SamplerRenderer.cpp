@@ -8,7 +8,7 @@
 #include <core/image/a3NormalMap.h>
 #include <core/a3Spectrum.h>
 
-#include <cameras/a3PerspectiveSensor.h>
+#include <cameras/a3Sensor.h>
 #include <lights/a3Light.h>
 #include <shapes/a3Shape.h>
 #include <integrator/a3Integrator.h>
