@@ -224,3 +224,13 @@ float a3UniformSpherePdf()
 {
     return 1.f / (4.f * T3MATH_PI);
 }
+
+float a3FovToApretureSizeDeg(float fov)
+{
+    return 2.0f / t3Math::tanDeg(fov / 2.0f);
+}
+
+float a3FovToApretureSizeRad(float fov)
+{
+    return 2.0f / t3Math::tanRad(fov / 2.0f);
+}

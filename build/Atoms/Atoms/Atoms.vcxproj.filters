@@ -76,9 +76,6 @@
     <ClInclude Include="..\..\..\Atoms\renderers\a3Renderer.h">
       <Filter>Atoms\renderers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\cameras\a3Camera.h">
-      <Filter>Atoms\cameras</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Atoms\core\log\a3LogFile.h">
       <Filter>Atoms\core\log</Filter>
     </ClInclude>
@@ -87,9 +84,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Atoms\core\log\a3Log.h">
       <Filter>Atoms\core\log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.h">
-      <Filter>Atoms\cameras</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\dependency\assimp\include\assimp\port\AndroidJNI\AndroidJNIIOSystem.h">
       <Filter>ThirdParty\assimp\port</Filter>
@@ -346,6 +340,12 @@
     <ClInclude Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3PointLight.h">
       <Filter>Atoms\lights</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\cameras\a3Sensor.h">
+      <Filter>Atoms\cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Atoms\cameras\a3PerspectiveSensor.h">
+      <Filter>Atoms\cameras</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Atoms\renderers\a3SamplerRenderer.cpp">
@@ -353,9 +353,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\renderers\a3Renderer.cpp">
       <Filter>Atoms\renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\cameras\a3Camera.cpp">
-      <Filter>Atoms\cameras</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\core\log\a3LogFile.cpp">
       <Filter>Atoms\core\log</Filter>
@@ -365,9 +362,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\core\log\a3Log.cpp">
       <Filter>Atoms\core\log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.cpp">
-      <Filter>Atoms\cameras</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Atoms\core\image\a3Film.cpp">
       <Filter>Atoms\core\image</Filter>
@@ -470,6 +464,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\AtomsRendered\2016.4.27 05.55.11\Atmos\Atoms\lights\a3PointLight.cpp">
       <Filter>Atoms\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\cameras\a3Sensor.cpp">
+      <Filter>Atoms\cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Atoms\cameras\a3PerspectiveSensor.cpp">
+      <Filter>Atoms\cameras</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

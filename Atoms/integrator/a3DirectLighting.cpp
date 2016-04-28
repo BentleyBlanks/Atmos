@@ -125,7 +125,7 @@ a3Spectrum a3DirectLightingIntegrator::li(const a3Ray& ray, const a3Scene& scene
         /* ==================================================================== */
         /*                          Recursive sampling                          */
         /* ==================================================================== */
-        // 二项分布的bsdf光照计算需要在递归寻找到第一个非二项分布的bsdf为止才做直接光计算
+        // delta分布的bsdf光照计算需要在递归寻找到第一个非delta分布的bsdf为止才做直接光计算
         if(bEnableRecursiveSampling)
         {
             a3Spectrum recursiveLe, recursiveLi;

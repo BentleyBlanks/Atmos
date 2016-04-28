@@ -94,8 +94,8 @@
     <ClInclude Include="..\..\..\Atoms\bsdf\a3Conductor.h" />
     <ClInclude Include="..\..\..\Atoms\bsdf\a3Dielectric.h" />
     <ClInclude Include="..\..\..\Atoms\bsdf\a3Diffuse.h" />
-    <ClInclude Include="..\..\..\Atoms\cameras\a3Camera.h" />
-    <ClInclude Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.h" />
+    <ClInclude Include="..\..\..\Atoms\cameras\a3Sensor.h" />
+    <ClInclude Include="..\..\..\Atoms\cameras\a3PerspectiveSensor.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Common.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Dimension.h" />
     <ClInclude Include="..\..\..\Atoms\core\a3Intersection.h" />
@@ -189,8 +189,8 @@
     <ClCompile Include="..\..\..\Atoms\bsdf\a3Conductor.cpp" />
     <ClCompile Include="..\..\..\Atoms\bsdf\a3Dielectric.cpp" />
     <ClCompile Include="..\..\..\Atoms\bsdf\a3Diffuse.cpp" />
-    <ClCompile Include="..\..\..\Atoms\cameras\a3Camera.cpp" />
-    <ClCompile Include="..\..\..\Atoms\cameras\a3PerspectiveCamera.cpp" />
+    <ClCompile Include="..\..\..\Atoms\cameras\a3Sensor.cpp" />
+    <ClCompile Include="..\..\..\Atoms\cameras\a3PerspectiveSensor.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Intersection.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3ModelImporter.cpp" />
     <ClCompile Include="..\..\..\Atoms\core\a3Random.cpp" />
