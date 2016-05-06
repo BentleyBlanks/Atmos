@@ -15,7 +15,7 @@ README~
 *.suo
 #*.vcxproj
 #*.filters
-*.user
+#*.user
 *.png
 *.ppm
 *.psess
