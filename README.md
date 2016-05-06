@@ -8,7 +8,7 @@ SPP = 256 width: 2048 height: 1536 原图可见[Flickr](https://www.flickr.com/p
 
 ## 构建说明
 
-所有第三方库都为Visual Studio 2013下编译所得，暂不支持[CMake](https://cmake.org/)形式构建。其他版本VS需自行编译三方库
+所有第三方库都为Visual Studio 2013/Visual Studio 2015下编译所得，暂不支持[CMake](https://cmake.org/)形式构建。其他版本VS需自行编译三方库
 
 
 ## 效果图
@@ -51,7 +51,7 @@ SPP = 2048 Depth of Field: f = 180.0f，r = 20.0f width: 3200 height: 3200 原�
 
 4.Atoms支持景深，透视等基本相机效果
 
-5.Atoms目前仅支持显式的无限远区域光光照和点光源(其他基本光源暂未实现)
+5.Atoms目前支持显式的无限远区域光光照，聚光灯和点光源(其他基本光源暂未实现)
 
 6.Atoms采用[Assimp](https://github.com/assimp/assimp), [loadpng](http://lodev.org/lodepng/)等第三方库完成模型导入以及贴图导入
 
@@ -61,7 +61,7 @@ SPP = 2048 Depth of Field: f = 180.0f，r = 20.0f width: 3200 height: 3200 原�
 
 1.基于物理的微表面模型的支持
 
-2.更多光源模型的支持
+2.更多光源模型的支持(Area Light)
 
 3.全局重要性采样概念理解
 
