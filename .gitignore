@@ -23,6 +23,7 @@ README~
 *.rar
 *.psd
 *.mp4
+
 dependency/assimp/lib/*
 resources/*
 
