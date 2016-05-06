@@ -49,9 +49,6 @@
     <Filter Include="Atoms\shapes">
       <UniqueIdentifier>{66d044c6-690c-47f8-973b-c63fa0c0c971}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Atoms\test">
-      <UniqueIdentifier>{c79ebc80-d9f3-42ad-8b52-9b5dcf6982c6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Atoms\core\image">
       <UniqueIdentifier>{da2e3cdf-1b42-4709-9ad9-7664c4948677}</UniqueIdentifier>
     </Filter>
@@ -197,27 +194,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h">
       <Filter>ThirdParty\t3Math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\coordinate.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\integrator.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\model.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\png.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\ray.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\render.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\renderQueue.h">
-      <Filter>Atoms\test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atoms\lights\a3InfiniteAreaLight.h">
       <Filter>Atoms\lights</Filter>
@@ -402,9 +378,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp">
       <Filter>ThirdParty\t3Math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atoms\main.cpp">
-      <Filter>Atoms\test</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Atoms\lights\a3InfiniteAreaLight.cpp">
       <Filter>Atoms\lights</Filter>

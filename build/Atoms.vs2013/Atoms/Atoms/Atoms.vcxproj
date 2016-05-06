@@ -17,13 +17,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -41,9 +41,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)d.vs2013</TargetName>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>$(ProjectName).vs2013</TargetName>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -61,6 +65,10 @@
       <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib;../../../../dependency/t3DataStructures/lib;../../../../dependency/lodepng/lib;../../../../dependency/assimp/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>assimpd.vs2013.lib;zlibd.vs2013.lib;loadpngd.vs2013.lib;t3DataStructuresd.vs2013.lib;t3Math.vs2013.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>assimpd.vs2013.lib;zlibd.vs2013.lib;loadpngd.vs2013.lib;t3DataStructuresd.vs2013.lib;t3Mathd.vs2013.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib;../../../../dependency/t3DataStructures/lib;../../../../dependency/lodepng/lib;../../../../dependency/assimp/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -82,6 +90,10 @@
       <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib;../../../../dependency/t3DataStructures/lib;../../../../dependency/lodepng/lib;../../../../dependency/assimp/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>assimp.vs2013.lib;zlib.vs2013.lib;loadpng.vs2013.lib;t3DataStructures.vs2013.lib;t3Math.vs2013.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib;../../../../dependency/t3DataStructures/lib;../../../../dependency/lodepng/lib;../../../../dependency/assimp/lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp.vs2013.lib;zlib.vs2013.lib;loadpng.vs2013.lib;t3DataStructures.vs2013.lib;t3Math.vs2013.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Atoms\bsdf\a3BSDF.h" />
@@ -128,13 +140,6 @@
     <ClInclude Include="..\..\..\..\Atoms\shapes\a3Sphere.h" />
     <ClInclude Include="..\..\..\..\Atoms\shapes\a3Triangle.h" />
     <ClInclude Include="..\..\..\..\Atoms\shapes\a3TriangleMesh.h" />
-    <ClInclude Include="..\..\..\..\Atoms\test\coordinate.h" />
-    <ClInclude Include="..\..\..\..\Atoms\test\integrator.h" />
-    <ClInclude Include="..\..\..\..\Atoms\test\model.h" />
-    <ClInclude Include="..\..\..\..\Atoms\test\png.h" />
-    <ClInclude Include="..\..\..\..\Atoms\test\ray.h" />
-    <ClInclude Include="..\..\..\..\Atoms\test\render.h" />
-    <ClInclude Include="..\..\..\..\Atoms\test\renderQueue.h" />
     <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\ai_assert.h" />
     <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\anim.h" />
     <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\camera.h" />
@@ -224,7 +229,6 @@
     <ClCompile Include="..\..\..\..\Atoms\lights\a3Light.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\lights\a3PointLight.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\lights\a3SpotLight.h.cpp" />
-    <ClCompile Include="..\..\..\..\Atoms\main.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\renderers\a3NormalMapRenderer.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\renderers\a3Renderer.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\renderers\a3SamplerRenderer.cpp" />

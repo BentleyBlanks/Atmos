@@ -26,9 +26,6 @@
     <Filter Include="Atoms\shapes">
       <UniqueIdentifier>{1131f545-2407-44fa-a599-0678e8bb4b0a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Atoms\test">
-      <UniqueIdentifier>{ae1a1c6a-e8a8-427f-8bf8-203250df1528}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ThirdParty">
       <UniqueIdentifier>{a037bee4-0d5f-44fd-8199-26544a8aca2a}</UniqueIdentifier>
     </Filter>
@@ -187,9 +184,6 @@
     <ClCompile Include="..\..\..\..\Atoms\shapes\a3TriangleMesh.cpp">
       <Filter>Atoms\shapes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Atoms\main.cpp">
-      <Filter>Atoms\test</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp">
       <Filter>ThirdParty\t3Math</Filter>
     </ClCompile>
@@ -329,27 +323,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atoms\shapes\a3TriangleMesh.h">
       <Filter>Atoms\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\coordinate.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\integrator.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\model.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\png.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\ray.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\render.h">
-      <Filter>Atoms\test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\test\renderQueue.h">
-      <Filter>Atoms\test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\dependency\lodepng\include\lodepng.h">
       <Filter>ThirdParty\loadpng</Filter>
