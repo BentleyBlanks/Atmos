@@ -11,6 +11,8 @@
 #include <samples/a3Sampler.h>
 #include <samples/a3CameraSample.h>
 
+#include <core/image/a3NormalMap.h>
+
 void a3NormalMapRenderer::render(const a3Scene* scene)
 {
     if(!check()) return;
@@ -34,13 +36,13 @@ void a3NormalMapRenderer::render(const a3Scene* scene)
 
             t3Vector3f n = getNormal(scene, &ray, &sample);
 
-            camera->normalMap->addSample(&sample, n);
+            normalMap->addSample(&sample, n);
         }
     }
 
     a3Log::print("\n");
     // 保存法线图像文件
-    camera->normalMap->write();
+    normalMap->write();
 }
 
 bool a3NormalMapRenderer::check()
@@ -55,6 +57,16 @@ bool a3NormalMapRenderer::check()
     {
         a3Log::error("a3SamplerRenderer::render()前sampler: %d尚未分配指定\n", sampler);
         return false;
+    }
+
+    if(!normalMap)
+    {
+        a3Log::error("a3SamplerRenderer::render()前normalMap: %d尚未分配指定\n", normalMap);
+        return false;
+    }
+    else
+    {
+        a3Log::debug("Generating Normal map, width:%d, height:%d\n", normalMap->width, normalMap->height);
     }
 
     return true;

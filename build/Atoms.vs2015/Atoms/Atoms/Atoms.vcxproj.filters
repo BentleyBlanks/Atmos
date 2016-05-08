@@ -59,6 +59,9 @@
     <Filter Include="ThirdParty\assimp\port">
       <UniqueIdentifier>{4fce6a1b-c815-47e5-8882-30345ae16318}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Atoms\accelerators">
+      <UniqueIdentifier>{59a6ee02-6590-4faf-8e62-d3b6cfbd0001}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Atoms\bsdf\a3BSDF.cpp">
@@ -189,6 +192,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp">
       <Filter>ThirdParty\t3Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\core\a3AABB.cpp">
+      <Filter>Atoms\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\accelerators\a3BVH.cpp">
+      <Filter>Atoms\accelerators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\accelerators\a3PrimitiveSet.cpp">
+      <Filter>Atoms\accelerators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\accelerators\a3Exhaustive.h.cpp">
+      <Filter>Atoms\accelerators</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -462,6 +477,18 @@
     <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\postprocess.h">
       <Filter>ThirdParty\assimp</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\core\a3AABB.h">
+      <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\accelerators\a3BVH.h">
+      <Filter>Atoms\accelerators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\accelerators\a3PrimitiveSet.h">
+      <Filter>Atoms\accelerators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\accelerators\a3Exhaustive.h">
+      <Filter>Atoms\accelerators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\Atoms\core\a3Common.inl">
@@ -505,6 +532,9 @@
     </None>
     <None Include="..\..\..\..\dependency\assimp\include\assimp\matrix4x4.inl">
       <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\..\Atoms\core\a3AABB.inl">
+      <Filter>Atoms\core</Filter>
     </None>
   </ItemGroup>
 </Project>

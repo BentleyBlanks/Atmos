@@ -22,6 +22,7 @@
     <ClCompile Include="..\..\..\..\test\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\test\aabb.h" />
     <ClInclude Include="..\..\..\..\test\coordinate.h" />
     <ClInclude Include="..\..\..\..\test\integrator.h" />
     <ClInclude Include="..\..\..\..\test\model.h" />

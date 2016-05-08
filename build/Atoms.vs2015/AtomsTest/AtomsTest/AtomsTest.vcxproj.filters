@@ -32,5 +32,8 @@
     <ClInclude Include="..\..\..\..\test\integrator.h">
       <Filter>test</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\test\aabb.h">
+      <Filter>test</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

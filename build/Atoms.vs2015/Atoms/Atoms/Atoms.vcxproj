@@ -166,10 +166,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\Atoms\accelerators\a3BVH.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\accelerators\a3Exhaustive.h.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\accelerators\a3PrimitiveSet.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\bsdf\a3BSDF.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\bsdf\a3Conductor.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\bsdf\a3Dielectric.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\bsdf\a3Diffuse.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\core\a3AABB.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\a3Intersection.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\a3ModelImporter.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\a3Random.cpp" />
@@ -211,10 +215,14 @@
     <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Atoms\accelerators\a3BVH.h" />
+    <ClInclude Include="..\..\..\..\Atoms\accelerators\a3Exhaustive.h" />
+    <ClInclude Include="..\..\..\..\Atoms\accelerators\a3PrimitiveSet.h" />
     <ClInclude Include="..\..\..\..\Atoms\bsdf\a3BSDF.h" />
     <ClInclude Include="..\..\..\..\Atoms\bsdf\a3Conductor.h" />
     <ClInclude Include="..\..\..\..\Atoms\bsdf\a3Dielectric.h" />
     <ClInclude Include="..\..\..\..\Atoms\bsdf\a3Diffuse.h" />
+    <ClInclude Include="..\..\..\..\Atoms\core\a3AABB.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\a3Common.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\a3Dimension.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\a3Intersection.h" />
@@ -303,6 +311,7 @@
     <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\Atoms\core\a3AABB.inl" />
     <None Include="..\..\..\..\Atoms\core\a3Common.inl" />
     <None Include="..\..\..\..\dependency\assimp\include\assimp\.editorconfig" />
     <None Include="..\..\..\..\dependency\assimp\include\assimp\color4.inl" />

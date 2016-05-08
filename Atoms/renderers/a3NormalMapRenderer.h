@@ -3,6 +3,7 @@
 
 #include <renderers/a3Renderer.h>
 
+class a3NormalMap;
 class a3Sampler;
 
 // [Debug]
@@ -20,6 +21,9 @@ public:
 
     // 相机
     a3Sensor* camera;
+
+    // 生成的法线贴图
+    a3NormalMap* normalMap;
 };
 
 #endif
