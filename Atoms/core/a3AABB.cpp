@@ -18,6 +18,12 @@ a3AABB::a3AABB(const t3Vector3f& p0, const t3Vector3f& p1):min(p0), max(p1)
 
 }
 
+void a3AABB::set(const t3Vector3f& p0, const t3Vector3f& p1)
+{
+    min = p0;
+    max = p1;
+}
+
 bool a3AABB::overlaps(const a3AABB& b) const
 {
     bool x = (max.x >= b.min.x) && (min.x <= b.max.x);
@@ -60,6 +66,11 @@ int a3AABB::maxExtentIndex() const
         return 1;
     else
         return 2;
+}
+
+t3Vector3f a3AABB::centroid() const
+{
+    return min * 0.5f + max * 0.5f;
 }
 
 t3Vector3f a3AABB::interpolate(float tx, float ty, float tz)

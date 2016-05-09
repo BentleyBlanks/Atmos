@@ -10,6 +10,6 @@ bool a3PrimitiveSet::addShape(a3Shape* shape)
         return false;
     }
 
-    objects.push_back(shape);
+    primitives.push_back(shape);
 }
 

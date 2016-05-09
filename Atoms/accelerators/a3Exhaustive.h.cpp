@@ -8,14 +8,14 @@ bool a3Exhaustive::intersect(const a3Ray& ray, a3Intersection* intersection) con
     float minT = FLT_MAX;
     float t = FLT_MAX;
 
-    for(int i = 0; i < objects.size(); i++)
+    for(int i = 0; i < primitives.size(); i++)
     {
-        if((objects[i]->intersect(ray, &t)) && t > A3_TOLERANCE_FLOAT && t < minT)
+        if((primitives[i]->intersect(ray, &t)) && t > A3_TOLERANCE_FLOAT && t < minT)
         {
             minT = t;
 
             // ÐòºÅ´úÌæID
-            intersection->shape = objects[i];
+            intersection->shape = primitives[i];
         }
     }
 
@@ -42,9 +42,9 @@ bool a3Exhaustive::intersect(const a3Ray& ray) const
     float minT = FLT_MAX;
     float t = FLT_MAX;
 
-    for(int i = 0; i<objects.size(); i++)
+    for(int i = 0; i<primitives.size(); i++)
     {
-        if((objects[i]->intersect(ray, &t)) && t > A3_TOLERANCE_FLOAT && t < minT)
+        if((primitives[i]->intersect(ray, &t)) && t > A3_TOLERANCE_FLOAT && t < minT)
             minT = t;
     }
 

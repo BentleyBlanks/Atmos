@@ -13,6 +13,8 @@ public:
     a3AABB(const t3Vector3f& p);
     a3AABB(const t3Vector3f& p0, const t3Vector3f& p1);
 
+    void set(const t3Vector3f& p0, const t3Vector3f& p1);
+
     bool overlaps(const a3AABB& bbox) const;
 
     bool inside(const t3Vector3f& point) const;
@@ -25,6 +27,9 @@ public:
 
     // 返回当前BBox边长最大的轴的序号
     int maxExtentIndex() const;
+
+    // 返回几何体中心
+    t3Vector3f centroid() const;
 
     // 线性插值
     t3Vector3f interpolate(float tx, float ty, float tz);

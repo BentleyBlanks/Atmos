@@ -17,7 +17,7 @@ public:
     bool addShape(a3Shape* shape);
 
     // 所有shape对象
-    std::vector<a3Shape*> objects;
+    std::vector<a3Shape*> primitives;
 };
 
 #endif

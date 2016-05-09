@@ -72,6 +72,16 @@ enum a3PrimitiveSetName
     BVH = 1
 };
 
+// global config
+int singleX = 325, singleY = 553;
+int spp = 6;
+int maxDepth = 8;
+
+a3SceneName name = WENDAOQIUER;
+a3RendererName rendererName = SAMPLER;
+a3IntegratorName integratorName = PATH;
+a3PrimitiveSetName primitiveName = EXHAUSTIVE;
+
 a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
 {
     a3PerspectiveSensor* camera = NULL;
@@ -94,15 +104,10 @@ a3Renderer* gengerateRenderer(a3PerspectiveSensor* camera, a3Film* image, a3Rend
 
     if(name == SINGLERAY)
     {
-        a3SingleRayRenderer* r = new a3SingleRayRenderer(325, 553);
+        a3SingleRayRenderer* r = new a3SingleRayRenderer(singleX, singleY);
 
         r->sampler = new a3RandomSampler();
         r->camera = camera;
-
-        if(integratorName == PATH)
-            r->integrator = new a3PathIntegrator(7);
-        else if(integratorName == DIRECT_LIGHTING)
-            r->integrator = new a3DirectLightingIntegrator();
 
         renderer = r;
     }
@@ -119,28 +124,35 @@ a3Renderer* gengerateRenderer(a3PerspectiveSensor* camera, a3Film* image, a3Rend
     }
     else if(name == SAMPLER)
     {
-        a3SamplerRenderer* r = new a3SamplerRenderer(6);
+        a3SamplerRenderer* r = new a3SamplerRenderer(spp);
 
         r->sampler = new a3RandomSampler();
         r->camera = camera;
 
+        renderer = r;
+    }
+
+    if(name == SINGLERAY || name == SAMPLER)
+    {
+        a3SamplerRenderer* r = (a3SamplerRenderer*)renderer;
+
         if(integratorName == PATH)
-            r->integrator = new a3PathIntegrator(7);
+            r->integrator = new a3PathIntegrator(maxDepth);
         else if(integratorName == DIRECT_LIGHTING)
             r->integrator = new a3DirectLightingIntegrator();
-
-        renderer = r;
     }
     
     return renderer;
 }
 
-void initScene(a3Scene* scene, a3SceneName name, a3PrimitiveSetName primitiveName)
+a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName)
 {
+    a3Scene* scene = new a3Scene();
+
     if(primitiveName == EXHAUSTIVE)
         scene->primitiveSet = new a3Exhaustive();
     else if(primitiveName == BVH)
-        scene->primitiveSet = new a3Exhaustive();
+        scene->primitiveSet = new a3BVH();
 
     auto addShape = [&scene](a3Shape* s, a3Spectrum R, a3Spectrum emission, int type)
     {
@@ -213,24 +225,18 @@ void initScene(a3Scene* scene, a3SceneName name, a3PrimitiveSetName primitiveNam
         //scene->addLight(new a3PointLight(t3Vector3f(50.0f, 81.6f - 0.27f, 81.6f), a3Spectrum(200000.0f)));
         scene->addLight(new a3SpotLight(t3Vector3f(50.0f, 81.6f - 0.27f, 81.6f), t3Vector3f(0.0f, -1.0f, 0.0f), a3Spectrum(1000000.0f), 40, 5));
     }
+
+    return scene;
 }
 
 int main()
 {
-    // config
-    a3SceneName name = WENDAOQIUER;
-    a3RendererName rendererName = SAMPLER;
-    a3IntegratorName integratorName = PATH;
-    a3PrimitiveSetName primitiveName = EXHAUSTIVE;
-
     // alloc
     a3Film* image = new a3Film(900, 900, "../../../../resources/results/hello", A3_IMAGE_PNG);
 
     a3PerspectiveSensor* camera = generateCamera(image, name);
 
-    a3Scene* scene = new a3Scene();
-
-    initScene(scene, name, primitiveName);
+    a3Scene* scene = generateScene(name, primitiveName);
 
     a3Renderer* renderer = gengerateRenderer(camera, image, rendererName, integratorName);
 
