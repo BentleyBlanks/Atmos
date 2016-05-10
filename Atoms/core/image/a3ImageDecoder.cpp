@@ -1,5 +1,6 @@
 #include <core/image/a3ImageDecoder.h>
 #include <core/log/a3Log.h>
+#include <core/a3BilinearInterpolation.h>
 
 #ifdef A3_IMAGE_LIB_PNGPP
 #include <png.hpp>
@@ -24,7 +25,7 @@ public:
         }
     }
 
-    t3Vector3f getColor(int x, int y)
+    t3Vector3f getColor(float x, float y)
     {
         if(x < 0 || x > width || y < 0 || y > height)
         {
@@ -32,8 +33,31 @@ public:
             return t3Vector3f::zero();
         }
 
+        int floorX = t3Math::floor(x), floorY = t3Math::floor(y);
+
+        // 取(x, y)所在[0, 1]区间 
+        int ceilX = t3Math::ceil(x), ceilY = t3Math::ceil(y);
+        if(ceilX == x)
+            ceilX = x + 1;
+        if(ceilY == y)
+            ceilY = y + 1;
+
+        float f00, f10, f01, f11;
+        float color[3];
+
+        for(int i = 0; i < 3; i++)
+        {
+            f00 = image[(floorX + floorY * width) * 4 + i];
+            f10 = image[(ceilX + floorY * width) * 4 + i];
+            f11 = image[(ceilX + ceilY * width) * 4 + i];
+            f01 = image[(floorX + ceilY * width) * 4 + i];
+
+            color[i] = a3BilinearInterpolation(x - floorX, y - floorY, f00, f01, f11, f10);
+        }
+
+        return t3Vector3f(color[0], color[1], color[2]);
         // 舍弃alpha值
-        return t3Vector3f(image[(x + y * width) * 4 + 0], image[(x + y * width) * 4 + 1], image[(x + y * width) * 4 + 2]);
+        //return t3Vector3f(image[(x + y * width) * 4 + 0], image[(x + y * width) * 4 + 1], image[(x + y * width) * 4 + 2]);
     }
 
     void print()

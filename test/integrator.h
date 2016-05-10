@@ -75,7 +75,7 @@ enum a3PrimitiveSetName
 
 // global config
 int singleX = 318, singleY = 311;
-int spp = 8;
+int spp = 256;
 int maxDepth = 8;
 int imageWidth = 700, imageHeight = 700;
 
@@ -241,7 +241,7 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         if(shapes)
         {
             for(auto s : *shapes)
-                addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+                addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
 
             //addShape(new a3Sphere(t3Vector3f(0, 0, 0), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
 

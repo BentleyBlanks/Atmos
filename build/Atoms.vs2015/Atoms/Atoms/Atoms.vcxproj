@@ -174,6 +174,7 @@
     <ClCompile Include="..\..\..\..\Atoms\bsdf\a3Dielectric.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\bsdf\a3Diffuse.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\a3AABB.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\core\a3BilinearInterpolation.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\a3Intersection.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\a3ModelImporter.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\a3Random.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="..\..\..\..\Atoms\bsdf\a3Dielectric.h" />
     <ClInclude Include="..\..\..\..\Atoms\bsdf\a3Diffuse.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\a3AABB.h" />
+    <ClInclude Include="..\..\..\..\Atoms\core\a3BilinearInterpolation.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\a3Common.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\a3Dimension.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\a3Intersection.h" />
