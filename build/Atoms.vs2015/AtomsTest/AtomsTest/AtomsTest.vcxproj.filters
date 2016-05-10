@@ -6,11 +6,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\test\main.cpp">
+    <ClInclude Include="..\..\..\..\test\coordinate.h">
       <Filter>test</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\test\integrator.h">
+      <Filter>test</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\test\model.h">
       <Filter>test</Filter>
     </ClInclude>
@@ -26,14 +27,13 @@
     <ClInclude Include="..\..\..\..\test\renderQueue.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\test\coordinate.h">
-      <Filter>test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\test\integrator.h">
-      <Filter>test</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\test\aabb.h">
       <Filter>test</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\test\main.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

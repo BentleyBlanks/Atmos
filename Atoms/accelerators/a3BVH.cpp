@@ -2,6 +2,32 @@
 #include <core/a3Ray.h>
 #include <shapes/a3Shape.h>
 #include <core/log/a3Log.h>
+#include <LinearList/t3Stack.h>
+#include <core/a3Intersection.h>
+
+//  TreeNode
+a3BVHTreeNode::a3BVHTreeNode() :leftChild(NULL), rightChild(NULL)
+{
+
+}
+
+void a3BVHTreeNode::initLeaf(a3Shape* _shape, unsigned int num, const a3AABB& b)
+{
+    primitive = _shape;
+    bounds = b;
+}
+
+void a3BVHTreeNode::initInterior(unsigned int axis, a3BVHTreeNode *left, a3BVHTreeNode* right)
+{
+    leftChild = left;
+    rightChild = right;
+
+    // 包裹两子树的包围盒
+    bounds = a3AABB::calUnion(left->bounds, right->bounds);
+
+    splitAxis = axis;
+    primitive = NULL;
+}
 
 // 依托印用于图元对象集合索引 不做实体primitive存储
 class a3BVHPrimitive
@@ -61,7 +87,7 @@ public:
     unsigned char pad[2];
 };
 
-static inline bool a3RayBoxIntersect(const a3AABB &bounds, const a3Ray &ray,
+static inline bool a3RayBoxIntersect(const a3AABB &bounds, const a3Ray &ray, const float minT, const float maxT,
                               const t3Vector3f &invDir, const unsigned int dirIsNeg[3])
 {
     // Check for ray intersection against $x$ and $y$ slabs
@@ -83,7 +109,7 @@ static inline bool a3RayBoxIntersect(const a3AABB &bounds, const a3Ray &ray,
         tmin = tzmin;
     if(tzmax < tmax)
         tmax = tzmax;
-    return (tmin < ray.maxT) && (tmax > ray.minT);
+    return (tmin < maxT) && (tmax > minT);
 }
 
 a3BVH::a3BVH()
@@ -122,7 +148,9 @@ void a3BVH::init()
 
     // 递归构造
     unsigned int nodeNum = 0;
+    a3Log::info("BVH Tree Start Building\n");
     a3BVHTreeNode* treeRoot = treeBuild(0, primitives.size(), &nodeNum, bvhPrimitives);
+    a3Log::info("BVH Tree Finished Building\n");
 
     root = treeRoot;
 
@@ -224,11 +252,137 @@ unsigned int a3BVH::linearBuild(a3BVHTreeNode* treeRoot, unsigned int* offset)
 // 遍历
 bool a3BVH::intersect(const a3Ray& ray, a3Intersection* intersection) const
 {
-    return false;
+    if(!root) return false;
+
+    t3Stack<a3BVHTreeNode*> todo;
+
+    t3Vector3f inverseDirection(1.f / ray.direction.x, 
+                                1.f / ray.direction.y, 
+                                1.f / ray.direction.z);
+    unsigned int dirIsNeg[3] = {inverseDirection.x < 0,
+                                inverseDirection.y < 0, 
+                                inverseDirection.z < 0};
+
+    float minT = A3_INFINITY;
+    a3Shape* shape = NULL;
+
+    if(intersect(ray, root, &minT, inverseDirection, dirIsNeg, &shape))
+    {
+        intersection->t = minT;
+
+        // 接触点初始化
+        intersection->p = (ray) (minT);
+
+        intersection->shape = shape;
+
+        return true;
+    }
+    else
+    {
+        // 用于valid判断
+        intersection->t = A3_INFINITY;
+
+        return false;
+    }
 }
 
 bool a3BVH::intersect(const a3Ray& ray) const
 {
-    return false;
+    if(!root) return false;
+
+    t3Stack<a3BVHTreeNode*> todo;
+
+    t3Vector3f inverseDirection(1.f / ray.direction.x,
+                                1.f / ray.direction.y,
+                                1.f / ray.direction.z);
+    unsigned int dirIsNeg[3] = {inverseDirection.x < 0,
+        inverseDirection.y < 0,
+        inverseDirection.z < 0};
+
+    float minT = A3_INFINITY;
+    a3Shape* shape = NULL;
+
+    if(intersect(ray, root, &minT, inverseDirection, dirIsNeg))
+        return true;
+    else
+        return false;
 }
 
+bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
+                      const t3Vector3f &invDir, const unsigned int dirIsNeg[3],
+                      a3Shape** shape) const
+{
+    if(a3RayBoxIntersect(node->bounds, ray, A3_TOLERANCE_FLOAT, *minT, invDir, dirIsNeg))
+    {
+        // 叶子结点
+        if(node->primitive)
+        {
+            float t = A3_INFINITY;
+            // 实际Ray Primitive相交测试
+            if(node->primitive->intersect(ray, &t) && t > A3_TOLERANCE_FLOAT && t < *minT)
+            {
+                *minT = t;
+                *shape = node->primitive;
+
+                return true;
+            }
+        }
+        else
+        {
+            bool bHaveIntersection = false;
+            // 判断左右子树遍历顺序
+            if(dirIsNeg[node->splitAxis])
+            {
+                // 先遍历左子树
+                bHaveIntersection |= intersect(ray, node->leftChild, minT, invDir, dirIsNeg, shape);
+                bHaveIntersection |= intersect(ray, node->rightChild, minT, invDir, dirIsNeg, shape);
+            }
+            else
+            {
+                // 先遍历右子树
+                bHaveIntersection |= intersect(ray, node->rightChild, minT, invDir, dirIsNeg, shape);
+                bHaveIntersection |= intersect(ray, node->leftChild, minT, invDir, dirIsNeg, shape);
+            }
+
+            return bHaveIntersection;
+        }
+    }
+    else
+        return false;
+}
+
+bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, const t3Vector3f &invDir, const unsigned int dirIsNeg[3]) const
+{
+    if(a3RayBoxIntersect(node->bounds, ray, A3_TOLERANCE_FLOAT, *minT, invDir, dirIsNeg))
+    {
+        // 叶子结点
+        if(node->primitive)
+        {
+            float t = A3_INFINITY;
+            // 实际Ray Primitive相交测试
+            if(node->primitive->intersect(ray, &t) && t > A3_TOLERANCE_FLOAT && t < *minT)
+                return true;
+        }
+        else
+        {
+            bool bHaveIntersection = false;
+            // 判断左右子树遍历顺序
+            if(dirIsNeg[node->splitAxis])
+            {
+                // 先遍历左子树
+                bHaveIntersection |= intersect(ray, node->leftChild, minT, invDir, dirIsNeg);
+                bHaveIntersection |= intersect(ray, node->rightChild, minT, invDir, dirIsNeg);
+            }
+            else
+            {
+                // 先遍历右子树
+                bHaveIntersection |= intersect(ray, node->rightChild, minT, invDir, dirIsNeg);
+                bHaveIntersection |= intersect(ray, node->leftChild, minT, invDir, dirIsNeg);
+            }
+
+            return bHaveIntersection;
+        }
+    }
+    else
+        return false;
+}

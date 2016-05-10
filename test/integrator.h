@@ -50,7 +50,8 @@ enum a3SceneName
 {
     WENDAOQIUER = 0,
     INFINITEAREA_LIGHT = 1,
-    CORNEL_BOX = 2
+    CORNEL_BOX = 2,
+    BVHTEST = 3
 };
 
 enum a3RendererName
@@ -73,14 +74,15 @@ enum a3PrimitiveSetName
 };
 
 // global config
-int singleX = 325, singleY = 553;
-int spp = 6;
+int singleX = 318, singleY = 311;
+int spp = 8;
 int maxDepth = 8;
+int imageWidth = 500, imageHeight = 500;
 
-a3SceneName name = WENDAOQIUER;
+a3SceneName name = BVHTEST;
 a3RendererName rendererName = SAMPLER;
-a3IntegratorName integratorName = PATH;
-a3PrimitiveSetName primitiveName = EXHAUSTIVE;
+a3IntegratorName integratorName = DIRECT_LIGHTING;
+a3PrimitiveSetName primitiveName = BVH;
 
 a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
 {
@@ -92,7 +94,9 @@ a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
         camera = new a3PerspectiveSensor(t3Vector3f(0, -150, -10), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 1), 55.517f, 210.0f, 0.0f, image);
     else if(name == CORNEL_BOX)
         camera = new a3PerspectiveSensor(t3Vector3f(50.0f, 52.0f, 295.6f), t3Vector3f(50.0f, 52.0f - 0.042612f, 295.6f - 1.0f), t3Vector3f(0, 1, 0), 40.0f, 210.0f, 0.0f, image);
-
+    else if(name == BVHTEST)
+        camera = new a3PerspectiveSensor(t3Vector3f(0, 20, -100), t3Vector3f(0, 0, 0), t3Vector3f(0, 1, 0), 40, 210.0f, 0.0f, image);
+    
     camera->print();
 
     return camera;
@@ -147,12 +151,13 @@ a3Renderer* gengerateRenderer(a3PerspectiveSensor* camera, a3Film* image, a3Rend
 
 a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName)
 {
+    a3BVH* bvh = NULL;
     a3Scene* scene = new a3Scene();
 
     if(primitiveName == EXHAUSTIVE)
         scene->primitiveSet = new a3Exhaustive();
     else if(primitiveName == BVH)
-        scene->primitiveSet = new a3BVH();
+        scene->primitiveSet = bvh = new a3BVH();
 
     auto addShape = [&scene](a3Shape* s, a3Spectrum R, a3Spectrum emission, int type)
     {
@@ -183,12 +188,12 @@ a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName)
 
         a3ModelImporter importer;
         //std::vector<a3Shape*>* shapes = importer.load("../../../../resources/models/spheres.obj");
-        std::vector<a3Shape*>* shapes = importer.load("../../../../resources/models/mitsuba.obj");
+        std::vector<a3Shape*>* shapes = importer.load("../../../../resources/models/spheres.obj");
 
         if(shapes)
         {
             for(auto s : *shapes)
-                addShape(s, t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+                addShape(s, t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
 
             //addShape(new a3Sphere(t3Vector3f(-40, -60, 25), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
             //addShape(new a3Sphere(t3Vector3f(40, 30, 25), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
@@ -225,6 +230,28 @@ a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName)
         //scene->addLight(new a3PointLight(t3Vector3f(50.0f, 81.6f - 0.27f, 81.6f), a3Spectrum(200000.0f)));
         scene->addLight(new a3SpotLight(t3Vector3f(50.0f, 81.6f - 0.27f, 81.6f), t3Vector3f(0.0f, -1.0f, 0.0f), a3Spectrum(1000000.0f), 40, 5));
     }
+    else if(name == BVHTEST)
+    {
+        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/skylightSurreal.png"));
+
+        a3ModelImporter importer;
+        std::vector<a3Shape*>* shapes = importer.load("../../../../resources/models/mitsuba.obj");
+
+        if(shapes)
+        {
+            for(auto s : *shapes)
+                addShape(s, t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+
+            //addShape(new a3Sphere(t3Vector3f(0, 0, 0), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+
+            addShape(new a3Disk(t3Vector3f(0, -30, 0), 100, t3Vector3f(0, 1, 0)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+        }
+
+    }
+
+    // 加速结构初始化
+    if(primitiveName == BVH)
+        bvh->init();
 
     return scene;
 }
@@ -232,7 +259,7 @@ a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName)
 int main()
 {
     // alloc
-    a3Film* image = new a3Film(900, 900, "../../../../resources/results/hello", A3_IMAGE_PNG);
+    a3Film* image = new a3Film(imageWidth, imageHeight, "../../../../resources/results/hello", A3_IMAGE_PNG);
 
     a3PerspectiveSensor* camera = generateCamera(image, name);
 

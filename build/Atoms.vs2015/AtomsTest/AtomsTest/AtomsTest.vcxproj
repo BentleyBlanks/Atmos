@@ -19,9 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\test\main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\..\..\test\aabb.h" />
     <ClInclude Include="..\..\..\..\test\coordinate.h" />
     <ClInclude Include="..\..\..\..\test\integrator.h" />
@@ -30,6 +27,9 @@
     <ClInclude Include="..\..\..\..\test\ray.h" />
     <ClInclude Include="..\..\..\..\test\render.h" />
     <ClInclude Include="..\..\..\..\test\renderQueue.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\test\main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{351CFCA6-A8DD-41B0-B393-D461AAF6DFBF}</ProjectGuid>

@@ -12,28 +12,14 @@ class a3BVHPrimitive;
 class a3BVHTreeNode
 {
 public:
-    a3BVHTreeNode() :leftChild(NULL), rightChild(NULL) {}
+    a3BVHTreeNode();
 
     // 当前结点作为叶子结点
     // 叶子结点限制只能存放一个图元
-    void initLeaf(a3Shape* _shape, unsigned int num, const a3AABB& b)
-    {
-        primitive = _shape;
-        bounds = b;
-    }
+    void initLeaf(a3Shape* _shape, unsigned int num, const a3AABB& b);
 
     // 当前结点作为内部结点
-    void initInterior(unsigned int axis, a3BVHTreeNode *left, a3BVHTreeNode* right)
-    {
-        leftChild = left;
-        rightChild = right;
-
-        // 包裹两子树的包围盒
-        bounds = a3AABB::calUnion(left->bounds, right->bounds);
-
-        splitAxis = axis;
-        primitive = NULL;
-    }
+    void initInterior(unsigned int axis, a3BVHTreeNode *left, a3BVHTreeNode* right);
 
     // 包裹左右子树的包围盒
     a3AABB bounds;
@@ -64,7 +50,10 @@ public:
 
     virtual bool intersect(const a3Ray& ray) const;
 
-//private:
+    // 暂不启用线性表形式BVH
+    a3BVHTreeNode* root;
+
+private:
     // 返回根节点
     a3BVHTreeNode* treeBuild(unsigned int start, unsigned int end, unsigned int* nodeNum,
                              std::vector<a3BVHPrimitive>& bvhPrimitives);
@@ -72,8 +61,15 @@ public:
     // 转树形BVH为线性表
     unsigned int linearBuild(a3BVHTreeNode* node, unsigned int* offset);
 
-    // 暂不启用线性表形式BVH
-    a3BVHTreeNode* root;
+    // 内部递归求交遍历
+    // interset->intersection + bool
+    bool intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
+                   const t3Vector3f &invDir, const unsigned int dirIsNeg[3],
+                   a3Shape** shape) const;
+
+    // interset->bool
+    bool intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
+                   const t3Vector3f &invDir, const unsigned int dirIsNeg[3]) const;
 };
 
 #endif
