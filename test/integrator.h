@@ -241,7 +241,7 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         if(shapes)
         {
             for(auto s : *shapes)
-                addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
+                addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
 
             //addShape(new a3Sphere(t3Vector3f(0, 0, 0), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
 

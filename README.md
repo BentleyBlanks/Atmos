@@ -2,33 +2,37 @@
 
 A Physically Based Renderer.(Not Finished Yet)
 
-![](https://farm2.staticflickr.com/1549/26033000861_130b76788b_z.jpg)
-
-SPP = 256 width: 2048 height: 1536 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26033000861/in/dateposted-public/)
 
 ## 构建说明
 
 所有第三方库都为Visual Studio 2013/Visual Studio 2015下编译所得，暂不支持[CMake](https://cmake.org/)形式构建。其他版本VS需自行编译三方库
 
+## 第三方库
+
+1.[Assimp](https://github.com/assimp/assimp)用于Obj模型导入
+2.[LodePNG](http://lodev.org/lodepng/)用于PNG图片解码编码
+3.[t3DataStructures](https://github.com/BentleyBlanks/t3DataStructures)Tatty3d的数据结构模块，用于计时器等基础库使用
+4.[t3Math](https://github.com/BentleyBlanks/t3Math)完成基本数学库支持
 
 ## 效果图
 
-![](https://farm2.staticflickr.com/1532/25519761274_13b60a86a5_z.jpg)
+![](https://farm8.staticflickr.com/7672/26337553403_756357c59c_o.png)
 
-SPP = 2000 width: 1024 height: 768 time: 3679.64s 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25519761274/in/dateposted-public/)
+SPP = 256 width: 700 height 700 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26337553403/in/dateposted-public/)
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26392433210/in/dateposted-public/" title="hello"><img src="https://farm2.staticflickr.com/1690/26392433210_28ee1c7db5_z.jpg" width="640" height="480" alt="hello"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+![](https://farm8.staticflickr.com/7097/26336584694_5dc7a0f34d_o.png)
 
-SPP = 128 width:1024 height: 768 time: 29.6s 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26392433210/in/dateposted-public/)
+SPP = 256 width: 700 height 700 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26336584694/in/dateposted-public/)
 
-![](https://farm2.staticflickr.com/1540/25493615434_59b96306f5_z.jpg)
+![](https://farm8.staticflickr.com/7168/26337551743_534b420f62_o.png)
 
-SPP = 128 width:1000 height:500
+SPP = 256 width: 700 height 700 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26337551743/in/dateposted-public/)
 
-![](https://farm2.staticflickr.com/1486/25742938521_7161856337_z.jpg)
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26942251805/in/dateposted-public/" title="spotlight path"><img src="https://farm8.staticflickr.com/7375/26942251805_de9dfcb41d_b.jpg" width="700" height="700" alt="spotlight path"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 
-SPP = 2048 Depth of Field: f = 180.0f，r = 20.0f width: 3200 height: 3200 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/25742938521/in/dateposted-public/)
+![](https://farm2.staticflickr.com/1549/26033000861_130b76788b_z.jpg)
 
+SPP = 256 width: 2048 height: 1536 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26033000861/in/dateposted-public/)
 
 ## 使用说明
 
