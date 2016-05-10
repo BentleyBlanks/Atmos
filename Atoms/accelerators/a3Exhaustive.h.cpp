@@ -7,10 +7,11 @@ bool a3Exhaustive::intersect(const a3Ray& ray, a3Intersection* intersection) con
 {
     float minT = FLT_MAX;
     float t = FLT_MAX;
+    float u = 0, v = 0;
 
     for(int i = 0; i < primitives.size(); i++)
     {
-        if((primitives[i]->intersect(ray, &t)) && t > A3_TOLERANCE_FLOAT && t < minT)
+        if((primitives[i]->intersect(ray, &t, &u, &v)) && t > A3_TOLERANCE_FLOAT && t < minT)
         {
             minT = t;
 
@@ -25,6 +26,10 @@ bool a3Exhaustive::intersect(const a3Ray& ray, a3Intersection* intersection) con
 
         // 接触点初始化
         intersection->p = (ray) (minT);
+
+        intersection->u = u;
+
+        intersection->v = v;
 
         return true;
     }
@@ -41,10 +46,11 @@ bool a3Exhaustive::intersect(const a3Ray& ray) const
 {
     float minT = FLT_MAX;
     float t = FLT_MAX;
+    float u = 0, v = 0;
 
     for(int i = 0; i<primitives.size(); i++)
     {
-        if((primitives[i]->intersect(ray, &t)) && t > A3_TOLERANCE_FLOAT && t < minT)
+        if((primitives[i]->intersect(ray, &t, &u, &v)) && t > A3_TOLERANCE_FLOAT && t < minT)
             minT = t;
     }
 

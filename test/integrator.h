@@ -77,14 +77,14 @@ enum a3PrimitiveSetName
 int singleX = 318, singleY = 311;
 int spp = 8;
 int maxDepth = 8;
-int imageWidth = 500, imageHeight = 500;
+int imageWidth = 700, imageHeight = 700;
 
 a3SceneName name = BVHTEST;
 a3RendererName rendererName = SAMPLER;
-a3IntegratorName integratorName = DIRECT_LIGHTING;
+a3IntegratorName integratorName = PATH;
 a3PrimitiveSetName primitiveName = BVH;
 
-a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
+inline a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
 {
     a3PerspectiveSensor* camera = NULL;
 
@@ -95,14 +95,14 @@ a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
     else if(name == CORNEL_BOX)
         camera = new a3PerspectiveSensor(t3Vector3f(50.0f, 52.0f, 295.6f), t3Vector3f(50.0f, 52.0f - 0.042612f, 295.6f - 1.0f), t3Vector3f(0, 1, 0), 40.0f, 210.0f, 0.0f, image);
     else if(name == BVHTEST)
-        camera = new a3PerspectiveSensor(t3Vector3f(0, 20, -100), t3Vector3f(0, 0, 0), t3Vector3f(0, 1, 0), 40, 210.0f, 0.0f, image);
+        camera = new a3PerspectiveSensor(t3Vector3f(0, 100, 50), t3Vector3f(0, 0, 10), t3Vector3f(0, 0, 1), 40, 210.0f, 0.0f, image);
     
     camera->print();
 
     return camera;
 }
 
-a3Renderer* gengerateRenderer(a3PerspectiveSensor* camera, a3Film* image, a3RendererName name, a3IntegratorName integratorName)
+inline a3Renderer* gengerateRenderer(a3PerspectiveSensor* camera, a3Film* image, a3RendererName name, a3IntegratorName integratorName)
 {
     a3Renderer* renderer = NULL;
 
@@ -130,6 +130,7 @@ a3Renderer* gengerateRenderer(a3PerspectiveSensor* camera, a3Film* image, a3Rend
     {
         a3SamplerRenderer* r = new a3SamplerRenderer(spp);
 
+        r->enableGammaCorrection = false;
         r->sampler = new a3RandomSampler();
         r->camera = camera;
 
@@ -149,7 +150,7 @@ a3Renderer* gengerateRenderer(a3PerspectiveSensor* camera, a3Film* image, a3Rend
     return renderer;
 }
 
-a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName)
+inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName)
 {
     a3BVH* bvh = NULL;
     a3Scene* scene = new a3Scene();
@@ -193,7 +194,7 @@ a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName)
         if(shapes)
         {
             for(auto s : *shapes)
-                addShape(s, t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+                addShape(s, t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
 
             //addShape(new a3Sphere(t3Vector3f(-40, -60, 25), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
             //addShape(new a3Sphere(t3Vector3f(40, 30, 25), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
@@ -232,7 +233,7 @@ a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName)
     }
     else if(name == BVHTEST)
     {
-        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/skylightSurreal.png"));
+        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/Mitsuba.png"));
 
         a3ModelImporter importer;
         std::vector<a3Shape*>* shapes = importer.load("../../../../resources/models/mitsuba.obj");
@@ -240,11 +241,11 @@ a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName)
         if(shapes)
         {
             for(auto s : *shapes)
-                addShape(s, t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+                addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
 
             //addShape(new a3Sphere(t3Vector3f(0, 0, 0), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
 
-            addShape(new a3Disk(t3Vector3f(0, -30, 0), 100, t3Vector3f(0, 1, 0)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+            //addShape(new a3Disk(t3Vector3f(0, 0, 0), 100, t3Vector3f(0, 1, 0)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
         }
 
     }

@@ -136,7 +136,7 @@ void a3BVH::init()
 
     if(primitiveNum <= 0)
     {
-        a3Log::warning("a3BVH::init() 场景中hape对象为空，无需构建Accelerator");
+        a3Log::warning("a3BVH::init() 场景中hape对象为空，无需构建Accelerator\n");
         return;
     }
 
@@ -148,9 +148,9 @@ void a3BVH::init()
 
     // 递归构造
     unsigned int nodeNum = 0;
-    a3Log::info("BVH Tree Start Building\n");
+    a3Log::success("BVH Tree Start Building\n");
     a3BVHTreeNode* treeRoot = treeBuild(0, primitives.size(), &nodeNum, bvhPrimitives);
-    a3Log::info("BVH Tree Finished Building\n");
+    a3Log::success("BVH Tree Finished Building\n");
 
     root = treeRoot;
 
@@ -264,9 +264,10 @@ bool a3BVH::intersect(const a3Ray& ray, a3Intersection* intersection) const
                                 inverseDirection.z < 0};
 
     float minT = A3_INFINITY;
+    float u = 0, v = 0;
     a3Shape* shape = NULL;
 
-    if(intersect(ray, root, &minT, inverseDirection, dirIsNeg, &shape))
+    if(intersect(ray, root, &minT, &u, &v, inverseDirection, dirIsNeg, &shape))
     {
         intersection->t = minT;
 
@@ -274,6 +275,10 @@ bool a3BVH::intersect(const a3Ray& ray, a3Intersection* intersection) const
         intersection->p = (ray) (minT);
 
         intersection->shape = shape;
+
+        intersection->u = u;
+
+        intersection->v = v;
 
         return true;
     }
@@ -300,15 +305,16 @@ bool a3BVH::intersect(const a3Ray& ray) const
         inverseDirection.z < 0};
 
     float minT = A3_INFINITY;
+    float u = 0, v = 0;
     a3Shape* shape = NULL;
 
-    if(intersect(ray, root, &minT, inverseDirection, dirIsNeg))
+    if(intersect(ray, root, &minT, &u, &v, inverseDirection, dirIsNeg))
         return true;
     else
         return false;
 }
 
-bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
+bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, float* _u, float* _v,
                       const t3Vector3f &invDir, const unsigned int dirIsNeg[3],
                       a3Shape** shape) const
 {
@@ -318,11 +324,14 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
         if(node->primitive)
         {
             float t = A3_INFINITY;
+            float u = 0, v = 0;
             // 实际Ray Primitive相交测试
-            if(node->primitive->intersect(ray, &t) && t > A3_TOLERANCE_FLOAT && t < *minT)
+            if(node->primitive->intersect(ray, &t, &u, &v) && t > A3_TOLERANCE_FLOAT && t < *minT)
             {
                 *minT = t;
                 *shape = node->primitive;
+                *_u = u;
+                *_v = v;
 
                 return true;
             }
@@ -334,14 +343,14 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
             if(dirIsNeg[node->splitAxis])
             {
                 // 先遍历左子树
-                bHaveIntersection |= intersect(ray, node->leftChild, minT, invDir, dirIsNeg, shape);
-                bHaveIntersection |= intersect(ray, node->rightChild, minT, invDir, dirIsNeg, shape);
+                bHaveIntersection |= intersect(ray, node->leftChild, minT, _u, _v, invDir, dirIsNeg, shape);
+                bHaveIntersection |= intersect(ray, node->rightChild, minT, _u, _v, invDir, dirIsNeg, shape);
             }
             else
             {
                 // 先遍历右子树
-                bHaveIntersection |= intersect(ray, node->rightChild, minT, invDir, dirIsNeg, shape);
-                bHaveIntersection |= intersect(ray, node->leftChild, minT, invDir, dirIsNeg, shape);
+                bHaveIntersection |= intersect(ray, node->rightChild, minT, _u, _v, invDir, dirIsNeg, shape);
+                bHaveIntersection |= intersect(ray, node->leftChild, minT, _u, _v, invDir, dirIsNeg, shape);
             }
 
             return bHaveIntersection;
@@ -351,7 +360,8 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
         return false;
 }
 
-bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, const t3Vector3f &invDir, const unsigned int dirIsNeg[3]) const
+bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, float* _u, float* _v,
+                      const t3Vector3f &invDir, const unsigned int dirIsNeg[3]) const
 {
     if(a3RayBoxIntersect(node->bounds, ray, A3_TOLERANCE_FLOAT, *minT, invDir, dirIsNeg))
     {
@@ -359,8 +369,9 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, const 
         if(node->primitive)
         {
             float t = A3_INFINITY;
+            float u = 0, v = 0;
             // 实际Ray Primitive相交测试
-            if(node->primitive->intersect(ray, &t) && t > A3_TOLERANCE_FLOAT && t < *minT)
+            if(node->primitive->intersect(ray, &t, &u, &v) && t > A3_TOLERANCE_FLOAT && t < *minT)
                 return true;
         }
         else
@@ -370,14 +381,14 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, const 
             if(dirIsNeg[node->splitAxis])
             {
                 // 先遍历左子树
-                bHaveIntersection |= intersect(ray, node->leftChild, minT, invDir, dirIsNeg);
-                bHaveIntersection |= intersect(ray, node->rightChild, minT, invDir, dirIsNeg);
+                bHaveIntersection |= intersect(ray, node->leftChild, minT, _u, _v, invDir, dirIsNeg);
+                bHaveIntersection |= intersect(ray, node->rightChild, minT, _u, _v, invDir, dirIsNeg);
             }
             else
             {
                 // 先遍历右子树
-                bHaveIntersection |= intersect(ray, node->rightChild, minT, invDir, dirIsNeg);
-                bHaveIntersection |= intersect(ray, node->leftChild, minT, invDir, dirIsNeg);
+                bHaveIntersection |= intersect(ray, node->rightChild, minT, _u, _v, invDir, dirIsNeg);
+                bHaveIntersection |= intersect(ray, node->leftChild, minT, _u, _v, invDir, dirIsNeg);
             }
 
             return bHaveIntersection;

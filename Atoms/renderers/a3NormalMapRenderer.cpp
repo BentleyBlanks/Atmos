@@ -85,5 +85,5 @@ t3Vector3f a3NormalMapRenderer::getNormal(const a3Scene* scene, a3Ray* ray, cons
     // 找到相交点
     t3Vector3f intersectPoint = (*ray)(intersection.t);
 
-    return obj->getNormal(intersectPoint);
+    return intersection.getNormal();
 }

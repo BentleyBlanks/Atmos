@@ -205,6 +205,9 @@
     <ClCompile Include="..\..\..\..\Atoms\accelerators\a3Exhaustive.h.cpp">
       <Filter>Atoms\accelerators</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\dependency\t3DataStructures\include\LinearList\t3Stack.cpp">
+      <Filter>ThirdParty\t3DataStructures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Atoms\bsdf\a3BSDF.h">
@@ -488,6 +491,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atoms\accelerators\a3Exhaustive.h">
       <Filter>Atoms\accelerators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\LinearList\t3Stack.h">
+      <Filter>ThirdParty\t3DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\Common\t3Test.h">
+      <Filter>ThirdParty\t3DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\Common\t3DataStructuresSettings.h">
+      <Filter>ThirdParty\t3DataStructures</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
