@@ -10,8 +10,12 @@ A Physically Based Renderer.(Not Finished Yet)
 ## 第三方库
 
 1.[Assimp](https://github.com/assimp/assimp)用于Obj模型导入
+
 2.[LodePNG](http://lodev.org/lodepng/)用于PNG图片解码编码
-3.[t3DataStructures](https://github.com/BentleyBlanks/t3DataStructures)Tatty3d的数据结构模块，用于计时器等基础库使用
+
+3.[t3DataStructures](https://github.com/BentleyBlanks/t3DataStructures)
+Tatty3d的数据结构模块，用于计时器等基础库使用
+
 4.[t3Math](https://github.com/BentleyBlanks/t3Math)完成基本数学库支持
 
 ## 效果图
@@ -57,27 +61,21 @@ SPP = 256 width: 2048 height: 1536 原图可见[Flickr](https://www.flickr.com/p
 
 5.Atoms目前支持显式的无限远区域光光照，聚光灯和点光源(其他基本光源暂未实现)
 
-6.Atoms采用[Assimp](https://github.com/assimp/assimp), [loadpng](http://lodev.org/lodepng/)等第三方库完成模型导入以及贴图导入
-
-7.渲染需要完成对```a3SamplerRenderer```中camera, integrator, sampler根据需求实际分配内存
+6.Atoms中BVH实现为简易EqualCounts(暂不支持SAH分割)
 
 ##待办事项
 
-1.基于物理的微表面模型的支持
+1.基于物理的BRDF模型，微表面模型的支持
 
-2.更多光源模型的支持(Area Light)
+2.更多光源模型的支持(Area Light, Distant Light)
 
 3.全局重要性采样概念理解
 
 4.C++11多线程的支持
 
-5.BVH支持 可用Intel提供的BVH外部库 详情可见Tungsun
+5.正交摄像机，环境摄像机支持
 
-6.正交摄像机，环境摄像机支持
-
-7.更多导出图像格式支持(目前仅支持```PPM```, ```PNG```)
-
-8.参数方程形式的形状支持
+6.参数方程形式的形状支持
 
 
 ## 关于作者
