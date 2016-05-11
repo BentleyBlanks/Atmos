@@ -65,7 +65,7 @@ SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/phot
 
 6.Atmos中BVH实现为简易EqualCounts(暂不支持SAH分割)
 
-7.Atmos
+7.Atmos目前几何体除Plane外(TriangleMesh未实现)，都支持基本纹理映射
 
 ##待办事项
 
