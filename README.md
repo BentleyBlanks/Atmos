@@ -38,6 +38,8 @@ SPP = 256 width: 700 height 700 原图可见[Flickr](https://www.flickr.com/phot
 
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26942251805/in/dateposted-public/" title="spotlight path"><img src="https://farm8.staticflickr.com/7375/26942251805_de9dfcb41d_b.jpg" width="700" height="700" alt="spotlight path"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 
+SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26942251805/in/dateposted-public/)
+
 ## 使用说明
 
 1.a3Log支持多种日志等级发放消息，可自行选择输出到终端或日志文件中，如
@@ -55,13 +57,15 @@ SPP = 256 width: 700 height 700 原图可见[Flickr](https://www.flickr.com/phot
 
 2.```a3SamplerRenderer.cpp```中定义了```A3_RENDERING_NORMALMAP```和```A3_RENDERING_SINGLERAY```模式用于调试(全局渲染为法线, 单光线跟踪)，以及正常渲染模式```A3_RENDERING_REALISTICIMAGE```
 
-3.目前Atoms支持Triangle(Mesh暂不支持), Sphere, Disk, Plane等基本几何形状
+3.目前Atmos支持Triangle(Mesh暂不支持), Sphere, Disk, Plane等基本几何形状
 
-4.Atoms支持景深，透视等基本相机效果
+4.Atmos支持景深，透视等基本相机效果
 
-5.Atoms目前支持显式的无限远区域光光照，聚光灯和点光源(其他基本光源暂未实现)
+5.Atmos目前支持显式的无限远区域光光照，聚光灯和点光源(其他基本光源暂未实现)
 
-6.Atoms中BVH实现为简易EqualCounts(暂不支持SAH分割)
+6.Atmos中BVH实现为简易EqualCounts(暂不支持SAH分割)
+
+7.Atmos
 
 ##待办事项
 
