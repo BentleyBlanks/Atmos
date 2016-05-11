@@ -15,12 +15,18 @@ public:
 
     ~a3ImageDecoder();
 
-    void load(const std::string& filePath);
+    bool load(const std::string& filePath);
 
-    t3Vector3f getColor(int x, int y);
+    bool isLoaded() const;
+
+    int getWidth() const;
+
+    int getHeight() const;
+
+    t3Vector3f getColor(int x, int y) const;
 
     // 纹理坐标映射查找 u, v: [0, 1]
-    t3Vector3f lookup(float u, float v);
+    t3Vector3f lookup(float u, float v) const;
 
     void print();
 
@@ -28,6 +34,8 @@ private:
     // pimple方便更换第三方库
     class a3Decoder;
     a3Decoder* decoder;
+
+    bool bLoaded;
 };
 
 #endif

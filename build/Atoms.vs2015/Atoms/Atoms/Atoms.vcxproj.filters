@@ -62,6 +62,9 @@
     <Filter Include="Atoms\accelerators">
       <UniqueIdentifier>{59a6ee02-6590-4faf-8e62-d3b6cfbd0001}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Atoms\textures">
+      <UniqueIdentifier>{473a2137-a558-4703-b76f-cc0883a24d59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Atoms\bsdf\a3BSDF.cpp">
@@ -506,6 +509,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atoms\core\a3BilinearInterpolation.h">
       <Filter>Atoms\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\textures\a3Texture.h">
+      <Filter>Atoms\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\textures\a3ConstantTexture.h">
+      <Filter>Atoms\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\textures\a3CheckerBoard.h">
+      <Filter>Atoms\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\textures\a3ImageTexture.h">
+      <Filter>Atoms\textures</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

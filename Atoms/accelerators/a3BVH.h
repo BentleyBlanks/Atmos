@@ -63,12 +63,14 @@ private:
 
     // 内部递归求交遍历
     // interset->intersection + bool
-    bool intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, float* u, float* v,
+    bool intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, 
+                   float* u, float* v, float* vtu, float* vtv,
                    const t3Vector3f &invDir, const unsigned int dirIsNeg[3],
                    a3Shape** shape) const;
 
     // interset->bool
-    bool intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, float* _u, float* _v,
+    bool intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, 
+                   float* _u, float* _v, float* vtu, float* vtv,
                    const t3Vector3f &invDir, const unsigned int dirIsNeg[3]) const;
 };
 

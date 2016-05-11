@@ -265,9 +265,10 @@ bool a3BVH::intersect(const a3Ray& ray, a3Intersection* intersection) const
 
     float minT = A3_INFINITY;
     float u = 0, v = 0;
+    float vtu = 0, vtv = 0;
     a3Shape* shape = NULL;
 
-    if(intersect(ray, root, &minT, &u, &v, inverseDirection, dirIsNeg, &shape))
+    if(intersect(ray, root, &minT, &u, &v, &vtu, &vtv, inverseDirection, dirIsNeg, &shape))
     {
         intersection->t = minT;
 
@@ -276,9 +277,13 @@ bool a3BVH::intersect(const a3Ray& ray, a3Intersection* intersection) const
 
         intersection->shape = shape;
 
+        // 求交测试若遇到三角形那么[u, v]将被赋值
         intersection->u = u;
-
         intersection->v = v;
+
+        // 若有纹理存在则纹理坐标将被赋值
+        intersection->vtu = vtu;
+        intersection->vtv = vtv;
 
         return true;
     }
@@ -306,15 +311,17 @@ bool a3BVH::intersect(const a3Ray& ray) const
 
     float minT = A3_INFINITY;
     float u = 0, v = 0;
+    float vtu = 0, vtv = 0;
     a3Shape* shape = NULL;
 
-    if(intersect(ray, root, &minT, &u, &v, inverseDirection, dirIsNeg))
+    if(intersect(ray, root, &minT, &u, &v, &vtu, &vtv, inverseDirection, dirIsNeg))
         return true;
     else
         return false;
 }
 
-bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, float* _u, float* _v,
+bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, 
+                      float* _u, float* _v, float* _vtu, float* _vtv,
                       const t3Vector3f &invDir, const unsigned int dirIsNeg[3],
                       a3Shape** shape) const
 {
@@ -325,13 +332,17 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, float*
         {
             float t = A3_INFINITY;
             float u = 0, v = 0;
+            float vtu = 0, vtv = 0;
+
             // 实际Ray Primitive相交测试
-            if(node->primitive->intersect(ray, &t, &u, &v) && t > A3_TOLERANCE_FLOAT && t < *minT)
+            if(node->primitive->intersect(ray, &t, &u, &v, &vtu, &vtv) && t > A3_TOLERANCE_FLOAT && t < *minT)
             {
                 *minT = t;
                 *shape = node->primitive;
                 *_u = u;
                 *_v = v;
+                *_vtu = vtu;
+                *_vtv = vtv;
 
                 return true;
             }
@@ -343,14 +354,14 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, float*
             if(dirIsNeg[node->splitAxis])
             {
                 // 先遍历左子树
-                bHaveIntersection |= intersect(ray, node->leftChild, minT, _u, _v, invDir, dirIsNeg, shape);
-                bHaveIntersection |= intersect(ray, node->rightChild, minT, _u, _v, invDir, dirIsNeg, shape);
+                bHaveIntersection |= intersect(ray, node->leftChild, minT, _u, _v, _vtu, _vtv, invDir, dirIsNeg, shape);
+                bHaveIntersection |= intersect(ray, node->rightChild, minT, _u, _v, _vtu, _vtv, invDir, dirIsNeg, shape);
             }
             else
             {
                 // 先遍历右子树
-                bHaveIntersection |= intersect(ray, node->rightChild, minT, _u, _v, invDir, dirIsNeg, shape);
-                bHaveIntersection |= intersect(ray, node->leftChild, minT, _u, _v, invDir, dirIsNeg, shape);
+                bHaveIntersection |= intersect(ray, node->rightChild, minT, _u, _v, _vtu, _vtv, invDir, dirIsNeg, shape);
+                bHaveIntersection |= intersect(ray, node->leftChild, minT, _u, _v, _vtu, _vtv, invDir, dirIsNeg, shape);
             }
 
             return bHaveIntersection;
@@ -360,7 +371,8 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, float*
         return false;
 }
 
-bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, float* _u, float* _v,
+bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, 
+                      float* _u, float* _v, float* vtu, float* vtv,
                       const t3Vector3f &invDir, const unsigned int dirIsNeg[3]) const
 {
     if(a3RayBoxIntersect(node->bounds, ray, A3_TOLERANCE_FLOAT, *minT, invDir, dirIsNeg))
@@ -370,8 +382,10 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, float*
         {
             float t = A3_INFINITY;
             float u = 0, v = 0;
+            float vtu = 0, vtv = 0;
+
             // 实际Ray Primitive相交测试
-            if(node->primitive->intersect(ray, &t, &u, &v) && t > A3_TOLERANCE_FLOAT && t < *minT)
+            if(node->primitive->intersect(ray, &t, &u, &v, &vtu, &vtv) && t > A3_TOLERANCE_FLOAT && t < *minT)
                 return true;
         }
         else
@@ -381,14 +395,14 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, float*
             if(dirIsNeg[node->splitAxis])
             {
                 // 先遍历左子树
-                bHaveIntersection |= intersect(ray, node->leftChild, minT, _u, _v, invDir, dirIsNeg);
-                bHaveIntersection |= intersect(ray, node->rightChild, minT, _u, _v, invDir, dirIsNeg);
+                bHaveIntersection |= intersect(ray, node->leftChild, minT, _u, _v, vtu, vtv, invDir, dirIsNeg);
+                bHaveIntersection |= intersect(ray, node->rightChild, minT, _u, _v, vtu, vtv, invDir, dirIsNeg);
             }
             else
             {
                 // 先遍历右子树
-                bHaveIntersection |= intersect(ray, node->rightChild, minT, _u, _v, invDir, dirIsNeg);
-                bHaveIntersection |= intersect(ray, node->leftChild, minT, _u, _v, invDir, dirIsNeg);
+                bHaveIntersection |= intersect(ray, node->rightChild, minT, _u, _v, vtu, vtv, invDir, dirIsNeg);
+                bHaveIntersection |= intersect(ray, node->leftChild, minT, _u, _v, vtu, vtv, invDir, dirIsNeg);
             }
 
             return bHaveIntersection;

@@ -8,10 +8,11 @@ bool a3Exhaustive::intersect(const a3Ray& ray, a3Intersection* intersection) con
     float minT = FLT_MAX;
     float t = FLT_MAX;
     float u = 0, v = 0;
+    float vtu = 0, vtv = 0;
 
     for(int i = 0; i < primitives.size(); i++)
     {
-        if((primitives[i]->intersect(ray, &t, &u, &v)) && t > A3_TOLERANCE_FLOAT && t < minT)
+        if((primitives[i]->intersect(ray, &t, &u, &v, &vtu, &vtv)) && t > A3_TOLERANCE_FLOAT && t < minT)
         {
             minT = t;
 
@@ -27,9 +28,13 @@ bool a3Exhaustive::intersect(const a3Ray& ray, a3Intersection* intersection) con
         // 接触点初始化
         intersection->p = (ray) (minT);
 
+        // 求交测试若遇到三角形那么[u, v]将被赋值
         intersection->u = u;
-
         intersection->v = v;
+
+        // 若有纹理存在则纹理坐标将被赋值
+        intersection->vtu = vtu;
+        intersection->vtv = vtv;
 
         return true;
     }
@@ -47,10 +52,11 @@ bool a3Exhaustive::intersect(const a3Ray& ray) const
     float minT = FLT_MAX;
     float t = FLT_MAX;
     float u = 0, v = 0;
+    float vtu = 0, vtv = 0;
 
     for(int i = 0; i<primitives.size(); i++)
     {
-        if((primitives[i]->intersect(ray, &t, &u, &v)) && t > A3_TOLERANCE_FLOAT && t < minT)
+        if((primitives[i]->intersect(ray, &t, &u, &v, &vtu, &vtv)) && t > A3_TOLERANCE_FLOAT && t < minT)
             minT = t;
     }
 

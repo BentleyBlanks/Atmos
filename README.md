@@ -20,6 +20,10 @@ Tatty3d的数据结构模块，用于计时器等基础库使用
 
 ## 效果图
 
+![](https://farm8.staticflickr.com/7249/26683877470_3b0a728e81_o.png)
+
+SPP = 256, width: 700 height: 700 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26683877470/in/dateposted-public/)
+
 ![](https://farm8.staticflickr.com/7672/26337553403_756357c59c_o.png)
 
 SPP = 256 width: 700 height 700 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26337553403/in/dateposted-public/)
@@ -33,10 +37,6 @@ SPP = 256 width: 700 height 700 原图可见[Flickr](https://www.flickr.com/phot
 SPP = 256 width: 700 height 700 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26337551743/in/dateposted-public/)
 
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26942251805/in/dateposted-public/" title="spotlight path"><img src="https://farm8.staticflickr.com/7375/26942251805_de9dfcb41d_b.jpg" width="700" height="700" alt="spotlight path"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
-
-![](https://farm2.staticflickr.com/1549/26033000861_130b76788b_z.jpg)
-
-SPP = 256 width: 2048 height: 1536 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26033000861/in/dateposted-public/)
 
 ## 使用说明
 

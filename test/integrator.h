@@ -16,6 +16,11 @@
 #include <renderers/a3NormalMapRenderer.h>
 #include <renderers/a3SingleRayRenderer.h>
 
+// textures
+#include <textures/a3ImageTexture.h>
+#include <textures/a3ConstantTexture.h>
+#include <textures/a3CheckerBoard.h>
+
 #include <accelerators/a3BVH.h>
 #include <accelerators/a3Exhaustive.h>
 #include <samples/a3RandomSampler.h>
@@ -74,7 +79,7 @@ enum a3PrimitiveSetName
 };
 
 // global config
-int singleX = 318, singleY = 311;
+int singleX = 264, singleY = 173;
 int spp = 256;
 int maxDepth = 8;
 int imageWidth = 700, imageHeight = 700;
@@ -160,7 +165,7 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
     else if(primitiveName == BVH)
         scene->primitiveSet = bvh = new a3BVH();
 
-    auto addShape = [&scene](a3Shape* s, a3Spectrum R, a3Spectrum emission, int type)
+    auto addShape = [&scene](a3Shape* s, a3Spectrum R, a3Spectrum emission, int type, a3Texture<a3Spectrum>* texture = NULL)->auto
     {
         s->emission = emission;
 
@@ -179,7 +184,11 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
             break;
         }
 
+        s->bsdf->texture = texture;
+
         scene->addShape(s);
+
+        return s->bsdf;
     };
 
     if(name == INFINITEAREA_LIGHT)
@@ -236,18 +245,43 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/Mitsuba.png"));
 
         a3ModelImporter importer;
-        std::vector<a3Shape*>* shapes = importer.load("../../../../resources/models/mitsuba.obj");
+        std::vector<a3Shape*>* plane = importer.load("../../../../resources/models/mitsuba/mitsuba_plane.obj");
+        std::vector<a3Shape*>* internal = importer.load("../../../../resources/models/mitsuba/mitsuba_internal.obj");
+        std::vector<a3Shape*>* sphere = importer.load("../../../../resources/models/mitsuba/mitsuba_sphere.obj");
 
-        if(shapes)
+        a3BSDF* bsdf;
+        a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
+        //a3ImageTexture<a3Spectrum>* texture = a3CreateImageTexture("../../../../resources/images/wood2.png");
+
+        // plane
+        if(plane)
         {
-            for(auto s : *shapes)
-                addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-
-            //addShape(new a3Sphere(t3Vector3f(0, 0, 0), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-
-            //addShape(new a3Disk(t3Vector3f(0, 0, 0), 100, t3Vector3f(0, 1, 0)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+            for(auto s : *plane)
+            {
+                bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+                bsdf->texture = texture;
+            }
         }
 
+        // internal
+        if(internal)
+        {
+            for(auto s : *internal)
+            {
+                bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+                //bsdf->texture = texture;
+            }
+        }
+
+        // sphere
+        if(sphere)
+        {
+            for(auto s : *sphere)
+            {
+                bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
+                //bsdf->texture = texture;
+            }
+        }
     }
 
     // 加速结构初始化

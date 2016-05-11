@@ -12,20 +12,24 @@
 class a3ImageDecoder::a3Decoder
 {
 public:
-    void load(const std::string& filePath)
+    bool load(const std::string& filePath)
     {
         unsigned error = lodepng::decode(image, width, height, filePath);
 
         if(error)
+        {
             a3Log::error("a3Decoder error %d: %s\n", error, lodepng_error_text(error));
+            return false;
+        }
         else
         {
             a3Log::success("Image %s load succeed\n", filePath.c_str());
             a3Log::success("width:%d, height:%d\n", width, height);
+            return true;
         }
     }
 
-    t3Vector3f getColor(float x, float y)
+    t3Vector3f getColor(float x, float y) const
     {
         if(x < 0 || x > width || y < 0 || y > height)
         {
@@ -58,6 +62,16 @@ public:
         return t3Vector3f(color[0], color[1], color[2]);
         // ÉáÆúalphaÖµ
         //return t3Vector3f(image[(x + y * width) * 4 + 0], image[(x + y * width) * 4 + 1], image[(x + y * width) * 4 + 2]);
+    }
+
+    unsigned int getWidth() const
+    {
+        return width;
+    }
+
+    unsigned int getHeight() const
+    {
+        return height;
     }
 
     void print()
@@ -100,17 +114,18 @@ a3ImageDecoder::~a3ImageDecoder()
     delete decoder;
 }
 
-void a3ImageDecoder::load(const std::string& filePath)
+bool a3ImageDecoder::load(const std::string& filePath)
 {
-    decoder->load(filePath);
+    bLoaded = decoder->load(filePath);
+    return bLoaded;
 }
 
-t3Vector3f a3ImageDecoder::getColor(int x, int y)
+t3Vector3f a3ImageDecoder::getColor(int x, int y) const
 {
     return decoder->getColor(x, y);
 }
 
-t3Vector3f a3ImageDecoder::lookup(float u, float v)
+t3Vector3f a3ImageDecoder::lookup(float u, float v) const
 {
     return decoder->getColor(u * (decoder->width - 1), v * (decoder->height - 1));
 }
@@ -118,4 +133,19 @@ t3Vector3f a3ImageDecoder::lookup(float u, float v)
 void a3ImageDecoder::print()
 {
     decoder->print();
+}
+
+bool a3ImageDecoder::isLoaded() const
+{
+    return bLoaded;
+}
+
+int a3ImageDecoder::getWidth() const
+{
+    return decoder->getWidth();
+}
+
+int a3ImageDecoder::getHeight() const
+{
+    return decoder->getHeight();
 }

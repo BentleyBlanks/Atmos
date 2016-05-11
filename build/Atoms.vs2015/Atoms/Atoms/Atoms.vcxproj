@@ -266,6 +266,10 @@
     <ClInclude Include="..\..\..\..\Atoms\shapes\a3Sphere.h" />
     <ClInclude Include="..\..\..\..\Atoms\shapes\a3Triangle.h" />
     <ClInclude Include="..\..\..\..\Atoms\shapes\a3TriangleMesh.h" />
+    <ClInclude Include="..\..\..\..\Atoms\textures\a3CheckerBoard.h" />
+    <ClInclude Include="..\..\..\..\Atoms\textures\a3ConstantTexture.h" />
+    <ClInclude Include="..\..\..\..\Atoms\textures\a3ImageTexture.h" />
+    <ClInclude Include="..\..\..\..\Atoms\textures\a3Texture.h" />
     <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\ai_assert.h" />
     <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\anim.h" />
     <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\camera.h" />
