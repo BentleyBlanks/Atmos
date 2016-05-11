@@ -59,13 +59,13 @@ SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/phot
 
 3.目前Atmos支持Triangle(Mesh暂不支持), Sphere, Disk, Plane等基本几何形状
 
-4.Atmos支持景深，透视等基本相机效果
+4.Atmos支持```景深```，```透视```等基本相机效果
 
 5.Atmos目前支持显式的无限远区域光光照，聚光灯和点光源(其他基本光源暂未实现)
 
-6.Atmos中BVH实现为简易EqualCounts(暂不支持SAH分割)
+6.Atmos中BVH实现为简易```EqualCounts```(暂不支持SAH分割)
 
-7.Atmos目前几何体除Plane外(TriangleMesh未实现)，都支持基本纹理映射
+7.Atmos目前几何体除Plane外(TriangleMesh未实现)，都支持基本```纹理映射```
 
 ##待办事项
 
