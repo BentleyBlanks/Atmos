@@ -28,7 +28,7 @@ SPP = 256, width: 700 height: 700 原图可见[Flickr](https://www.flickr.com/ph
 
 SPP = 256 width: 700 height 700 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26337553403/in/dateposted-public/)
 
-![](https://farm8.staticflickr.com/7097/26336584694_5dc7a0f34d_o.png)
+![](https://farm8.staticflickr.com/7167/27099346405_e7e89ac233_b.jpg)
 
 SPP = 256 width: 700 height 700 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26336584694/in/dateposted-public/)
 
