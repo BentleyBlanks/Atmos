@@ -45,10 +45,10 @@
 
 enum a3MaterialType
 {
-    A3_MATERIAL_NONE = 0,
-    A3_MATERIAL_DIFFUSS = 1,
-    A3_MATERIAL_SPECULAR = 2,
-    A3_METERIAL_REFRACTION = 3
+    NONE = 0,
+    LAMBERTIAN = 1,
+    MIRROR = 2,
+    GLASS = 3
 };
 
 enum a3SceneName
@@ -81,8 +81,9 @@ enum a3PrimitiveSetName
 // global config
 int singleX = 264, singleY = 173;
 int spp = 256;
-int maxDepth = 8;
+int maxDepth = 15;
 int imageWidth = 700, imageHeight = 700;
+bool enableGammaCorrection = false;
 
 a3SceneName name = BVHTEST;
 a3RendererName rendererName = SAMPLER;
@@ -100,8 +101,9 @@ inline a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
     else if(name == CORNEL_BOX)
         camera = new a3PerspectiveSensor(t3Vector3f(50.0f, 52.0f, 295.6f), t3Vector3f(50.0f, 52.0f - 0.042612f, 295.6f - 1.0f), t3Vector3f(0, 1, 0), 40.0f, 210.0f, 0.0f, image);
     else if(name == BVHTEST)
-        camera = new a3PerspectiveSensor(t3Vector3f(0, 100, 50), t3Vector3f(0, 0, 10), t3Vector3f(0, 0, 1), 40, 210.0f, 0.0f, image);
-    
+        camera = new a3PerspectiveSensor(t3Vector3f(0, 100, 50), t3Vector3f(0, 0, 10), t3Vector3f(0, 0, 1), 40, 100.0f, 0.0f, image);
+        //camera = new a3PerspectiveSensor(t3Vector3f(0, 100, 50), t3Vector3f(0, 0, 0), t3Vector3f(0, 0, 1), 40, 100.0f, 0.0f, image);
+
     camera->print();
 
     return camera;
@@ -135,7 +137,7 @@ inline a3Renderer* gengerateRenderer(a3PerspectiveSensor* camera, a3Film* image,
     {
         a3SamplerRenderer* r = new a3SamplerRenderer(spp);
 
-        r->enableGammaCorrection = false;
+        r->enableGammaCorrection = enableGammaCorrection;
         r->sampler = new a3RandomSampler();
         r->camera = camera;
 
@@ -171,13 +173,13 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
 
         switch(type)
         {
-        case A3_MATERIAL_DIFFUSS:
+        case LAMBERTIAN:
             s->bsdf = new a3Diffuse(R);
             break;
-        case A3_MATERIAL_SPECULAR:
+        case MIRROR:
             s->bsdf = new a3Conductor(R);
             break;
-        case A3_METERIAL_REFRACTION:
+        case GLASS:
             s->bsdf = new a3Dieletric(R);
             break;
         default:
@@ -185,6 +187,8 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         }
 
         s->bsdf->texture = texture;
+        if(texture)
+            s->bCalTextureCoordinate = true;
 
         scene->addShape(s);
 
@@ -203,49 +207,49 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         if(shapes)
         {
             for(auto s : *shapes)
-                addShape(s, t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
+                addShape(s, t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), GLASS);
 
-            //addShape(new a3Sphere(t3Vector3f(-40, -60, 25), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-            //addShape(new a3Sphere(t3Vector3f(40, 30, 25), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+            //addShape(new a3Sphere(t3Vector3f(-40, -60, 25), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), LAMBERTIAN);
+            //addShape(new a3Sphere(t3Vector3f(40, 30, 25), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), LAMBERTIAN);
 
-            //addShape(new a3Plane(t3Vector3f(0, 0, -20), t3Vector3f(0, 0, 1)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-            addShape(new a3Disk(t3Vector3f(0, 0, 0), 1000, t3Vector3f(0, 1, 0)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+            //addShape(new a3Plane(t3Vector3f(0, 0, -20), t3Vector3f(0, 0, 1)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), LAMBERTIAN);
+            addShape(new a3Disk(t3Vector3f(0, 0, 0), 1000, t3Vector3f(0, 1, 0)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), LAMBERTIAN);
         }
     }
     else if(name == WENDAOQIUER)
     {
         scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/pisaLatlong.png"));
 
-        addShape(new a3Sphere(t3Vector3f(-30, -8, 0), 37), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), A3_METERIAL_REFRACTION);
+        addShape(new a3Sphere(t3Vector3f(-30, -8, 0), 37), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), GLASS);
 
         // 无限远平面
-        addShape(new a3Plane(t3Vector3f(0, 0, -37), t3Vector3f(0, 0, 1)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+        addShape(new a3Plane(t3Vector3f(0, 0, -37), t3Vector3f(0, 0, 1)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), LAMBERTIAN);
     }
     else if(name == CORNEL_BOX)
     {
         // Spheres  
-        addShape(new a3Sphere(t3Vector3f(73.0f, 16.5f, 47.0f), 16.5f), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0.0f, 0.0f, 0.0f), A3_MATERIAL_SPECULAR);
-        addShape(new a3Sphere(t3Vector3f(27.0f, 16.5f, 78.0f), 16.5f), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0.0f, 0.0f, 0.0f), A3_METERIAL_REFRACTION);
+        addShape(new a3Sphere(t3Vector3f(73.0f, 16.5f, 47.0f), 16.5f), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0.0f, 0.0f, 0.0f), MIRROR);
+        //addShape(new a3Sphere(t3Vector3f(27.0f, 16.5f, 78.0f), 16.5f), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0.0f, 0.0f, 0.0f), GLASS);
 
         // Plane
-        addShape(new a3Plane(t3Vector3f(1.0f, 40.8f, 81.6f), t3Vector3f(1.0f, 0.0f, 0.0f)), t3Vector3f(0.25f, 0.25f, 0.75f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-        addShape(new a3Plane(t3Vector3f(99.0f, 40.8f, 81.6f), t3Vector3f(-1.0f, 0.0f, 0.0f)), t3Vector3f(0.75f, 0.25f, 0.25f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-        addShape(new a3Plane(t3Vector3f(50.0f, 40.8f, 0.0f), t3Vector3f(0.0f, 0.0f, 1.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-        //addShape(new a3Plane(t3Vector3f(50.0f, 40.8f, 310.0f), t3Vector3f(0.0f, 0.0f, 1)), t3Vector3f(0.0f, 0.0f, 0.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-        addShape(new a3Plane(t3Vector3f(50.0f, 0.0f, 81.6f), t3Vector3f(0.0f, 1.0f, 0.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-        addShape(new a3Plane(t3Vector3f(50.0f, 81.6f, 81.6f), t3Vector3f(0.0f, -1.0f, 0.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
+        addShape(new a3Plane(t3Vector3f(1.0f, 40.8f, 81.6f), t3Vector3f(1.0f, 0.0f, 0.0f)), t3Vector3f(0.25f, 0.25f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN);
+        addShape(new a3Plane(t3Vector3f(99.0f, 40.8f, 81.6f), t3Vector3f(-1.0f, 0.0f, 0.0f)), t3Vector3f(0.75f, 0.25f, 0.25f), t3Vector3f(0, 0, 0), LAMBERTIAN);
+        addShape(new a3Plane(t3Vector3f(50.0f, 40.8f, 0.0f), t3Vector3f(0.0f, 0.0f, 1.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN);
+        //addShape(new a3Plane(t3Vector3f(50.0f, 40.8f, 310.0f), t3Vector3f(0.0f, 0.0f, 1)), t3Vector3f(0.0f, 0.0f, 0.0f), t3Vector3f(0, 0, 0), LAMBERTIAN);
+        addShape(new a3Plane(t3Vector3f(50.0f, 0.0f, 81.6f), t3Vector3f(0.0f, 1.0f, 0.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN);
+        addShape(new a3Plane(t3Vector3f(50.0f, 81.6f, 81.6f), t3Vector3f(0.0f, -1.0f, 0.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN);
 
         // 光源
-        //addShape(new a3Sphere(t3Vector3f(50.0f, 681.6f - 0.27f, 81.6f), 600.0f), t3Vector3f(0.0f, 0.0f, 0.0f), t3Vector3f(5000.0f, 5000.0f, 5000.0f), A3_MATERIAL_DIFFUSS);
+        //addShape(new a3Sphere(t3Vector3f(50.0f, 681.6f - 0.27f, 81.6f), 600.0f), t3Vector3f(0.0f, 0.0f, 0.0f), t3Vector3f(5000.0f, 5000.0f, 5000.0f), LAMBERTIAN);
         //scene->addLight(new a3PointLight(t3Vector3f(50.0f, 81.6f - 0.27f, 81.6f), a3Spectrum(200000.0f)));
-        scene->addLight(new a3SpotLight(t3Vector3f(50.0f, 81.6f - 0.27f, 81.6f), t3Vector3f(0.0f, -1.0f, 0.0f), a3Spectrum(1000000.0f), 40, 5));
+        //scene->addLight(new a3SpotLight(t3Vector3f(50.0f, 81.6f - 0.27f, 81.6f), t3Vector3f(0.0f, -1.0f, 0.0f), a3Spectrum(3000000.0f), 40, 5));
     }
     else if(name == BVHTEST)
     {
         scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/Mitsuba.png"));
 
         a3ModelImporter importer;
-        std::vector<a3Shape*>* plane = importer.load("../../../../resources/models/mitsuba/mitsuba_plane.obj");
+        //std::vector<a3Shape*>* plane = importer.load("../../../../resources/models/mitsuba/mitsuba_plane.obj");
         std::vector<a3Shape*>* internal = importer.load("../../../../resources/models/mitsuba/mitsuba_internal.obj");
         std::vector<a3Shape*>* sphere = importer.load("../../../../resources/models/mitsuba/mitsuba_sphere.obj");
 
@@ -253,35 +257,28 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
         //a3ImageTexture<a3Spectrum>* texture = a3CreateImageTexture("../../../../resources/images/wood2.png");
 
-        // plane
-        if(plane)
-        {
-            for(auto s : *plane)
-            {
-                bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-                bsdf->texture = texture;
-            }
-        }
+        //// plane
+        //if(plane)
+        //    for(auto s : *plane)
+        //        bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), LAMBERTIAN, texture);
 
         // internal
         if(internal)
-        {
             for(auto s : *internal)
-            {
-                bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_DIFFUSS);
-                //bsdf->texture = texture;
-            }
-        }
+                bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
 
         // sphere
         if(sphere)
-        {
             for(auto s : *sphere)
-            {
-                bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), A3_MATERIAL_SPECULAR);
-                //bsdf->texture = texture;
-            }
-        }
+                bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
+
+        //std::vector<a3Shape*>* triangle = importer.load("../../../../resources/models/sphere.obj");
+        //if(triangle)
+        //    for(auto t : *triangle)
+        //        bsdf = addShape(t, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
+
+        //addShape(new a3Disk(t3Vector3f(0.0f, 0.0f, 0.0f), 16.5f, t3Vector3f(0.0f, 1.0f, 1.0f)), t3Vector3f(1.0f), t3Vector3f(0.0f), MIRROR, texture);
+        //addShape(new a3Sphere(t3Vector3f(0, 0, 0), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0.0f, 0.0f, 0.0f), GLASS);
     }
 
     // 加速结构初始化

@@ -34,6 +34,11 @@ void a3NormalMapRenderer::render(const a3Scene* scene)
 
             camera->castRay(&sample, &ray);
 
+            if(x == 350 && y == 350)
+            {
+                printf("ri");
+            }
+
             t3Vector3f n = getNormal(scene, &ray, &sample);
 
             normalMap->addSample(&sample, n);

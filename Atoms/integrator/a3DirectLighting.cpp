@@ -113,7 +113,7 @@ a3Spectrum a3DirectLightingIntegrator::li(const a3Ray& ray, const a3Scene& scene
 
     float cosTheta = t3Math::Abs(wo.dot(its.getNormal()));
 
-    if(!bsdf->isDeltaDistribution())
+    if(!bsdf->isDiracDistribution())
     {
         // --!暂未使用
         bool isDelta = false;
@@ -180,7 +180,7 @@ void a3DirectLightingIntegrator::recursiveSampling(const a3Ray& ray, const a3Sce
         if(bsdfPdf == 0.0f)
             return;
 
-        if(!bsdf->isDeltaDistribution())
+        if(!bsdf->isDiracDistribution())
         {
             // --!未启用
             bool isDelta = false;

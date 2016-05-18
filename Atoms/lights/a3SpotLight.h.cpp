@@ -37,7 +37,7 @@ float a3SpotLight::pdf(const t3Vector3f&p, const t3Vector3f& wi)
     return 0.0f;
 }
 
-bool a3SpotLight::isDeltaDistribution() const
+bool a3SpotLight::isDiracDistribution() const
 {
     return true;
 }

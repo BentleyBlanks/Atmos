@@ -13,7 +13,7 @@ public:
 
     virtual float pdf(const t3Vector3f&p, const t3Vector3f& wi);
 
-    virtual bool isDeltaDistribution() const;
+    virtual bool isDiracDistribution() const;
 
     // 根据聚光灯可见区域分布计算强度比例
     float calculateFalloff(const t3Vector3f& wo) const;
