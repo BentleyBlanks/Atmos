@@ -14,6 +14,8 @@ public:
 
 	~a3Film();
 
+    virtual void addColor(int x, int y, const t3Vector3f& color);
+
     virtual void addSample(const a3CameraSample* sample, const t3Vector3f& L);
 
     void setFileName(const std::string& fileName);

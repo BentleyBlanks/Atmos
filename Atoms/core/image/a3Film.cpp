@@ -14,6 +14,11 @@ a3Film::~a3Film()
     delete picture;
 }
 
+void a3Film::addColor(int x, int y, const t3Vector3f& color)
+{
+    picture->setColor(x, y, color);
+}
+
 void a3Film::write()
 {
     picture->write(fileName);

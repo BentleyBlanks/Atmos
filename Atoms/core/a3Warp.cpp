@@ -60,7 +60,7 @@ float a3SphericalPhi(const t3Vector3f &v)
     return (p < 0.f) ? p + 2.f * T3MATH_PI : p;
 }
 
-t3Vector3f a3Tonemap(t3Vector3f x)
+t3Vector3f a3Uncharted2Tonemap(t3Vector3f x)
 {
     float A = 0.15f;
     float B = 0.5f;
@@ -70,6 +70,19 @@ t3Vector3f a3Tonemap(t3Vector3f x)
     float F = 0.3f;
 
     return ((x * (A * x + C * B) + D * _E) / (x * (A * x + B) + D * F)) - _E / F;
+}
+
+void a3UncharedTonemap(t3Vector3f& color, float eyeAdaption)
+{
+    float exposureBias = 2.0f;
+
+    // 16用于曝光控制
+    t3Vector3f texColor = eyeAdaption * color / 255.0f;
+    texColor = a3Uncharted2Tonemap(exposureBias * texColor);
+
+    float W = 11.2f;
+    t3Vector3f whiteScale = 1.0f / a3Uncharted2Tonemap(t3Vector3f(W));
+    color = texColor * whiteScale * 255.0f;
 }
 
 void a3GammaCorrection(t3Vector3f& color)
@@ -235,4 +248,63 @@ float a3FovToApretureSizeDeg(float fov)
 float a3FovToApretureSizeRad(float fov)
 {
     return 2.0f / t3Math::tanRad(fov / 2.0f);
+}
+
+void a3ToneMapping(t3Vector3f* colorList, int xres, int yres)
+{
+    // --! Thx to Denghong's implementation
+#define LUM(c) (c.x*0.299 + c.y*0.587 + 0.144*c.z)
+    static t3Vector3f black = t3Vector3f(0.1, 0.1, 0.1);
+    float l_blk = LUM(black);
+
+    float ll = 0.f;
+
+    for(int i = 0; i < yres; ++i)
+    {
+        for(int j = 0; j < xres; ++j)
+        {
+            t3Vector3f cc = colorList[i * xres + j] / 255.0f;
+            //use l_blk to avoid ln(0)
+            ll += t3Math::log(LUM(cc) + l_blk);
+        }
+    }
+
+    float l_avg_inv = 1.f / t3Math::exp(ll / (xres*yres));
+
+    //printf("avg:%f\n", 1.f / l_avg_inv * 255);
+
+    //0.36/0.72 will be brighter while 0.09/0.045 will be darker.
+    float key = 0.18;
+    float f_l = key*l_avg_inv;
+
+    //printf("f_l:%f\n", f_l);
+
+    for(int i = 0; i < yres; ++i)
+    {
+        for(int j = 0; j < xres; ++j)
+        {
+            t3Vector3f cc = colorList[i * xres + j] / 255.0f;
+
+            float lo = f_l*(LUM(cc));
+            //to 0~1
+#define CONTROLEXP
+            float ld = lo / (1.f + lo);
+
+#ifdef CONTROLEXP
+            //Lwhite控制曝光，亮度超过Lwhite的像素都会被置为纯白。
+            //如果Lwhite的值非常大，则这个参数在公式中将不起任何作用，
+            //如果非常小则场景将变为几乎全溢出。
+            float l_w = 1.8f;
+            ld *= 1 + lo / (l_w*l_w);
+#endif
+            cc *= (ld / (LUM(cc)));
+
+            cc.x = t3Math::clamp(cc.x, 0.0f, 1.0f);
+            cc.y = t3Math::clamp(cc.y, 0.0f, 1.0f);
+            cc.z = t3Math::clamp(cc.z, 0.0f, 1.0f);
+
+            colorList[i * xres + j] = cc * 255.0f;
+        }
+    }
+#undef LUM
 }
