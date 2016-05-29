@@ -308,3 +308,29 @@ void a3ToneMapping(t3Vector3f* colorList, int xres, int yres)
     }
 #undef LUM
 }
+
+float a3RGB2Luminance(const a3Spectrum& rgb)
+{
+    const float YWeight[3] = {0.212671f, 0.715160f, 0.072169f};
+    return YWeight[0] * rgb.x + YWeight[1] * rgb.y + YWeight[2] * rgb.z;
+}
+
+// from pbrt's reflection.cpp line:59-67
+float a3FresnelDielectric(float cosi, float cost, const float &etai, const float &etat)
+{
+    float Rparl = ((etat * cosi) - (etai * cost)) /
+        ((etat * cosi) + (etai * cost));
+    float Rperp = ((etai * cosi) - (etat * cost)) /
+        ((etai * cosi) + (etat * cost));
+    return (Rparl*Rparl + Rperp*Rperp) / 2.f;
+}
+
+// from pbrt's reflection.cpp line:71-78
+float a3FresnelConductor(float cosi, float cost, const float &etai, const float &etat)
+{
+    float Rparl = ((etat * cosi) - (etai * cost)) /
+        ((etat * cosi) + (etai * cost));
+    float Rperp = ((etai * cosi) - (etat * cost)) /
+        ((etai * cosi) + (etat * cost));
+    return (Rparl*Rparl + Rperp*Rperp) / 2.f;
+}

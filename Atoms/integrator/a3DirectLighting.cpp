@@ -11,7 +11,7 @@
 #include <bsdf/a3BSDF.h>
 #include <samples/a3LightSample.h>
 
-a3DirectLightingIntegrator::a3DirectLightingIntegrator() :maxDepth(5), bEnableRecursiveSampling(true)
+a3DirectLightingIntegrator::a3DirectLightingIntegrator() :maxDepth(1), bEnableRecursiveSampling(true)
 {
 
 }
