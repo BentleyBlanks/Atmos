@@ -46,8 +46,8 @@ public:
         if(ceilY == y)
             ceilY = y + 1;
 
-        float f00, f10, f01, f11;
-        float color[3];
+        static float f00, f10, f01, f11;
+        static float color[3];
 
         for(int i = 0; i < 3; i++)
         {

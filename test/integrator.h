@@ -79,7 +79,7 @@ enum a3PrimitiveSetName
 };
 
 // global config
-int singleX = 323, singleY = 115;
+int singleX = 345, singleY = 127;
 int spp = 8;
 int maxDepth = -1;
 int russianRouletteDepth = 3;
@@ -89,7 +89,7 @@ bool enableToneMapping = false;
 
 a3SceneName name = BVHTEST;
 a3RendererName rendererName = SAMPLER;
-a3IntegratorName integratorName = DIRECT_LIGHTING;
+a3IntegratorName integratorName = PATH;
 a3PrimitiveSetName primitiveName = BVH;
 
 inline a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
@@ -103,8 +103,9 @@ inline a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
     else if(name == CORNEL_BOX)
         camera = new a3PerspectiveSensor(t3Vector3f(50.0f, 52.0f, 295.6f), t3Vector3f(50.0f, 52.0f - 0.042612f, 295.6f - 1.0f), t3Vector3f(0, 1, 0), 40.0f, 210.0f, 0.0f, image);
     else if(name == BVHTEST)
-        camera = new a3PerspectiveSensor(t3Vector3f(0, 100, 50), t3Vector3f(0, 0, 10), t3Vector3f(0, 0, 1), 40, 100.0f, 0.0f, image);
+        camera = new a3PerspectiveSensor(t3Vector3f(0, 100, 50), t3Vector3f(0, -20, 0), t3Vector3f(0, 0, 1), 40, 100.0f, 0.0f, image);
 
+    printf("", camera->apreture);
     camera->print();
 
     return camera;
@@ -248,32 +249,37 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
     }
     else if(name == BVHTEST)
     {
-        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/Mitsuba.png"));
+        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/test.png"));
         //scene->addLight(new a3PointLight(t3Vector3f(0, 80.0f, 80.0f), a3Spectrum(500000.0f)));
 
         a3ModelImporter importer;
         //std::vector<a3Shape*>* plane = importer.load("../../../../resources/models/mitsuba/mitsuba_plane.obj");
-        std::vector<a3Shape*>* internal = importer.load("../../../../resources/models/mitsuba/mitsuba_internal.obj");
-        std::vector<a3Shape*>* sphere = importer.load("../../../../resources/models/mitsuba/mitsuba_sphere.obj");
+        //std::vector<a3Shape*>* internal = importer.load("../../../../resources/models/mitsuba/mitsuba_internal.obj");
+        //std::vector<a3Shape*>* sphere = importer.load("../../../../resources/models/mitsuba/mitsuba_sphere.obj");
+        std::vector<a3Shape*>* mitsuba = importer.load("../../../../resources/models/mitsuba.obj");
 
-        a3BSDF* bsdf;
+        a3BSDF* bsdf = NULL;
         a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
         //a3ImageTexture<a3Spectrum>* texture = a3CreateImageTexture("../../../../resources/images/wood2.png");
+
+        if(mitsuba)
+            for(auto s : *mitsuba)
+                addShape(s, t3Vector3f(0.5f), t3Vector3f(0, 0, 0), LAMBERTIAN, texture);
 
         //// plane
         //if(plane)
         //    for(auto s : *plane)
         //        bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), LAMBERTIAN, texture);
 
-        // internal
-        if(internal)
-            for(auto s : *internal)
-                bsdf = addShape(s, t3Vector3f(0.5f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        //// internal
+        //if(internal)
+        //    for(auto s : *internal)
+        //        bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
 
-        // sphere
-        if(sphere)
-            for(auto s : *sphere)
-                bsdf = addShape(s, t3Vector3f(0.5f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        //// sphere
+        //if(sphere)
+        //    for(auto s : *sphere)
+        //        bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
 
         //std::vector<a3Shape*>* triangle = importer.load("../../../../resources/models/sphere.obj");
         //if(triangle)
