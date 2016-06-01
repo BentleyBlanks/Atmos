@@ -2,12 +2,12 @@
 #include <core/image/a3ImageEncoder.h>
 #include <samples/a3CameraSample.h>
 
-a3NormalMap::a3NormalMap(unsigned width, unsigned height, const std::string& fileName, a3ImageType type /*= A3_IMAGE_PNG*/) : a3Film(width, height, fileName, type)
+a3NormalMap::a3NormalMap(unsigned width, unsigned height, const std::string& fileName) : a3Film(width, height, fileName)
 {
 
 }
 
-a3NormalMap::a3NormalMap(const a3Film& film) : a3Film(film.width, film.height, film.fileName, film.picture->type)
+a3NormalMap::a3NormalMap(const a3Film& film) : a3Film(film.width, film.height, film.fileName)
 {
 
 }

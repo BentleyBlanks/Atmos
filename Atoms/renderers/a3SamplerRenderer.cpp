@@ -141,9 +141,9 @@ void a3SamplerRenderer::postEffect()
             {
                 a3Spectrum& color = colorList[x + y * imageWidth];
 
-                color.x = t3Math::clamp(color.x, 0.0f, 255.0f);
-                color.y = t3Math::clamp(color.y, 0.0f, 255.0f);
-                color.z = t3Math::clamp(color.z, 0.0f, 255.0f);
+                color.x = t3Math::clamp(color.x, 0.0f, 1.0f);
+                color.y = t3Math::clamp(color.y, 0.0f, 1.0f);
+                color.z = t3Math::clamp(color.z, 0.0f, 1.0f);
             }
         }
         a3Log::print("\n");

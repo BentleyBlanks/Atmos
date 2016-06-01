@@ -65,6 +65,9 @@
     <Filter Include="Atoms\textures">
       <UniqueIdentifier>{473a2137-a558-4703-b76f-cc0883a24d59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\tinyexr">
+      <UniqueIdentifier>{905e83bd-40e2-4c3f-9396-5ab12688ab1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Atoms\bsdf\a3BSDF.cpp">
@@ -213,6 +216,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\Atoms\core\a3BilinearInterpolation.cpp">
       <Filter>Atoms\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\renderers\a3FresnelRenderer.cpp">
+      <Filter>Atoms\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dependency\tinyexr\include\tinyexr.cc">
+      <Filter>ThirdParty\tinyexr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -521,6 +530,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atoms\textures\a3ImageTexture.h">
       <Filter>Atoms\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\renderers\a3FresnelRenderer.h">
+      <Filter>Atoms\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\tinyexr\include\tinyexr.h">
+      <Filter>ThirdParty\tinyexr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

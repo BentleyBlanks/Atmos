@@ -79,8 +79,8 @@ enum a3PrimitiveSetName
 };
 
 // global config
-int singleX = 345, singleY = 127;
-int spp = 32;
+int singleX = 350, singleY = 350;
+int spp = 8;
 int maxDepth = -1;
 int russianRouletteDepth = 3;
 int imageWidth = 700, imageHeight = 700;
@@ -88,7 +88,7 @@ bool enableGammaCorrection = false;
 bool enableToneMapping = false;
 
 a3SceneName name = BVHTEST;
-a3RendererName rendererName = SINGLERAY;
+a3RendererName rendererName = SAMPLER;
 a3IntegratorName integratorName = PATH;
 a3PrimitiveSetName primitiveName = BVH;
 
@@ -129,7 +129,7 @@ inline a3Renderer* gengerateRenderer(a3PerspectiveSensor* camera, a3Film* image,
         a3NormalMapRenderer* r = new a3NormalMapRenderer();
 
         r->normalMap = new a3NormalMap(*image);
-        r->normalMap->setFileName("../../../../resources/results/normalMap");
+        r->normalMap->setFileName("../../../../resources/results/normalMap.png");
         r->sampler = new a3RandomSampler();
         r->camera = camera;
 
@@ -249,8 +249,8 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
     }
     else if(name == BVHTEST)
     {
-        scene->addLight(new a3PointLight(t3Vector3f(0.0f, 100.0f, 10.0f), a3Spectrum(10000.0f)));
-        //scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/mitsuba.png"));
+        //scene->addLight(new a3PointLight(t3Vector3f(0.0f, 100.0f, 10.0f), a3Spectrum(10000.0f)));
+        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/mitsuba.png"));
         //scene->addLight(new a3PointLight(t3Vector3f(0, 80.0f, 80.0f), a3Spectrum(500000.0f)));
 
         a3ModelImporter importer;
@@ -301,7 +301,7 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
 int main()
 {
     // alloc
-    a3Film* image = new a3Film(imageWidth, imageHeight, "../../../../resources/results/hello", A3_IMAGE_PNG);
+    a3Film* image = new a3Film(imageWidth, imageHeight, "../../../../resources/results/hi.png");
 
     a3PerspectiveSensor* camera = generateCamera(image, name);
 

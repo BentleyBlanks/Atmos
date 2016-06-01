@@ -89,11 +89,18 @@ void a3GammaCorrection(t3Vector3f& color)
 {
     t3Vector3f& toneColor = color;
 
-    toneColor.x = t3Math::pow(toneColor.x / 255.0f, 1 / 2.2f);
-    toneColor.y = t3Math::pow(toneColor.y / 255.0f, 1 / 2.2f);
-    toneColor.z = t3Math::pow(toneColor.z / 255.0f, 1 / 2.2f);
+    toneColor.x = t3Math::pow(toneColor.x, 1 / 2.2f);
+    toneColor.y = t3Math::pow(toneColor.y, 1 / 2.2f);
+    toneColor.z = t3Math::pow(toneColor.z, 1 / 2.2f);
 
-    toneColor *= 255;
+    //toneColor *= 255;
+}
+
+void a3GammaCorrection(float& r, float&g, float& b)
+{
+    r = t3Math::pow(r, 1 / 2.2f);
+    g = t3Math::pow(g, 1 / 2.2f);
+    b = t3Math::pow(b, 1 / 2.2f);
 }
 
 // 均匀分布半球采样
@@ -263,7 +270,7 @@ void a3ToneMapping(t3Vector3f* colorList, int xres, int yres)
     {
         for(int j = 0; j < xres; ++j)
         {
-            t3Vector3f cc = colorList[i * xres + j] / 255.0f;
+            t3Vector3f cc = colorList[i * xres + j];
             //use l_blk to avoid ln(0)
             ll += t3Math::log(LUM(cc) + l_blk);
         }
@@ -283,7 +290,7 @@ void a3ToneMapping(t3Vector3f* colorList, int xres, int yres)
     {
         for(int j = 0; j < xres; ++j)
         {
-            t3Vector3f cc = colorList[i * xres + j] / 255.0f;
+            t3Vector3f cc = colorList[i * xres + j];
 
             float lo = f_l*(LUM(cc));
             //to 0~1
@@ -303,7 +310,7 @@ void a3ToneMapping(t3Vector3f* colorList, int xres, int yres)
             cc.y = t3Math::clamp(cc.y, 0.0f, 1.0f);
             cc.z = t3Math::clamp(cc.z, 0.0f, 1.0f);
 
-            colorList[i * xres + j] = cc * 255.0f;
+            colorList[i * xres + j] = cc;
         }
     }
 #undef LUM

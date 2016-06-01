@@ -43,7 +43,7 @@ void a3FresnelRenderer::render(const a3Scene* scene)
 
             float fresnel = getFresnel(scene, &ray, &sample);
 
-            image->addSample(&sample, t3Vector3f(fresnel * 255.0f));
+            image->addSample(&sample, t3Vector3f(fresnel));
         }
     }
 
@@ -103,6 +103,6 @@ float a3FresnelRenderer::getFresnel(const a3Scene* scene, a3Ray* ray, const a3Ca
 
     float probablity = a3FrDiel(costheta1, cost, 1.0f, n);
 
-    return probablity;
+    return 1 - probablity;
 }
 

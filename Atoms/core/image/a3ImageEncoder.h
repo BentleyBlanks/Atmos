@@ -16,15 +16,16 @@ public:
 
     void write(std::string& fileName);
 
-    // ppm file format
-    t3Vector3f **pixels;
-
     a3ImageType type;
-
 private:
     // pimple方便更换第三方库
     class a3Encoder;
     a3Encoder* encoder;
+
+    // ppm
+    t3Vector3f **pixels;
+    // exr
+    float* buffer;
 };
 
 #endif

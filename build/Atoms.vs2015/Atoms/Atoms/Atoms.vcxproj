@@ -91,9 +91,9 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../../../dependency/t3Math/include;../../../../dependency/t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/assimp/include;../../../../Atoms/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency/t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/assimp/include;../../../../Atoms/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -129,9 +129,9 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../../../dependency/t3Math/include;../../../../dependency//t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/assimp/include;../../../../Atoms/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency//t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/assimp/include;../../../../Atoms/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -196,6 +196,7 @@
     <ClCompile Include="..\..\..\..\Atoms\lights\a3Light.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\lights\a3PointLight.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\lights\a3SpotLight.h.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\renderers\a3FresnelRenderer.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\renderers\a3NormalMapRenderer.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\renderers\a3Renderer.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\renderers\a3SamplerRenderer.cpp" />
@@ -215,6 +216,7 @@
     <ClCompile Include="..\..\..\..\dependency\t3DataStructures\include\LinearList\t3Stack.cpp" />
     <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp" />
     <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp" />
+    <ClCompile Include="..\..\..\..\dependency\tinyexr\include\tinyexr.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Atoms\accelerators\a3BVH.h" />
@@ -250,6 +252,7 @@
     <ClInclude Include="..\..\..\..\Atoms\lights\a3Light.h" />
     <ClInclude Include="..\..\..\..\Atoms\lights\a3PointLight.h" />
     <ClInclude Include="..\..\..\..\Atoms\lights\a3SpotLight.h" />
+    <ClInclude Include="..\..\..\..\Atoms\renderers\a3FresnelRenderer.h" />
     <ClInclude Include="..\..\..\..\Atoms\renderers\a3NormalMapRenderer.h" />
     <ClInclude Include="..\..\..\..\Atoms\renderers\a3Renderer.h" />
     <ClInclude Include="..\..\..\..\Atoms\renderers\a3SamplerRenderer.h" />
@@ -319,6 +322,7 @@
     <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.h" />
     <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.h" />
     <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h" />
+    <ClInclude Include="..\..\..\..\dependency\tinyexr\include\tinyexr.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\Atoms\core\a3AABB.inl" />

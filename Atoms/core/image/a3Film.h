@@ -10,7 +10,7 @@ class a3ImageEncoder;
 class a3Film
 {
 public:
-    a3Film(unsigned width, unsigned height, const std::string& fileName, a3ImageType type = A3_IMAGE_PNG);
+    a3Film(unsigned width, unsigned height, const std::string& fileName);
 
 	~a3Film();
 

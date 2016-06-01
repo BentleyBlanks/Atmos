@@ -5,7 +5,6 @@
 #include <t3Math/core/t3Vector3.h>
 #include <core/a3Settings.h>
 
-// 仅支持png图像格式的导入
 class a3ImageDecoder
 {
 public:
@@ -29,7 +28,6 @@ public:
     t3Vector3f lookup(float u, float v) const;
 
     void print();
-
 private:
     // pimple方便更换第三方库
     class a3Decoder;

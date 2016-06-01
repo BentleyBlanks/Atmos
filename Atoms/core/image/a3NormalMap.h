@@ -8,7 +8,7 @@
 class a3NormalMap : public a3Film
 {
 public:
-    a3NormalMap(unsigned width, unsigned height, const std::string& fileName, a3ImageType type = A3_IMAGE_PNG);
+    a3NormalMap(unsigned width, unsigned height, const std::string& fileName);
 
     a3NormalMap(const a3Film& film);
 

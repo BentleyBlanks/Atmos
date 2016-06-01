@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\test\aabb.h" />
     <ClInclude Include="..\..\..\..\test\coordinate.h" />
+    <ClInclude Include="..\..\..\..\test\exr.h" />
+    <ClInclude Include="..\..\..\..\test\fresnel.h" />
     <ClInclude Include="..\..\..\..\test\integrator.h" />
     <ClInclude Include="..\..\..\..\test\model.h" />
     <ClInclude Include="..\..\..\..\test\png.h" />
@@ -102,7 +104,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../../../dependency/t3Math/include;../../../../dependency/t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/assimp/include;../../../../Atoms</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency/t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/assimp/include;../../../../Atoms</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,7 +137,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../../../dependency/t3Math/include;../../../../dependency/t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/assimp/include;../../../../Atoms</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency/t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/assimp/include;../../../../Atoms</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
