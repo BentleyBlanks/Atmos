@@ -90,7 +90,7 @@ bool enableToneMapping = false;
 a3SceneName name = BVHTEST;
 a3RendererName rendererName = SAMPLER;
 a3IntegratorName integratorName = PATH;
-a3PrimitiveSetName primitiveName = BVH;
+a3PrimitiveSetName primitiveName = EXHAUSTIVE;
 
 inline a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
 {
@@ -105,7 +105,6 @@ inline a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
     else if(name == BVHTEST)
         camera = new a3PerspectiveSensor(t3Vector3f(0, 100, 50), t3Vector3f(0, -20, 0), t3Vector3f(0, 0, 1), 40, 100.0f, 0.0f, image);
 
-    printf("", camera->apreture);
     camera->print();
 
     return camera;
@@ -226,7 +225,7 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         addShape(new a3Sphere(t3Vector3f(-30, -8, 0), 37), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), GLASS, NULL);
 
         // 无限远平面
-        addShape(new a3Plane(t3Vector3f(0, 0, -37), t3Vector3f(0, 0, 1)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        addShape(new a3Plane(t3Vector3f(0, 0, -37), t3Vector3f(0, 0, 1), 500, 500), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
     }
     else if(name == CORNEL_BOX)
     {
@@ -235,12 +234,12 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         addShape(new a3Sphere(t3Vector3f(27.0f, 16.5f, 78.0f), 16.5f), t3Vector3f(1.0f), t3Vector3f(0.0f, 0.0f, 0.0f), GLASS, NULL);
 
         // Plane
-        addShape(new a3Plane(t3Vector3f(1.0f, 40.8f, 81.6f), t3Vector3f(1.0f, 0.0f, 0.0f)), t3Vector3f(0.25f, 0.25f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
-        addShape(new a3Plane(t3Vector3f(99.0f, 40.8f, 81.6f), t3Vector3f(-1.0f, 0.0f, 0.0f)), t3Vector3f(0.75f, 0.25f, 0.25f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
-        addShape(new a3Plane(t3Vector3f(50.0f, 40.8f, 0.0f), t3Vector3f(0.0f, 0.0f, 1.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
-        //addShape(new a3Plane(t3Vector3f(50.0f, 40.8f, 310.0f), t3Vector3f(0.0f, 0.0f, 1)), t3Vector3f(0.0f, 0.0f, 0.0f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
-        addShape(new a3Plane(t3Vector3f(50.0f, 0.0f, 81.6f), t3Vector3f(0.0f, 1.0f, 0.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
-        addShape(new a3Plane(t3Vector3f(50.0f, 81.6f, 81.6f), t3Vector3f(0.0f, -1.0f, 0.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        addShape(new a3Plane(t3Vector3f(1.0f, 40.8f, 81.6f), t3Vector3f(1.0f, 0.0f, 0.0f), 500, 500), t3Vector3f(0.25f, 0.25f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        addShape(new a3Plane(t3Vector3f(99.0f, 40.8f, 81.6f), t3Vector3f(-1.0f, 0.0f, 0.0f), 500, 500), t3Vector3f(0.75f, 0.25f, 0.25f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        addShape(new a3Plane(t3Vector3f(50.0f, 40.8f, 0.0f), t3Vector3f(0.0f, 0.0f, 1.0f), 500, 500), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        //addShape(new a3Plane(t3Vector3f(50.0f, 40.8f, 310.0f), t3Vector3f(0.0f, 0.0f, 1), 500, 500), t3Vector3f(0.0f, 0.0f, 0.0f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        addShape(new a3Plane(t3Vector3f(50.0f, 0.0f, 81.6f), t3Vector3f(0.0f, 1.0f, 0.0f), 500, 500), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        addShape(new a3Plane(t3Vector3f(50.0f, 81.6f, 81.6f), t3Vector3f(0.0f, -1.0f, 0.0f), 500, 500), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
 
         // 光源
         //addShape(new a3Sphere(t3Vector3f(50.0f, 681.6f - 0.27f, 81.6f), 600.0f), t3Vector3f(0.0f, 0.0f, 0.0f), t3Vector3f(5000.0f, 5000.0f, 5000.0f), LAMBERTIAN, NULL);
@@ -253,19 +252,19 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/mitsuba.png"));
         //scene->addLight(new a3PointLight(t3Vector3f(0, 80.0f, 80.0f), a3Spectrum(500000.0f)));
 
-        a3ModelImporter importer;
+        //a3ModelImporter importer;
         //std::vector<a3Shape*>* plane = importer.load("../../../../resources/models/mitsuba/mitsuba_plane.obj");
         //std::vector<a3Shape*>* internal = importer.load("../../../../resources/models/mitsuba/mitsuba_internal.obj");
         //std::vector<a3Shape*>* sphere = importer.load("../../../../resources/models/mitsuba/mitsuba_sphere.obj");
-        std::vector<a3Shape*>* mitsuba = importer.load("../../../../resources/models/mitsuba.obj");
+        //std::vector<a3Shape*>* mitsuba = importer.load("../../../../resources/models/mitsuba.obj");
 
-        a3BSDF* bsdf = NULL;
+        //a3BSDF* bsdf = NULL;
         a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
         //a3ImageTexture<a3Spectrum>* texture = a3CreateImageTexture("../../../../resources/images/wood2.png");
 
-        if(mitsuba)
-            for(auto s : *mitsuba)
-                bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
+        //if(mitsuba)
+        //    for(auto s : *mitsuba)
+        //        bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
 
         //// plane
         //if(plane)
@@ -287,8 +286,7 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         //    for(auto t : *triangle)
         //        bsdf = addShape(t, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
 
-        //addShape(new a3Disk(t3Vector3f(0.0f, 0.0f, 0.0f), 1000.0f, t3Vector3f(0.0f, 0.0f, 1.0f)), t3Vector3f(1.0f), t3Vector3f(0.0f), LAMBERTIAN, NULL);
-        //addShape(new a3Sphere(t3Vector3f(0, 0, 0), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0.0f, 0.0f, 0.0f), GLASS, texture);
+        addShape(new a3Plane(t3Vector3f(0.f), t3Vector3f(0.f, 1.f, 0.f), 50, 50), t3Vector3f(1.0f), t3Vector3f(0.0f), LAMBERTIAN, texture);
     }
 
     // 加速结构初始化
