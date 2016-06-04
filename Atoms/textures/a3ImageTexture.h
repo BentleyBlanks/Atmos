@@ -18,7 +18,7 @@ public:
 
     virtual T evaluate(float u, float v) const
     {
-        return decoder.lookup(u, v) / 255.0f;
+        return decoder.lookup(u, v);
     }
 
     a3ImageDecoder decoder;

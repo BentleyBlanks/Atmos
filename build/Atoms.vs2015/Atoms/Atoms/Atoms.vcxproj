@@ -189,6 +189,8 @@
     <ClCompile Include="..\..\..\..\Atoms\core\log\a3Log.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\log\a3LogFile.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\log\a3LogHTML.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueue.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueueIPC.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\integrator\a3DirectLighting.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\integrator\a3Integrator.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\integrator\a3PathIntegrator.cpp" />
@@ -245,6 +247,8 @@
     <ClInclude Include="..\..\..\..\Atoms\core\log\a3Log.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\log\a3LogFile.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\log\a3LogHTML.h" />
+    <ClInclude Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueue.h" />
+    <ClInclude Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueueIPC.h" />
     <ClInclude Include="..\..\..\..\Atoms\integrator\a3DirectLighting.h" />
     <ClInclude Include="..\..\..\..\Atoms\integrator\a3Integrator.h" />
     <ClInclude Include="..\..\..\..\Atoms\integrator\a3PathIntegrator.h" />

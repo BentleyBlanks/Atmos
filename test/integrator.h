@@ -90,7 +90,7 @@ bool enableToneMapping = false;
 a3SceneName name = BVHTEST;
 a3RendererName rendererName = SAMPLER;
 a3IntegratorName integratorName = PATH;
-a3PrimitiveSetName primitiveName = EXHAUSTIVE;
+a3PrimitiveSetName primitiveName = BVH;
 
 inline a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
 {
@@ -252,19 +252,19 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/mitsuba.png"));
         //scene->addLight(new a3PointLight(t3Vector3f(0, 80.0f, 80.0f), a3Spectrum(500000.0f)));
 
-        //a3ModelImporter importer;
+        a3ModelImporter importer;
         //std::vector<a3Shape*>* plane = importer.load("../../../../resources/models/mitsuba/mitsuba_plane.obj");
         //std::vector<a3Shape*>* internal = importer.load("../../../../resources/models/mitsuba/mitsuba_internal.obj");
         //std::vector<a3Shape*>* sphere = importer.load("../../../../resources/models/mitsuba/mitsuba_sphere.obj");
-        //std::vector<a3Shape*>* mitsuba = importer.load("../../../../resources/models/mitsuba.obj");
+        std::vector<a3Shape*>* mitsuba = importer.load("../../../../resources/models/mitsuba.obj");
 
-        //a3BSDF* bsdf = NULL;
-        a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
-        //a3ImageTexture<a3Spectrum>* texture = a3CreateImageTexture("../../../../resources/images/wood2.png");
+        a3BSDF* bsdf = NULL;
+        //a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
+        a3ImageTexture<a3Spectrum>* texture = a3CreateImageTexture("../../../../resources/images/earth.png");
 
         //if(mitsuba)
         //    for(auto s : *mitsuba)
-        //        bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
+        //        bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), LAMBERTIAN, texture);
 
         //// plane
         //if(plane)
@@ -286,7 +286,8 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         //    for(auto t : *triangle)
         //        bsdf = addShape(t, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
 
-        addShape(new a3Plane(t3Vector3f(0.f), t3Vector3f(0.f, 1.f, 0.f), 50, 50), t3Vector3f(1.0f), t3Vector3f(0.0f), LAMBERTIAN, texture);
+        addShape(new a3Sphere(t3Vector3f(0.f), 30), a3Spectrum(1.f), a3Spectrum(0.f), LAMBERTIAN, texture);
+        //addShape(new a3Plane(t3Vector3f(0.f), t3Vector3f(0.f, 1.f, 0.f), 50, 50), t3Vector3f(1.0f), t3Vector3f(0.0f), LAMBERTIAN, texture);
     }
 
     // 加速结构初始化

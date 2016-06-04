@@ -68,6 +68,9 @@
     <Filter Include="ThirdParty\tinyexr">
       <UniqueIdentifier>{905e83bd-40e2-4c3f-9396-5ab12688ab1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Atoms\core\messageQueue">
+      <UniqueIdentifier>{45a4c3ec-2df7-4439-ab6d-fa0b1f302e49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Atoms\bsdf\a3BSDF.cpp">
@@ -222,6 +225,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\dependency\tinyexr\include\tinyexr.cc">
       <Filter>ThirdParty\tinyexr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueue.cpp">
+      <Filter>Atoms\core\messageQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueueIPC.cpp">
+      <Filter>Atoms\core\messageQueue</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -536,6 +545,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\dependency\tinyexr\include\tinyexr.h">
       <Filter>ThirdParty\tinyexr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueue.h">
+      <Filter>Atoms\core\messageQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueueIPC.h">
+      <Filter>Atoms\core\messageQueue</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
