@@ -1,4 +1,4 @@
-#ifndef T3_STACK_H
+﻿#ifndef T3_STACK_H
 #define T3_STACK_H
 
 #include <Common/t3DataStructuresSettings.h>

@@ -14,7 +14,7 @@
 // --!¿√…Ëº∆
 bool a3SaveExr(const float* buffer, int width, int height, const char* fileName)
 {
-    float* channels[3];
+    //float* channels[3];
 
     EXRImage image;
     InitEXRImage(&image);
@@ -61,7 +61,7 @@ bool a3SaveExr(const float* buffer, int width, int height, const char* fileName)
     {
         a3Log::error("Encoder error %d: %s\n", error);
         a3Log::error("Image %s.png saved failed\n", fileName);
-        return ret;
+        return false;
     }
 
     a3Log::success("Image %s saved succeed\n", fileName);
@@ -70,7 +70,7 @@ bool a3SaveExr(const float* buffer, int width, int height, const char* fileName)
     free(image.pixel_types);
     free(image.requested_pixel_types);
 
-    return ret;
+    return false;
 }
 
 class a3ImageEncoder::a3Encoder

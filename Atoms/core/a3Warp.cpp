@@ -260,8 +260,8 @@ float a3FovToApretureSizeRad(float fov)
 void a3ToneMapping(t3Vector3f* colorList, int xres, int yres)
 {
     // --! Thx to Denghong's implementation
-#define LUM(c) (c.x*0.299 + c.y*0.587 + 0.144*c.z)
-    static t3Vector3f black = t3Vector3f(0.1, 0.1, 0.1);
+#define LUM(c) (c.x*0.299f + c.y*0.587f + 0.144f*c.z)
+    static t3Vector3f black = t3Vector3f(0.1f, 0.1f, 0.1f);
     float l_blk = LUM(black);
 
     float ll = 0.f;
@@ -281,7 +281,7 @@ void a3ToneMapping(t3Vector3f* colorList, int xres, int yres)
     //printf("avg:%f\n", 1.f / l_avg_inv * 255);
 
     //0.36/0.72 will be brighter while 0.09/0.045 will be darker.
-    float key = 0.18;
+    float key = 0.18f;
     float f_l = key*l_avg_inv;
 
     //printf("f_l:%f\n", f_l);
