@@ -55,7 +55,7 @@ bool a3MessageQueue::isEmpty()
 
 bool a3MessageQueue::isFull()
 {
-	assert(head);
+	assert(mqHead);
 	assert(messageNum > 0);
 
 	int tail = mqHead->tail;
@@ -65,7 +65,7 @@ bool a3MessageQueue::isFull()
 
 int a3MessageQueue::getSize()
 {
-	assert(head);
+	assert(mqHead);
 	assert(messageNum > 0);
 
 	int tail = mqHead->tail;
@@ -97,7 +97,7 @@ bool a3MessageQueue::enqueue(const a3MessageEntryHead& msg)
 
 bool a3MessageQueue::dequeue(a3MessageEntryHead& msg)
 {
-	assert(head);
+	assert(mqHead);
 	assert(messageNum > 0);
 
 	if (isEmpty()) {

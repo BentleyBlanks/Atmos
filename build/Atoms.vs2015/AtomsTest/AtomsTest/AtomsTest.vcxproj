@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\test\aabb.h" />
+    <ClInclude Include="..\..\..\..\test\areaLight.h" />
     <ClInclude Include="..\..\..\..\test\coordinate.h" />
     <ClInclude Include="..\..\..\..\test\exr.h" />
     <ClInclude Include="..\..\..\..\test\fresnel.h" />

@@ -11,5 +11,7 @@ bool a3PrimitiveSet::addShape(a3Shape* shape)
     }
 
     primitives.push_back(shape);
+
+    return true;
 }
 

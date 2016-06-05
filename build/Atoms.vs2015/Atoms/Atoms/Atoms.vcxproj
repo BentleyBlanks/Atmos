@@ -192,8 +192,9 @@
     <ClCompile Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueue.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueueIPC.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\integrator\a3DirectLighting.cpp" />
-    <ClCompile Include="..\..\..\..\Atoms\integrator\a3Integrator.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\integrator\a3PathIntegrator.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\integrator\a3Integrator.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\lights\a3AreaLight.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\lights\a3InfiniteAreaLight.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\lights\a3Light.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\lights\a3PointLight.cpp" />
@@ -210,8 +211,10 @@
     <ClCompile Include="..\..\..\..\Atoms\sensors\a3PerspectiveSensor.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\sensors\a3Sensor.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\shapes\a3Disk.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\shapes\a3InfinitePlane.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\shapes\a3Plane.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\shapes\a3Shape.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\shapes\a3ShapeSet.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\shapes\a3Sphere.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\shapes\a3Triangle.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\shapes\a3TriangleMesh.cpp" />
@@ -224,6 +227,7 @@
     <ClInclude Include="..\..\..\..\Atoms\accelerators\a3BVH.h" />
     <ClInclude Include="..\..\..\..\Atoms\accelerators\a3Exhaustive.h" />
     <ClInclude Include="..\..\..\..\Atoms\accelerators\a3PrimitiveSet.h" />
+    <ClInclude Include="..\..\..\..\Atoms\Atmos.h" />
     <ClInclude Include="..\..\..\..\Atoms\bsdf\a3BSDF.h" />
     <ClInclude Include="..\..\..\..\Atoms\bsdf\a3Conductor.h" />
     <ClInclude Include="..\..\..\..\Atoms\bsdf\a3Dielectric.h" />
@@ -252,6 +256,7 @@
     <ClInclude Include="..\..\..\..\Atoms\integrator\a3DirectLighting.h" />
     <ClInclude Include="..\..\..\..\Atoms\integrator\a3Integrator.h" />
     <ClInclude Include="..\..\..\..\Atoms\integrator\a3PathIntegrator.h" />
+    <ClInclude Include="..\..\..\..\Atoms\lights\a3AreaLight.h" />
     <ClInclude Include="..\..\..\..\Atoms\lights\a3InfiniteAreaLight.h" />
     <ClInclude Include="..\..\..\..\Atoms\lights\a3Light.h" />
     <ClInclude Include="..\..\..\..\Atoms\lights\a3PointLight.h" />
@@ -268,8 +273,10 @@
     <ClInclude Include="..\..\..\..\Atoms\sensors\a3PerspectiveSensor.h" />
     <ClInclude Include="..\..\..\..\Atoms\sensors\a3Sensor.h" />
     <ClInclude Include="..\..\..\..\Atoms\shapes\a3Disk.h" />
+    <ClInclude Include="..\..\..\..\Atoms\shapes\a3InfinitePlane.h" />
     <ClInclude Include="..\..\..\..\Atoms\shapes\a3Plane.h" />
     <ClInclude Include="..\..\..\..\Atoms\shapes\a3Shape.h" />
+    <ClInclude Include="..\..\..\..\Atoms\shapes\a3ShapeSet.h" />
     <ClInclude Include="..\..\..\..\Atoms\shapes\a3Sphere.h" />
     <ClInclude Include="..\..\..\..\Atoms\shapes\a3Triangle.h" />
     <ClInclude Include="..\..\..\..\Atoms\shapes\a3TriangleMesh.h" />

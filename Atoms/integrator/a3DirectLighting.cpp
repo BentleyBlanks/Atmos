@@ -8,6 +8,7 @@
 #include <core/log/a3Log.h>
 #include <core/a3Warp.h>
 
+#include <shapes/a3Shape.h>
 #include <bsdf/a3BSDF.h>
 #include <samples/a3LightSample.h>
 

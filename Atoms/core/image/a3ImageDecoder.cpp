@@ -69,6 +69,8 @@ public:
         {
             // Ä¾ÓĞÊµÏÖ
         }
+
+        return false;
     }
 
     float getChannelColor(int x, int y, int channel) const

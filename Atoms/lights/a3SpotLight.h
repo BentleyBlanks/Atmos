@@ -11,7 +11,7 @@ public:
 
     virtual a3Spectrum sampleL(t3Vector3f& wo, const t3Vector3f& p, float* pdf, const a3LightSample& sample, a3VisibilityTester& vis) const;
 
-    virtual float pdf(const t3Vector3f&p, const t3Vector3f& wi);
+    virtual float pdf(const t3Vector3f&p, const t3Vector3f& wi) const;
 
     virtual bool isDiracDistribution() const;
 

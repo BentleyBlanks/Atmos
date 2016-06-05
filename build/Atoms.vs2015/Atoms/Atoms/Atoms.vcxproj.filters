@@ -130,9 +130,6 @@
     <ClCompile Include="..\..\..\..\Atoms\integrator\a3DirectLighting.cpp">
       <Filter>Atoms\integrator</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Atoms\integrator\a3Integrator.cpp">
-      <Filter>Atoms\integrator</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\Atoms\integrator\a3PathIntegrator.cpp">
       <Filter>Atoms\integrator</Filter>
     </ClCompile>
@@ -143,9 +140,6 @@
       <Filter>Atoms\lights</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Atoms\lights\a3PointLight.cpp">
-      <Filter>Atoms\lights</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atoms\lights\a3SpotLight.h.cpp">
       <Filter>Atoms\lights</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Atoms\renderers\a3NormalMapRenderer.cpp">
@@ -231,6 +225,21 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueueIPC.cpp">
       <Filter>Atoms\core\messageQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\shapes\a3ShapeSet.cpp">
+      <Filter>Atoms\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\integrator\a3Integrator.cpp">
+      <Filter>Atoms\integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\lights\a3AreaLight.cpp">
+      <Filter>Atoms\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\lights\a3SpotLight.h.cpp">
+      <Filter>Atoms\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\shapes\a3InfinitePlane.cpp">
+      <Filter>Atoms\shapes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -551,6 +560,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueueIPC.h">
       <Filter>Atoms\core\messageQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\shapes\a3ShapeSet.h">
+      <Filter>Atoms\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\lights\a3AreaLight.h">
+      <Filter>Atoms\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\shapes\a3InfinitePlane.h">
+      <Filter>Atoms\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\Atmos.h">
+      <Filter>Atoms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -32,7 +32,7 @@ a3Spectrum a3SpotLight::sampleL(t3Vector3f& wo, const t3Vector3f& p,
     return intensity * calculateFalloff(-wo) / toLight.lengthSquared();
 }
 
-float a3SpotLight::pdf(const t3Vector3f&p, const t3Vector3f& wi)
+float a3SpotLight::pdf(const t3Vector3f&p, const t3Vector3f& wi) const
 {
     return 0.0f;
 }

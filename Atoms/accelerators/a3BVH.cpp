@@ -367,8 +367,8 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
             return bHaveIntersection;
         }
     }
-    else
-        return false;
+
+    return false;
 }
 
 bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, 
@@ -408,6 +408,6 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
             return bHaveIntersection;
         }
     }
-    else
-        return false;
+     
+    return false;
 }
