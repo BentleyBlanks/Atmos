@@ -37,7 +37,7 @@ enum a3PrimitiveSetName
 
 // global config
 int singleX = 350, singleY = 350;
-int spp = 8;
+int spp = 128;
 int maxDepth = -1;
 int russianRouletteDepth = 3;
 int imageWidth = 700, imageHeight = 700;
@@ -177,12 +177,17 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
     }
     else if(name == WENDAOQIUER)
     {
-        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/pisaLatlong.png"));
+        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/skylightBlue.exr"));
 
-        addShape(new a3Sphere(t3Vector3f(-30, -8, 0), 37), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), GLASS, NULL);
+        a3ImageTexture<a3Spectrum>* texture = a3CreateImageTexture("../../../../resources/images/earth.png"),
+            *texture2 = a3CreateImageTexture("../../../../resources/images/wood3.png");
+        //a3CheckerBoard<a3Spectrum>* texture2 = a3CreateChekerBoardTexture();
+
+        addShape(new a3Sphere(t3Vector3f(-30, -8, 0), 37), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), LAMBERTIAN, texture);
 
         // 无限远平面
-        addShape(new a3InfinitePlane(t3Vector3f(0, 0, -37), t3Vector3f(0, 0, 1), 500, 500), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        //addShape(new a3Disk(t3Vector3f(0, 0, -37), 5000, t3Vector3f(0, 0, 1)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), LAMBERTIAN, texture2);
+        addShape(new a3InfinitePlane(t3Vector3f(0, 0, -37), t3Vector3f(0, 0, 1), 500, 500), t3Vector3f(0.8f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
     }
     else if(name == CORNEL_BOX)
     {
@@ -206,22 +211,22 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
     else if(name == BVHTEST)
     {
         //scene->addLight(new a3PointLight(t3Vector3f(0.0f, 100.0f, 10.0f), a3Spectrum(10000.0f)));
-        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/mitsuba.png"));
+        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/envmap.exr"));
         //scene->addLight(new a3PointLight(t3Vector3f(0, 80.0f, 80.0f), a3Spectrum(500000.0f)));
 
-        //a3ModelImporter importer;
+        a3ModelImporter importer;
         //std::vector<a3Shape*>* plane = importer.load("../../../../resources/models/mitsuba/mitsuba_plane.obj");
         //std::vector<a3Shape*>* internal = importer.load("../../../../resources/models/mitsuba/mitsuba_internal.obj");
         //std::vector<a3Shape*>* sphere = importer.load("../../../../resources/models/mitsuba/mitsuba_sphere.obj");
-        //std::vector<a3Shape*>* mitsuba = importer.load("../../../../resources/models/mitsuba.obj");
+        std::vector<a3Shape*>* mitsuba = importer.load("../../../../resources/models/mitsuba.obj");
 
-        //a3BSDF* bsdf = NULL;
+        a3BSDF* bsdf = NULL;
         a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
         //a3ImageTexture<a3Spectrum>* texture = a3CreateImageTexture("../../../../resources/images/earth.png");
 
-        //if(mitsuba)
-        //    for(auto s : *mitsuba)
-        //        bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), LAMBERTIAN, texture);
+        if(mitsuba)
+            for(auto s : *mitsuba)
+                bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
 
         //// plane
         //if(plane)
@@ -231,26 +236,32 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         //// internal
         //if(internal)
         //    for(auto s : *internal)
-        //        bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
+        //        bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
 
         //// sphere
         //if(sphere)
         //    for(auto s : *sphere)
-        //        bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
+        //        bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), MIRROR, NULL);
 
         //std::vector<a3Shape*>* triangle = importer.load("../../../../resources/models/sphere.obj");
         //if(triangle)
         //    for(auto t : *triangle)
         //        bsdf = addShape(t, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
 
-        t3Vector3f normal(1, 0, 0), nx(0, 0, 1), ny(0, 1, 0), p(-30, 0, 0);
-        t3Matrix4x4 worldToPlane;
-        worldToPlane._mat[0].set(ny.x, normal.x, nx.x, 0.f);
-        worldToPlane._mat[1].set(ny.y, normal.y, nx.y, 0.f);
-        worldToPlane._mat[2].set(ny.z, normal.z, nx.z, 0.f);
-        worldToPlane._mat[3].set(0.f, 0.f, 0.f, 1.f);
+        //t3Vector3f normal(1, 0, 0), nx(0, 0, 1), ny(0, 1, 0), p(0, 0, 0);
+        //t3Matrix4x4 worldToPlane;
+        //worldToPlane._mat[0].set(ny.x, nx.x, normal.x, 0.f);
+        //worldToPlane._mat[1].set(ny.y, nx.y, normal.y, 0.f);
+        //worldToPlane._mat[2].set(ny.z, nx.z, normal.z, 0.f);
+        //worldToPlane._mat[3].set(0.f, 0.f, 0.f, 1.f);
 
-        a3Plane* plane = new a3Plane(worldToPlane, p, 50, 50);
+        //t3Matrix4x4 localToWolrd;
+        //localToWolrd._mat[0].set(nx.x, nx.y, nx.z, 0.f);
+        //localToWolrd._mat[1].set(ny.x, ny.y, ny.z, 0.f);
+        //localToWolrd._mat[2].set(normal.x, normal.y, normal.z, 0.f);
+        //localToWolrd._mat[3].set(0.f, 0.f, 0.f, 1.f);
+
+        //a3Plane* plane = new a3Plane(worldToPlane, p, 50, 50);
         //addShape(plane, t3Vector3f(1.0f), t3Vector3f(0.0f), LAMBERTIAN, NULL);
 
         // 地球仪
