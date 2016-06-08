@@ -33,6 +33,8 @@ public:
 
     void write();
 
+    bool isFinished();
+
     // 采样器
     a3Sampler* sampler;
 
@@ -62,6 +64,8 @@ public:
 
     // 划分力度
     int levelX, levelY;
+
+    bool finished;
 
     // [private]
     // 当前遍历到的网格序号

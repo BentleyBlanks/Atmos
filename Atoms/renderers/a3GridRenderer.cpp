@@ -22,6 +22,7 @@ a3GridRenderer::a3GridRenderer()
     startX(0), startY(0), renderWidth(0), renderHeight(0), currentGrid(0),
     gridWidth(0), gridHeight(0),
     levelX(A3_GRID_LEVELX), levelY(A3_GRID_LEVELY),
+    finished(false),
     colorList(NULL)
 {
 
@@ -33,6 +34,7 @@ a3GridRenderer::a3GridRenderer(int spp, int startX, int startY, int renderWidth,
     startX(0), startY(0), renderWidth(0), renderHeight(renderWidth), currentGrid(renderHeight),
     gridWidth(0), gridHeight(0),
     levelX(A3_GRID_LEVELX), levelY(A3_GRID_LEVELY),
+    finished(false),
     colorList(NULL)
 {
 
@@ -44,6 +46,7 @@ a3GridRenderer::a3GridRenderer(int spp)
     startX(0), startY(0), renderWidth(0), renderHeight(0), currentGrid(0),
     gridWidth(0), gridHeight(0),
     levelX(A3_GRID_LEVELX), levelY(A3_GRID_LEVELY),
+    finished(false),
     colorList(NULL)
 {
 
@@ -56,6 +59,8 @@ a3GridRenderer::~a3GridRenderer()
 
 void a3GridRenderer::begin()
 {
+    finished = false;
+    
     imageWidth = camera->image->width;
     imageHeight = camera->image->height;
 
@@ -68,8 +73,12 @@ void a3GridRenderer::begin()
 
     // 初始化网格渲染信息
     gridWidth = renderWidth / levelX;
+    if(renderWidth % levelX != 0)
+        a3Log::warning("a3GridRenderer 网格在x轴上无法完整划分，渲染结果中可能出现黑边\n");
 
     gridHeight = renderHeight / levelY;
+    if(renderHeight % levelY != 0)
+        a3Log::warning("a3GridRenderer 网格在y轴上无法完整划分，渲染结果中可能出现黑边\n");
 
     return;
 }
@@ -96,6 +105,13 @@ void a3GridRenderer::setLevel(int levelX, int levelY)
 
 void a3GridRenderer::render(const a3Scene* scene)
 {
+    // 已结束
+    if(currentGrid >= levelY * levelX)
+    {
+        finished = true;
+        return;
+    }
+
     if(!check())
     {
         a3Log::warning("Grid Rendering Start Failed\n");
@@ -114,7 +130,7 @@ void a3GridRenderer::render(const a3Scene* scene)
 #pragma omp parallel for schedule(dynamic)
     for(int x = gridX; x < gridEndX; x++)
     {
-        a3Log::info("Grid[%d/%d] SPP:%d Rendering: %8.2f \r", currentGrid, levelX * levelY, spp, (double) (x - gridX) / gridWidth * 100);
+        a3Log::info("Grid[%d/%d] SPP:%d Rendering: %8.2f \r", currentGrid + 1, levelX * levelY, spp, (double) (x - gridX) / gridWidth * 100);
 
         for(int y = gridY; y < gridEndY; y++)
         {
@@ -207,6 +223,11 @@ void a3GridRenderer::write()
 {
     // 保存真实渲染图像文件
     camera->image->write();
+}
+
+bool a3GridRenderer::isFinished()
+{
+    return finished;
 }
 
 bool a3GridRenderer::check()

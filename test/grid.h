@@ -29,11 +29,11 @@ int main()
     r->sampler = new a3RandomSampler();
     r->integrator = path;
     r->enableGammaCorrection = false;
-    r->enableToneMapping = true;
-    r->startX = 0;
-    r->startY = 0;
-    r->renderWidth = 700;
-    r->renderHeight = 200;
+    r->enableToneMapping = false;
+    //r->startX = 0;
+    //r->startY = 0;
+    //r->renderWidth = 700;
+    //r->renderHeight = 200;
 
     auto addShape = [&scene](a3Shape* s, a3Spectrum R, a3Spectrum emission, int type, a3Texture<a3Spectrum>* texture)->auto
     {

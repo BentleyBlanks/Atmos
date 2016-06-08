@@ -4,14 +4,14 @@
 #include <samples/a3LightSample.h>
 #include <core/a3Random.h>
 
-a3InfinitePlane::a3InfinitePlane(const t3Vector3f& p, const t3Vector3f& normal, float width, float height)
-    :p(p), normal(normal.getNormalized()), a3Shape("a3InifinitePlane")
+a3InfinitePlane::a3InfinitePlane(const t3Vector3f& p, const t3Vector3f& normal)
+    :p(p), normal(normal.getNormalized()), a3Shape("a3InfinitePlane")
 {
     aabb.set(t3Vector3f(-A3_INFINITY), t3Vector3f(A3_INFINITY));
 }
 
 
-void a3InfinitePlane::set(const t3Vector3f& p, const t3Vector3f& normal, float width, float height)
+void a3InfinitePlane::set(const t3Vector3f& p, const t3Vector3f& normal)
 {
     this->p = p;
     this->normal = normal.getNormalized();

@@ -4,6 +4,7 @@
 #include <shapes/a3Disk.h>
 #include <shapes/a3Triangle.h>
 #include <shapes/a3InfinitePlane.h>
+#include <shapes/a3TriangleMesh.h>
 
 #include <Common/t3Timer.h>
 

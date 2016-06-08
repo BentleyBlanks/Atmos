@@ -8,9 +8,9 @@
 class a3InfinitePlane :public a3Shape
 {
 public:
-    a3InfinitePlane(const t3Vector3f& p, const t3Vector3f& normal, float width, float height);
+    a3InfinitePlane(const t3Vector3f& p, const t3Vector3f& normal);
 
-    void set(const t3Vector3f& p, const t3Vector3f& normal, float width, float height);
+    void set(const t3Vector3f& p, const t3Vector3f& normal);
 
     virtual bool intersect(const a3Ray& ray, float* t, float* u, float* v, float* vtu, float* vtv) const;
 
