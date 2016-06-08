@@ -17,28 +17,33 @@
 #include <Common/t3Timer.h>
 
 a3GridRenderer::a3GridRenderer()
-  : spp(128), sampler(NULL), camera(NULL), 
-    enableGammaCorrection(true), enableToneMapping(false), 
+    : spp(128), sampler(NULL), camera(NULL),
+    enableGammaCorrection(true), enableToneMapping(false),
     startX(0), startY(0), renderWidth(0), renderHeight(0), currentGrid(0),
     gridWidth(0), gridHeight(0),
+    levelX(A3_GRID_LEVELX), levelY(A3_GRID_LEVELY),
     colorList(NULL)
 {
 
 }
 
 a3GridRenderer::a3GridRenderer(int spp, int startX, int startY, int renderWidth, int renderHeight)
-  : spp(spp), sampler(NULL), camera(NULL), 
-    enableGammaCorrection(true), enableToneMapping(false), 
+    : spp(spp), sampler(NULL), camera(NULL),
+    enableGammaCorrection(true), enableToneMapping(false),
     startX(0), startY(0), renderWidth(0), renderHeight(renderWidth), currentGrid(renderHeight),
+    gridWidth(0), gridHeight(0),
+    levelX(A3_GRID_LEVELX), levelY(A3_GRID_LEVELY),
     colorList(NULL)
 {
 
 }
 
 a3GridRenderer::a3GridRenderer(int spp)
-  : spp(spp), sampler(NULL), camera(NULL),
+    : spp(spp), sampler(NULL), camera(NULL),
     enableGammaCorrection(true), enableToneMapping(false),
     startX(0), startY(0), renderWidth(0), renderHeight(0), currentGrid(0),
+    gridWidth(0), gridHeight(0),
+    levelX(A3_GRID_LEVELX), levelY(A3_GRID_LEVELY),
     colorList(NULL)
 {
 
@@ -49,23 +54,16 @@ a3GridRenderer::~a3GridRenderer()
 
 }
 
-void a3GridRenderer::setCamera(a3Sensor* camera)
-{
-    if(camera && camera->image)
-    {
-        this->camera = camera;
-        startX = 0;
-        startY = 0;
-        renderWidth = camera->image->width;
-        renderHeight = camera->image->height;
-        return;
-    }
-    
-    a3Log::warning("a3GridRenderer::setCamera() camera实例不能为空\n");
-}
-
 void a3GridRenderer::begin()
 {
+    imageWidth = camera->image->width;
+    imageHeight = camera->image->height;
+
+    if(renderWidth <= 0)
+        renderWidth = camera->image->width;
+    if(renderHeight <= 0)
+        renderHeight = camera->image->height;
+
     colorList = new a3Spectrum[camera->image->width * camera->image->height]();
 
     // 初始化网格渲染信息
@@ -107,8 +105,8 @@ void a3GridRenderer::render(const a3Scene* scene)
         a3Log::success("Grid Rendering Started\n");
 
     // 局部Grid渲染
-    int gridX = startX + (int)(currentGrid % levelX) * gridWidth;
-    int gridY = startY + (int)(currentGrid / levelY) * gridHeight;
+    int gridX = startX + (int) (currentGrid % levelX) * gridWidth;
+    int gridY = startY + (int) (currentGrid / levelY) * gridHeight;
 
     int gridEndX = gridX + gridWidth;
     int gridEndY = gridY + gridHeight;
@@ -116,7 +114,7 @@ void a3GridRenderer::render(const a3Scene* scene)
 #pragma omp parallel for schedule(dynamic)
     for(int x = gridX; x < gridEndX; x++)
     {
-        a3Log::info("Grid[%d/%d] Rendering: %8.2f \r", currentGrid, levelX * levelY, (double) (x - gridX) / gridWidth * 100);
+        a3Log::info("Grid[%d/%d] SPP:%d Rendering: %8.2f \r", currentGrid, levelX * levelY, spp, (double) (x - gridX) / gridWidth * 100);
 
         for(int y = gridY; y < gridEndY; y++)
         {
@@ -140,7 +138,7 @@ void a3GridRenderer::render(const a3Scene* scene)
             }
 
             // 临时空间中setColor
-            colorList[x + y * renderWidth] = color;
+            colorList[x + y * camera->image->width] = color;
         }
     }
 
@@ -151,19 +149,25 @@ void a3GridRenderer::render(const a3Scene* scene)
 
 void a3GridRenderer::postEffect()
 {
+    int renderEndX = startX + renderWidth;
+    int renderEndY = startY + renderHeight;
+
+    int width = camera->image->width;
+    int height = camera->image->height;
+
     a3Log::success("Post Effct Started\n");
 
     if(!enableToneMapping)
     {
         // clamp color
-#pragma omp parallel for schedule(dynamic)
-        for(int x = startX; x < renderWidth; x++)
+        //#pragma omp parallel for schedule(dynamic)
+        for(int x = startX; x < renderEndX; x++)
         {
-            a3Log::info("Clamp: %8.2f \r", (double) x / renderWidth * 100);
+            a3Log::info("Clamp: %8.2f \r", (double) (x - startX) / renderWidth * 100);
 
-            for(int y = startY; y < renderHeight; y++)
+            for(int y = startY; y < renderEndY; y++)
             {
-                a3Spectrum& color = colorList[x + y * renderWidth];
+                a3Spectrum& color = colorList[x + y * width];
 
                 color.x = t3Math::clamp(color.x, 0.0f, 1.0f);
                 color.y = t3Math::clamp(color.y, 0.0f, 1.0f);
@@ -175,17 +179,17 @@ void a3GridRenderer::postEffect()
 
     // tone mapping
     a3Log::info("Tone Mapping: %s\n", enableToneMapping ? "enabled" : "disabled");
-    if(enableToneMapping)   
-        a3ToneMapping(colorList, renderWidth, renderHeight);
+    if(enableToneMapping)
+        a3ToneMapping(colorList, startX, startY, renderWidth, renderHeight, width, height);
 
-#pragma omp parallel for schedule(dynamic)
-    for(int x = startX; x < renderWidth; x++)
+    //#pragma omp parallel for schedule(dynamic)
+    for(int x = startX; x < renderEndX; x++)
     {
-        a3Log::info("Gamma Correction:%s    Imaging: %8.2f \r", enableGammaCorrection ? "enabled" : "disabled", (double) x / renderWidth * 100);
+        a3Log::info("Gamma Correction:%s    Imaging: %8.2f \r", enableGammaCorrection ? "enabled" : "disabled", (double) (x - startX) / renderWidth * 100);
 
-        for(int y = startY; y < renderHeight; y++)
+        for(int y = startY; y < renderEndY; y++)
         {
-            a3Spectrum& color = colorList[x + y * renderWidth];
+            a3Spectrum& color = colorList[x + y * width];
 
             // gamma correction
             if(enableGammaCorrection)
@@ -209,30 +213,30 @@ bool a3GridRenderer::check()
 {
     if(!camera)
     {
-        a3Log::error("a3SamplerRenderer::render()前camera: %d尚未分配指定\n", camera);
+        a3Log::error("a3GridRenderer::render()前camera: %d尚未分配指定\n", camera);
         return false;
     }
     else if(!camera->image)
     {
-        a3Log::error("a3SamplerRenderer::render()前camera中image: %d尚未分配指定\n", camera);
+        a3Log::error("a3GridRenderer::render()前camera中image: %d尚未分配指定\n", camera);
         return false;
     }
 
     if(!sampler)
     {
-        a3Log::error("a3SamplerRenderer::render()前sampler: %d尚未分配指定\n", sampler);
+        a3Log::error("a3GridRenderer::render()前sampler: %d尚未分配指定\n", sampler);
         return false;
     }
 
     if(!integrator)
     {
-        a3Log::error("a3SamplerRenderer::render()前integrator: %d尚未分配指定\n", integrator);
+        a3Log::error("a3GridRenderer::render()前integrator: %d尚未分配指定\n", integrator);
         return false;
     }
 
-    if(gridWidth == 0 || gridHeight == 0)
+    if(gridWidth <= 0 || gridHeight <= 0)
     {
-        a3Log::error("a3SamplerRenderer::render()前gridWidth:%d, gridHeight: %d 信息未初始化\n", gridWidth, gridHeight);
+        a3Log::error("a3GridRenderer::render()前gridWidth:%d, gridHeight: %d 数据非法\n", gridWidth, gridHeight);
         return false;
     }
 

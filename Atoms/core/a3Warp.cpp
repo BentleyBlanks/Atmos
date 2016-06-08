@@ -259,6 +259,11 @@ float a3FovToApretureSizeRad(float fov)
 
 void a3ToneMapping(t3Vector3f* colorList, int xres, int yres)
 {
+    a3ToneMapping(colorList, 0, 0, xres, yres, xres, yres);
+}
+
+void a3ToneMapping(t3Vector3f* colorList, int startX, int startY, int localWidth, int localHeight, int width, int height)
+{
     // --! Thx to Denghong's implementation
 #define LUM(c) (c.x*0.299f + c.y*0.587f + 0.144f*c.z)
     static t3Vector3f black = t3Vector3f(0.1f, 0.1f, 0.1f);
@@ -266,17 +271,17 @@ void a3ToneMapping(t3Vector3f* colorList, int xres, int yres)
 
     float ll = 0.f;
 
-    for(int i = 0; i < yres; ++i)
+    for(int i = startY; i < startY + localHeight; ++i)
     {
-        for(int j = 0; j < xres; ++j)
+        for(int j = startX; j < startX + localWidth; ++j)
         {
-            t3Vector3f cc = colorList[i * xres + j];
+            t3Vector3f cc = colorList[i * width + j];
             //use l_blk to avoid ln(0)
             ll += t3Math::log(LUM(cc) + l_blk);
         }
     }
 
-    float l_avg_inv = 1.f / t3Math::exp(ll / (xres*yres));
+    float l_avg_inv = 1.f / t3Math::exp(ll / (localWidth*localHeight));
 
     //printf("avg:%f\n", 1.f / l_avg_inv * 255);
 
@@ -286,11 +291,11 @@ void a3ToneMapping(t3Vector3f* colorList, int xres, int yres)
 
     //printf("f_l:%f\n", f_l);
 
-    for(int i = 0; i < yres; ++i)
+    for(int i = 0; i < startY + localHeight; ++i)
     {
-        for(int j = 0; j < xres; ++j)
+        for(int j = 0; j < startX + localWidth; ++j)
         {
-            t3Vector3f cc = colorList[i * xres + j];
+            t3Vector3f cc = colorList[i * width + j];
 
             float lo = f_l*(LUM(cc));
             //to 0~1
@@ -310,7 +315,7 @@ void a3ToneMapping(t3Vector3f* colorList, int xres, int yres)
             cc.y = t3Math::clamp(cc.y, 0.0f, 1.0f);
             cc.z = t3Math::clamp(cc.z, 0.0f, 1.0f);
 
-            colorList[i * xres + j] = cc;
+            colorList[i * width + j] = cc;
         }
     }
 #undef LUM

@@ -22,9 +22,6 @@ public:
 
     void end();
 
-    // 同时会初始化局部渲染信息
-    void setCamera(a3Sensor* camera);
-
     // 初始化划分力度
     void setLevel(int levelX = A3_GRID_LEVELX, int levelY = A3_GRID_LEVELY);
 
@@ -72,6 +69,9 @@ public:
 
     // 网格宽高
     int gridWidth, gridHeight;
+
+    // 真实图像大小的宽高
+    int imageWidth, imageHeight;
 };
 
 #endif

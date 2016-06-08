@@ -24,16 +24,16 @@ int main()
     scene->primitiveSet = bvh = new a3BVH();
 
     a3GridRenderer* r = new a3GridRenderer(8);
-    r->setCamera(camera);
     r->setLevel(5, 5);
+    r->camera = camera;
     r->sampler = new a3RandomSampler();
     r->integrator = path;
-    r->enableGammaCorrection = true;
-    r->enableToneMapping = false;
-    //r->startX = 100;
-    //r->startY = 300;
-    //r->renderWidth = 200;
-    //r->renderHeight = 200;
+    r->enableGammaCorrection = false;
+    r->enableToneMapping = true;
+    r->startX = 0;
+    r->startY = 0;
+    r->renderWidth = 700;
+    r->renderHeight = 200;
 
     auto addShape = [&scene](a3Shape* s, a3Spectrum R, a3Spectrum emission, int type, a3Texture<a3Spectrum>* texture)->auto
     {
