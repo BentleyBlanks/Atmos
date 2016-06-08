@@ -37,7 +37,7 @@ enum a3PrimitiveSetName
 
 // global config
 int singleX = 350, singleY = 350;
-int spp = 128;
+int spp = 8;
 int maxDepth = -1;
 int russianRouletteDepth = 3;
 int imageWidth = 700, imageHeight = 700;
@@ -211,17 +211,17 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
     else if(name == BVHTEST)
     {
         //scene->addLight(new a3PointLight(t3Vector3f(0.0f, 100.0f, 10.0f), a3Spectrum(10000.0f)));
-        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/envmap.exr"));
+        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/grace-new_latlong.exr"));
         //scene->addLight(new a3PointLight(t3Vector3f(0, 80.0f, 80.0f), a3Spectrum(500000.0f)));
 
         a3ModelImporter importer;
         //std::vector<a3Shape*>* plane = importer.load("../../../../resources/models/mitsuba/mitsuba_plane.obj");
         //std::vector<a3Shape*>* internal = importer.load("../../../../resources/models/mitsuba/mitsuba_internal.obj");
         //std::vector<a3Shape*>* sphere = importer.load("../../../../resources/models/mitsuba/mitsuba_sphere.obj");
-        std::vector<a3Shape*>* mitsuba = importer.load("../../../../resources/models/mitsuba.obj");
+        std::vector<a3Shape*>* mitsuba = importer.load("../../../../resources/models/blender.obj");
 
         a3BSDF* bsdf = NULL;
-        a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
+        //a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
         //a3ImageTexture<a3Spectrum>* texture = a3CreateImageTexture("../../../../resources/images/earth.png");
 
         if(mitsuba)

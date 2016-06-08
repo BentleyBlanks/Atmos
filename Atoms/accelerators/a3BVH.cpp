@@ -2,7 +2,6 @@
 #include <core/a3Ray.h>
 #include <shapes/a3Shape.h>
 #include <core/log/a3Log.h>
-#include <LinearList/t3Stack.h>
 #include <core/a3Intersection.h>
 
 //  TreeNode
@@ -254,8 +253,6 @@ bool a3BVH::intersect(const a3Ray& ray, a3Intersection* intersection) const
 {
     if(!root) return false;
 
-    t3Stack<a3BVHTreeNode*> todo;
-
     t3Vector3f inverseDirection(1.f / ray.direction.x, 
                                 1.f / ray.direction.y, 
                                 1.f / ray.direction.z);
@@ -299,8 +296,6 @@ bool a3BVH::intersect(const a3Ray& ray, a3Intersection* intersection) const
 bool a3BVH::intersect(const a3Ray& ray) const
 {
     if(!root) return false;
-
-    t3Stack<a3BVHTreeNode*> todo;
 
     t3Vector3f inverseDirection(1.f / ray.direction.x,
                                 1.f / ray.direction.y,

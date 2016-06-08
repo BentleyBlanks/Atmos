@@ -241,6 +241,9 @@
     <ClCompile Include="..\..\..\..\Atoms\shapes\a3InfinitePlane.cpp">
       <Filter>Atoms\shapes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\renderers\a3GridRenderer.cpp">
+      <Filter>Atoms\renderers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Atoms\bsdf\a3BSDF.h">
@@ -572,6 +575,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atoms\Atmos.h">
       <Filter>Atoms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\renderers\a3GridRenderer.h">
+      <Filter>Atoms\renderers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

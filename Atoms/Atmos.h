@@ -18,6 +18,7 @@
 #include <renderers/a3NormalMapRenderer.h>
 #include <renderers/a3SingleRayRenderer.h>
 #include <renderers/a3FresnelRenderer.h>
+#include <renderers/a3GridRenderer.h>
 
 // textures
 #include <textures/a3ImageTexture.h>

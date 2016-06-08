@@ -34,7 +34,7 @@ public:
     float level;
 };
 
-a3CheckerBoard<a3Spectrum>* a3CreateChekerBoardTexture(float t1 = 1.0f, float t2 = 0.8f)
+inline a3CheckerBoard<a3Spectrum>* a3CreateChekerBoardTexture(float t1 = 1.0f, float t2 = 0.8f)
 {
     a3CheckerBoard<a3Spectrum>* texture = new a3CheckerBoard<a3Spectrum>(a3ConstantTexture<a3Spectrum>(a3Spectrum(t1)),
                                                                          a3ConstantTexture<a3Spectrum>(a3Spectrum(t2)));

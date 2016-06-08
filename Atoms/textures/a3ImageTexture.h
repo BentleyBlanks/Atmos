@@ -24,7 +24,7 @@ public:
     a3ImageDecoder decoder;
 };
 
-a3ImageTexture<a3Spectrum>* a3CreateImageTexture(const char* filePath)
+inline a3ImageTexture<a3Spectrum>* a3CreateImageTexture(const char* filePath)
 {
     a3ImageTexture<a3Spectrum>* texture = new a3ImageTexture<a3Spectrum>(filePath);
 
