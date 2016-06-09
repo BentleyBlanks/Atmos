@@ -8,7 +8,7 @@ a3SpotLight::a3SpotLight(const t3Vector3f& position, const t3Vector3f& direction
   intensity(intensity), 
   cosConeAngle(t3Math::cosDeg(coneAngleDeg)), 
   cosFalloffStart(t3Math::cosDeg(coneAngleDeg - coneDeltaAngleDeg)),
-  a3Light()
+  a3Light("a3SpotLight")
 {
     // 暂不启用光源局部坐标系
     //lightToWorld.set();

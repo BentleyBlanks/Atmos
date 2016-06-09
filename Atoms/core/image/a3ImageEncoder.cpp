@@ -86,6 +86,11 @@ public:
 #endif
     }
 
+    ~a3Encoder()
+    {
+        image.clear();
+    }
+
     void setColor(int x, int y, const t3Vector3f& L)
     {
 #ifdef A3_IMAGE_LIB_PNGPP
@@ -136,7 +141,7 @@ public:
 };
 
 
-a3ImageEncoder::a3ImageEncoder(unsigned width, unsigned height, a3ImageType type) :type(type)
+a3ImageEncoder::a3ImageEncoder(unsigned width, unsigned height, a3ImageType type) :type(type), pixels(NULL)
 {
     encoder = new a3Encoder(width, height, type);
 
@@ -155,13 +160,17 @@ a3ImageEncoder::a3ImageEncoder(unsigned width, unsigned height, a3ImageType type
 
 a3ImageEncoder::~a3ImageEncoder()
 {
-    for(int i = 0; i < encoder->width; i++)
-        delete[] pixels[i];
-    delete[] pixels;
-    pixels = NULL;
+    if(pixels)
+    {
+        for(int i = 0; i < encoder->width; i++)
+            delete[] pixels[i];
 
-    delete encoder;
-    encoder = NULL;
+        delete[] pixels;
+        pixels = NULL;
+    }
+
+    A3_SAFE_DELETE_1DARRAY(buffer);
+    A3_SAFE_DELETE(encoder);
 }
 
 void a3ImageEncoder::setColor(int x, int y, const t3Vector3f& L)

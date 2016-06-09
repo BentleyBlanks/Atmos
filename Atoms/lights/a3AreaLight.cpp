@@ -3,7 +3,7 @@
 #include "a3AreaLight.h"
 
 a3AreaLight::a3AreaLight(const a3Spectrum& emission)
-    :emission(emission), a3Light()
+    :emission(emission), a3Light("a3AreaLight")
 {
 
 }

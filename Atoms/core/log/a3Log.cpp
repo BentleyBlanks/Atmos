@@ -112,6 +112,7 @@ void a3Log::log(a3LogLevel logLevel, const char* message, va_list args)
 
         vprintf(content, args);
 
+        delete[] content;
 #ifdef A3_LOG_UTF8
         {
             char cache[16 * 1024 + 32] = {'\0'};

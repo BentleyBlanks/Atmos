@@ -72,6 +72,8 @@ private:
     bool intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT, 
                    float* _u, float* _v, float* vtu, float* vtv,
                    const t3Vector3f &invDir, const unsigned int dirIsNeg[3]) const;
+
+    void treeDelete(a3BVHTreeNode* root);
 };
 
 #endif

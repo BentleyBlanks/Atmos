@@ -10,6 +10,8 @@ class a3Ray;
 class a3PrimitiveSet
 {
 public:
+    virtual ~a3PrimitiveSet();
+
     virtual bool intersect(const a3Ray& ray, a3Intersection* intersection) const = 0;
 
     virtual bool intersect(const a3Ray& ray) const = 0;

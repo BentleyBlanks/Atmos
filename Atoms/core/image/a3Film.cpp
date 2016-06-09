@@ -26,7 +26,7 @@ a3Film::a3Film(unsigned width, unsigned height, const std::string& fileName) : w
 
 a3Film::~a3Film()
 {
-    delete picture;
+    A3_SAFE_DELETE(picture);
 }
 
 void a3Film::addColor(int x, int y, const t3Vector3f& color)
