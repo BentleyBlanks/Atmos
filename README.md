@@ -18,6 +18,8 @@ Tatty3d的数据结构模块，用于计时器等基础库使用
 
 4.[t3Math](https://github.com/BentleyBlanks/t3Math)完成基本数学库支持
 
+5.[Tinyexr](https://github.com/syoyo/tinyexr)用于EXR图片解码编码
+
 ## 效果图
 
 ![](https://farm8.staticflickr.com/7249/26683877470_3b0a728e81_o.png)
@@ -55,27 +57,25 @@ SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/phot
 ```
 输出到文件部分目前```不支持```中文或者其他UTF8字符
 
-2.```a3SamplerRenderer.cpp```中定义了```A3_RENDERING_NORMALMAP```和```A3_RENDERING_SINGLERAY```模式用于调试(全局渲染为法线, 单光线跟踪)，以及正常渲染模式```A3_RENDERING_REALISTICIMAGE```
+2.```Renderer```目前提供了多种调试模式渲染，同时支持网格渲染，正常的采样渲染，以及Debug专用的单光线跟踪，法线/菲涅尔贴图渲染等
 
 3.目前Atmos支持Triangle(Mesh暂不支持), Sphere, Disk, Plane等基本几何形状
 
 4.Atmos支持```景深```，```透视```等基本相机效果
 
-5.Atmos目前支持显式的无限远区域光光照，聚光灯和点光源(其他基本光源暂未实现)
+5.Atmos目前支持无限远区域光光照，区域光光照，聚光灯和点光源(其他基本光源暂未实现)
 
 6.Atmos中BVH实现为简易```EqualCounts```(暂不支持SAH分割)
 
-7.Atmos目前几何体除Plane外(TriangleMesh未实现)，都支持基本```纹理映射```
+7.Atmos目前实现的几何体都支持基本```纹理映射```
 
 ##待办事项
-
-0.修正Plane的实现转为双三角面
 
 1.修正Conductor的错误菲涅尔反射问题
 
 2.基于物理的BRDF模型，微表面模型的支持
 
-3.更多光源模型的支持(Area Light, Distant Light)
+3.更多光源模型的支持(Distant Light)
 
 4.全局重要性采样概念理解
 
