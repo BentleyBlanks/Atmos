@@ -122,7 +122,7 @@ void a3GridRenderer::render(const a3Scene* scene)
 
     // 局部Grid渲染
     int gridX = startX + (int) (currentGrid % levelX) * gridWidth;
-    int gridY = startY + (int) (currentGrid / levelY) * gridHeight;
+    int gridY = startY + (int) (currentGrid / levelX) * gridHeight;
 
     int gridEndX = gridX + gridWidth;
     int gridEndY = gridY + gridHeight;
@@ -130,8 +130,8 @@ void a3GridRenderer::render(const a3Scene* scene)
 #pragma omp parallel for schedule(dynamic)
     for(int x = gridX; x < gridEndX; x++)
     {
-        a3Log::info("Grid[%d/%d] SPP:%d Rendering: %8.2f \r", currentGrid + 1, levelX * levelY, spp, (double) (x - gridX) / gridWidth * 100);
-
+        progress = (float) (x - gridX) / gridWidth;
+        a3Log::info("Grid[%d/%d] SPP:%d Rendering: %8.2f \r", currentGrid + 1, levelX * levelY, spp, progress * 100);
         for(int y = gridY; y < gridEndY; y++)
         {
             a3Spectrum color;

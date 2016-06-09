@@ -187,7 +187,7 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
 
         // 无限远平面
         //addShape(new a3Disk(t3Vector3f(0, 0, -37), 5000, t3Vector3f(0, 0, 1)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), LAMBERTIAN, texture2);
-        addShape(new a3InfinitePlane(t3Vector3f(0, 0, -37), t3Vector3f(0, 0, 1), 500, 500), t3Vector3f(0.8f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        addShape(new a3InfinitePlane(t3Vector3f(0, 0, -37), t3Vector3f(0, 0, 1)), t3Vector3f(0.8f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
     }
     else if(name == CORNEL_BOX)
     {
@@ -196,12 +196,12 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         addShape(new a3Sphere(t3Vector3f(27.0f, 16.5f, 78.0f), 16.5f), t3Vector3f(1.0f), t3Vector3f(0.0f, 0.0f, 0.0f), GLASS, NULL);
 
         // Plane
-        addShape(new a3InfinitePlane(t3Vector3f(1.0f, 40.8f, 81.6f), t3Vector3f(1.0f, 0.0f, 0.0f), 500, 500), t3Vector3f(0.25f, 0.25f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
-        addShape(new a3InfinitePlane(t3Vector3f(99.0f, 40.8f, 81.6f), t3Vector3f(-1.0f, 0.0f, 0.0f), 500, 500), t3Vector3f(0.75f, 0.25f, 0.25f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
-        addShape(new a3InfinitePlane(t3Vector3f(50.0f, 40.8f, 0.0f), t3Vector3f(0.0f, 0.0f, 1.0f), 500, 500), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
-        //addShape(new a3Plane(t3Vector3f(50.0f, 40.8f, 310.0f), t3Vector3f(0.0f, 0.0f, 1), 500, 500), t3Vector3f(0.0f, 0.0f, 0.0f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
-        addShape(new a3InfinitePlane(t3Vector3f(50.0f, 0.0f, 81.6f), t3Vector3f(0.0f, 1.0f, 0.0f), 500, 500), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
-        addShape(new a3InfinitePlane(t3Vector3f(50.0f, 81.6f, 81.6f), t3Vector3f(0.0f, -1.0f, 0.0f), 500, 500), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        addShape(new a3InfinitePlane(t3Vector3f(1.0f, 40.8f, 81.6f), t3Vector3f(1.0f, 0.0f, 0.0f)), t3Vector3f(0.25f, 0.25f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        addShape(new a3InfinitePlane(t3Vector3f(99.0f, 40.8f, 81.6f), t3Vector3f(-1.0f, 0.0f, 0.0f)), t3Vector3f(0.75f, 0.25f, 0.25f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        addShape(new a3InfinitePlane(t3Vector3f(50.0f, 40.8f, 0.0f), t3Vector3f(0.0f, 0.0f, 1.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        //addShape(new a3Plane(t3Vector3f(50.0f, 40.8f, 310.0f), t3Vector3f(0.0f, 0.0f, 1)), t3Vector3f(0.0f, 0.0f, 0.0f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        addShape(new a3InfinitePlane(t3Vector3f(50.0f, 0.0f, 81.6f), t3Vector3f(0.0f, 1.0f, 0.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        addShape(new a3InfinitePlane(t3Vector3f(50.0f, 81.6f, 81.6f), t3Vector3f(0.0f, -1.0f, 0.0f)), t3Vector3f(0.75f, 0.75f, 0.75f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
 
         // 光源
         //addShape(new a3Sphere(t3Vector3f(50.0f, 681.6f - 0.27f, 81.6f), 600.0f), t3Vector3f(0.0f, 0.0f, 0.0f), t3Vector3f(5000.0f, 5000.0f, 5000.0f), LAMBERTIAN, NULL);
