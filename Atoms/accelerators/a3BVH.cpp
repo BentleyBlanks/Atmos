@@ -111,14 +111,15 @@ static inline bool a3RayBoxIntersect(const a3AABB &bounds, const a3Ray &ray, con
     return (tmin < maxT) && (tmax > minT);
 }
 
-a3BVH::a3BVH()
+a3BVH::a3BVH():root(NULL)
 {
     
 }
  
 a3BVH::~a3BVH()
 {
-
+    if(root)
+        treeDelete(root);
 }
 
 // 转Shape为PrimitiveInfo
@@ -405,4 +406,15 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
     }
      
     return false;
+}
+
+void a3BVH::treeDelete(a3BVHTreeNode* root)
+{
+    if(root->leftChild)
+        treeDelete(root->leftChild);
+
+    if(root->rightChild)
+        treeDelete(root->rightChild);
+
+    A3_SAFE_DELETE(root);
 }

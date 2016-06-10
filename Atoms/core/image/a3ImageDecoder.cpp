@@ -18,6 +18,17 @@
 class a3ImageDecoder::a3Decoder
 {
 public:
+    ~a3Decoder()
+    {
+#ifdef A3_IMAGE_LIB_PNGPP
+        A3_SAFE_DELETE(im);
+#else
+#endif
+        image.clear();
+
+        A3_SAFE_DELETE_1DARRAY(buffer);
+    }
+
     bool load(const std::string& filePath)
     {
         if(type == A3_IMAGE_PNG)
