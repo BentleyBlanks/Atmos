@@ -2,7 +2,15 @@
 
 A Physically Based Renderer.(Not Finished Yet)
 
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/29702466352/in/dateposted-public/" title="Test_000027"><img src="https://c1.staticflickr.com/9/8459/29702466352_59b769b08b_o.png" width="1280" height="720" alt="Test_000027"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
 [Atmos with Blender](https://www.youtube.com/watch?v=d6pLWDCjvSk)
+
+Youtube
+
+[Atmos with Blender](http://v.youku.com/v_show/id_XMTczMjI3NjY1Mg==.html#paction)
+
+Youku
 
 该Demo渲染部分由Atmos完成，水以及物理碰撞部分得Blender加持完成。渲染工作[AtmosMovie](https://github.com/BentleyBlanks/AtmosMovie)工具自动化渲染，120帧画面，总渲染时长25.3h。
 
