@@ -2,6 +2,9 @@
 
 A Physically Based Renderer.(Not Finished Yet)
 
+[Atmos with Blender](https://www.youtube.com/watch?v=d6pLWDCjvSk)
+
+该Demo渲染部分由Atmos完成，水以及物理碰撞部分得Blender加持完成。渲染工作[AtmosMovie](https://github.com/BentleyBlanks/AtmosMovie)工具自动化渲染，120帧画面，总渲染时长25.3h。
 
 ## 构建说明
 
