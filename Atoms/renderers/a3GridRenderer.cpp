@@ -127,7 +127,7 @@ void a3GridRenderer::render(const a3Scene* scene)
     int gridEndX = gridX + gridWidth;
     int gridEndY = gridY + gridHeight;
 
-//#pragma omp parallel for schedule(dynamic)
+#pragma omp parallel for schedule(dynamic)
     for(int x = gridX; x < gridEndX; x++)
     {
         progress = (float) (x - gridX) / gridWidth;

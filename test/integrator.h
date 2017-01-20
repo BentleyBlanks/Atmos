@@ -44,10 +44,10 @@ int imageWidth = 700, imageHeight = 700;
 bool enableGammaCorrection = false;
 bool enableToneMapping = false;
 
-a3SceneName name = BVHTEST;
+a3SceneName name = WENDAOQIUER;
 a3RendererName rendererName = SAMPLER;
 a3IntegratorName integratorName = PATH;
-a3PrimitiveSetName primitiveName = BVH;
+a3PrimitiveSetName primitiveName = EXHAUSTIVE;
 
 inline a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
 {
@@ -160,12 +160,12 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         scene->addLight(new a3PointLight(t3Vector3f(0, 10, -100), a3Spectrum(500000.0f)));
 
         a3ModelImporter importer;
-        //std::vector<a3Shape*>* shapes = importer.load("../../../../resources/models/spheres.obj");
-        std::vector<a3Shape*>* shapes = importer.load("../../../../resources/models/spheres.obj");
+        //std::vector<a3Shape*> shapes = importer.load("../../../../resources/models/spheres.obj");
+        std::vector<a3Shape*> shapes = importer.load("../../../../resources/models/spheres.obj");
 
-        if(shapes)
+        if(shapes.size() > 0)
         {
-            for(auto s : *shapes)
+            for(auto s : shapes)
                 addShape(s, t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), GLASS, NULL);
 
             //addShape(new a3Sphere(t3Vector3f(-40, -60, 25), 25), t3Vector3f(1.0f, 1.0f, 1.0f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
@@ -218,15 +218,15 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         //std::vector<a3Shape*>* plane = importer.load("../../../../resources/models/mitsuba/mitsuba_plane.obj");
         //std::vector<a3Shape*>* internal = importer.load("../../../../resources/models/mitsuba/mitsuba_internal.obj");
         //std::vector<a3Shape*>* sphere = importer.load("../../../../resources/models/mitsuba/mitsuba_sphere.obj");
-        std::vector<a3Shape*>* mitsuba = importer.load("../../../../resources/models/test/test.obj");
+        std::vector<a3Shape*> mitsuba = importer.load("../../../../resources/models/mitsuba.obj");
 
         a3BSDF* bsdf = NULL;
         //a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
         //a3ImageTexture<a3Spectrum>* texture = a3CreateImageTexture("../../../../resources/images/earth.png");
 
-        if(mitsuba)
-            for(auto s : *mitsuba)
-                bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), GLASS, NULL);
+        if(mitsuba.size() > 0)
+            for(auto s : mitsuba)
+                bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), MIRROR, NULL);
 
         //// plane
         //if(plane)
