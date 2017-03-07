@@ -41,10 +41,10 @@ int spp = 8;
 int maxDepth = -1;
 int russianRouletteDepth = 3;
 int imageWidth = 700, imageHeight = 700;
-bool enableGammaCorrection = false;
+bool enableGammaCorrection = true;
 bool enableToneMapping = false;
 
-a3SceneName name = WENDAOQIUER;
+a3SceneName name = CORNEL_BOX;
 a3RendererName rendererName = SAMPLER;
 a3IntegratorName integratorName = PATH;
 a3PrimitiveSetName primitiveName = EXHAUSTIVE;

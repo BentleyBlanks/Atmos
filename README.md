@@ -55,6 +55,8 @@ SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/phot
 
 1.a3Log支持多种日志等级发放消息，可自行选择输出到终端或日志文件中，如
 
+> 输出到文件部分目前```不支持```中文或者其他UTF8字符
+
 ```cpp
     a3Log::debug("这一段是信息Log, 紧接着一个int变量: a = %d\n", a);
 
@@ -64,11 +66,10 @@ SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/phot
     a3LogHTML::debug("What are you talking about. %d\n", a);
     a3LogHTML::end();
 ```
-输出到文件部分目前```不支持```中文或者其他UTF8字符
 
 2.```Renderer```目前提供了多种调试模式渲染，同时支持网格渲染，正常的采样渲染，以及Debug专用的单光线跟踪，法线/菲涅尔贴图渲染等
 
-3.目前Atmos支持Triangle(Mesh暂不支持), Sphere, Disk, Plane等基本几何形状
+3.Atmos支持Triangle(Mesh暂不支持), Sphere, Disk, Plane等基本几何形状
 
 4.Atmos支持```景深```，```透视```等基本相机效果
 
@@ -80,19 +81,23 @@ SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/phot
 
 ##待办事项
 
-1.修正Conductor的错误菲涅尔反射问题
+1.重构Integrator中错误Path Tracing重要性采样实现问题
 
-2.基于物理的BRDF模型，微表面模型的支持
+2.修复原错误菲涅尔反射问题
 
-3.更多光源模型的支持(Distant Light)
+3.修复原错误棋盘贴图场景在Mitsuba同一画面配置下结果不同的错误
 
-4.全局重要性采样概念理解
+4.实现BVH中未实现的更高效写法
 
-5.C++11多线程的支持
+5.完成若干个基本采样的单元测试项目
 
-6.正交摄像机，环境摄像机支持
+6.重新实现非狄拉克分布的BSDF与光源
 
-7.参数方程形式的形状支持
+7.全局重要性采样支持
+
+8.正交摄像机，环境摄像机支持
+
+9.更多的基于物理的BRDF模型，以及Microfacet材质支持
 
 
 ## 关于作者
