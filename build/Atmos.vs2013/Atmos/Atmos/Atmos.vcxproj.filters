@@ -1,0 +1,641 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Atmos">
+      <UniqueIdentifier>{b7b8aa11-53fa-43b2-8587-f5d9f8e0a6da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{2258108b-a36b-4ad3-bd63-4cdcd782d588}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\assimp">
+      <UniqueIdentifier>{33f0ccac-e81b-4b08-84cf-4c09c4869c8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\loadpng">
+      <UniqueIdentifier>{d6aa44b4-6cf1-44d5-b2f9-d520340ddc2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\t3DataStructures">
+      <UniqueIdentifier>{4d717ee1-dce4-46fb-8e63-4c5226317a3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\t3Math">
+      <UniqueIdentifier>{565e9a0d-443b-4e4e-85c6-690bbc096688}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\assimp\Compiler">
+      <UniqueIdentifier>{d967d1b6-a8f6-4f80-a14b-10fee2311846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\assimp\port">
+      <UniqueIdentifier>{be1ac1c9-3463-4d17-b6e3-863350387a43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\bsdf">
+      <UniqueIdentifier>{7c31b3f4-c964-4669-a997-71b18e0af760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\core">
+      <UniqueIdentifier>{6fcca2ce-8a35-40dc-808c-d06c0bd3caa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\integrator">
+      <UniqueIdentifier>{585c925a-5942-420c-ad5c-c21f3187b342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\lights">
+      <UniqueIdentifier>{e6e46e76-8b7b-4065-bb77-bead0f998918}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\renderers">
+      <UniqueIdentifier>{100247a5-2d08-4aef-bc46-e811e4ad11b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\samples">
+      <UniqueIdentifier>{557a3dc6-e473-4251-81ff-1ab59101ae25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\sensors">
+      <UniqueIdentifier>{45d30200-8ed7-4a6d-994c-627b222a5fbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\shapes">
+      <UniqueIdentifier>{66d044c6-690c-47f8-973b-c63fa0c0c971}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\core\image">
+      <UniqueIdentifier>{da2e3cdf-1b42-4709-9ad9-7664c4948677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\core\log">
+      <UniqueIdentifier>{366f8219-6923-4b5c-ac33-b9ceafc98e49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\core\messageQueue">
+      <UniqueIdentifier>{4e7f81df-81c1-4f91-8607-4e90dff9ea18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\core\random">
+      <UniqueIdentifier>{3fb06d71-e769-4a65-aa33-abc69a9522af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\tinyexr">
+      <UniqueIdentifier>{51b04923-4c8c-4d22-83ea-e549aa4a7879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\accelerators">
+      <UniqueIdentifier>{1c8b70eb-ba36-47fb-b692-d470101a67a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Atmos\textures">
+      <UniqueIdentifier>{1f130cca-07fe-49ed-890e-d51681ee5fb8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Compiler\poppack1.h">
+      <Filter>ThirdParty\assimp\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Compiler\pstdint.h">
+      <Filter>ThirdParty\assimp\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Compiler\pushpack1.h">
+      <Filter>ThirdParty\assimp\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\port\AndroidJNI\AndroidJNIIOSystem.h">
+      <Filter>ThirdParty\assimp\port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\texture.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\types.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\vector2.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\vector3.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\version.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\ai_assert.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\anim.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\camera.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\cexport.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\cfileio.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\cimport.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\color4.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\config.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\DefaultLogger.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\defs.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Exporter.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Importer.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\importerdesc.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\IOStream.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\IOSystem.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\light.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Logger.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\LogStream.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\material.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\matrix3x3.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\matrix4x4.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\mesh.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\metadata.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\NullLogger.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\postprocess.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\ProgressHandler.hpp">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\quaternion.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\scene.h">
+      <Filter>ThirdParty\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\lodepng\include\lodepng.h">
+      <Filter>ThirdParty\loadpng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\Common\t3Timer.h">
+      <Filter>ThirdParty\t3DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Math.h">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3MathSettings.h">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.h">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.h">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.h">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.h">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\integrator\a3DirectLighting.h">
+      <Filter>Atmos\integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\integrator\a3Integrator.h">
+      <Filter>Atmos\integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\integrator\a3PathIntegrator.h">
+      <Filter>Atmos\integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\image\a3Film.h">
+      <Filter>Atmos\core\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\image\a3ImageDecoder.h">
+      <Filter>Atmos\core\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\image\a3ImageEncoder.h">
+      <Filter>Atmos\core\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\image\a3NormalMap.h">
+      <Filter>Atmos\core\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\log\a3Log.h">
+      <Filter>Atmos\core\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\log\a3LogFile.h">
+      <Filter>Atmos\core\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\log\a3LogHTML.h">
+      <Filter>Atmos\core\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3BSDF.h">
+      <Filter>Atmos\bsdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Conductor.h">
+      <Filter>Atmos\bsdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Dielectric.h">
+      <Filter>Atmos\bsdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Diffuse.h">
+      <Filter>Atmos\bsdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\sensors\a3PerspectiveSensor.h">
+      <Filter>Atmos\sensors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\sensors\a3Sensor.h">
+      <Filter>Atmos\sensors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\samples\a3CameraSample.h">
+      <Filter>Atmos\samples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\samples\a3LightSample.h">
+      <Filter>Atmos\samples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\samples\a3RandomSampler.h">
+      <Filter>Atmos\samples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\samples\a3Sampler.h">
+      <Filter>Atmos\samples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\random\a3Distribution1D.h">
+      <Filter>Atmos\core\random</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\random\a3Distribution2D.h">
+      <Filter>Atmos\core\random</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\random\a3Random.h">
+      <Filter>Atmos\core\random</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\messageQueue\a3MessageQueue.h">
+      <Filter>Atmos\core\messageQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\messageQueue\a3MessageQueueIPC.h">
+      <Filter>Atmos\core\messageQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\tinyexr\include\tinyexr.h">
+      <Filter>ThirdParty\tinyexr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\accelerators\a3BVH.h">
+      <Filter>Atmos\accelerators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\accelerators\a3Exhaustive.h">
+      <Filter>Atmos\accelerators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\accelerators\a3PrimitiveSet.h">
+      <Filter>Atmos\accelerators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3GridRenderer.h">
+      <Filter>Atmos\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3NormalMapRenderer.h">
+      <Filter>Atmos\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3Renderer.h">
+      <Filter>Atmos\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3SamplerRenderer.h">
+      <Filter>Atmos\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3SingleRayRenderer.h">
+      <Filter>Atmos\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3FresnelRenderer.h">
+      <Filter>Atmos\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Plane.h">
+      <Filter>Atmos\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Shape.h">
+      <Filter>Atmos\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3ShapeSet.h">
+      <Filter>Atmos\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Sphere.h">
+      <Filter>Atmos\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Triangle.h">
+      <Filter>Atmos\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3TriangleMesh.h">
+      <Filter>Atmos\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Disk.h">
+      <Filter>Atmos\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3InfinitePlane.h">
+      <Filter>Atmos\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\textures\a3CheckerBoard.h">
+      <Filter>Atmos\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\textures\a3ConstantTexture.h">
+      <Filter>Atmos\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\textures\a3ImageTexture.h">
+      <Filter>Atmos\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\textures\a3Texture.h">
+      <Filter>Atmos\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\Atmos.h">
+      <Filter>Atmos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\LinearList\t3Stack.h">
+      <Filter>ThirdParty\t3DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\Common\t3Test.h">
+      <Filter>ThirdParty\t3DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\Common\t3DataStructuresSettings.h">
+      <Filter>ThirdParty\t3DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3ModelImporter.h">
+      <Filter>Atmos\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Ray.h">
+      <Filter>Atmos\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Scene.h">
+      <Filter>Atmos\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Settings.h">
+      <Filter>Atmos\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Spectrum.h">
+      <Filter>Atmos\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Warp.h">
+      <Filter>Atmos\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3AABB.h">
+      <Filter>Atmos\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3BilinearInterpolation.h">
+      <Filter>Atmos\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Common.h">
+      <Filter>Atmos\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Dimension.h">
+      <Filter>Atmos\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Intersection.h">
+      <Filter>Atmos\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\lights\a3AreaLight.h">
+      <Filter>Atmos\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\lights\a3InfiniteAreaLight.h">
+      <Filter>Atmos\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\lights\a3Light.h">
+      <Filter>Atmos\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\lights\a3PointLight.h">
+      <Filter>Atmos\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\lights\a3SpotLight.h">
+      <Filter>Atmos\lights</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\vector2.inl">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\vector3.inl">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\.editorconfig">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\color4.inl">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\material.inl">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\matrix3x3.inl">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\matrix4x4.inl">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\quaternion.inl">
+      <Filter>ThirdParty\assimp</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Math.inl">
+      <Filter>ThirdParty\t3Math</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4x4.inl">
+      <Filter>ThirdParty\t3Math</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.inl">
+      <Filter>ThirdParty\t3Math</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.inl">
+      <Filter>ThirdParty\t3Math</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.inl">
+      <Filter>ThirdParty\t3Math</Filter>
+    </None>
+    <None Include="..\..\..\..\Atmos\core\a3AABB.inl">
+      <Filter>Atmos\core</Filter>
+    </None>
+    <None Include="..\..\..\..\Atmos\core\a3Common.inl">
+      <Filter>Atmos\core</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\integrator\a3DirectLighting.cpp">
+      <Filter>Atmos\integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\integrator\a3Integrator.cpp">
+      <Filter>Atmos\integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\integrator\a3PathIntegrator.cpp">
+      <Filter>Atmos\integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\image\a3Film.cpp">
+      <Filter>Atmos\core\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\image\a3ImageDecoder.cpp">
+      <Filter>Atmos\core\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\image\a3ImageEncoder.cpp">
+      <Filter>Atmos\core\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\image\a3NormalMap.cpp">
+      <Filter>Atmos\core\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\log\a3Log.cpp">
+      <Filter>Atmos\core\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\log\a3LogFile.cpp">
+      <Filter>Atmos\core\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\log\a3LogHTML.cpp">
+      <Filter>Atmos\core\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3BSDF.cpp">
+      <Filter>Atmos\bsdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Conductor.cpp">
+      <Filter>Atmos\bsdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Dielectric.cpp">
+      <Filter>Atmos\bsdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Diffuse.cpp">
+      <Filter>Atmos\bsdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\sensors\a3PerspectiveSensor.cpp">
+      <Filter>Atmos\sensors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\sensors\a3Sensor.cpp">
+      <Filter>Atmos\sensors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\samples\a3CameraSample.cpp">
+      <Filter>Atmos\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\samples\a3LightSample.cpp">
+      <Filter>Atmos\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\samples\a3RandomSampler.cpp">
+      <Filter>Atmos\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\samples\a3Sampler.cpp">
+      <Filter>Atmos\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\random\a3Distribution1D.cpp">
+      <Filter>Atmos\core\random</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\random\a3Distribution2D.cpp">
+      <Filter>Atmos\core\random</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\random\a3Random.cpp">
+      <Filter>Atmos\core\random</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\messageQueue\a3MessageQueue.cpp">
+      <Filter>Atmos\core\messageQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\messageQueue\a3MessageQueueIPC.cpp">
+      <Filter>Atmos\core\messageQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dependency\tinyexr\include\tinyexr.cc">
+      <Filter>ThirdParty\tinyexr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\accelerators\a3BVH.cpp">
+      <Filter>Atmos\accelerators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\accelerators\a3Exhaustive.h.cpp">
+      <Filter>Atmos\accelerators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\accelerators\a3PrimitiveSet.cpp">
+      <Filter>Atmos\accelerators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3NormalMapRenderer.cpp">
+      <Filter>Atmos\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3Renderer.cpp">
+      <Filter>Atmos\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3SamplerRenderer.cpp">
+      <Filter>Atmos\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3SingleRayRenderer.cpp">
+      <Filter>Atmos\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3FresnelRenderer.cpp">
+      <Filter>Atmos\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3GridRenderer.cpp">
+      <Filter>Atmos\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Plane.cpp">
+      <Filter>Atmos\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Shape.cpp">
+      <Filter>Atmos\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3ShapeSet.cpp">
+      <Filter>Atmos\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Sphere.cpp">
+      <Filter>Atmos\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Triangle.cpp">
+      <Filter>Atmos\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3TriangleMesh.cpp">
+      <Filter>Atmos\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Disk.cpp">
+      <Filter>Atmos\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3InfinitePlane.cpp">
+      <Filter>Atmos\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\textures\a3Texture.cpp">
+      <Filter>Atmos\textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\a3Scene.cpp">
+      <Filter>Atmos\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\a3Settings.cpp">
+      <Filter>Atmos\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\a3Spectrum.cpp">
+      <Filter>Atmos\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\a3Warp.cpp">
+      <Filter>Atmos\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\a3AABB.cpp">
+      <Filter>Atmos\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\a3BilinearInterpolation.cpp">
+      <Filter>Atmos\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\a3Intersection.cpp">
+      <Filter>Atmos\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\a3ModelImporter.cpp">
+      <Filter>Atmos\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\lights\a3InfiniteAreaLight.cpp">
+      <Filter>Atmos\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\lights\a3Light.cpp">
+      <Filter>Atmos\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\lights\a3PointLight.cpp">
+      <Filter>Atmos\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\lights\a3SpotLight.h.cpp">
+      <Filter>Atmos\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\lights\a3AreaLight.cpp">
+      <Filter>Atmos\lights</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

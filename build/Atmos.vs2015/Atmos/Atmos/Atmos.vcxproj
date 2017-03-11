@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{98D05FA1-F81C-4769-B956-4210DFB1E146}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Atmos</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)d.vs2015</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>$(ProjectName).vs2015</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency/t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/assimp/include;../../../../Atmos/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib;../../../../dependency/t3DataStructures/lib;../../../../dependency/lodepng/lib;../../../../dependency/assimp/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimpd.vs2015.lib;zlibd.vs2015.lib;loadpngd.vs2015.lib;t3DataStructuresd.vs2015.lib;t3Mathd.vs2015.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>assimpd.vs2015.lib;zlibd.vs2015.lib;loadpngd.vs2015.lib;t3DataStructuresd.vs2015.lib;t3Mathd.vs2015.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib;../../../../dependency/t3DataStructures/lib;../../../../dependency/lodepng/lib;../../../../dependency/assimp/lib;</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency//t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/assimp/include;../../../../Atmos/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib;../../../../dependency/t3DataStructures/lib;../../../../dependency/lodepng/lib;../../../../dependency/assimp/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp.vs2015.lib;loadpng.vs2015.lib;t3DataStructures.vs2015.lib;t3Math.vs2015.lib;zlib.vs2015.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>assimp.vs2015.lib;zlib.vs2015.lib;loadpng.vs2015.lib;t3DataStructures.vs2015.lib;t3Math.vs2015.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib;../../../../dependency/t3DataStructures/lib;../../../../dependency/lodepng/lib;../../../../dependency/assimp/lib;</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Atmos\core\a3AABB.inl" />
+    <None Include="..\..\..\..\Atmos\core\a3Common.inl" />
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\.editorconfig" />
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\color4.inl" />
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\material.inl" />
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\matrix3x3.inl" />
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\matrix4x4.inl" />
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\quaternion.inl" />
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\vector2.inl" />
+    <None Include="..\..\..\..\dependency\assimp\include\assimp\vector3.inl" />
+    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Math.inl" />
+    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4x4.inl" />
+    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.inl" />
+    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.inl" />
+    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\Atmos\accelerators\a3BVH.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\accelerators\a3Exhaustive.h.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\accelerators\a3PrimitiveSet.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3BSDF.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Conductor.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Dielectric.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Diffuse.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\a3AABB.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\a3BilinearInterpolation.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\a3Intersection.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\a3ModelImporter.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\a3Scene.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\a3Settings.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\a3Spectrum.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\a3Warp.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\image\a3Film.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\image\a3ImageDecoder.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\image\a3ImageEncoder.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\image\a3NormalMap.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\log\a3Log.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\log\a3LogFile.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\log\a3LogHTML.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\messageQueue\a3MessageQueue.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\messageQueue\a3MessageQueueIPC.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\random\a3Distribution1D.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\random\a3Distribution2D.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\random\a3Random.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\integrator\a3DirectLighting.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\integrator\a3Integrator.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\integrator\a3PathIntegrator.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\lights\a3AreaLight.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\lights\a3InfiniteAreaLight.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\lights\a3Light.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\lights\a3PointLight.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\lights\a3SpotLight.h.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3FresnelRenderer.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3GridRenderer.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3NormalMapRenderer.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3Renderer.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3SamplerRenderer.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3SingleRayRenderer.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\samples\a3CameraSample.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\samples\a3LightSample.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\samples\a3RandomSampler.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\samples\a3Sampler.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\sensors\a3PerspectiveSensor.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\sensors\a3Sensor.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Disk.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3InfinitePlane.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Plane.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Shape.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3ShapeSet.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Sphere.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Triangle.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3TriangleMesh.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\textures\a3Texture.cpp" />
+    <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp" />
+    <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp" />
+    <ClCompile Include="..\..\..\..\dependency\tinyexr\include\tinyexr.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Atmos\accelerators\a3BVH.h" />
+    <ClInclude Include="..\..\..\..\Atmos\accelerators\a3Exhaustive.h" />
+    <ClInclude Include="..\..\..\..\Atmos\accelerators\a3PrimitiveSet.h" />
+    <ClInclude Include="..\..\..\..\Atmos\Atmos.h" />
+    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3BSDF.h" />
+    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Conductor.h" />
+    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Dielectric.h" />
+    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Diffuse.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\a3AABB.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\a3BilinearInterpolation.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Common.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Dimension.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Intersection.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\a3ModelImporter.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Ray.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Scene.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Settings.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Spectrum.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Warp.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\image\a3Film.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\image\a3ImageDecoder.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\image\a3ImageEncoder.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\image\a3NormalMap.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\log\a3Log.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\log\a3LogFile.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\log\a3LogHTML.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\messageQueue\a3MessageQueue.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\messageQueue\a3MessageQueueIPC.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\random\a3Distribution1D.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\random\a3Distribution2D.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\random\a3Random.h" />
+    <ClInclude Include="..\..\..\..\Atmos\integrator\a3DirectLighting.h" />
+    <ClInclude Include="..\..\..\..\Atmos\integrator\a3Integrator.h" />
+    <ClInclude Include="..\..\..\..\Atmos\integrator\a3PathIntegrator.h" />
+    <ClInclude Include="..\..\..\..\Atmos\lights\a3AreaLight.h" />
+    <ClInclude Include="..\..\..\..\Atmos\lights\a3InfiniteAreaLight.h" />
+    <ClInclude Include="..\..\..\..\Atmos\lights\a3Light.h" />
+    <ClInclude Include="..\..\..\..\Atmos\lights\a3PointLight.h" />
+    <ClInclude Include="..\..\..\..\Atmos\lights\a3SpotLight.h" />
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3FresnelRenderer.h" />
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3GridRenderer.h" />
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3NormalMapRenderer.h" />
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3Renderer.h" />
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3SamplerRenderer.h" />
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3SingleRayRenderer.h" />
+    <ClInclude Include="..\..\..\..\Atmos\samples\a3CameraSample.h" />
+    <ClInclude Include="..\..\..\..\Atmos\samples\a3LightSample.h" />
+    <ClInclude Include="..\..\..\..\Atmos\samples\a3RandomSampler.h" />
+    <ClInclude Include="..\..\..\..\Atmos\samples\a3Sampler.h" />
+    <ClInclude Include="..\..\..\..\Atmos\sensors\a3PerspectiveSensor.h" />
+    <ClInclude Include="..\..\..\..\Atmos\sensors\a3Sensor.h" />
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Disk.h" />
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3InfinitePlane.h" />
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Plane.h" />
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Shape.h" />
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3ShapeSet.h" />
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Sphere.h" />
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Triangle.h" />
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3TriangleMesh.h" />
+    <ClInclude Include="..\..\..\..\Atmos\textures\a3CheckerBoard.h" />
+    <ClInclude Include="..\..\..\..\Atmos\textures\a3ConstantTexture.h" />
+    <ClInclude Include="..\..\..\..\Atmos\textures\a3ImageTexture.h" />
+    <ClInclude Include="..\..\..\..\Atmos\textures\a3Texture.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\ai_assert.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\anim.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\camera.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\cexport.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\cfileio.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\cimport.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\color4.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Compiler\poppack1.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Compiler\pstdint.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Compiler\pushpack1.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\config.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\DefaultLogger.hpp" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\defs.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Exporter.hpp" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Importer.hpp" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\importerdesc.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\IOStream.hpp" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\IOSystem.hpp" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\light.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Logger.hpp" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\LogStream.hpp" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\material.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\matrix3x3.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\matrix4x4.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\mesh.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\metadata.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\NullLogger.hpp" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\port\AndroidJNI\AndroidJNIIOSystem.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\postprocess.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\ProgressHandler.hpp" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\quaternion.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\scene.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\texture.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\types.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\vector2.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\vector3.h" />
+    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\version.h" />
+    <ClInclude Include="..\..\..\..\dependency\lodepng\include\lodepng.h" />
+    <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\Common\t3DataStructuresSettings.h" />
+    <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\Common\t3Test.h" />
+    <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\Common\t3Timer.h" />
+    <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\LinearList\t3Stack.h" />
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Math.h" />
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3MathSettings.h" />
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.h" />
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.h" />
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.h" />
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.h" />
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h" />
+    <ClInclude Include="..\..\..\..\dependency\tinyexr\include\tinyexr.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

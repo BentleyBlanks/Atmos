@@ -31,12 +31,12 @@ README~
 dependency/assimp/lib/*
 resources/*
 
-build/Atoms.vs2013/Atoms/Debug/*.*
-build/Atoms.vs2013/Atoms/Release/*.*
-build/Atoms.vs2013/AtomsTest/Debug/*.*
-build/Atoms.vs2013/AtomsTest/Release/*.*
+build/Atmos.vs2013/Atmos/Debug/*.*
+build/Atmos.vs2013/Atmos/Release/*.*
+build/Atmos.vs2013/AtmosTest/Debug/*.*
+build/Atmos.vs2013/AtmosTest/Release/*.*
 
-build/Atoms.vs2015/Atoms/Debug/*.*
-build/Atoms.vs2015/Atoms/Release/*.*
-build/Atoms.vs2015/AtomsTest/Debug/*.*
-build/Atoms.vs2015/AtomsTest/Release/*.*
+build/Atmos.vs2015/Atmos/Debug/*.*
+build/Atmos.vs2015/Atmos/Release/*.*
+build/Atmos.vs2015/AtmosTest/Debug/*.*
+build/Atmos.vs2015/AtmosTest/Release/*.*
