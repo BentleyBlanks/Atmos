@@ -3,7 +3,7 @@
 #include <core/image/a3Film.h>
 #include <core/log/a3Log.h>
 #include <core/a3Warp.h>
-#include <core/a3Random.h>
+#include <core/random/a3Random.h>
 #include <core/image/a3NormalMap.h>
 
 #include <sensors/a3Sensor.h>

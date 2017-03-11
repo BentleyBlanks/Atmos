@@ -2,7 +2,7 @@
 #include <core./a3Ray.h>
 #include <core/a3Warp.h>
 #include <samples/a3LightSample.h>
-#include <core/a3Random.h>
+#include <core/random/a3Random.h>
 
 a3InfinitePlane::a3InfinitePlane(const t3Vector3f& p, const t3Vector3f& normal)
     :p(p), normal(normal.getNormalized()), a3Shape("a3InfinitePlane")

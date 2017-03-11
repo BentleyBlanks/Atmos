@@ -3,7 +3,7 @@
 
 //core
 #include <core/a3Scene.h>
-#include <core/a3Random.h>
+#include <core/random/a3Random.h>
 #include <core/a3Ray.h>
 #include <core/log/a3Log.h>
 #include <core/a3Warp.h>

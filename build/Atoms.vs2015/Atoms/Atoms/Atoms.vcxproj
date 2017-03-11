@@ -177,7 +177,6 @@
     <ClCompile Include="..\..\..\..\Atoms\core\a3BilinearInterpolation.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\a3Intersection.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\a3ModelImporter.cpp" />
-    <ClCompile Include="..\..\..\..\Atoms\core\a3Random.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\a3Scene.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\a3Settings.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\a3Spectrum.cpp" />
@@ -191,6 +190,9 @@
     <ClCompile Include="..\..\..\..\Atoms\core\log\a3LogHTML.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueue.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueueIPC.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\core\random\a3Distribution1D.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\core\random\a3Distribution2D.cpp" />
+    <ClCompile Include="..\..\..\..\Atoms\core\random\a3Random.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\integrator\a3DirectLighting.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\integrator\a3PathIntegrator.cpp" />
     <ClCompile Include="..\..\..\..\Atoms\integrator\a3Integrator.cpp" />
@@ -239,7 +241,6 @@
     <ClInclude Include="..\..\..\..\Atoms\core\a3Dimension.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\a3Intersection.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\a3ModelImporter.h" />
-    <ClInclude Include="..\..\..\..\Atoms\core\a3Random.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\a3Ray.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\a3Scene.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\a3Settings.h" />
@@ -254,6 +255,9 @@
     <ClInclude Include="..\..\..\..\Atoms\core\log\a3LogHTML.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueue.h" />
     <ClInclude Include="..\..\..\..\Atoms\core\messageQueue\a3MessageQueueIPC.h" />
+    <ClInclude Include="..\..\..\..\Atoms\core\random\a3Distribution1D.h" />
+    <ClInclude Include="..\..\..\..\Atoms\core\random\a3Distribution2D.h" />
+    <ClInclude Include="..\..\..\..\Atoms\core\random\a3Random.h" />
     <ClInclude Include="..\..\..\..\Atoms\integrator\a3DirectLighting.h" />
     <ClInclude Include="..\..\..\..\Atoms\integrator\a3Integrator.h" />
     <ClInclude Include="..\..\..\..\Atoms\integrator\a3PathIntegrator.h" />

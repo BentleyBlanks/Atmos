@@ -71,6 +71,9 @@
     <Filter Include="Atoms\core\messageQueue">
       <UniqueIdentifier>{45a4c3ec-2df7-4439-ab6d-fa0b1f302e49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Atoms\core\random">
+      <UniqueIdentifier>{1632c2d6-6b14-4281-8162-6000a3d24b31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Atoms\bsdf\a3BSDF.cpp">
@@ -122,9 +125,6 @@
       <Filter>Atoms\core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Atoms\core\a3ModelImporter.cpp">
-      <Filter>Atoms\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atoms\core\a3Random.cpp">
       <Filter>Atoms\core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Atoms\integrator\a3DirectLighting.cpp">
@@ -244,6 +244,15 @@
     <ClCompile Include="..\..\..\..\Atoms\renderers\a3GridRenderer.cpp">
       <Filter>Atoms\renderers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\core\random\a3Distribution1D.cpp">
+      <Filter>Atoms\core\random</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\core\random\a3Distribution2D.cpp">
+      <Filter>Atoms\core\random</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atoms\core\random\a3Random.cpp">
+      <Filter>Atoms\core\random</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Atoms\bsdf\a3BSDF.h">
@@ -304,9 +313,6 @@
       <Filter>Atoms\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atoms\core\a3ModelImporter.h">
-      <Filter>Atoms\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atoms\core\a3Random.h">
       <Filter>Atoms\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atoms\integrator\a3DirectLighting.h">
@@ -578,6 +584,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atoms\renderers\a3GridRenderer.h">
       <Filter>Atoms\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\core\random\a3Distribution1D.h">
+      <Filter>Atoms\core\random</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\core\random\a3Distribution2D.h">
+      <Filter>Atoms\core\random</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atoms\core\random\a3Random.h">
+      <Filter>Atoms\core\random</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

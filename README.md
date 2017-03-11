@@ -79,6 +79,10 @@ SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/phot
 
 7.Atmos目前实现的几何体都支持基本```纹理映射```
 
+8.Assimp VS2015的静态库[在这里下载](http://pan.baidu.com/s/1jIulVGq)(可自行编译放入assimp/lib中)
+
+9.测试场景的资源文件[已开放下载](http://pan.baidu.com/s/1bptKpDt)
+
 ##待办事项
 
 1.重构Integrator中错误Path Tracing重要性采样实现问题
