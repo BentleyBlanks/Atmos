@@ -46,6 +46,7 @@
 #endif
 
 #include <iostream>
+#include <sstream>
 // 实现cout << string 不包含则报错
 #include <string>
 #include <vector>

@@ -43,7 +43,8 @@
 // core
 #include <core/log/a3Log.h>
 #include <core/a3ModelImporter.h>
-#include <core/a3Common.h>
+#include <core/a3Utils.h>
+// core/image
 #include <core/image/a3NormalMap.h>
 #include <core/image/a3Film.h>
 #include <core/a3Scene.h>

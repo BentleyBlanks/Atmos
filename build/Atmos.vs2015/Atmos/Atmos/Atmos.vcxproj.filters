@@ -5,9 +5,6 @@
     <None Include="..\..\..\..\Atmos\core\a3AABB.inl">
       <Filter>Atmos\core</Filter>
     </None>
-    <None Include="..\..\..\..\Atmos\core\a3Common.inl">
-      <Filter>Atmos\core</Filter>
-    </None>
     <None Include="..\..\..\..\dependency\assimp\include\assimp\quaternion.inl">
       <Filter>ThirdParty\assimp</Filter>
     </None>
@@ -294,6 +291,9 @@
     <ClCompile Include="..\..\..\..\dependency\tinyexr\include\tinyexr.cc">
       <Filter>ThirdParty\tinyexr</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\a3Utils.cpp">
+      <Filter>Atmos\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Atmos\accelerators\a3BVH.h">
@@ -378,9 +378,6 @@
       <Filter>Atmos\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\core\a3BilinearInterpolation.h">
-      <Filter>Atmos\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\core\a3Common.h">
       <Filter>Atmos\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\core\a3Dimension.h">
@@ -634,6 +631,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\dependency\tinyexr\include\tinyexr.h">
       <Filter>ThirdParty\tinyexr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Utils.h">
+      <Filter>Atmos\core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -32,6 +32,7 @@
     <ClInclude Include="..\..\..\..\test\ray.h" />
     <ClInclude Include="..\..\..\..\test\render.h" />
     <ClInclude Include="..\..\..\..\test\renderQueue.h" />
+    <ClInclude Include="..\..\..\..\test\util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\test\main.cpp" />
