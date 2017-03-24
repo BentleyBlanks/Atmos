@@ -53,7 +53,7 @@ void main()
     // Converts a hexadecimal representation of an string
     a3Log::print("%s\n", a3HexToString("61626364656667").c_str());
 
-    a3Log::print("%f\n", a3HexToFloat("4060000000000000"));
+    a3Log::print("%f\n", a3HexToFloat("43000000"));
 
     a3Log::print("%d\n", a3HexToInt("0xff"));
 

@@ -125,12 +125,13 @@ float a3HexToFloat(const std::string& floatHexString)
 {
     union intFloatUnion
     {
-        int x;
+        //int x;
+        uint32_t i;
         float f;
     } myUnion;
-    myUnion.x = 0;
+    myUnion.i = 0;
     std::istringstream cur(floatHexString);
-    cur >> std::hex >> myUnion.x;
+    cur >> std::hex >> myUnion.i;
     return myUnion.f;
 }
 
