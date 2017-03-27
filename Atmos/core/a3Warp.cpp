@@ -1,51 +1,113 @@
 ﻿#include <core/a3Warp.h>
 
-t3Vector2f a3SquareToUniformDisk(const float sampleU, const float sampleV)
+t3Vector2f a3UniformSampleDisk(float u1, float u2, a3UniformSampleDiskType type)
 {
-    float phi, r, u, v;
-    // (a,b) is now on [-1,1]ˆ2
-    float a = 2 * sampleU - 1;
-    float b = 2 * sampleV - 1;
-
-    // region 1 or 2
-    if(a > -b)
+    if(type == A3UNIFORM_SAMPLE_DISK_CONCENTRIC)
     {
-        // region 1, also |a| > |b|
-        if(a > b)
+        float phi, r, u, v;
+        // (a,b) is now on [-1,1]ˆ2
+        float a = 2 * u1 - 1;
+        float b = 2 * u2 - 1;
+
+        // region 1 or 2
+        if(a > -b)
         {
-            r = a;
-            phi = (T3MATH_PI / 4) * (b / a);
+            // region 1, also |a| > |b|
+            if(a > b)
+            {
+                r = a;
+                phi = (T3MATH_PI / 4) * (b / a);
+            }
+            // region 2, also |b| > |a|
+            else
+            {
+                r = b;
+                phi = (T3MATH_PI / 4) * (2 - (a / b));
+            }
         }
-        // region 2, also |b| > |a|
+        // region 3 or 4
         else
         {
-            r = b;
-            phi = (T3MATH_PI / 4) * (2 - (a / b));
+            // region 3, also |a| >= |b|, a != 0
+            if(a < b)
+            {
+                r = -a;
+                phi = (T3MATH_PI / 4) * (4 + (b / a));
+            }
+            // region 4, |b| >= |a|, but a==0 and b==0 could occur.
+            else
+            {
+                r = -b;
+                if(b != 0)
+                    phi = (T3MATH_PI / 4) * (6 - (a / b));
+                else
+                    phi = 0;
+            }
         }
+
+        u = r* cos(phi);
+        v = r* sin(phi);
+        return t3Vector2f(u, v);
     }
-    // region 3 or 4
+    else if(type == A3UNIFORM_SAMPLE_DISK_CARTESIAN)
+    {
+        float r = sqrtf(u1);
+
+        float theta = 2.0f * T3MATH_PI * u2;
+
+        float u = r * t3Math::cosRad(theta);
+        float v = r * t3Math::sinRad(theta);
+
+        return t3Vector2f(u, v);
+    }
     else
     {
-        // region 3, also |a| >= |b|, a != 0
-        if(a < b)
-        {
-            r = -a;
-            phi = (T3MATH_PI / 4) * (4 + (b / a));
-        }
-        // region 4, |b| >= |a|, but a==0 and b==0 could occur.
-        else
-        {
-            r = -b;
-            if(b != 0)
-                phi = (T3MATH_PI / 4) * (6 - (a / b));
-            else
-                phi = 0;
-        }
+        // a3Log
+        return t3Vector2f();
     }
+}
 
-    u = r* cos(phi);
-    v = r* sin(phi);
-    return t3Vector2f(u, v);
+// 均匀分布半球采样
+t3Vector3f a3UniformSampleHemisphere(float u1, float u2)
+{
+    float z = u1;
+    float r = t3Math::sqrt(t3Math::Max(0.f, 1.f - z*z));
+    float phi = 2 * T3MATH_PI * u2;
+    float x = r * t3Math::cosRad(phi);
+    float y = r * t3Math::sinRad(phi);
+    return t3Vector3f(x, y, z);
+}
+
+// Cosine-Weighted半球采样
+t3Vector3f a3CosineSampleHemisphere(float u1, float u2, a3CosineSampleHemisphereType type)
+{
+    if(type == A3UNIFORM_SAMPLE_HEMISPHERE_PROJECTED)
+    {
+        t3Vector2f p = a3UniformSampleDisk(u1, u2);
+
+        float z = t3Math::sqrt(t3Math::Max(0.f, 1.f - p.x*p.x - p.y*p.y));
+
+        return t3Vector3f(p.x, p.y, z);
+    }
+    else if(type == A3UNIFORM_SAMPLE_HEMISPHERE_CARTESIAN)
+    {
+        float sintheta = sinf(0.5 * acos(1 - 2 * u1));
+        float costheta = cosf(0.5 * acos(1 - 2 * u1));
+
+        float v = 2 * T3MATH_PI * u2;
+
+        float x = sintheta * cosf(v);
+        float y = sintheta * sinf(v);
+
+        float z = costheta;
+
+        return t3Vector3f(x, y, z);
+    }
+    else
+    {
+        // a3Log
+        return t3Vector3f();
+    }
 }
 
 float a3SphericalTheta(const t3Vector3f &v)
@@ -101,29 +163,6 @@ void a3GammaCorrection(float& r, float&g, float& b)
     r = t3Math::pow(r, 1 / 2.2f);
     g = t3Math::pow(g, 1 / 2.2f);
     b = t3Math::pow(b, 1 / 2.2f);
-}
-
-// 均匀分布半球采样
-// 与sinPhi^2 + cosPhi^2球上随机均匀分布采样投影至半球, u1 u2代表球坐标两参数(可任意指定sin/cos), 返回结果即为半球随机采样方向
-// 此处u1:cosTheta u2:代表占据一圆周的角度百分比
-t3Vector3f a3Hemisphere(float u1, float u2)
-{
-    //// 1 - cosThta^2 = sinTheta
-    //const float r = t3Math::sqrt(1.0f - u1 * u1);
-
-    //// phi = 2Pi * percent
-    //const float phi = 2 * T3MATH_PI * u2;
-
-    //// x = sinTheta * cosPhi; y = sinTheta * sinPhi; z = cosTheta
-    //return t3Vector3f(t3Math::cosRad(phi) * r, t3Math::sinRad(phi) * r, u1);
-
-    const float r = t3Math::sqrt(u1);
-    const float theta = 2 * T3MATH_PI * u2;
-
-    const float x = r * t3Math::cosRad(theta);
-    const float y = r * t3Math::sinRad(theta);
-
-    return t3Vector3f(x, y, t3Math::sqrt(t3Math::Max(0.0f, 1 - u1)));
 }
 
 void a3OrthonomalSystem(const t3Vector3f& v1, t3Vector3f& v2, t3Vector3f& v3)

@@ -16,7 +16,7 @@ a3Spectrum a3Diffuse::sample(const t3Vector3f& wi, t3Vector3f& wo, float* pdf, c
     a3OrthonomalSystem(normal, rotatedX, rotatedY);
 
     // 均匀半球随机采样
-    t3Vector3f sampleDirection = a3Hemisphere(random.randomFloat(), random.randomFloat());
+    t3Vector3f sampleDirection = a3UniformSampleHemisphere(random.randomFloat(), random.randomFloat());
     sampleDirection.normalize();
 
     // sampleDirection转换到Normal坐标系下

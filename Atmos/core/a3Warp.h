@@ -6,9 +6,33 @@
 #include <core/a3Spectrum.h>
 
 // --!公共函数
+enum a3UniformSampleDiskType
+{
+    // --!Peter Shirley提出的变换更小的解法 https://mediatech.aalto.fi/~jaakko/T111-5310/K2013/JGT-97.pdf
+    A3UNIFORM_SAMPLE_DISK_CONCENTRIC = 0,
+    // 概率密度转换得到的笛卡尔表达
+    A3UNIFORM_SAMPLE_DISK_CARTESIAN
+};
+
+enum a3CosineSampleHemisphereType
+{
+    // 于圆盘上均匀采样投影至半球满足Cosine-Weighted
+    A3UNIFORM_SAMPLE_HEMISPHERE_PROJECTED = 0,
+    // 概率密度转换得到的笛卡尔表达
+    A3UNIFORM_SAMPLE_HEMISPHERE_CARTESIAN
+};
 
 // 笛卡尔坐标系转换为极坐标系
-t3Vector2f a3SquareToUniformDisk(const float sampleU, const float sampleV);
+t3Vector2f a3UniformSampleDisk(float u1, float u2, a3UniformSampleDiskType type = A3UNIFORM_SAMPLE_DISK_CONCENTRIC);
+
+// 均匀分布半球采样
+t3Vector3f a3UniformSampleHemisphere(float u1, float u2);
+
+// Cosine-Weighted半球采样
+t3Vector3f a3CosineSampleHemisphere(float u1, float u2, a3CosineSampleHemisphereType type = A3UNIFORM_SAMPLE_HEMISPHERE_PROJECTED);
+
+// 均匀采样球概率分布
+float a3UniformSpherePdf();
 
 // 局部空间色调映射
 void a3ToneMapping(t3Vector3f* colorList, int startX, int startY, int localWidth, int localHeight, int width, int height);
@@ -31,9 +55,6 @@ float a3SphericalTheta(const t3Vector3f &v);
 // 球坐标Phi:[-pi, +pi]
 float a3SphericalPhi(const t3Vector3f &v);
 
-// 均匀分布半球采样
-t3Vector3f a3Hemisphere(float u1, float u2);
-
 // 给定v1坐标轴 与v2v3构建一正交坐标系(返回单位向量)
 void a3OrthonomalSystem(const t3Vector3f& v1, t3Vector3f& v2, t3Vector3f& v3);
 
@@ -45,9 +66,6 @@ bool a3SolveQuadraticDouble(double A, double B, double C, double* t0, double* t1
 
 // 多重重要性采样启发算法
 float a3PowerHeuristic(int nf, float fPdf, int ng, float gPdf);
-
-// 均匀采样球概率分布
-float a3UniformSpherePdf();
 
 // [Tools]转Fov为apretureWidth/Height(度)
 float a3FovToApretureSizeDeg(float fov);

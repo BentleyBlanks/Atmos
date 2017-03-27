@@ -38,17 +38,17 @@ enum a3PrimitiveSetName
 
 // global config
 int singleX = 350, singleY = 350;
-int spp = 1000;
+int spp = 1;
 int maxDepth = -1;
 int russianRouletteDepth = 3;
-int imageWidth = 3360, imageHeight = 1080;
+int imageWidth = 200, imageHeight = 200;
 bool enableGammaCorrection = true;
 bool enableToneMapping = false;
 
 a3SceneName name = WALLPAPER;
 a3RendererName rendererName = SAMPLER;
 a3IntegratorName integratorName = PATH;
-a3PrimitiveSetName primitiveName = EXHAUSTIVE;
+a3PrimitiveSetName primitiveName = BVH;
 
 inline a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
 {
@@ -180,17 +180,17 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
     }
     else if(name == WENDAOQIUER)
     {
-        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/skylightBlue.exr"));
+        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/envmap.exr"));
 
-        a3ImageTexture<a3Spectrum>* texture = a3CreateImageTexture("../../../../resources/images/earth.png"),
-            *texture2 = a3CreateImageTexture("../../../../resources/images/wood3.png");
+       // a3ImageTexture<a3Spectrum>* texture = a3CreateImageTexture("../../../../resources/images/earth.png"),
+         //   *texture2 = a3CreateImageTexture("../../../../resources/images/wood3.png");
         //a3CheckerBoard<a3Spectrum>* texture2 = a3CreateChekerBoardTexture();
 
-        addShape(new a3Sphere(t3Vector3f(-30, -8, 0), 37), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), LAMBERTIAN, texture);
+        addShape(new a3Sphere(t3Vector3f(-30, -8, 0), 37), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
 
         // 无限远平面
         //addShape(new a3Disk(t3Vector3f(0, 0, -37), 5000, t3Vector3f(0, 0, 1)), t3Vector3f(0.5, 0.5, 0.5), t3Vector3f(0, 0, 0), LAMBERTIAN, texture2);
-        addShape(new a3InfinitePlane(t3Vector3f(0, 0, -37), t3Vector3f(0, 0, 1)), t3Vector3f(0.8f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        addShape(new a3InfinitePlane(t3Vector3f(0, 0, -37), t3Vector3f(0, 0, 1)), t3Vector3f(0.5f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
     }
     else if(name == CORNEL_BOX)
     {
@@ -272,20 +272,32 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
     }
     else if(name == WALLPAPER)
     {
-        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/0.png"));
+        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/skylightBlue.png"));
 
-        a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
+        a3ModelImporter importer;
+        std::vector<a3Shape*> triangle = importer.load("../../../../resources/models/sibenik.obj");
+
+        if(triangle.size() > 0)
+        {
+            a3Log::debug("add shape\n");
+            for(auto s : triangle)
+                addShape(s, t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+
+            a3Log::debug("primitive number:%d\n", bvh->primitives.size());
+        }
+
+        //a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
 
 
-        addShape(new a3Sphere(t3Vector3f(80, 0, 20), 70), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), GLASS, NULL);
+        //addShape(new a3Sphere(t3Vector3f(80, 0, 20), 70), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), GLASS, NULL);
 
-        addShape(new a3Sphere(t3Vector3f(-80, 0, 10), 60), t3Vector3f(0.8, 0.8, 0.8), t3Vector3f(0, 0, 0), LAMBERTIAN, texture);
+        //addShape(new a3Sphere(t3Vector3f(-80, 0, 10), 60), t3Vector3f(0.8, 0.8, 0.8), t3Vector3f(0, 0, 0), LAMBERTIAN, texture);
 
-        addShape(new a3Sphere(t3Vector3f(-150, 500, 10), 60), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), MIRROR, NULL);
+        //addShape(new a3Sphere(t3Vector3f(-150, 500, 10), 60), t3Vector3f(1, 1, 1), t3Vector3f(0, 0, 0), MIRROR, NULL);
 
-        addShape(new a3Sphere(t3Vector3f(320, -800, 40), 90), t3Vector3f(0.2, 0.9, 0.2), t3Vector3f(0, 0, 0), LAMBERTIAN, texture);
+        //addShape(new a3Sphere(t3Vector3f(320, -800, 40), 90), t3Vector3f(0.2, 0.9, 0.2), t3Vector3f(0, 0, 0), LAMBERTIAN, texture);
 
-        addShape(new a3InfinitePlane(t3Vector3f(0, 0, -50), t3Vector3f(0.0f, 0.0f, 1.0f)), t3Vector3f(0.35f, 0.35f, 0.35f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
+        //addShape(new a3InfinitePlane(t3Vector3f(0, 0, -50), t3Vector3f(0.0f, 0.0f, 1.0f)), t3Vector3f(0.35f, 0.35f, 0.35f), t3Vector3f(0, 0, 0), LAMBERTIAN, NULL);
     }
 
     // 加速结构初始化
