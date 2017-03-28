@@ -83,7 +83,7 @@ SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/phot
 
 9.测试场景的资源文件[已开放下载](http://pan.baidu.com/s/1bptKpDt)
 
-##待办事项
+## 待办事项
 
 1.重构Integrator中错误Path Tracing重要性采样实现问题
 
@@ -93,16 +93,15 @@ SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/phot
 
 4.实现BVH中未实现的更高效写法
 
-5.完成若干个基本采样的单元测试项目
+5.重新实现非狄拉克分布的BSDF与光源
 
-6.重新实现非狄拉克分布的BSDF与光源
+6.全局重要性采样支持
 
-7.全局重要性采样支持
+7.正交摄像机，环境摄像机支持
 
-8.正交摄像机，环境摄像机支持
+8.更多的基于物理的BRDF模型，以及Microfacet材质支持
 
-9.更多的基于物理的BRDF模型，以及Microfacet材质支持
-
+9.全局64位支持，以解决内存分配不够的问题
 
 ## 关于作者
 

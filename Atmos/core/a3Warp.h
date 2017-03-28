@@ -6,6 +6,7 @@
 #include <core/a3Spectrum.h>
 
 // --!公共函数
+// ----------------------------------------------Sampling----------------------------------------------
 enum a3UniformSampleDiskType
 {
     // --!Peter Shirley提出的变换更小的解法 https://mediatech.aalto.fi/~jaakko/T111-5310/K2013/JGT-97.pdf
@@ -25,15 +26,23 @@ enum a3CosineSampleHemisphereType
 // 笛卡尔坐标系转换为极坐标系
 t3Vector2f a3UniformSampleDisk(float u1, float u2, a3UniformSampleDiskType type = A3UNIFORM_SAMPLE_DISK_CONCENTRIC);
 
+// 均匀分布整体球采样
+t3Vector3f a3UniformSampleSphere(float u1, float u2);
+
 // 均匀分布半球采样
 t3Vector3f a3UniformSampleHemisphere(float u1, float u2);
 
 // Cosine-Weighted半球采样
 t3Vector3f a3CosineSampleHemisphere(float u1, float u2, a3CosineSampleHemisphereType type = A3UNIFORM_SAMPLE_HEMISPHERE_PROJECTED);
 
+// 均匀分布采样三角形
+t3Vector2f a3UniformSampleTriangle(float u1, float u2);
+
 // 均匀采样球概率分布
 float a3UniformSpherePdf();
 
+
+// ----------------------------------------------Post Effect----------------------------------------------
 // 局部空间色调映射
 void a3ToneMapping(t3Vector3f* colorList, int startX, int startY, int localWidth, int localHeight, int width, int height);
 

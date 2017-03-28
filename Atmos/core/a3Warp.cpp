@@ -1,5 +1,6 @@
 ﻿#include <core/a3Warp.h>
 
+// ----------------------------------------------Sampling----------------------------------------------
 t3Vector2f a3UniformSampleDisk(float u1, float u2, a3UniformSampleDiskType type)
 {
     if(type == A3UNIFORM_SAMPLE_DISK_CONCENTRIC)
@@ -67,6 +68,19 @@ t3Vector2f a3UniformSampleDisk(float u1, float u2, a3UniformSampleDiskType type)
     }
 }
 
+t3Vector3f a3UniformSampleSphere(float u1, float u2)
+{    
+    // z=1-(1-2\xi^2)
+    float z = 1.f - 2.f * u1;
+    float r = t3Math::sqrt(t3Math::Max(0.f, 1.f - z*z));
+
+    float phi = 2.f * T3MATH_PI * u2;
+    float x = r * t3Math::cosRad(phi);
+    float y = r * t3Math::sinRad(phi);
+
+    return t3Vector3f(x, y, z);
+}
+
 // 均匀分布半球采样
 t3Vector3f a3UniformSampleHemisphere(float u1, float u2)
 {
@@ -91,13 +105,13 @@ t3Vector3f a3CosineSampleHemisphere(float u1, float u2, a3CosineSampleHemisphere
     }
     else if(type == A3UNIFORM_SAMPLE_HEMISPHERE_CARTESIAN)
     {
-        float sintheta = sinf(0.5 * acos(1 - 2 * u1));
-        float costheta = cosf(0.5 * acos(1 - 2 * u1));
+        float sintheta = t3Math::sinRad(0.5 * t3Math::acosRad(1 - 2 * u1));
+        float costheta = t3Math::cosRad(0.5 * t3Math::acosRad(1 - 2 * u1));
 
         float v = 2 * T3MATH_PI * u2;
 
-        float x = sintheta * cosf(v);
-        float y = sintheta * sinf(v);
+        float x = sintheta * t3Math::cosRad(v);
+        float y = sintheta * t3Math::sinRad(v);
 
         float z = costheta;
 
@@ -110,6 +124,17 @@ t3Vector3f a3CosineSampleHemisphere(float u1, float u2, a3CosineSampleHemisphere
     }
 }
 
+t3Vector2f a3UniformSampleTriangle(float u1, float u2)
+{
+    float sqrtu1 = t3Math::sqrt(u1);
+
+    float u = 1.f - sqrtu1;
+    float v = u2 * sqrtu1;
+
+    return t3Vector2f(u, v);
+}
+
+// ----------------------------------------------Post Effect----------------------------------------------
 float a3SphericalTheta(const t3Vector3f &v)
 {
     return t3Math::acosRad(t3Math::clamp(v.z, -1.f, 1.f));
