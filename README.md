@@ -2,8 +2,9 @@
 
 A Physically Based Renderer.(Not Finished Yet)
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/29702466352/in/dateposted-public/" title="Test_000027"><img src="https://c1.staticflickr.com/9/8459/29702466352_4639ce4d29_c.jpg" width="800" height="450" alt="Test_000027"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
-
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/29702466352/in/dateposted-public/" title="Test_000027"><img src="https://c1.staticflickr.com/9/8459/29702466352_4639ce4d29_z.jpg" width="640" height="360" alt="Test_000027"></a><!-- <script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+ -->
+ 
 Atmos with Blender
 
 [Youtube](https://www.youtube.com/watch?v=d6pLWDCjvSk)  ||  [Youku](http://v.youku.com/v_show/id_XMTczMjI3NjY1Mg==.html#paction)
@@ -47,7 +48,7 @@ SPP = 256 width: 700 height 700 原图可见[Flickr](https://www.flickr.com/phot
 
 SPP = 256 width: 700 height 700 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26337551743/in/dateposted-public/)
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26942251805/in/dateposted-public/" title="spotlight path"><img src="https://farm8.staticflickr.com/7375/26942251805_de9dfcb41d_b.jpg" width="700" height="700" alt="spotlight path"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26942251805/in/dateposted-public/" title="spotlight path"><img src="https://farm8.staticflickr.com/7375/26942251805_de9dfcb41d_b.jpg" width="700" height="700" alt="spotlight path"></a><!-- <script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script> -->
 
 SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/photos/134486032@N03/26942251805/in/dateposted-public/)
 
