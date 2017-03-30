@@ -53,7 +53,23 @@ SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/phot
 
 ## 使用说明
 
-1.a3Log支持多种日志等级发放消息，可自行选择输出到终端或日志文件中，如
+1.```Renderer```提供多种调试模式，同时支持网格，正常的采样渲染，以及Debug专用的单光线跟踪，法线/菲涅尔贴图渲染等
+
+2.Atmos支持Triangle(Mesh暂不支持), Sphere, Disk, Plane等基本几何形状
+
+3.Atmos支持```景深```，```透视```等基本相机效果
+
+4.Atmos目前支持无限远区域光光照，区域光光照，聚光灯和点光源(其他基本光源暂未实现)
+
+5.Atmos中BVH实现为简易```EqualCounts```(暂不支持SAH分割)
+
+6.Atmos目前实现的几何体都支持基本```纹理映射```
+
+7.Assimp VS2015的静态库[在这里下载](http://pan.baidu.com/s/1jIulVGq)(可自行编译放入assimp/lib中)
+
+8.测试场景的资源文件[已开放下载](http://pan.baidu.com/s/1bptKpDt)
+
+10.a3Log支持多种日志等级发放消息，可自行选择输出到终端或日志文件中，如
 
 > 输出到文件部分目前```不支持```中文或者其他UTF8字符
 
@@ -66,22 +82,6 @@ SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/phot
     a3LogHTML::debug("What are you talking about. %d\n", a);
     a3LogHTML::end();
 ```
-
-2.```Renderer```目前提供了多种调试模式渲染，同时支持网格渲染，正常的采样渲染，以及Debug专用的单光线跟踪，法线/菲涅尔贴图渲染等
-
-3.Atmos支持Triangle(Mesh暂不支持), Sphere, Disk, Plane等基本几何形状
-
-4.Atmos支持```景深```，```透视```等基本相机效果
-
-5.Atmos目前支持无限远区域光光照，区域光光照，聚光灯和点光源(其他基本光源暂未实现)
-
-6.Atmos中BVH实现为简易```EqualCounts```(暂不支持SAH分割)
-
-7.Atmos目前实现的几何体都支持基本```纹理映射```
-
-8.Assimp VS2015的静态库[在这里下载](http://pan.baidu.com/s/1jIulVGq)(可自行编译放入assimp/lib中)
-
-9.测试场景的资源文件[已开放下载](http://pan.baidu.com/s/1bptKpDt)
 
 ## 待办事项
 

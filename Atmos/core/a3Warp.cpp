@@ -124,6 +124,21 @@ t3Vector3f a3CosineSampleHemisphere(float u1, float u2, a3CosineSampleHemisphere
     }
 }
 
+t3Vector3f a3UniformSampleCone(float u1, float u2, float cosThetaMax)
+{    
+    // cos\theta = 1 - \xi + \xi * costhetamax
+    float costheta = 1.0f - u1 + u1 * cosThetaMax;
+    float sintheta = t3Math::sqrt(1.0f - costheta*costheta);
+    // \phi = 2 \pi psi
+    float phi = 2 * T3MATH_PI * u2;
+
+    float x = t3Math::cosRad(phi) * sintheta;
+    float y = t3Math::sinRad(phi) * sintheta;
+    float z = costheta;
+
+    return t3Vector3f(x, y, z);
+}
+
 t3Vector2f a3UniformSampleTriangle(float u1, float u2)
 {
     float sqrtu1 = t3Math::sqrt(u1);

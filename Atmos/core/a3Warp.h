@@ -35,6 +35,9 @@ t3Vector3f a3UniformSampleHemisphere(float u1, float u2);
 // Cosine-Weighted半球采样
 t3Vector3f a3CosineSampleHemisphere(float u1, float u2, a3CosineSampleHemisphereType type = A3UNIFORM_SAMPLE_HEMISPHERE_PROJECTED);
 
+// 均匀采样圆锥
+t3Vector3f a3UniformSampleCone(float u1, float u2, float cosThetaMax);
+
 // 均匀分布采样三角形
 t3Vector2f a3UniformSampleTriangle(float u1, float u2);
 
