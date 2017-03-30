@@ -2,8 +2,7 @@
 
 A Physically Based Renderer.(Not Finished Yet)
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/29702466352/in/dateposted-public/" title="Test_000027"><img src="https://c1.staticflickr.com/9/8459/29702466352_4639ce4d29_z.jpg" width="640" height="360" alt="Test_000027"></a><!-- <script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
- -->
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/29702466352/in/dateposted-public/" title="Test_000027"><img src="https://c1.staticflickr.com/9/8459/29702466352_4639ce4d29_c.jpg" width="800" height="450" alt="Test_000027"></a><!-- <script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script> -->
  
 Atmos with Blender
 
