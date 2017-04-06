@@ -18,6 +18,10 @@ public:
 	// 复制构造
     t3Vector2(const t3Vector2<Type>& vector);
 
+    // t3Vector2<Type>->t3Vector2<Type2>
+    template <typename Type2>
+    explicit t3Vector2(const t3Vector2<Type2> &p);
+
     T3_FORCE_INLINE void clone(const t3Vector2<Type>& vector);
 
     T3_FORCE_INLINE void set(t3Vector2& vector);

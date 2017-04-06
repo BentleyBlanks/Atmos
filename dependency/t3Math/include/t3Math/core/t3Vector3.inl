@@ -7,15 +7,21 @@
 // -----------------------Implementation-----------------------
 template<typename Type>
 inline t3Vector3<Type>::t3Vector3() : x(0), y(0), z(0) {}
+
 template<typename Type>
 inline t3Vector3<Type>::t3Vector3(Type x, Type y, Type z) : x(x), y(y), z(z) {}
+
 template<typename Type>
 inline t3Vector3<Type>::t3Vector3(Type scalar) : x(scalar), y(scalar), z(scalar) {}
+
+// 其他类型到当前类型拷贝构造
 template<typename Type>
 template <typename Type2>
 inline t3Vector3<Type>::t3Vector3(const t3Vector3<Type2>& vector) : x((Type2) vector.x), y((Type2) vector.y), z((Type2) vector.z) {}
 
-inline t3Vector3<float>::t3Vector3(const t3Vector3<float>& vector) : x(vector.x), y(vector.y), z(vector.z) {}
+// 自拷贝构造
+template<typename Type>
+inline t3Vector3<Type>::t3Vector3(const t3Vector3<Type>& vector) : x(vector.x), y(vector.y), z(vector.z) {}
 
 // Getters and Setters.
 template<typename Type>

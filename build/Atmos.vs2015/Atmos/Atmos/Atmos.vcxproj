@@ -93,7 +93,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency/t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/assimp/include;../../../../Atmos/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency/t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/tinyobjloader/include;../../../../Atmos/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -103,8 +103,8 @@
       <AdditionalDependencies>assimpd.vs2015.lib;zlibd.vs2015.lib;loadpngd.vs2015.lib;t3DataStructuresd.vs2015.lib;t3Mathd.vs2015.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>assimpd.vs2015.lib;zlibd.vs2015.lib;loadpngd.vs2015.lib;t3DataStructuresd.vs2015.lib;t3Mathd.vs2015.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib;../../../../dependency/t3DataStructures/lib;../../../../dependency/lodepng/lib;../../../../dependency/assimp/lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>loadpngd.vs2015.x86.lib;t3DataStructuresd.vs2015.x86.lib;t3Mathd.vs2015.x86.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib/x86;../../../../dependency/t3DataStructures/lib/x86;../../../../dependency/lodepng/lib/x86</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,10 +115,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency/t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/tinyobjloader/include;../../../../Atmos/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib;../../../../dependency/t3DataStructures/lib;../../../../dependency/lodepng/lib;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -131,7 +133,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency//t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/assimp/include;../../../../Atmos/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency//t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/tinyobjloader/include;../../../../Atmos/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -143,8 +145,8 @@
       <AdditionalDependencies>assimp.vs2015.lib;loadpng.vs2015.lib;t3DataStructures.vs2015.lib;t3Math.vs2015.lib;zlib.vs2015.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>assimp.vs2015.lib;zlib.vs2015.lib;loadpng.vs2015.lib;t3DataStructures.vs2015.lib;t3Math.vs2015.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib;../../../../dependency/t3DataStructures/lib;../../../../dependency/lodepng/lib;../../../../dependency/assimp/lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>loadpng.vs2015.x86.lib;t3DataStructures.vs2015.x86.lib;t3Math.vs2015.x86.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib/x86;../../../../dependency/t3DataStructures/lib/x86;../../../../dependency/lodepng/lib/x86</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -157,24 +159,20 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency//t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/tinyobjloader/include;../../../../Atmos/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>loadpng.vs2015.x64.lib;t3DataStructures.vs2015.x64.lib;t3Math.vs2015.x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib/x64;../../../../dependency/t3DataStructures/lib/x64;../../../../dependency/lodepng/lib/x64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\..\..\..\Atmos\core\a3AABB.inl" />
     <None Include="..\..\..\..\dependency\assimp\include\assimp\.editorconfig" />
-    <None Include="..\..\..\..\dependency\assimp\include\assimp\color4.inl" />
-    <None Include="..\..\..\..\dependency\assimp\include\assimp\material.inl" />
-    <None Include="..\..\..\..\dependency\assimp\include\assimp\matrix3x3.inl" />
-    <None Include="..\..\..\..\dependency\assimp\include\assimp\matrix4x4.inl" />
-    <None Include="..\..\..\..\dependency\assimp\include\assimp\quaternion.inl" />
-    <None Include="..\..\..\..\dependency\assimp\include\assimp\vector2.inl" />
-    <None Include="..\..\..\..\dependency\assimp\include\assimp\vector3.inl" />
     <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Math.inl" />
     <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4x4.inl" />
     <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.inl" />
@@ -242,6 +240,7 @@
     <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp" />
     <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp" />
     <ClCompile Include="..\..\..\..\dependency\tinyexr\include\tinyexr.cc" />
+    <ClCompile Include="..\..\..\..\dependency\tinyobjloader\include\tiny_obj_loader.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Atmos\accelerators\a3BVH.h" />
@@ -307,43 +306,6 @@
     <ClInclude Include="..\..\..\..\Atmos\textures\a3ConstantTexture.h" />
     <ClInclude Include="..\..\..\..\Atmos\textures\a3ImageTexture.h" />
     <ClInclude Include="..\..\..\..\Atmos\textures\a3Texture.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\ai_assert.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\anim.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\camera.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\cexport.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\cfileio.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\cimport.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\color4.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Compiler\poppack1.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Compiler\pstdint.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Compiler\pushpack1.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\config.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\DefaultLogger.hpp" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\defs.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Exporter.hpp" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Importer.hpp" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\importerdesc.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\IOStream.hpp" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\IOSystem.hpp" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\light.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\Logger.hpp" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\LogStream.hpp" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\material.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\matrix3x3.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\matrix4x4.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\mesh.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\metadata.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\NullLogger.hpp" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\port\AndroidJNI\AndroidJNIIOSystem.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\postprocess.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\ProgressHandler.hpp" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\quaternion.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\scene.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\texture.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\types.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\vector2.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\vector3.h" />
-    <ClInclude Include="..\..\..\..\dependency\assimp\include\assimp\version.h" />
     <ClInclude Include="..\..\..\..\dependency\lodepng\include\lodepng.h" />
     <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\Common\t3DataStructuresSettings.h" />
     <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\Common\t3Test.h" />
@@ -357,6 +319,7 @@
     <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.h" />
     <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h" />
     <ClInclude Include="..\..\..\..\dependency\tinyexr\include\tinyexr.h" />
+    <ClInclude Include="..\..\..\..\dependency\tinyobjloader\include\tiny_obj_loader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

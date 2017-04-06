@@ -45,7 +45,7 @@ int imageWidth = 200, imageHeight = 200;
 bool enableGammaCorrection = true;
 bool enableToneMapping = false;
 
-a3SceneName name = WALLPAPER;
+a3SceneName name = BVHTEST;
 a3RendererName rendererName = SAMPLER;
 a3IntegratorName integratorName = PATH;
 a3PrimitiveSetName primitiveName = BVH;
@@ -214,7 +214,7 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
     else if(name == BVHTEST)
     {
         //scene->addLight(new a3PointLight(t3Vector3f(0.0f, 100.0f, 10.0f), a3Spectrum(10000.0f)));
-        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/0.png"));
+        scene->addLight(new a3InfiniteAreaLight("../../../../resources/images/envmap.exr"));
         //scene->addLight(new a3PointLight(t3Vector3f(0, 80.0f, 80.0f), a3Spectrum(500000.0f)));
 
         a3ModelImporter importer;
@@ -268,7 +268,7 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         //addShape(plane, t3Vector3f(1.0f), t3Vector3f(0.0f), LAMBERTIAN, NULL);
 
         // 地球仪
-        addShape(new a3Sphere(t3Vector3f(0.f), 30), a3Spectrum(1.f), a3Spectrum(0.f), LAMBERTIAN, texture);
+        //addShape(new a3Sphere(t3Vector3f(0.f), 30), a3Spectrum(1.f), a3Spectrum(0.f), LAMBERTIAN, texture);
     }
     else if(name == WALLPAPER)
     {

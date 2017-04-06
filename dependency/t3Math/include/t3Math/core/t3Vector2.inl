@@ -5,20 +5,19 @@
 #include <string>
 
 template <class Type>
-inline t3Vector2<Type>::t3Vector2() :x(0), y(0)
-{
-}
+inline t3Vector2<Type>::t3Vector2() :x(0), y(0) {}
 
 template <class Type>
-inline t3Vector2<Type>::t3Vector2(Type x, Type y) : x(x), y(y)
-{
-}
+inline t3Vector2<Type>::t3Vector2(Type x, Type y) : x(x), y(y) {}
 
-// 复制构造
+// 自类型拷贝构造
 template <class Type>
-inline t3Vector2<Type>::t3Vector2(const t3Vector2<Type>& vector) : x(vector.x), y(vector.y)
-{
-}
+inline t3Vector2<Type>::t3Vector2(const t3Vector2<Type>& vector) : x(vector.x), y(vector.y) {}
+
+// t3Vector2<Type>->t3Vector2<Type2> explict防止隐式转换
+template<typename Type>
+template <typename Type2>
+inline t3Vector2<Type>::t3Vector2(const t3Vector2<Type2> &vector) : x(vector.x), y(vector.y) {}
 
 template <class Type>
 T3_FORCE_INLINE void t3Vector2<Type>::clone(const t3Vector2<Type>& vector)
