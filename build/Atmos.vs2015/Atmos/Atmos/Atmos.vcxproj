@@ -39,13 +39,13 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -71,19 +71,27 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <TargetName>$(ProjectName)d.vs2015</TargetName>
+    <TargetName>$(ProjectName)d.vs2015.x86</TargetName>
     <TargetExt>.lib</TargetExt>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)d.vs2015.x64</TargetName>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <TargetName>$(ProjectName).vs2015</TargetName>
+    <TargetName>$(ProjectName).vs2015.x86</TargetName>
     <TargetExt>.lib</TargetExt>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>$(ProjectName).vs2015.x64</TargetName>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -113,7 +121,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency/t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/tinyobjloader/include;../../../../Atmos/</AdditionalIncludeDirectories>
     </ClCompile>
@@ -122,6 +130,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib;../../../../dependency/t3DataStructures/lib;../../../../dependency/lodepng/lib;</AdditionalLibraryDirectories>
     </Link>
+    <Lib>
+      <AdditionalDependencies>loadpngd.vs2015.x64.lib;t3DataStructuresd.vs2015.x64.lib;t3Mathd.vs2015.x64.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib/x64;../../../../dependency/t3DataStructures/lib/x64;../../../../dependency/lodepng/lib/x64</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -157,7 +169,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../../../../dependency/tinyexr/include;../../../../dependency/t3Math/include;../../../../dependency//t3DataStructures/include;../../../../dependency/lodepng/include;../../../../dependency/tinyobjloader/include;../../../../Atmos/</AdditionalIncludeDirectories>
     </ClCompile>
@@ -169,6 +181,10 @@
       <AdditionalDependencies>loadpng.vs2015.x64.lib;t3DataStructures.vs2015.x64.lib;t3Math.vs2015.x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib/x64;../../../../dependency/t3DataStructures/lib/x64;../../../../dependency/lodepng/lib/x64</AdditionalLibraryDirectories>
     </Link>
+    <Lib>
+      <AdditionalDependencies>loadpng.vs2015.x64.lib;t3DataStructures.vs2015.x64.lib;t3Math.vs2015.x64.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../dependency/t3Math/lib/x64;../../../../dependency/t3DataStructures/lib/x64;../../../../dependency/lodepng/lib/x64</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\..\..\..\Atmos\core\a3AABB.inl" />

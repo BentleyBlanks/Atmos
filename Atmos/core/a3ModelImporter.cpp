@@ -128,7 +128,7 @@ public:
         for(size_t s = 0; s < shapes.size(); s++)
         {
             int numFaceVertices = shapes[s].mesh.num_face_vertices.size();
-            a3Log::debug("shape[%d] faces: %f\n", s, (int) numFaceVertices / 3);
+            a3Log::debug("shape[%d] faces: %d\n", s, (int) numFaceVertices / 3);
 
             // Loop over faces(polygon)
             // --!FAQ: https://github.com/syoyo/tinyobjloader
@@ -141,6 +141,16 @@ public:
 
                 if(fv != 3)
                 {
+                    // 防止内存泄漏
+                    if(triShapes.size() > 0)
+                    {
+                        for(std::vector<a3Shape*>::iterator it = triShapes.begin(); it != triShapes.end();)
+                        {
+                            A3_SAFE_DELETE(*it);
+                            it = triShapes.erase(it);
+                        }
+                    }
+
                     a3Log::error("Atmos仅支持三角形作为片元, 而当前模型面由%d个顶点组成\n", fv);
                     return std::vector<a3Shape*>();
                 }

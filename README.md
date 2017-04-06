@@ -18,16 +18,16 @@ Atmos with Blender
 
 ## 第三方库
 
-1.[Assimp](https://github.com/assimp/assimp)用于Obj模型导入
+1.[tinyobjloader](https://github.com/syoyo/tinyobjloader) 用于obj模型文件导入
 
-2.[LodePNG](http://lodev.org/lodepng/)用于PNG图片解码编码
+2.[loadpng](http://lodev.org/lodepng/) 用于PNG图片解码编码
 
 3.[t3DataStructures](https://github.com/BentleyBlanks/t3DataStructures)
-Tatty3d的数据结构模块，用于计时器等基础库使用
+ Tatty3d的数据结构模块，用于计时器等基础库使用
 
-4.[t3Math](https://github.com/BentleyBlanks/t3Math)完成基本数学库支持
+4.[t3Math](https://github.com/BentleyBlanks/t3Math) Tatty3d中的数学模块，用于基本运算功能
 
-5.[Tinyexr](https://github.com/syoyo/tinyexr)用于EXR图片解码编码
+5.[tinyexr](https://github.com/syoyo/tinyexr) 用于EXR图片解码编码
 
 ## 效果图
 
@@ -53,33 +53,33 @@ SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/phot
 
 ## 使用说明
 
-1.```Renderer```提供多种调试模式，同时支持网格，正常的采样渲染，以及Debug专用的单光线跟踪，法线/菲涅尔贴图渲染等
+1.Atmos全局支持32位于64位
 
-2.Atmos支持Triangle(Mesh暂不支持), Sphere, Disk, Plane等基本几何形状
+2.```Renderer```提供多种调试模式，同时支持网格，正常的采样渲染，以及Debug专用的单光线跟踪，法线/菲涅尔贴图渲染等
 
-3.Atmos支持```景深```，```透视```等基本相机效果
+3.Atmos支持Triangle(Mesh暂不支持), Sphere, Disk, Plane等基本几何形状
 
-4.Atmos目前支持无限远区域光光照，区域光光照，聚光灯和点光源(其他基本光源暂未实现)
+4.Atmos支持```景深```，```透视```等基本相机效果
 
-5.Atmos中BVH实现为简易```EqualCounts```(暂不支持SAH分割)
+5.Atmos目前支持无限远区域光光照，区域光光照，聚光灯和点光源(其他基本光源暂未实现)
 
-6.Atmos目前实现的几何体都支持基本```纹理映射```
+6.Atmos中BVH实现为简易```EqualCounts```(暂不支持SAH分割)
 
-7.Assimp VS2015的静态库[在这里下载](http://pan.baidu.com/s/1jIulVGq)(可自行编译放入assimp/lib中)
+7.Atmos目前实现的几何体都支持基本```纹理映射```
 
 8.测试场景的资源文件[已开放下载](http://pan.baidu.com/s/1bptKpDt)
 
-10.a3Log支持多种日志等级发放消息，可自行选择输出到终端或日志文件中，如
+9.a3Log支持多种日志等级发放消息，可自行选择输出到终端或日志文件中，如
 
 > 输出到文件部分目前```不支持```中文或者其他UTF8字符
 
 ```cpp
-    a3Log::debug("这一段是信息Log, 紧接着一个int变量: a = %d\n", a);
+    a3Log::debug("Whos Your Daddy? %d\n", a);
 
-    a3LogFile::debug("What are you talking about. %d\n", a);
+    a3LogFile::debug("Whos Your Daddy? %d\n", a);
 
     a3LogHTML::begin();
-    a3LogHTML::debug("What are you talking about. %d\n", a);
+    a3LogHTML::debug("Whos Your Daddy? %d\n", a);
     a3LogHTML::end();
 ```
 
@@ -101,13 +101,11 @@ SPP = 256 width: 900 height 900 原图可见[Flickr](https://www.flickr.com/phot
 
 8.更多的基于物理的BRDF模型，以及Microfacet材质支持
 
-9.全局64位支持，以解决内存分配不够的问题
-
 ## 关于作者
 
 ``` cpp
-int 官某某 = "Bingo";
+const char* 官某某 = "Bingo";
 
-char[] 个人博客 = "http://bentleyblanks.github.io";
+std::string 个人博客 = "http://bentleyblanks.github.io";
 ```
 

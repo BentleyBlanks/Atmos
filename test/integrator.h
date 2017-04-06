@@ -38,10 +38,10 @@ enum a3PrimitiveSetName
 
 // global config
 int singleX = 350, singleY = 350;
-int spp = 1;
+int spp = 32;
 int maxDepth = -1;
 int russianRouletteDepth = 3;
-int imageWidth = 200, imageHeight = 200;
+int imageWidth = 500, imageHeight = 500;
 bool enableGammaCorrection = true;
 bool enableToneMapping = false;
 
@@ -221,7 +221,7 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         //std::vector<a3Shape*>* plane = importer.load("../../../../resources/models/mitsuba/mitsuba_plane.obj");
         //std::vector<a3Shape*>* internal = importer.load("../../../../resources/models/mitsuba/mitsuba_internal.obj");
         //std::vector<a3Shape*>* sphere = importer.load("../../../../resources/models/mitsuba/mitsuba_sphere.obj");
-        std::vector<a3Shape*> mitsuba = importer.load("../../../../resources/models/mitsuba.obj");
+        std::vector<a3Shape*> mitsuba = importer.load("../../../../resources/models/hairball.obj");
 
         a3BSDF* bsdf = NULL;
         a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
