@@ -128,7 +128,7 @@ public:
         for(size_t s = 0; s < shapes.size(); s++)
         {
             int numFaceVertices = shapes[s].mesh.num_face_vertices.size();
-            a3Log::debug("shape[%d] faces: %d\n", s, (int) numFaceVertices / 3);
+            a3Log::debug("shape[%d] faces: %d\n", s, (int) numFaceVertices);
 
             // Loop over faces(polygon)
             // --!FAQ: https://github.com/syoyo/tinyobjloader

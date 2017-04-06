@@ -39,10 +39,10 @@ build/Atmos.vs2013/AtmosTest/Release/*.*
 
 #VS2015
 #x86
-build/Atmos.vs2015/Atmos/x86/Debug/*.*
-build/Atmos.vs2015/Atmos/x86/Release/*.*
-build/Atmos.vs2015/AtmosTest/x86/Debug/*.*
-build/Atmos.vs2015/AtmosTest/x86/Release/*.*
+build/Atmos.vs2015/Atmos/Win32/Debug/*.*
+build/Atmos.vs2015/Atmos/Win32/Release/*.*
+build/Atmos.vs2015/AtmosTest/Win32/Debug/*.*
+build/Atmos.vs2015/AtmosTest/Win32/Release/*.*
 
 #x64
 build/Atmos.vs2015/Atmos/x64/Debug/*.*

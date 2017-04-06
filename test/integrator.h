@@ -40,7 +40,7 @@ enum a3PrimitiveSetName
 int singleX = 350, singleY = 350;
 int spp = 32;
 int maxDepth = -1;
-int russianRouletteDepth = 3;
+int russianRouletteDepth = 4;
 int imageWidth = 500, imageHeight = 500;
 bool enableGammaCorrection = true;
 bool enableToneMapping = false;
@@ -221,7 +221,7 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
         //std::vector<a3Shape*>* plane = importer.load("../../../../resources/models/mitsuba/mitsuba_plane.obj");
         //std::vector<a3Shape*>* internal = importer.load("../../../../resources/models/mitsuba/mitsuba_internal.obj");
         //std::vector<a3Shape*>* sphere = importer.load("../../../../resources/models/mitsuba/mitsuba_sphere.obj");
-        std::vector<a3Shape*> mitsuba = importer.load("../../../../resources/models/hairball.obj");
+        std::vector<a3Shape*> mitsuba = importer.load("../../../../resources/models/2222.obj");
 
         a3BSDF* bsdf = NULL;
         a3CheckerBoard<a3Spectrum>* texture = a3CreateChekerBoardTexture();
@@ -229,7 +229,7 @@ inline a3Scene* generateScene(a3SceneName name, a3PrimitiveSetName primitiveName
 
         if(mitsuba.size() > 0)
             for(auto s : mitsuba)
-                bsdf = addShape(s, t3Vector3f(1.0f), t3Vector3f(0, 0, 0), MIRROR, NULL);
+                bsdf = addShape(s, t3Vector3f(0.6f), t3Vector3f(0, 0, 0), GLASS, NULL);
 
         //// plane
         //if(plane)
