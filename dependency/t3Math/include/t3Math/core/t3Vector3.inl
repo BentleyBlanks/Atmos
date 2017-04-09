@@ -450,7 +450,7 @@ T3_FORCE_INLINE Type t3Vector3<Type>::angle(const t3Vector3<Type>& vector) const
 {
     t3Vector3<Type> n1 = this->normalized();
     t3Vector3<Type> n2 = vector.normalized();
-    return (float) (acos(n1.dot(n2))*RAD_TO_DEG);
+    return (float) (acos(n1.dot(n2))*T3MATH_RAD_TO_DEG);
 }
 
 template<typename Type>

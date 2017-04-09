@@ -993,14 +993,14 @@ static t3Quaternion q1000(1.0, 0.0, 0.0, 0.0);
     C[i][j] gets(A[i][j]); }
 
 /** Multiply the upper left 3x3 parts of A and B to get AB **/
-void a3_mat_mult(_HMatrix A, _HMatrix B, _HMatrix AB)
+void mat_mult(_HMatrix A, _HMatrix B, _HMatrix AB)
 {
     int i, j;
     for(i = 0; i<3; i++) for(j = 0; j<3; j++)
         AB[i][j] = A[i][0] * B[0][j] + A[i][1] * B[1][j] + A[i][2] * B[2][j];
 }
 
-double a3_mat_norm(_HMatrix M, int tpose)
+double mat_norm(_HMatrix M, int tpose)
 {
     int i;
     double sum, max;
@@ -1014,13 +1014,13 @@ double a3_mat_norm(_HMatrix M, int tpose)
     return max;
 }
 
-double a3_norm_inf(_HMatrix M) { return a3_mat_norm(M, 0); }
-double a3_norm_one(_HMatrix M) { return a3_mat_norm(M, 1); }
+double norm_inf(_HMatrix M) { return mat_norm(M, 0); }
+double norm_one(_HMatrix M) { return mat_norm(M, 1); }
 
 static _HMatrix mat_id = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
 
 /** Return index of column of M containing maximum abs entry, or -1 if M=0 **/
-int a3_find_max_col(_HMatrix M)
+int find_max_col(_HMatrix M)
 {
     double abs, max;
     int i, j, col;
@@ -1033,7 +1033,7 @@ int a3_find_max_col(_HMatrix M)
     return col;
 }
 
-void a3_vcross(double *va, double *vb, double *v)
+void vcross(double *va, double *vb, double *v)
 {
     v[0] = va[1] * vb[2] - va[2] * vb[1];
     v[1] = va[2] * vb[0] - va[0] * vb[2];
@@ -1041,32 +1041,32 @@ void a3_vcross(double *va, double *vb, double *v)
 }
 
 /** Return dot product of length 3 vectors va and vb **/
-double a3_vdot(double *va, double *vb)
+double vdot(double *va, double *vb)
 {
     return (va[0] * vb[0] + va[1] * vb[1] + va[2] * vb[2]);
 }
 
 
 /** Set MadjT to transpose of inverse of M times determinant of M **/
-void a3_adjoint_transpose(_HMatrix M, _HMatrix MadjT)
+void adjoint_transpose(_HMatrix M, _HMatrix MadjT)
 {
-    a3_vcross(M[1], M[2], MadjT[0]);
-    a3_vcross(M[2], M[0], MadjT[1]);
-    a3_vcross(M[0], M[1], MadjT[2]);
+    vcross(M[1], M[2], MadjT[0]);
+    vcross(M[2], M[0], MadjT[1]);
+    vcross(M[0], M[1], MadjT[2]);
 }
 
 /** Setup u for Household reflection to zero all v components but first **/
-void a3_make_reflector(double *v, double *u)
+void make_reflector(double *v, double *u)
 {
-    double s = sqrt(a3_vdot(v, v));
+    double s = sqrt(vdot(v, v));
     u[0] = v[0]; u[1] = v[1];
     u[2] = v[2] + ((v[2]<0.0) ? -s : s);
-    s = sqrt(2.0 / a3_vdot(u, u));
+    s = sqrt(2.0 / vdot(u, u));
     u[0] = u[0] * s; u[1] = u[1] * s; u[2] = u[2] * s;
 }
 
 /** Apply Householder reflection represented by u to column vectors of M **/
-void a3_reflect_cols(_HMatrix M, double *u)
+void reflect_cols(_HMatrix M, double *u)
 {
     int i, j;
     for(i = 0; i<3; i++)
@@ -1077,47 +1077,47 @@ void a3_reflect_cols(_HMatrix M, double *u)
 }
 
 /** Apply Householder reflection represented by u to row vectors of M **/
-void a3_reflect_rows(_HMatrix M, double *u)
+void reflect_rows(_HMatrix M, double *u)
 {
     int i, j;
     for(i = 0; i<3; i++)
     {
-        double s = a3_vdot(u, M[i]);
+        double s = vdot(u, M[i]);
         for(j = 0; j<3; j++) M[i][j] -= u[j] * s;
     }
 }
 
 /** Find orthogonal factor Q of rank 1 (or less) M **/
-void a3_do_rank1(_HMatrix M, _HMatrix Q)
+void do_rank1(_HMatrix M, _HMatrix Q)
 {
     double v1[3], v2[3], s;
     int col;
     mat_copy(Q, = , mat_id, 4);
     /* If rank(M) is 1, we should find a non-zero column in M */
-    col = a3_find_max_col(M);
+    col = find_max_col(M);
     if(col<0) return; /* Rank is 0 */
     v1[0] = M[0][col]; v1[1] = M[1][col]; v1[2] = M[2][col];
-    a3_make_reflector(v1, v1); a3_reflect_cols(M, v1);
+    make_reflector(v1, v1); reflect_cols(M, v1);
     v2[0] = M[2][0]; v2[1] = M[2][1]; v2[2] = M[2][2];
-    a3_make_reflector(v2, v2); a3_reflect_rows(M, v2);
+    make_reflector(v2, v2); reflect_rows(M, v2);
     s = M[2][2];
     if(s<0.0) Q[2][2] = -1.0;
-    a3_reflect_cols(Q, v1); a3_reflect_rows(Q, v2);
+    reflect_cols(Q, v1); reflect_rows(Q, v2);
 }
 
 /** Find orthogonal factor Q of rank 2 (or less) M using adjoint transpose **/
-void a3_do_rank2(_HMatrix M, _HMatrix MadjT, _HMatrix Q)
+void do_rank2(_HMatrix M, _HMatrix MadjT, _HMatrix Q)
 {
     double v1[3], v2[3];
     double w, x, y, z, c, s, d;
     int col;
     /* If rank(M) is 2, we should find a non-zero column in MadjT */
-    col = a3_find_max_col(MadjT);
-    if(col<0) { a3_do_rank1(M, Q); return; } /* Rank<2 */
+    col = find_max_col(MadjT);
+    if(col<0) { do_rank1(M, Q); return; } /* Rank<2 */
     v1[0] = MadjT[0][col]; v1[1] = MadjT[1][col]; v1[2] = MadjT[2][col];
-    a3_make_reflector(v1, v1); a3_reflect_cols(M, v1);
-    a3_vcross(M[0], M[1], v2);
-    a3_make_reflector(v2, v2); a3_reflect_rows(M, v2);
+    make_reflector(v1, v1); reflect_cols(M, v1);
+    vcross(M[0], M[1], v2);
+    make_reflector(v2, v2); reflect_rows(M, v2);
     w = M[0][0]; x = M[0][1]; y = M[1][0]; z = M[1][1];
     if(w*z>x*y)
     {
@@ -1130,7 +1130,7 @@ void a3_do_rank2(_HMatrix M, _HMatrix MadjT, _HMatrix Q)
         Q[0][0] = -(Q[1][1] = c); Q[0][1] = Q[1][0] = s;
     }
     Q[0][2] = Q[2][0] = Q[1][2] = Q[2][1] = 0.0; Q[2][2] = 1.0;
-    a3_reflect_cols(Q, v1); a3_reflect_rows(Q, v2);
+    reflect_cols(Q, v1); reflect_rows(Q, v2);
 }
 
 /* Return product of quaternion q by scalar w. */
@@ -1203,7 +1203,7 @@ t3Quaternion quatFromMatrix(_HMatrix mat)
 * Department of Computer Science, Cornell University.
 */
 
-double a3PolarDecomp(_HMatrix M, _HMatrix Q, _HMatrix S)
+double polarDecomp(_HMatrix M, _HMatrix Q, _HMatrix S)
 {
 
 #define TOL 1.0e-6
@@ -1212,20 +1212,20 @@ double a3PolarDecomp(_HMatrix M, _HMatrix Q, _HMatrix S)
     int i, j;
 
     mat_tpose(Mk, = , M, 3);
-    M_one = a3_norm_one(Mk);  M_inf = a3_norm_inf(Mk);
+    M_one = norm_one(Mk);  M_inf = norm_inf(Mk);
 
     do
     {
-        a3_adjoint_transpose(Mk, MadjTk);
-        det = a3_vdot(Mk[0], MadjTk[0]);
+        adjoint_transpose(Mk, MadjTk);
+        det = vdot(Mk[0], MadjTk[0]);
         if(det == 0.0)
         {
-            a3_do_rank2(Mk, MadjTk, Mk);
+            do_rank2(Mk, MadjTk, Mk);
             break;
         }
 
-        MadjT_one = a3_norm_one(MadjTk);
-        MadjT_inf = a3_norm_inf(MadjTk);
+        MadjT_one = norm_one(MadjTk);
+        MadjT_inf = norm_inf(MadjTk);
 
         gamma = sqrt(sqrt((MadjT_one*MadjT_inf) / (M_one*M_inf)) / fabs(det));
         g1 = gamma*0.5;
@@ -1233,14 +1233,14 @@ double a3PolarDecomp(_HMatrix M, _HMatrix Q, _HMatrix S)
         matrixCopy(Ek, = , Mk, 3);
         matBinop(Mk, = , g1*Mk, +, g2*MadjTk, 3);
         mat_copy(Ek, -= , Mk, 3);
-        E_one = a3_norm_one(Ek);
-        M_one = a3_norm_one(Mk);
-        M_inf = a3_norm_inf(Mk);
+        E_one = norm_one(Ek);
+        M_one = norm_one(Mk);
+        M_inf = norm_inf(Mk);
 
     } while(E_one>(M_one*TOL));
 
     mat_tpose(Q, = , Mk, 3); mat_pad(Q);
-    a3_mat_mult(Mk, M, S);  mat_pad(S);
+    mat_mult(Mk, M, S);  mat_pad(S);
 
     for(i = 0; i<3; i++)
     for(j = i; j<3; j++)
@@ -1506,14 +1506,14 @@ t3Quaternion snuggle(t3Quaternion q, HVect *k)
 * See Ken Shoemake and Tom Duff. Matrix Animation and Polar Decomposition.
 * Proceedings of Graphics Interface 1992.
 */
-void a3DecompAffine(_HMatrix A, _affineParts * parts)
+void decompAffine(_HMatrix A, _affineParts * parts)
 {
     _HMatrix Q, S, U;
     t3Quaternion p;
 
     //Translation component.
     parts->t = t3Vector4f(A[X][W], A[Y][W], A[Z][W], 0);
-    double det = a3PolarDecomp(A, Q, S);
+    double det = polarDecomp(A, Q, S);
     if(det<0.0)
     {
         matrixCopy(Q, = , -Q, 3);
@@ -1547,7 +1547,7 @@ void t3Matrix4x4::decompose(t3Vector3f& t,
         }
     }
 
-    a3DecompAffine(hmatrix, &parts);
+    decompAffine(hmatrix, &parts);
 
     double mul = 1.0;
     if(parts.t[W] != 0.0)

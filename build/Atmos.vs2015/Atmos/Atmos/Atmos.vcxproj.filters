@@ -5,12 +5,6 @@
     <None Include="..\..\..\..\Atmos\core\a3AABB.inl">
       <Filter>Atmos\core</Filter>
     </None>
-    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Math.inl">
-      <Filter>ThirdParty\t3Math</Filter>
-    </None>
-    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4x4.inl">
-      <Filter>ThirdParty\t3Math</Filter>
-    </None>
     <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.inl">
       <Filter>ThirdParty\t3Math</Filter>
     </None>
@@ -18,6 +12,12 @@
       <Filter>ThirdParty\t3Math</Filter>
     </None>
     <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.inl">
+      <Filter>ThirdParty\t3Math</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Math.inl">
+      <Filter>ThirdParty\t3Math</Filter>
+    </None>
+    <None Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matrix4x4.inl">
       <Filter>ThirdParty\t3Math</Filter>
     </None>
   </ItemGroup>
@@ -255,12 +255,6 @@
     <ClCompile Include="..\..\..\..\Atmos\samples\a3Sampler.cpp">
       <Filter>Atmos\samples</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp">
-      <Filter>ThirdParty\t3Math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp">
-      <Filter>ThirdParty\t3Math</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\dependency\tinyexr\include\tinyexr.cc">
       <Filter>ThirdParty\tinyexr</Filter>
     </ClCompile>
@@ -269,6 +263,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\dependency\tinyobjloader\include\tiny_obj_loader.cc">
       <Filter>ThirdParty\tinyobjloader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Matri4x4.cpp">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp">
+      <Filter>ThirdParty\t3Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -473,6 +473,24 @@
     <ClInclude Include="..\..\..\..\dependency\t3DataStructures\include\Common\t3Timer.h">
       <Filter>ThirdParty\t3DataStructures</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\tinyexr\include\tinyexr.h">
+      <Filter>ThirdParty\tinyexr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Utils.h">
+      <Filter>Atmos\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\tinyobjloader\include\tiny_obj_loader.h">
+      <Filter>ThirdParty\tinyobjloader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.h">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.h">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h">
+      <Filter>ThirdParty\t3Math</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Math.h">
       <Filter>ThirdParty\t3Math</Filter>
     </ClInclude>
@@ -484,24 +502,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.h">
       <Filter>ThirdParty\t3Math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector2.h">
-      <Filter>ThirdParty\t3Math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector3.h">
-      <Filter>ThirdParty\t3Math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Vector4.h">
-      <Filter>ThirdParty\t3Math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\dependency\tinyexr\include\tinyexr.h">
-      <Filter>ThirdParty\tinyexr</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\core\a3Utils.h">
-      <Filter>Atmos\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\dependency\tinyobjloader\include\tiny_obj_loader.h">
-      <Filter>ThirdParty\tinyobjloader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

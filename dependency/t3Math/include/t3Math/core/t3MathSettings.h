@@ -1,7 +1,16 @@
 #define T3_VARARGS     __cdecl					/* Functions with variable arguments */
 #define T3_CDECL	    __cdecl					/* Standard C function */
 #define T3_STDCALL		__stdcall				/* Standard calling convention */
-#define T3_FORCE_INLINE __forceinline			/* Force code to be inline */
+
+//#define T3_FORCE_INLINE __forceinline			/* Force code to be inline */
+#ifdef _MSC_VER // for MSVC
+#define T3_FORCE_INLINE __forceinline
+#elif defined __GNUC__ // for gcc on Linux/Apple OS X
+#define T3_FORCE_INLINE __inline__ __attribute__((always_inline))
+#else
+#define T3_FORCE_INLINE
+#endif
+
 #define T3_FORCE_NOINLINE __declspec(noinline)	/* Force code to NOT be inline */
 
 #define T3MATH_DEFAULT_EPSILON 0.000001f
