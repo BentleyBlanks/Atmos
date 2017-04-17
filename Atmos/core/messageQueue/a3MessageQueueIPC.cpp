@@ -7,7 +7,7 @@ void a3Mutex::create(const wchar_t* name)
 	mutex = ::CreateMutex(NULL, false, name);
 	assert(mutex);
 
-	name = name;
+	this->name = name;
 }
 
 void a3Mutex::open(const wchar_t* name)
@@ -15,7 +15,7 @@ void a3Mutex::open(const wchar_t* name)
 	mutex = ::OpenMutex(SYNCHRONIZE, false, name);
 	assert(mutex);
 
-	name = name;
+	this->name = name;
 }
 
 void a3Mutex::destroy()
@@ -42,15 +42,15 @@ void a3Mutex::unlock()
 }
 
 
-void MessageQueueBuffer::create(const wchar_t* name, int size)
+void MessageQueueBuffer::create(const wchar_t* _name, int _size)
 {
     // 创建共享内存块
 	fileMapping = ::CreateFileMapping(
 		INVALID_HANDLE_VALUE,
 		NULL,
 		PAGE_READWRITE,
-		0, size,
-		name);
+		0, _size,
+		_name);
 	
 	assert(fileMapping);
 
@@ -58,20 +58,20 @@ void MessageQueueBuffer::create(const wchar_t* name, int size)
 	buffer = (char*)::MapViewOfFile(fileMapping, FILE_MAP_ALL_ACCESS, 0, 0, 0);
 	assert(buffer);
 
-	size   = size;
-	name    = name;
+	size   = _size;
+	name    = _name;
 }
 
-void MessageQueueBuffer::open(const wchar_t* name, int size)
+void MessageQueueBuffer::open(const wchar_t* _name, int _size)
 {
-	fileMapping = ::OpenFileMapping(FILE_MAP_ALL_ACCESS, false, name);
+	fileMapping = ::OpenFileMapping(FILE_MAP_ALL_ACCESS, false, _name);
 	assert(fileMapping);
 
 	buffer = (char*)::MapViewOfFile(fileMapping, FILE_MAP_ALL_ACCESS, 0, 0, 0);
 	assert(buffer);
 
-	size = size;
-	name = name;
+	size = _size;
+	name = _name;
 }
 
 void MessageQueueBuffer::destroy()
