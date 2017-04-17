@@ -287,6 +287,7 @@
     <ClInclude Include="..\..\..\..\Atmos\core\log\a3Log.h" />
     <ClInclude Include="..\..\..\..\Atmos\core\log\a3LogFile.h" />
     <ClInclude Include="..\..\..\..\Atmos\core\log\a3LogHTML.h" />
+    <ClInclude Include="..\..\..\..\Atmos\core\messageQueue\a3Message.h" />
     <ClInclude Include="..\..\..\..\Atmos\core\messageQueue\a3MessageQueue.h" />
     <ClInclude Include="..\..\..\..\Atmos\core\messageQueue\a3MessageQueueIPC.h" />
     <ClInclude Include="..\..\..\..\Atmos\core\random\a3Distribution1D.h" />

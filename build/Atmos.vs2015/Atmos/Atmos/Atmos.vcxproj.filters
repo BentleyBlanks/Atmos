@@ -503,5 +503,8 @@
     <ClInclude Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.h">
       <Filter>ThirdParty\t3Math</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\messageQueue\a3Message.h">
+      <Filter>Atmos\core\messageQueue</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
