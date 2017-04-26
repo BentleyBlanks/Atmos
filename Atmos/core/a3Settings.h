@@ -57,10 +57,20 @@
 #include <assert.h>
 #include <math.h>
 
-#define A3_SAFE_DELETE(pointer) if(pointer)\
-{\
-    delete pointer;\
-    pointer = NULL;\
+//#define A3_SAFE_DELETE(pointer) if(pointer)\
+//{\
+//    delete pointer;\
+//    pointer = NULL;\
+//}
+
+template<typename T> 
+void A3_SAFE_DELETE(T*& a)
+{
+    if(a)
+    {
+        delete a;
+        a = NULL;
+    }
 }
 
 #define A3_SAFE_DELETE_1DARRAY(pointer) if(pointer)\
