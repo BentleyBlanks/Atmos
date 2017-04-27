@@ -4,9 +4,25 @@
 #include <sstream>
 #include <iomanip>
 #include <iterator>
+#include <codecvt>
+
+std::wstring a3S2WS(const std::string & str)
+{
+    using convert_typeX = std::codecvt_utf8<wchar_t>;
+    std::wstring_convert<convert_typeX, wchar_t> converterX;
+
+    return converterX.from_bytes(str);
+}
+
+std::string a3WS2S(const std::wstring & wstr)
+{
+    using convert_typeX = std::codecvt_utf8<wchar_t>;
+    std::wstring_convert<convert_typeX, wchar_t> converterX;
+
+    return converterX.to_bytes(wstr);
+}
 
 // Copied from [OpenFrameworks](http://openframeworks.cc/)
-
 std::string a3ToLower(const std::string & src)
 {
     std::string dst = src;

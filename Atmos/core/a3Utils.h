@@ -3,8 +3,12 @@
 
 #include <core/a3Settings.h>
 
-// Copied from [OpenFrameworks](http://openframeworks.cc/)
+// wstring string convert
+std::wstring a3S2WS(const std::string& str);
 
+std::string a3WS2S(const std::wstring& wstr);
+
+// Copied from [OpenFrameworks](http://openframeworks.cc/)
 // Converts all characters in a string to lowercase.
 std::string a3ToLower(const std::string& src);
 
