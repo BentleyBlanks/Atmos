@@ -341,6 +341,68 @@ void a3ToneMapping(t3Vector3f* colorList, int xres, int yres)
     a3ToneMapping(colorList, 0, 0, xres, yres, xres, yres);
 }
 
+void a3ToneMapping(float* buffer, int width, int height)
+{
+    // --! Thx to Denghong's implementation
+#define LUM(c) (c.x*0.299f + c.y*0.587f + 0.144f*c.z)
+    static t3Vector3f black = t3Vector3f(0.1f, 0.1f, 0.1f);
+    float l_blk = LUM(black);
+
+    float ll = 0.f;
+
+    for(int i = 0; i < height; ++i)
+    {
+        for(int j = 0; j < width; ++j)
+        {
+            t3Vector3f cc(buffer[(i * width + j) * 3 + 0],
+                          buffer[(i * width + j) * 3 + 1],
+                          buffer[(i * width + j) * 3 + 2]);
+
+            //use l_blk to avoid ln(0)
+            ll += t3Math::log(LUM(cc) + l_blk);
+        }
+    }
+
+    float l_avg_inv = 1.f / t3Math::exp(ll / (width * height));
+
+    //0.36/0.72 will be brighter while 0.09/0.045 will be darker.
+    float key = 0.18f;
+    float f_l = key*l_avg_inv;
+
+    for(int i = 0; i < height; ++i)
+    {
+        for(int j = 0; j < width; ++j)
+        {
+            t3Vector3f cc(buffer[(i * width + j) * 3 + 0],
+                          buffer[(i * width + j) * 3 + 1],
+                          buffer[(i * width + j) * 3 + 2]);
+
+            float lo = f_l*(LUM(cc));
+            //to 0~1
+#define CONTROLEXP
+            float ld = lo / (1.f + lo);
+
+#ifdef CONTROLEXP
+            //Lwhite控制曝光，亮度超过Lwhite的像素都会被置为纯白。
+            //如果Lwhite的值非常大，则这个参数在公式中将不起任何作用，
+            //如果非常小则场景将变为几乎全溢出。
+            float l_w = 1.8f;
+            ld *= 1 + lo / (l_w*l_w);
+#endif
+            cc *= (ld / (LUM(cc)));
+
+            cc.x = t3Math::clamp(cc.x, 0.0f, 1.0f);
+            cc.y = t3Math::clamp(cc.y, 0.0f, 1.0f);
+            cc.z = t3Math::clamp(cc.z, 0.0f, 1.0f);
+
+            buffer[(i * width + j) * 3 + 0] = cc.x;
+            buffer[(i * width + j) * 3 + 1] = cc.y;
+            buffer[(i * width + j) * 3 + 2] = cc.z;
+        }
+    }
+#undef LUM
+}
+
 void a3ToneMapping(t3Vector3f* colorList, int startX, int startY, int localWidth, int localHeight, int width, int height)
 {
     // --! Thx to Denghong's implementation

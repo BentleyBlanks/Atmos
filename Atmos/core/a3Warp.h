@@ -52,6 +52,9 @@ void a3ToneMapping(t3Vector3f* colorList, int startX, int startY, int localWidth
 // 色调映射(需要保证colorList指针已指向线性空间 大小为width * height)
 void a3ToneMapping(t3Vector3f* colorList, int width, int height);
 
+// float数组的三通道Buffer
+void a3ToneMapping(float* buffer, int width, int height);
+
 // 未启用的Tone Mapping
 void a3UncharedTonemap(t3Vector3f& color, float eyeAdaption = 4);
 

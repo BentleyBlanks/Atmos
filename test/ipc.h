@@ -3,6 +3,11 @@
 #include <core/messageQueue/a3MessageQueueIPC.h>
 #include <Atmos.h>
 
+a3Scene* generateScene()
+{
+
+}
+
 void main()
 {
     const int msgMaxNum = 100;
@@ -55,7 +60,7 @@ void main()
 
     a3Log::debug("Init message recieved\n");
 
-    // 初始化场景
+    // ------------------------------------------------Scene------------------------------------------------
     //int startX = 0, startY = 0;
     int imageWidth = initMsg->imageWidth, imageHeight = initMsg->imageHeight;
 
@@ -68,7 +73,19 @@ void main()
 
     a3Log::info("Dimension[%d, %d] Level[%d, %d] Grid[%d, %d] Size:%d\n", imageWidth, imageHeight, levelX, levelY, gridWidth, gridHeight, gridSize);
 
-    //getchar();
+    // ------------------------------------------------Renderer------------------------------------------------
+    // 相机
+    a3Sensor* camera;
+
+    // 积分器
+    a3Integrator* integrator;
+
+    // 伽马校正开关
+    bool enableGammaCorrection;
+    bool enableToneMapping;
+
+    // Samples Per Pixels
+    int spp;
 
     // grid buffer pointer
     float** gridBuffer = new float*[gridCount];
@@ -78,7 +95,6 @@ void main()
     }
 
     a3Random r;
-
     // ------------------------------------------------Render------------------------------------------------
     for(int currentGrid = 0; currentGrid < gridCount; currentGrid++)
     {

@@ -236,6 +236,7 @@
     <ClCompile Include="..\..\..\..\Atmos\lights\a3SpotLight.h.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\renderers\a3FresnelRenderer.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\renderers\a3GridRenderer.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3IPCRenderer.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\renderers\a3NormalMapRenderer.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\renderers\a3Renderer.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\renderers\a3SamplerRenderer.cpp" />
@@ -303,6 +304,7 @@
     <ClInclude Include="..\..\..\..\Atmos\lights\a3SpotLight.h" />
     <ClInclude Include="..\..\..\..\Atmos\renderers\a3FresnelRenderer.h" />
     <ClInclude Include="..\..\..\..\Atmos\renderers\a3GridRenderer.h" />
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3IPCRenderer.h" />
     <ClInclude Include="..\..\..\..\Atmos\renderers\a3NormalMapRenderer.h" />
     <ClInclude Include="..\..\..\..\Atmos\renderers\a3Renderer.h" />
     <ClInclude Include="..\..\..\..\Atmos\renderers\a3SamplerRenderer.h" />

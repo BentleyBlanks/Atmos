@@ -270,6 +270,9 @@
     <ClCompile Include="..\..\..\..\dependency\t3Math\include\t3Math\core\t3Quaternion.cpp">
       <Filter>ThirdParty\t3Math</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3IPCRenderer.cpp">
+      <Filter>Atmos\renderers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Atmos\accelerators\a3BVH.h">
@@ -505,6 +508,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\core\messageQueue\a3Message.h">
       <Filter>Atmos\core\messageQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3IPCRenderer.h">
+      <Filter>Atmos\renderers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
