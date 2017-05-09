@@ -1,13 +1,13 @@
 #pragma once
 #include <Atmos.h>
 // Utils
-t3Vector3f a3Float3ToVec3(float* f3)
+inline t3Vector3f a3Float3ToVec3(float* f3)
 {
     // 不做安全检查
     return t3Vector3f(f3[0], f3[1], f3[2]);
 }
 
-a3Spectrum a3Float3ToSpectrum(float* f3)
+inline a3Spectrum a3Float3ToSpectrum(float* f3)
 {
     // 不做安全检查
     return a3Spectrum(f3[0], f3[1], f3[2]);
@@ -20,7 +20,7 @@ a3Texture<a3Spectrum>* generateTexture(a3TextureData* texture)
     switch(texture->type)
     {
     case A3_TEXTURE_IMAGE:
-        t = new a3ImageTexture<a3Spectrum>(texture->imagePath.c_str());
+        t = new a3ImageTexture<a3Spectrum>(texture->imagePath);
         break;
     case A3_TEXTURE_CONSTANT:
         t = new a3ConstantTexture<a3Spectrum>(a3Float3ToSpectrum(texture->value));
@@ -192,26 +192,13 @@ void main()
     a3S2CInitMessage* initMsg = renderer->getInitMessage();
     if(!initMsg)
     {
-        a3Log::warning("Init Message not recieved");
+        a3Log::warning("Init Message not recieved\n");
         getchar();
         return;
     }
 
-    // camera
-    a3Film* film = new a3Film(initMsg->imageWidth, initMsg->imageHeight, initMsg->imagePath);
-
-    if(initMsg->camera.type != "Perspective")
-        a3Log::warning("Not support sensor type, already setted to perspective");
-
-    a3Sensor* camera = new a3PerspectiveSensor(a3Float3ToVec3(initMsg->camera.origin),
-                                     a3Float3ToVec3(initMsg->camera.lookat),
-                                     a3Float3ToVec3(initMsg->camera.up),
-                                     initMsg->camera.fov, initMsg->camera.focalDistance, initMsg->camera.lensRadius,
-                                     film);
-    camera->print();
-
     a3Scene* scene = generateScene(initMsg);
-
+    
     // rendering
     t3Timer timer;
     timer.start();
@@ -220,18 +207,11 @@ void main()
 
     timer.end();
 
-    a3Log::info("Cost time: %f sec", timer.difference());
+    a3Log::info("Cost time: %f sec\n", timer.difference());
 
     getchar();
 
     // ----------------------------------------deallocate----------------------------------------
-    // camera
-    if(camera && camera->image)
-    {
-        A3_SAFE_DELETE(camera->image);
-        A3_SAFE_DELETE(camera);
-    }
-
     // scene
     if(scene)
     {

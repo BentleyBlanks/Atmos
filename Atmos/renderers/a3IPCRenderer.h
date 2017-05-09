@@ -60,7 +60,7 @@ private:
 
     a3Integrator* integrator;
 
-    a3Scene* scene;
+    //a3Scene* scene;
 
     // 伽马校正 Tone Mapping开关
     bool enableGammaCorrection, enableToneMapping;

@@ -6,7 +6,8 @@
 #include <core/a3Scene.h>
 #include <core/a3Ray.h>
 
-#include <sensors/a3Sensor.h>
+#include <core/image/a3Film.h>
+#include <sensors/a3PerspectiveSensor.h>
 
 #include <samples/a3RandomSampler.h>
 #include <samples/a3CameraSample.h>
@@ -14,6 +15,18 @@
 //integrator
 #include <integrator/a3PathIntegrator.h>
 #include <integrator/a3DirectLighting.h>
+
+inline t3Vector3f a3Float3ToVec3(float* f3)
+{
+    // 不做安全检查
+    return t3Vector3f(f3[0], f3[1], f3[2]);
+}
+
+inline a3Spectrum a3Float3ToSpectrum(float* f3)
+{
+    // 不做安全检查
+    return a3Spectrum(f3[0], f3[1], f3[2]);
+}
 
 // a3IPCRenderer
 a3IPCRenderer::a3IPCRenderer()
@@ -35,6 +48,13 @@ a3IPCRenderer::~a3IPCRenderer()
 
     // --!未来更替为智能指针
     A3_SAFE_DELETE(sampler);
+
+    // camera
+    if(camera && camera->image)
+    {
+        A3_SAFE_DELETE(camera->image);
+        A3_SAFE_DELETE(camera);
+    }
 
     // integrator
     A3_SAFE_DELETE(integrator);
@@ -68,7 +88,7 @@ void a3IPCRenderer::waiting()
     const int msgMaxNum = 100;
     const int msgMaxSize = sizeof(a3C2SGridBufferMessage);
 
-    ipcS2C.init(L"Who's Your Daddy S2C", false, 50, 512);
+    ipcS2C.init(L"Who's Your Daddy S2C", false, 50, 2048);
     ipcC2S.init(L"Who's Your Daddy C2S", false, msgMaxNum, msgMaxSize);
 
     // ------------------------------------------------Waiting------------------------------------------------
@@ -79,8 +99,8 @@ void a3IPCRenderer::waiting()
         if(!ipcS2C.isEmpty())
         {
             // stack maybe full
-            char* msg_buffer = new char[msgMaxSize];
-            memset(msg_buffer, 0, msgMaxSize);
+            char* msg_buffer = new char[2048];
+            memset(msg_buffer, 0, 2048);
 
             a3MessageEntryHead* pMsg = (a3MessageEntryHead*) msg_buffer;
             while(ipcS2C.dequeue(*pMsg))
@@ -90,6 +110,7 @@ void a3IPCRenderer::waiting()
                     // 接收初始化消息
                     const a3S2CInitMessage* msg = (const a3S2CInitMessage*) pMsg;
                     initMsg = new a3S2CInitMessage(*msg);
+                    initMsg->print();
                     recieved = true;
                 }
             }
@@ -163,6 +184,19 @@ void a3IPCRenderer::init()
 
 void a3IPCRenderer::initRenderer()
 {
+    // camera
+    a3Film* film = new a3Film(initMsg->imageWidth, initMsg->imageHeight, initMsg->imagePath);
+
+    if(initMsg->camera.type != A3_CAMERA_PERSPECTIVE)
+        a3Log::warning("Not support sensor type, already setted to perspective\n");
+
+    camera = new a3PerspectiveSensor(a3Float3ToVec3(initMsg->camera.origin),
+                                     a3Float3ToVec3(initMsg->camera.lookat),
+                                     a3Float3ToVec3(initMsg->camera.up),
+                                     initMsg->camera.fov, initMsg->camera.focalDistance, initMsg->camera.lensRadius,
+                                     film);
+    camera->print();
+
     enableGammaCorrection = initMsg->enableGammaCorrection;
     enableToneMapping = initMsg->enableToneMapping;
     spp = initMsg->spp;
@@ -183,11 +217,12 @@ void a3IPCRenderer::initRenderer()
 
 void a3IPCRenderer::initBuffer()
 {
-    imageWidth = initMsg->imageWidth;
-    imageHeight = initMsg->imageHeight;
+    imageWidth = initMsg->imageWidth <= 0 ? A3_IMAGE_DEFAULT_WIDTH : initMsg->imageWidth;
+    imageHeight = initMsg->imageHeight <= 0 ? A3_IMAGE_DEFAULT_HEIGHT : initMsg->imageHeight;
 
-    levelX = initMsg->levelX;
-    levelY = initMsg->levelY;
+    levelX = initMsg->levelX <= 0 ? A3_GRID_LEVELX : initMsg->levelX;
+    levelY = initMsg->levelY <= 0 ? A3_GRID_LEVELY : initMsg->levelY;
+    gridCount = levelX * levelY;
 
     // 初始化网格渲染信息
     gridWidth = imageWidth / levelX;
@@ -207,7 +242,7 @@ void a3IPCRenderer::initBuffer()
         gridBuffer[i] = new float[gridSize];
 }
 
-void a3IPCRenderer::render(const a3Scene*)
+void a3IPCRenderer::render(const a3Scene* scene)
 {        
     // ------------------------------------------------Check------------------------------------------------
     if(!check())
@@ -227,18 +262,21 @@ void a3IPCRenderer::render(const a3Scene*)
         float* bufferPointer = gridBuffer[currentGrid];
 
         // 局部Grid渲染
-        int gridX = (int) (currentGrid % levelX) * gridWidth;
-        int gridY = (int) (currentGrid / levelX) * gridHeight;
+        //int gridX = (int) (currentGrid % levelX) * gridWidth;
+        //int gridY = (int) (currentGrid / levelX) * gridHeight;
 
-        int gridEndX = gridX + gridWidth;
-        int gridEndY = gridY + gridHeight;
+        //int gridEndX = gridX + gridWidth;
+        //int gridEndY = gridY + gridHeight;
 
+        a3Log::info("Grid[%d / %d] Spp:%d\n", currentGrid, gridCount, spp);
         //#pragma omp parallel for schedule(dynamic)
-        for(int x = gridX; x < gridEndX; x++)
+        //for(int x = gridX; x < gridEndX; x++)
+        for(int x = 0; x < gridWidth; x++)
         {
-            progress = (float) (x - gridX) / gridWidth;
-            a3Log::info("Grid[%d/%d] SPP:%d Rendering: %8.2f \r", currentGrid + 1, levelX * levelY, spp, progress * 100);
-            for(int y = gridY; y < gridEndY; y++)
+            //progress = (float) (x - gridX) / gridWidth;
+            //a3Log::info("Rendering: %8.2f \r",  progress * 100);
+            //for(int y = gridY; y < gridEndY; y++)
+            for(int y = 0; y < gridHeight; y++)
             {
                 a3Spectrum color;
 
@@ -267,7 +305,7 @@ void a3IPCRenderer::render(const a3Scene*)
         }
 
         // 当前buffer后期处理
-        postEffect(currentGrid);
+        //postEffect(currentGrid);
 
         // 发送当前grid指定buffer
         send(currentGrid);
@@ -296,7 +334,7 @@ void a3IPCRenderer::postEffect(int currentGrid)
         //#pragma omp parallel for schedule(dynamic)
         for(int x = gridX; x < gridEndX; x++)
         {
-            a3Log::info("Clamp: %8.2f \r", (double) (x - gridX) / gridWidth * 100);
+            //a3Log::info("Clamp: %8.2f \r", (double) (x - gridX) / gridWidth * 100);
 
             for(int y = gridY; y < gridEndY; y++)
             {
@@ -317,7 +355,7 @@ void a3IPCRenderer::postEffect(int currentGrid)
     //#pragma omp parallel for schedule(dynamic)
     for(int x = gridX; x < gridEndX; x++)
     {
-        a3Log::info("Gamma Correction:%s    Imaging: %8.2f \r", enableGammaCorrection ? "enabled" : "disabled", (double) x / imageWidth * 100);
+        //a3Log::info("Gamma Correction:%s    Imaging: %8.2f \r", enableGammaCorrection ? "enabled" : "disabled", (double) x / imageWidth * 100);
 
         for(int y = gridY; y < gridEndY; y++)
         {
@@ -349,7 +387,7 @@ void a3IPCRenderer::send(int currentGrid)
         int gridEndX = gridX + gridWidth;
         int gridEndY = gridY + gridHeight;
 
-        a3Log::debug("Grid Size:%d, Start[%d, %d], End[%d, %d]\n", gridSize, gridX, gridY, gridEndX, gridEndY);
+        a3Log::debug("Sending Grid Size:%d, Start[%d, %d], End[%d, %d]\n", gridSize, gridX, gridY, gridEndX, gridEndY);
         if(gridSize > A3_GRIDBUFFER_LENGTH)
             a3Log::warning("Grid size too long\n");
 

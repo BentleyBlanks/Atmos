@@ -197,6 +197,9 @@ void A3_SAFE_DELETE_1DARRAY(T*& pointer)
 // ------------------------Image------------------------
 #define A3_IMAGE_CHECKERBOARD_LEVEL 22
 
+#define A3_IMAGE_DEFAULT_WIDTH 100
+#define A3_IMAGE_DEFAULT_HEIGHT 100
+
 //#define A3_IMAGE_LIB_PNGPP
 #define A3_IMAGE_LIB_LODEPNG
 #define A3_IMAGE_LIB_TINYEXR
