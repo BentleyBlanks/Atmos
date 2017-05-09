@@ -11,51 +11,61 @@
 class a3Random;
 class a3Sampler;
 class a3Integrator;
+struct a3S2CInitMessage;
 
 // 无状态 render线程安全
 class a3IPCRenderer : public a3Renderer
 {
 public:
     a3IPCRenderer();
-    a3IPCRenderer(int spp);
     ~a3IPCRenderer();
 
     // 等待IPC Server直到init消息
     void waiting();
 
-    // 初始化划分力度
-    void setLevel(int levelX = A3_GRID_LEVELX, int levelY = A3_GRID_LEVELY);
-
-    void setCurrentGrid(int currentGrid);
+    // need to called before render(), and after wating()
+    void init();
 
     // 渲染完毕自动IPC发送buffer
     virtual void render(const a3Scene* scene) override;
 
-    int getGridCount() const;
+    // 初始化划分力度
+    //void setLevel(int levelX = A3_GRID_LEVELX, int levelY = A3_GRID_LEVELY);
+
+    //void setCurrentGrid(int currentGrid);
+
+    //int getGridCount() const;
 
     bool isFinished() const;
 
+    a3S2CInitMessage* getInitMessage() const;
+
+private:
+    // 根据IPC的init信息初始化需要分配的信息
+    //void initScene();
+    void initRenderer();
+    void initBuffer();
+
+    // 发送当前网格ID指向的buffer
+    void send(int currentGrid);
+
+    void postEffect(int currentGrid);
+
+    bool check();
+
+    // would allocated by IPC
     a3Sampler* sampler;
 
     a3Sensor* camera;
 
     a3Integrator* integrator;
 
+    a3Scene* scene;
+
     // 伽马校正 Tone Mapping开关
     bool enableGammaCorrection, enableToneMapping;
 
     int spp;
-
-private:    
-    // 根据IPC的init信息初始化需要分配的信息
-    void init();
-
-    // 发送当前网格ID指向的buffer
-    void send();
-
-    void postEffect();
-
-    bool check();
 
     // grid buffer pointer
     float** gridBuffer;
@@ -69,13 +79,15 @@ private:
     bool finished;
 
     // 当前遍历到的网格序号 网格数量
-    int currentGrid, gridCount;
+    // int currentGrid;
+    int gridCount;
 
     // 网格宽高
     int gridWidth, gridHeight;
 
     // Message Queue
     a3MessageQueueIPC ipcC2S, ipcS2C;
+    a3S2CInitMessage* initMsg;
 };
 
 #endif

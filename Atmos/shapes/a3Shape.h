@@ -67,6 +67,7 @@ public:
 
     std::string name;
 
+    // 释放时机与其余light生命周期一致 shape释放时对此不做操作
     a3AreaLight* areaLight;
 };
 

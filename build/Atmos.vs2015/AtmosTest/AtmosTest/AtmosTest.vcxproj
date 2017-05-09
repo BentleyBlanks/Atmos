@@ -23,6 +23,7 @@
     <ClInclude Include="..\..\..\..\test\areaLight.h" />
     <ClInclude Include="..\..\..\..\test\blender.h" />
     <ClInclude Include="..\..\..\..\test\coordinate.h" />
+    <ClInclude Include="..\..\..\..\test\editor.h" />
     <ClInclude Include="..\..\..\..\test\exr.h" />
     <ClInclude Include="..\..\..\..\test\fresnel.h" />
     <ClInclude Include="..\..\..\..\test\grid.h" />

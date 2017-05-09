@@ -12,16 +12,23 @@ class a3ImageTexture:public a3Texture<T>
 public:
     a3ImageTexture(const char* filePath)
     {
-        if(decoder.load(filePath))
+        decoder = new a3ImageDecoder();
+
+        if(decoder->load(filePath))
             a3Log::success("Image Texture Created Succeed\n");
+    }
+
+    virtual ~a3ImageTexture()
+    {
+        A3_SAFE_DELETE(decoder);
     }
 
     virtual T evaluate(float u, float v) const
     {
-        return decoder.lookup(u, v);
+        return decoder->lookup(u, v);
     }
 
-    a3ImageDecoder decoder;
+    a3ImageDecoder* decoder;
 };
 
 inline a3ImageTexture<a3Spectrum>* a3CreateImageTexture(const char* filePath)

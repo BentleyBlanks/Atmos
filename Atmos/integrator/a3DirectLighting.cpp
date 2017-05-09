@@ -22,6 +22,10 @@ a3DirectLightingIntegrator::a3DirectLightingIntegrator(int maxDepth, bool bEnabl
 
 }
 
+a3DirectLightingIntegrator::~a3DirectLightingIntegrator()
+{
+}
+
 // !first ray intersection
 //      evironment lighting
 //

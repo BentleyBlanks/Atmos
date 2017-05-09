@@ -46,6 +46,9 @@
     <ClInclude Include="..\..\..\..\test\ipc.h">
       <Filter>test</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\test\editor.h">
+      <Filter>test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="test">

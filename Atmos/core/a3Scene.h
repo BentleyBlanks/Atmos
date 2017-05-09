@@ -14,6 +14,7 @@ class a3Scene
 {
 public:
 	a3Scene();
+    ~a3Scene();
 
     a3Spectrum le(const a3Ray& ray) const;
 

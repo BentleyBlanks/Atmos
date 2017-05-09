@@ -20,6 +20,7 @@
 #include <renderers/a3SingleRayRenderer.h>
 #include <renderers/a3FresnelRenderer.h>
 #include <renderers/a3GridRenderer.h>
+#include <renderers/a3IPCRenderer.h>
 
 // textures
 #include <textures/a3ImageTexture.h>

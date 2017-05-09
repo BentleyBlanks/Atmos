@@ -7,8 +7,8 @@ class a3DirectLightingIntegrator : public a3Integrator
 {
 public:
     a3DirectLightingIntegrator();
-
     a3DirectLightingIntegrator(int maxDepth, bool bEnableRecursiveSampling);
+    virtual ~a3DirectLightingIntegrator();
 
     virtual a3Spectrum li(const a3Ray& ray, const a3Scene& scene) const;
 
