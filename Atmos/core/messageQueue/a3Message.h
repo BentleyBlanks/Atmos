@@ -53,7 +53,8 @@ enum a3MaterialType
 
 enum a3TextureType
 {
-    A3_TEXTURE_IMAGE = 0,
+    A3_TEXTURE_NULL = 0,
+    A3_TEXTURE_IMAGE,
     A3_TEXTURE_CONSTANT,
     A3_TEXTURE_CHECKBOARD
 };
@@ -87,36 +88,27 @@ enum a3ModelType
     A3_MODEL_OBJ = 0
 };
 
-inline std::string a3TypeToString(a3IntegratorType type)
-{
-    switch(type)
-    {
-    case A3_INTEGRATOR_PATH:
-        return "Path Tracing";
-    case A3_INTEGRATOR_DIRECT_LIGHTING:
-        return "Direct Lighting";
-    default:
-        return "Error Type";
-    }
-}
+// To String
+std::string a3TypeToString(a3TextureType type);
 
-inline std::string a3TypeToString(a3PrimitiveSetType type)
-{
-    switch(type)
-    {
-    case A3_PRIMITIVESET_EXHAUSTIVE:
-        return "Exhaustive";
-    case A3_PRIMITIVESET_BVH:
-        return "BVH";
-    default:
-        return "Error Type";
-    }
-}
+std::string a3TypeToString(a3CameraType type);
+
+std::string a3TypeToString(a3ShapeType type);
+
+std::string a3TypeToString(a3MaterialType type);
+
+std::string a3TypeToString(a3ModelType type);
+
+std::string a3TypeToString(a3LightType type);
+
+std::string a3TypeToString(a3IntegratorType type);
+
+std::string a3TypeToString(a3PrimitiveSetType type);
 
 // 全集
 struct a3TextureData
 {
-    a3TextureType type = A3_TEXTURE_IMAGE;
+    a3TextureType type = A3_TEXTURE_NULL;
 
     // image texture
     char imagePath[A3_ADDRESS_PATH_LENGTH] = "";
@@ -126,6 +118,8 @@ struct a3TextureData
 
     // checkboard texture
     float t1 = 0.2f, t2 = 0.8f, level = 22;
+
+    void print() const;
 };
 
 struct a3MaterialData
@@ -137,6 +131,8 @@ struct a3MaterialData
 
     // texture
     a3TextureData textureData;
+
+    void print() const;
 };
 
 struct a3ShapeData
@@ -160,6 +156,8 @@ struct a3ShapeData
 
     // plane
     float width = 0.0f, height = 0.0f;
+
+    void print() const;
 };
 
 struct a3LightData
@@ -187,6 +185,8 @@ struct a3LightData
 
     // 开始产生半影的角度(弧度)
     float falloffStart = 0.0f;
+
+    void print() const;
 };
 
 struct a3ModelData
@@ -195,6 +195,8 @@ struct a3ModelData
     a3ModelType type;
 
     char path[A3_ADDRESS_PATH_LENGTH] = "";
+
+    void print() const;
 };
 
 struct a3CameraData
@@ -205,14 +207,7 @@ struct a3CameraData
 
     float fov = 40.0f, focalDistance = 100.0f, lensRadius = 0.0f;
 
-    void print() const
-    {
-        a3Log::debug("Camera origin[%f, %f, %f] lookat[%f, %f, %f] up[%f, %f, %f]\n", 
-                     origin[0], origin[1], origin[2], 
-                     lookat[0], lookat[1], lookat[2],
-                     up[0], up[1], up[2]);
-        a3Log::debug("Camera fov:%f focalDistance:%f lensRadius:%f\n", fov, focalDistance, lensRadius);
-    }
+    void print() const;
 };
 
 // Server to Client
@@ -229,19 +224,7 @@ struct a3S2CInitMessage : public a3MessageEntryHead
         strcpy(imagePath, msg.imagePath);
     }
 
-    void print() const
-    {
-        a3Log::info("------------------------------a3S2CInitMessage Info Begin------------------------------\n");
-        camera.print();
-        a3Log::debug("Film path:%s, dimension[%d, %d], level[%d, %d]\n", imagePath, imageWidth, imageHeight, levelX, levelY);
-        a3Log::debug("Integrator type:%s, maxDepth:%d, russianRouletteDepth:%d\n", a3TypeToString(integratorType).c_str(), maxDepth, russianRouletteDepth);
-        a3Log::debug("PrimitiveSet type:%s\n", a3TypeToString(primitiveSetType).c_str());
-        a3Log::debug("Renderer spp:%d, enableGammaCorrection:%d, enableToneMapping:%d\n", spp, enableGammaCorrection, enableToneMapping);
-        a3Log::debug("ShapeList length:%d\n", shapeList.size());
-        a3Log::debug("ModelList length:%d\n", modelList.size());
-        a3Log::debug("LightList length:%d\n", lightList.size());
-        a3Log::info("------------------------------a3S2CInitMessage Info End------------------------------\n");
-    }
+    void print() const;
 
     // camrea
     a3CameraData camera;
@@ -251,27 +234,25 @@ struct a3S2CInitMessage : public a3MessageEntryHead
     char imagePath[A3_ADDRESS_PATH_LENGTH] = "";
     int imageWidth = A3_IMAGE_DEFAULT_WIDTH, imageHeight = A3_IMAGE_DEFAULT_HEIGHT;
     int levelX = A3_GRID_LEVELX, levelY = A3_GRID_LEVELY;
-    
+
     // renderer
     //a3RendererType rendererType;
     a3IntegratorType integratorType = A3_INTEGRATOR_PATH;
     a3PrimitiveSetType primitiveSetType = A3_PRIMITIVESET_EXHAUSTIVE;
 
     // render
-    int spp = 4;    
+    int spp = 4;
     bool enableGammaCorrection = true, enableToneMapping = false;
 
     // path tracing
     int maxDepth = -1, russianRouletteDepth = 4;
 
     // shapes
-    std::vector<a3ShapeData> shapeList;
+    a3ShapeData shapeList[32];
+    a3ModelData modelList[32];
+    a3LightData lightList[32];
 
-    // models
-    std::vector<a3ModelData> modelList;
-
-    // lights
-    std::vector<a3LightData> lightList;
+    int shapeListLength = 0, modelListLength = 0, lightListLength = 0;
 
     A3_MESSAGE_DEFINE(a3S2CInitMessage, A3_S2C_MSG_INIT)
 };
