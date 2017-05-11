@@ -86,10 +86,11 @@ a3IPCRenderer::~a3IPCRenderer()
 void a3IPCRenderer::waiting()
 {
     const int msgMaxNum = 100;
-    const int msgMaxSize = sizeof(a3C2SGridBufferMessage);
+    const int S2CMsgSize = sizeof(a3S2CInitMessage);
+    const int C2SMsgSize = sizeof(a3C2SGridBufferMessage);
 
-    ipcS2C.init(L"Who's Your Daddy S2C", false, 50, 2048);
-    ipcC2S.init(L"Who's Your Daddy C2S", false, msgMaxNum, msgMaxSize);
+    ipcS2C.init(L"Who's Your Daddy S2C", false, msgMaxNum / 2, S2CMsgSize);
+    ipcC2S.init(L"Who's Your Daddy C2S", false, msgMaxNum, C2SMsgSize);
 
     // ------------------------------------------------Waiting------------------------------------------------
     // waiting till initMsg. 60fps
@@ -99,8 +100,8 @@ void a3IPCRenderer::waiting()
         if(!ipcS2C.isEmpty())
         {
             // stack maybe full
-            char* msg_buffer = new char[2048];
-            memset(msg_buffer, 0, 2048);
+            char* msg_buffer = new char[S2CMsgSize];
+            memset(msg_buffer, 0, S2CMsgSize);
 
             a3MessageEntryHead* pMsg = (a3MessageEntryHead*) msg_buffer;
             while(ipcS2C.dequeue(*pMsg))
@@ -119,7 +120,6 @@ void a3IPCRenderer::waiting()
         // ฯÞึก
         Sleep(16.66667);
     }
-
 }
 
 void a3IPCRenderer::init()

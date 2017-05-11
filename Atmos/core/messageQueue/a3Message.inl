@@ -122,7 +122,7 @@ std::string a3TypeToString(a3PrimitiveSetType type)
 }
 
 // Data Set
-a3TextureData& a3TextureData::operator=(a3TextureData& c)
+a3TextureData& a3TextureData::operator=(const a3TextureData& c)
 {
     type = c.type;
 
@@ -138,7 +138,7 @@ a3TextureData& a3TextureData::operator=(a3TextureData& c)
 
 void a3TextureData::print() const
 {
-    a3Log::debug("Texture type:%s\n", a3TypeToString(type));
+    a3Log::debug("Texture type:%s\n", a3TypeToString(type).c_str());
 
     switch(type)
     {
@@ -157,7 +157,7 @@ void a3TextureData::print() const
     }
 }
 
-a3MaterialData& a3MaterialData::operator=(a3MaterialData& c)
+a3MaterialData& a3MaterialData::operator=(const a3MaterialData& c)
 {
     type = c.type;
     A3_FLOAT3CPY(R, c.R);
@@ -168,14 +168,14 @@ a3MaterialData& a3MaterialData::operator=(a3MaterialData& c)
 
 void a3MaterialData::print() const
 {
-    a3Log::debug("Material type:%s\n", a3TypeToString(type));
+    a3Log::debug("Material type:%s\n", a3TypeToString(type).c_str());
     a3Log::debug("Material R[%f, %f, %f]\n", R[0], R[1], R[2]);
 
     if(textureData.type != A3_TEXTURE_NULL)
         textureData.print();
 }
 
-a3ShapeData& a3ShapeData::operator=(a3ShapeData& c)
+a3ShapeData& a3ShapeData::operator=(const a3ShapeData& c)
 {
     type = c.type;
     materialData = c.materialData;
@@ -196,7 +196,7 @@ a3ShapeData& a3ShapeData::operator=(a3ShapeData& c)
 
 void a3ShapeData::print() const
 {
-    a3Log::debug("Shape type:%s", a3TypeToString(type));
+    a3Log::debug("Shape type:%s\n", a3TypeToString(type).c_str());
     materialData.print();
 
     switch(type)
@@ -231,7 +231,7 @@ void a3ShapeData::print() const
     }
 }
 
-a3LightData& a3LightData::operator=(a3LightData& c)
+a3LightData& a3LightData::operator=(const a3LightData& c)
 {
     type = c.type;
     A3_FLOAT3CPY(emission, c.emission);
@@ -250,7 +250,7 @@ a3LightData& a3LightData::operator=(a3LightData& c)
 
 void a3LightData::print() const
 {
-    a3Log::debug("Light type:%s\n", a3TypeToString(type));
+    a3Log::debug("Light type:%s\n", a3TypeToString(type).c_str());
 
     switch(type)
     {
@@ -276,7 +276,7 @@ void a3LightData::print() const
 }
 
 
-a3ModelData& a3ModelData::operator=(a3ModelData& c)
+a3ModelData& a3ModelData::operator=(const a3ModelData& c)
 {
     type = c.type;
     strcpy(path, c.path);
@@ -286,12 +286,12 @@ a3ModelData& a3ModelData::operator=(a3ModelData& c)
 
 void a3ModelData::print() const
 {
-    a3Log::debug("Model type:%s\n", a3TypeToString(type));
+    a3Log::debug("Model type:%s\n", a3TypeToString(type).c_str());
     a3Log::debug("Model path:%s\n", path);
     materialData.print();
 }
 
-a3CameraData& a3CameraData::operator=(a3CameraData& c)
+a3CameraData& a3CameraData::operator=(const a3CameraData& c)
 {
     type = c.type;
     A3_FLOAT3CPY(origin, c.origin);
@@ -319,8 +319,24 @@ a3S2CInitMessage::a3S2CInitMessage(const a3S2CInitMessage& msg) :
     levelX(msg.levelX), levelY(msg.levelY),
     spp(msg.spp), enableGammaCorrection(msg.enableGammaCorrection), enableToneMapping(msg.enableToneMapping),
     maxDepth(msg.maxDepth), russianRouletteDepth(msg.russianRouletteDepth),
-    integratorType(msg.integratorType), primitiveSetType(msg.primitiveSetType)
+    integratorType(msg.integratorType), primitiveSetType(msg.primitiveSetType),
+    shapeListLength(msg.shapeListLength), modelListLength(msg.modelListLength), lightListLength(msg.lightListLength)
 {
+    // operator =
+    camera = msg.camera;
+
+    // shapes
+    for(int i = 0; i < msg.shapeListLength; i++)
+        shapeList[i] = msg.shapeList[i];
+
+    // lights
+    for(int i = 0; i < msg.lightListLength; i++)
+        lightList[i] = msg.lightList[i];
+
+    // models
+    for(int i = 0; i < msg.modelListLength; i++)
+        modelList[i] = msg.modelList[i];
+
     strcpy(imagePath, msg.imagePath);
 }
 
@@ -333,17 +349,26 @@ void a3S2CInitMessage::print() const
     a3Log::debug("PrimitiveSet type:%s\n", a3TypeToString(primitiveSetType).c_str());
     a3Log::debug("Renderer spp:%d, enableGammaCorrection:%d, enableToneMapping:%d\n", spp, enableGammaCorrection, enableToneMapping);
 
-    a3Log::debug("ShapeList length:%d\n", shapeListLength);
     for(int i = 0; i < shapeListLength; i++)
+    {
+        a3Log::debug("------------------------Shape Index[%d / %d] Begin\n------------------------", i, shapeListLength);
         shapeList[i].print();
+        a3Log::debug("------------------------Shape Index[%d / %d] End------------------------\n", i, shapeListLength);
+    }
 
-    a3Log::debug("ModelList length:%d\n", modelListLength);
     for(int i = 0; i < modelListLength; i++)
+    {
+        a3Log::debug("------------------------Model Index[%d / %d] Begin------------------------\n", i, modelListLength);
         modelList[i].print();
+        a3Log::debug("------------------------Model Index[%d / %d] End------------------------\n", i, modelListLength);
+    }
 
-    a3Log::debug("LightList length:%d\n", lightListLength);
-    for(int i = 0; i < modelListLength; i++)
+    for(int i = 0; i < lightListLength; i++)
+    {
+        a3Log::debug("------------------------Light Index[%d / %d] Begin------------------------\n", i, lightListLength);
         lightList[i].print();
+        a3Log::debug("------------------------Light Index[%d / %d] End------------------------\n", i, lightListLength);
+    }
 
     a3Log::info("------------------------------a3S2CInitMessage Info End------------------------------\n");
 }

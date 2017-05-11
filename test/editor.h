@@ -205,6 +205,8 @@ a3Scene* generateScene(a3S2CInitMessage* initMsg)
 
 void main()
 {
+    getchar();
+
     a3IPCRenderer* renderer = new a3IPCRenderer();
 
     renderer->waiting();

@@ -125,7 +125,7 @@ struct a3TextureData
     // checkboard texture
     float t1 = 0.2f, t2 = 0.8f, level = 22;
 
-    inline a3TextureData& operator=(a3TextureData& c);
+    inline a3TextureData& operator=(const a3TextureData& c);
 
     inline void print() const;
 };
@@ -140,7 +140,7 @@ struct a3MaterialData
     // texture
     a3TextureData textureData;
 
-    inline a3MaterialData& operator=(a3MaterialData& c);
+    inline a3MaterialData& operator=(const a3MaterialData& c);
 
     inline void print() const;
 };
@@ -167,7 +167,7 @@ struct a3ShapeData
     // plane
     float width = 0.0f, height = 0.0f;
 
-    inline a3ShapeData& operator=(a3ShapeData& c);
+    inline a3ShapeData& operator=(const a3ShapeData& c);
 
     inline void print() const;
 };
@@ -198,7 +198,7 @@ struct a3LightData
     // 开始产生半影的角度(弧度)
     float falloffStart = 0.0f;
 
-    inline a3LightData& operator=(a3LightData& c);
+    inline a3LightData& operator=(const a3LightData& c);
 
     inline void print() const;
 };
@@ -212,7 +212,7 @@ struct a3ModelData
 
     char path[A3_ADDRESS_PATH_LENGTH] = "";
 
-    inline a3ModelData& operator=(a3ModelData& c);
+    inline a3ModelData& operator=(const const a3ModelData& c);
 
     inline void print() const;
 };
@@ -225,7 +225,7 @@ struct a3CameraData
 
     float fov = 40.0f, focalDistance = 100.0f, lensRadius = 0.0f;
 
-    inline a3CameraData& operator=(a3CameraData& c);
+    inline a3CameraData& operator=(const a3CameraData& c);
 
     inline void print() const;
 };
