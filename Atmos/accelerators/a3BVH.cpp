@@ -136,7 +136,7 @@ void a3BVH::init()
 
     if(primitiveNum <= 0)
     {
-        a3Log::warning("a3BVH::init() 场景中hape对象为空，无需构建Accelerator\n");
+        a3Log::warning("a3BVH::init() 场景中shape对象为空，无需构建Accelerator\n");
         return;
     }
 

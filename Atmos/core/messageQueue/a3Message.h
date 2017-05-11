@@ -1,9 +1,15 @@
-#pragma once
+#ifndef A3_MESSAGE_H
+#define A3_MESSAGE_H
+
 #include <core/messageQueue/a3MessageQueue.h>
 #include <core/log/a3Log.h>
 
 #define A3_MESSAGE_DEFINE(MessageClass, MessageType)      \
 	MessageClass()  { type = MessageType; }            \
+
+#define A3_FLOAT3CPY(f3Dest, f3Src)  f3Dest[0] = f3Src[0];\
+                                     f3Dest[1] = f3Src[1];\
+                                     f3Dest[2] = f3Src[2];
 
 // grid size definition
 #define A3_GRIDBUFFER_MAX_WIDTH 100
@@ -89,21 +95,21 @@ enum a3ModelType
 };
 
 // To String
-std::string a3TypeToString(a3TextureType type);
+inline std::string a3TypeToString(a3TextureType type);
 
-std::string a3TypeToString(a3CameraType type);
+inline std::string a3TypeToString(a3CameraType type);
 
-std::string a3TypeToString(a3ShapeType type);
+inline std::string a3TypeToString(a3ShapeType type);
 
-std::string a3TypeToString(a3MaterialType type);
+inline std::string a3TypeToString(a3MaterialType type);
 
-std::string a3TypeToString(a3ModelType type);
+inline std::string a3TypeToString(a3ModelType type);
 
-std::string a3TypeToString(a3LightType type);
+inline std::string a3TypeToString(a3LightType type);
 
-std::string a3TypeToString(a3IntegratorType type);
+inline std::string a3TypeToString(a3IntegratorType type);
 
-std::string a3TypeToString(a3PrimitiveSetType type);
+inline std::string a3TypeToString(a3PrimitiveSetType type);
 
 // 全集
 struct a3TextureData
@@ -119,7 +125,9 @@ struct a3TextureData
     // checkboard texture
     float t1 = 0.2f, t2 = 0.8f, level = 22;
 
-    void print() const;
+    inline a3TextureData& operator=(a3TextureData& c);
+
+    inline void print() const;
 };
 
 struct a3MaterialData
@@ -132,7 +140,9 @@ struct a3MaterialData
     // texture
     a3TextureData textureData;
 
-    void print() const;
+    inline a3MaterialData& operator=(a3MaterialData& c);
+
+    inline void print() const;
 };
 
 struct a3ShapeData
@@ -157,7 +167,9 @@ struct a3ShapeData
     // plane
     float width = 0.0f, height = 0.0f;
 
-    void print() const;
+    inline a3ShapeData& operator=(a3ShapeData& c);
+
+    inline void print() const;
 };
 
 struct a3LightData
@@ -186,7 +198,9 @@ struct a3LightData
     // 开始产生半影的角度(弧度)
     float falloffStart = 0.0f;
 
-    void print() const;
+    inline a3LightData& operator=(a3LightData& c);
+
+    inline void print() const;
 };
 
 struct a3ModelData
@@ -194,9 +208,13 @@ struct a3ModelData
     // 默认仅支持.obj
     a3ModelType type;
 
+    a3MaterialData materialData;
+
     char path[A3_ADDRESS_PATH_LENGTH] = "";
 
-    void print() const;
+    inline a3ModelData& operator=(a3ModelData& c);
+
+    inline void print() const;
 };
 
 struct a3CameraData
@@ -207,24 +225,18 @@ struct a3CameraData
 
     float fov = 40.0f, focalDistance = 100.0f, lensRadius = 0.0f;
 
-    void print() const;
+    inline a3CameraData& operator=(a3CameraData& c);
+
+    inline void print() const;
 };
 
 // Server to Client
 // the info that rendered scene needed
 struct a3S2CInitMessage : public a3MessageEntryHead
 {
-    a3S2CInitMessage(const a3S2CInitMessage& msg) :
-        imageWidth(msg.imageWidth), imageHeight(msg.imageHeight),
-        levelX(msg.levelX), levelY(msg.levelY),
-        spp(msg.spp), enableGammaCorrection(msg.enableGammaCorrection), enableToneMapping(msg.enableToneMapping),
-        maxDepth(msg.maxDepth), russianRouletteDepth(msg.russianRouletteDepth),
-        integratorType(msg.integratorType), primitiveSetType(msg.primitiveSetType)
-    {
-        strcpy(imagePath, msg.imagePath);
-    }
+    inline a3S2CInitMessage(const a3S2CInitMessage& msg);
 
-    void print() const;
+    inline void print() const;
 
     // camrea
     a3CameraData camera;
@@ -269,3 +281,7 @@ struct a3C2SGridBufferMessage : public a3MessageEntryHead
 
     A3_MESSAGE_DEFINE(a3C2SGridBufferMessage, A3_C2S_MSG_GRIDIMAGE)
 };
+
+#include <core/messageQueue/a3Message.inl>
+
+#endif

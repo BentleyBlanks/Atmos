@@ -137,7 +137,10 @@ a3Shape* generateShape(a3ShapeData* shape)
         // material
         a3BSDF* bsdf = generateBSDF(&shape->materialData);
         if(bsdf && bsdf->texture)
+        {
             s->bCalTextureCoordinate = true;
+            s->bsdf = bsdf;
+        }
     }
 
     return s;
@@ -159,19 +162,39 @@ a3Scene* generateScene(a3S2CInitMessage* initMsg)
     }
 
     // shapes
-    for(auto shape : initMsg->shapeList)
+    for(int i = 0; i < initMsg->shapeListLength; i++)
     {
-        a3Shape* s = generateShape(&shape);
+        a3Shape* s = generateShape(&initMsg->shapeList[i]);
         if(s)
             scene->addShape(s);
     }
 
     // lights
-    for(auto light : initMsg->lightList)
+    for(int i = 0; i < initMsg->lightListLength; i++)
     {
-        a3Light* l = generateLight(&light);
+        a3Light* l = generateLight(&initMsg->lightList[i]);
         if(l)
             scene->addLight(l);
+    }
+
+    // models
+    for(int i = 0; i < initMsg->modelListLength; i++)
+    {
+        a3ModelImporter importer;
+        std::vector<a3Shape*> temp = importer.load(initMsg->modelList[i].path);
+
+        for(auto s : temp)
+        {
+            // model中所有图元共享同一bsdf
+            a3BSDF* bsdf = generateBSDF(&initMsg->modelList[i].materialData);
+            if(bsdf && bsdf->texture)
+            {
+                s->bCalTextureCoordinate = true;
+                s->bsdf = bsdf;
+            }
+
+            scene->addShape(s);
+        }
     }
 
     if(initMsg->primitiveSetType == A3_PRIMITIVESET_BVH)

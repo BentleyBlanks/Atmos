@@ -273,6 +273,9 @@
     <ClCompile Include="..\..\..\..\Atmos\renderers\a3IPCRenderer.cpp">
       <Filter>Atmos\renderers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\messageQueue\a3Message.inl">
+      <Filter>Atmos\core\messageQueue</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Atmos\accelerators\a3BVH.h">

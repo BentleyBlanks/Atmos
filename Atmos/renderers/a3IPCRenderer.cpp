@@ -195,7 +195,11 @@ void a3IPCRenderer::initRenderer()
                                      a3Float3ToVec3(initMsg->camera.up),
                                      initMsg->camera.fov, initMsg->camera.focalDistance, initMsg->camera.lensRadius,
                                      film);
+
+    a3Log::print("\n");
+    a3Log::info("------------------------------a3IPCRenderer Camera Begin------------------------------\n");
     camera->print();
+    a3Log::info("------------------------------a3IPCRenderer Camera End------------------------------\n");
 
     enableGammaCorrection = initMsg->enableGammaCorrection;
     enableToneMapping = initMsg->enableToneMapping;
@@ -268,7 +272,7 @@ void a3IPCRenderer::render(const a3Scene* scene)
         //int gridEndX = gridX + gridWidth;
         //int gridEndY = gridY + gridHeight;
 
-        a3Log::info("Grid[%d / %d] Spp:%d\n", currentGrid, gridCount, spp);
+        a3Log::info("Rendering Grid[%d / %d] Spp:%d\n", currentGrid, gridCount, spp);
         //#pragma omp parallel for schedule(dynamic)
         //for(int x = gridX; x < gridEndX; x++)
         for(int x = 0; x < gridWidth; x++)
@@ -387,7 +391,7 @@ void a3IPCRenderer::send(int currentGrid)
         int gridEndX = gridX + gridWidth;
         int gridEndY = gridY + gridHeight;
 
-        a3Log::debug("Sending Grid Size:%d, Start[%d, %d], End[%d, %d]\n", gridSize, gridX, gridY, gridEndX, gridEndY);
+        a3Log::debug("Sending Grid[%d / %d], Size:%d, Start[%d, %d], End[%d, %d]\n", currentGrid, gridCount, gridSize, gridX, gridY, gridEndX, gridEndY);
         if(gridSize > A3_GRIDBUFFER_LENGTH)
             a3Log::warning("Grid size too long\n");
 

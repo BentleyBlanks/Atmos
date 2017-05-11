@@ -1,3 +1,6 @@
+#ifndef A3_MESSAGE_INL
+#define A3_MESSAGE_INL
+
 #include <core/messageQueue/a3Message.h>
 
 // To String
@@ -14,7 +17,7 @@ std::string a3TypeToString(a3TextureType type)
     case A3_TEXTURE_CHECKBOARD:
         return "CheckBoard Texture";
     default:
-        return "Error Type Texture";
+        return "Unknown Type Texture";
     }
 }
 
@@ -25,7 +28,7 @@ std::string a3TypeToString(a3CameraType type)
     case A3_CAMERA_PERSPECTIVE:
         return "Perspective Camera";
     default:
-        return "Error Type Camera";
+        return "Unknown Type Camera";
     }
 }
 
@@ -44,7 +47,7 @@ std::string a3TypeToString(a3ShapeType type)
     case A3_SHAPE_INFINITE_PLANE:
         return "Infinite Plane";
     default:
-        return "Error Type Shape";
+        return "Unknown Type Shape";
     }
 }
 
@@ -60,7 +63,7 @@ std::string a3TypeToString(a3MaterialType type)
     case A3_MATERIAL_GLASS:
         return "Glass";
     default:
-        return "Error Type Material";
+        return "Unknown Type Material";
     }
 }
 
@@ -71,7 +74,7 @@ std::string a3TypeToString(a3ModelType type)
     case A3_MODEL_OBJ:
         return "Obj Model";
     default:
-        return "Error Type Model";
+        return "Unknown Type Model";
     }
 }
 
@@ -88,7 +91,7 @@ std::string a3TypeToString(a3LightType type)
     case A3_LIGHT_SPOT:
         return "Spot Light";
     default:
-        return "Error Type Light";
+        return "Unknown Type Light";
     }
 }
 
@@ -101,7 +104,7 @@ std::string a3TypeToString(a3IntegratorType type)
     case A3_INTEGRATOR_DIRECT_LIGHTING:
         return "Direct Lighting";
     default:
-        return "Error Type";
+        return "Unknown Type";
     }
 }
 
@@ -114,11 +117,25 @@ std::string a3TypeToString(a3PrimitiveSetType type)
     case A3_PRIMITIVESET_BVH:
         return "BVH";
     default:
-        return "Error Type";
+        return "Unknown Type";
     }
 }
 
 // Data Set
+a3TextureData& a3TextureData::operator=(a3TextureData& c)
+{
+    type = c.type;
+
+    strcpy(imagePath, c.imagePath);
+
+    A3_FLOAT3CPY(value, c.value);
+
+    t1 = c.t1;
+    t2 = c.t2;
+    level = c.level;
+    return *this;
+}
+
 void a3TextureData::print() const
 {
     a3Log::debug("Texture type:%s\n", a3TypeToString(type));
@@ -140,13 +157,41 @@ void a3TextureData::print() const
     }
 }
 
+a3MaterialData& a3MaterialData::operator=(a3MaterialData& c)
+{
+    type = c.type;
+    A3_FLOAT3CPY(R, c.R);
+    textureData = c.textureData;
+
+    return *this;
+}
+
 void a3MaterialData::print() const
 {
     a3Log::debug("Material type:%s\n", a3TypeToString(type));
     a3Log::debug("Material R[%f, %f, %f]\n", R[0], R[1], R[2]);
-    
+
     if(textureData.type != A3_TEXTURE_NULL)
         textureData.print();
+}
+
+a3ShapeData& a3ShapeData::operator=(a3ShapeData& c)
+{
+    type = c.type;
+    materialData = c.materialData;
+
+    radius = c.radius;
+
+    A3_FLOAT3CPY(t1, c.t1);
+    A3_FLOAT3CPY(t2, c.t2);
+    A3_FLOAT3CPY(t3, c.t3);
+
+    A3_FLOAT3CPY(position, c.position);
+    A3_FLOAT3CPY(normal, c.normal);
+
+    width = c.width;
+    height = c.height;
+    return *this;
 }
 
 void a3ShapeData::print() const
@@ -186,6 +231,23 @@ void a3ShapeData::print() const
     }
 }
 
+a3LightData& a3LightData::operator=(a3LightData& c)
+{
+    type = c.type;
+    A3_FLOAT3CPY(emission, c.emission);
+    A3_FLOAT3CPY(position, c.position);
+    A3_FLOAT3CPY(direction, c.direction);
+
+    // operator =
+    shape = c.shape;
+
+    strcpy(imagePath, c.imagePath);
+
+    coneAngle = c.coneAngle;
+    falloffStart = c.falloffStart;
+    return *this;
+}
+
 void a3LightData::print() const
 {
     a3Log::debug("Light type:%s\n", a3TypeToString(type));
@@ -205,7 +267,7 @@ void a3LightData::print() const
         break;
     case A3_LIGHT_SPOT:
         a3Log::debug("Spot Light position[%f, %f, %f], direction[%f, %f, %f]\n",
-                     position[0], position[1], position[2], 
+                     position[0], position[1], position[2],
                      direction[0], direction[1], direction[2]);
         a3Log::debug("Spot Light intensity[%f, %f, %f]\n", emission[0], emission[1], emission[2]);
         a3Log::debug("Spot Light coneAngle:%f, falloffStart:%f\n", coneAngle, falloffStart);
@@ -213,21 +275,53 @@ void a3LightData::print() const
     }
 }
 
+
+a3ModelData& a3ModelData::operator=(a3ModelData& c)
+{
+    type = c.type;
+    strcpy(path, c.path);
+    materialData = c.materialData;
+    return *this;
+}
+
 void a3ModelData::print() const
 {
     a3Log::debug("Model type:%s\n", a3TypeToString(type));
-
     a3Log::debug("Model path:%s\n", path);
+    materialData.print();
+}
+
+a3CameraData& a3CameraData::operator=(a3CameraData& c)
+{
+    type = c.type;
+    A3_FLOAT3CPY(origin, c.origin);
+    A3_FLOAT3CPY(lookat, c.lookat);
+    A3_FLOAT3CPY(up, c.up);
+
+    fov = c.fov;
+    focalDistance = c.focalDistance;
+    lensRadius = c.lensRadius;
+    return *this;
 }
 
 void a3CameraData::print() const
 {
-    a3Log::debug("Camera type:%s\n", a3TypeToString(type));
+    a3Log::debug("Camera type:%s\n", a3TypeToString(type).c_str());
     a3Log::debug("Camera origin[%f, %f, %f] lookat[%f, %f, %f] up[%f, %f, %f]\n",
                  origin[0], origin[1], origin[2],
                  lookat[0], lookat[1], lookat[2],
                  up[0], up[1], up[2]);
     a3Log::debug("Camera fov:%f focalDistance:%f lensRadius:%f\n", fov, focalDistance, lensRadius);
+}
+
+a3S2CInitMessage::a3S2CInitMessage(const a3S2CInitMessage& msg) :
+    imageWidth(msg.imageWidth), imageHeight(msg.imageHeight),
+    levelX(msg.levelX), levelY(msg.levelY),
+    spp(msg.spp), enableGammaCorrection(msg.enableGammaCorrection), enableToneMapping(msg.enableToneMapping),
+    maxDepth(msg.maxDepth), russianRouletteDepth(msg.russianRouletteDepth),
+    integratorType(msg.integratorType), primitiveSetType(msg.primitiveSetType)
+{
+    strcpy(imagePath, msg.imagePath);
 }
 
 void a3S2CInitMessage::print() const
@@ -253,3 +347,5 @@ void a3S2CInitMessage::print() const
 
     a3Log::info("------------------------------a3S2CInitMessage Info End------------------------------\n");
 }
+
+#endif

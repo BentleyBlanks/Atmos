@@ -221,6 +221,7 @@
     <ClCompile Include="..\..\..\..\Atmos\core\log\a3Log.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\core\log\a3LogFile.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\core\log\a3LogHTML.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\core\messageQueue\a3Message.inl" />
     <ClCompile Include="..\..\..\..\Atmos\core\messageQueue\a3MessageQueue.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\core\messageQueue\a3MessageQueueIPC.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\core\random\a3Distribution1D.cpp" />
