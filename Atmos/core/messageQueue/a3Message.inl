@@ -351,23 +351,23 @@ void a3S2CInitMessage::print() const
 
     for(int i = 0; i < shapeListLength; i++)
     {
-        a3Log::debug("------------------------Shape Index[%d / %d] Begin\n------------------------", i, shapeListLength);
+        a3Log::debug("------------------------Shape Index[%d / %d] Begin------------------------\n", i + 1, shapeListLength);
         shapeList[i].print();
-        a3Log::debug("------------------------Shape Index[%d / %d] End------------------------\n", i, shapeListLength);
+        a3Log::debug("------------------------Shape Index[%d / %d] End------------------------\n", i + 1, shapeListLength);
     }
 
     for(int i = 0; i < modelListLength; i++)
     {
-        a3Log::debug("------------------------Model Index[%d / %d] Begin------------------------\n", i, modelListLength);
+        a3Log::debug("------------------------Model Index[%d / %d] Begin------------------------\n", i + 1, modelListLength);
         modelList[i].print();
-        a3Log::debug("------------------------Model Index[%d / %d] End------------------------\n", i, modelListLength);
+        a3Log::debug("------------------------Model Index[%d / %d] End------------------------\n", i + 1, modelListLength);
     }
 
     for(int i = 0; i < lightListLength; i++)
     {
-        a3Log::debug("------------------------Light Index[%d / %d] Begin------------------------\n", i, lightListLength);
+        a3Log::debug("------------------------Light Index[%d / %d] Begin------------------------\n", i + 1, lightListLength);
         lightList[i].print();
-        a3Log::debug("------------------------Light Index[%d / %d] End------------------------\n", i, lightListLength);
+        a3Log::debug("------------------------Light Index[%d / %d] End------------------------\n", i + 1, lightListLength);
     }
 
     a3Log::info("------------------------------a3S2CInitMessage Info End------------------------------\n");

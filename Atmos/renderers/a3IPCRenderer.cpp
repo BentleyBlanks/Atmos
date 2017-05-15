@@ -266,8 +266,8 @@ void a3IPCRenderer::render(const a3Scene* scene)
         float* bufferPointer = gridBuffer[currentGrid];
 
         // 局部Grid渲染
-        //int gridX = (int) (currentGrid % levelX) * gridWidth;
-        //int gridY = (int) (currentGrid / levelX) * gridHeight;
+        int gridX = (int) (currentGrid % levelX) * gridWidth;
+        int gridY = (int) (currentGrid / levelX) * gridHeight;
 
         //int gridEndX = gridX + gridWidth;
         //int gridEndY = gridY + gridHeight;
@@ -290,7 +290,7 @@ void a3IPCRenderer::render(const a3Scene* scene)
                 for(int z = 0; z < spp; z++)
                 {
                     // 获取下一个采样位置
-                    sampler->getMoreSamples(x, y, &sample, &sampleTentFilter);
+                    sampler->getMoreSamples(x + gridX, y + gridY, &sample, &sampleTentFilter);
 
                     // memory allocating
                     a3Ray ray;

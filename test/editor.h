@@ -136,9 +136,10 @@ a3Shape* generateShape(a3ShapeData* shape)
     {
         // material
         a3BSDF* bsdf = generateBSDF(&shape->materialData);
-        if(bsdf && bsdf->texture)
+        if(bsdf)
         {
-            s->bCalTextureCoordinate = true;
+            if(bsdf->texture)
+                s->bCalTextureCoordinate = true;
             s->bsdf = bsdf;
         }
     }
@@ -187,9 +188,10 @@ a3Scene* generateScene(a3S2CInitMessage* initMsg)
         {
             // model中所有图元共享同一bsdf
             a3BSDF* bsdf = generateBSDF(&initMsg->modelList[i].materialData);
-            if(bsdf && bsdf->texture)
+            if(bsdf)
             {
-                s->bCalTextureCoordinate = true;
+                if(bsdf->texture)
+                    s->bCalTextureCoordinate = true;
                 s->bsdf = bsdf;
             }
 

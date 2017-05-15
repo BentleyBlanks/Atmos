@@ -1,6 +1,6 @@
 ﻿#include <Atmos.h>
 
-enum a3MaterialType
+enum a3MaterialType_
 {
     NONE = 0,
     LAMBERTIAN = 1,
@@ -41,14 +41,14 @@ int singleX = 350, singleY = 350;
 int spp = 32;
 int maxDepth = -1;
 int russianRouletteDepth = 4;
-int imageWidth = 500, imageHeight = 500;
+int imageWidth = 1024, imageHeight = 1024;
 bool enableGammaCorrection = true;
-bool enableToneMapping = false;
+bool enableToneMapping = true;
 
-a3SceneName name = BVHTEST;
+a3SceneName name = CORNEL_BOX;
 a3RendererName rendererName = SAMPLER;
 a3IntegratorName integratorName = PATH;
-a3PrimitiveSetName primitiveName = BVH;
+a3PrimitiveSetName primitiveName = EXHAUSTIVE;
 
 inline a3PerspectiveSensor* generateCamera(a3Film* image, a3SceneName name)
 {
