@@ -277,8 +277,7 @@ void a3IPCRenderer::render(const a3Scene* scene)
         //for(int x = gridX; x < gridEndX; x++)
         for(int x = 0; x < gridWidth; x++)
         {
-            //progress = (float) (x - gridX) / gridWidth;
-            //a3Log::info("Rendering: %8.2f \r",  progress * 100);
+            //a3Log::debug("Rendering: %8.2f \r", (float) x / gridWidth * 100);
             //for(int y = gridY; y < gridEndY; y++)
             for(int y = 0; y < gridHeight; y++)
             {

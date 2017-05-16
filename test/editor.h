@@ -184,10 +184,10 @@ a3Scene* generateScene(a3S2CInitMessage* initMsg)
         a3ModelImporter importer;
         std::vector<a3Shape*> temp = importer.load(initMsg->modelList[i].path);
 
+        // model中所有图元共享同一bsdf
+        a3BSDF* bsdf = generateBSDF(&initMsg->modelList[i].materialData);
         for(auto s : temp)
         {
-            // model中所有图元共享同一bsdf
-            a3BSDF* bsdf = generateBSDF(&initMsg->modelList[i].materialData);
             if(bsdf)
             {
                 if(bsdf->texture)
