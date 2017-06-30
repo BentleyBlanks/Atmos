@@ -33,7 +33,7 @@ public:
     {
 #ifdef _DEBUG
         origin.print("a3Ray.origin");
-        direction.print("ray.direction");
+        direction.print("a3Ray.direction");
 #endif
     }
 

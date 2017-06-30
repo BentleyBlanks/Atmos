@@ -22,8 +22,6 @@
 enum a3C2SMessages
 {
     A3_C2S_MSG_GRIDIMAGE = 0,
-    //A3_C2S_MSG_FINISHED,
-    // --!in the future
     A3_C2S_MSG_LIGHTPATH
 };
 
@@ -276,10 +274,18 @@ struct a3C2SGridBufferMessage : public a3MessageEntryHead
     int gridX, gridY;
     int gridWidth, gridHeight;
 
+    float origin[3], direction[3];
+
     // maximum length of buffer 
     float buffer[A3_GRIDBUFFER_LENGTH];
 
     A3_MESSAGE_DEFINE(a3C2SGridBufferMessage, A3_C2S_MSG_GRIDIMAGE)
+};
+
+struct a3C2SLightPathMessage : public a3MessageEntryHead
+{
+    float origin[3], direction[3];
+    A3_MESSAGE_DEFINE(a3C2SLightPathMessage, A3_C2S_MSG_LIGHTPATH)
 };
 
 #include <core/messageQueue/a3Message.inl>

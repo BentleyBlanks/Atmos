@@ -47,7 +47,9 @@ private:
     void initBuffer();
 
     // 发送当前网格ID指向的buffer
-    void send(int currentGrid);
+    void sendRays(const a3Ray& ray);
+
+    void sendBuffer(const a3Ray& ray, int currentGrid);
 
     void postEffect(int currentGrid);
 

@@ -275,6 +275,8 @@ void a3IPCRenderer::render(const a3Scene* scene)
         a3Log::info("Rendering Grid[%d / %d] Spp:%d\n", currentGrid, gridCount, spp);
         //#pragma omp parallel for schedule(dynamic)
         //for(int x = gridX; x < gridEndX; x++)
+        a3Ray tempRay;
+
         for(int x = 0; x < gridWidth; x++)
         {
             //a3Log::debug("Rendering: %8.2f \r", (float) x / gridWidth * 100);
@@ -297,6 +299,9 @@ void a3IPCRenderer::render(const a3Scene* scene)
                     // 生成光线
                     camera->castRay(&sampleTentFilter, &ray);
 
+                    if(x == 0 && y == 0 && z == 0)
+                        tempRay = ray;
+
                     color += integrator->li(ray, *scene) / spp;
                 }
 
@@ -310,8 +315,11 @@ void a3IPCRenderer::render(const a3Scene* scene)
         // 当前buffer后期处理
         //postEffect(currentGrid);
 
+        // 可视化渲染光线
+        //sendRays(tempRay);
+
         // 发送当前grid指定buffer
-        send(currentGrid);
+        sendBuffer(tempRay, currentGrid);
     }
 
     // already finished
@@ -374,7 +382,32 @@ void a3IPCRenderer::postEffect(int currentGrid)
     a3Log::success("Post Effct Ended\n");
 }
 
-void a3IPCRenderer::send(int currentGrid)
+void a3IPCRenderer::sendRays(const a3Ray& ray)
+{
+    if(!ipcC2S.isFull())
+    {
+        const int C2SMsgSize = sizeof(a3C2SGridBufferMessage);
+
+        char msg_buffer[C2SMsgSize];
+        memset(msg_buffer, 0, C2SMsgSize);
+
+        a3C2SLightPathMessage* lightPathMsg = (a3C2SLightPathMessage*) msg_buffer;
+
+        lightPathMsg->origin[0] = ray.origin.x;
+        lightPathMsg->origin[1] = ray.origin.y;
+        lightPathMsg->origin[2] = ray.origin.z;
+
+        lightPathMsg->direction[0] = ray.direction.x;
+        lightPathMsg->direction[1] = ray.direction.y;
+        lightPathMsg->direction[2] = ray.direction.z;
+
+        ipcC2S.enqueue(*lightPathMsg);
+    }
+    else
+        a3Log::warning("Full Message Queue\n");
+}
+
+void a3IPCRenderer::sendBuffer(const a3Ray& ray, int currentGrid)
 {        
     // pointer to the current grid buffer
     float* bufferPointer = gridBuffer[currentGrid];
@@ -403,6 +436,15 @@ void a3IPCRenderer::send(int currentGrid)
 
         gridMsg.gridWidth = gridSize <= A3_GRIDBUFFER_LENGTH ? gridWidth : A3_GRIDBUFFER_MAX_WIDTH;
         gridMsg.gridHeight = gridSize <= A3_GRIDBUFFER_LENGTH ? gridHeight : A3_GRIDBUFFER_MAX_HEIGHT;
+
+        // test
+        gridMsg.origin[0] = ray.origin.x;
+        gridMsg.origin[1] = ray.origin.y;
+        gridMsg.origin[2] = ray.origin.z;
+
+        gridMsg.direction[0] = ray.direction.x;
+        gridMsg.direction[1] = ray.direction.y;
+        gridMsg.direction[2] = ray.direction.z;
 
         // copy buffer to msg
         memcpy(gridMsg.buffer, bufferPointer, sizeof(float) * gridSize);

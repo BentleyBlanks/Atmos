@@ -237,30 +237,32 @@ void main()
     a3Log::info("Cost time: %f sec\n", timer.difference());
 
     getchar();
+    // wait some time
+    //Sleep(5000);
 
     // ----------------------------------------deallocate----------------------------------------
-    // scene
-    if(scene)
-    {
-        for(auto l : scene->lights)
-            A3_SAFE_DELETE(l);
+    //// scene
+    //if(scene)
+    //{
+    //    for(auto l : scene->lights)
+    //        A3_SAFE_DELETE(l);
 
-        if(scene->primitiveSet)
-        {
-            for(auto s : scene->primitiveSet->primitives)
-            {
-                if(s && s->bsdf)
-                {
-                    A3_SAFE_DELETE(s->bsdf->texture);
-                    A3_SAFE_DELETE(s->bsdf);
-                }
+    //    if(scene->primitiveSet)
+    //    {
+    //        for(auto s : scene->primitiveSet->primitives)
+    //        {
+    //            if(s && s->bsdf)
+    //            {
+    //                A3_SAFE_DELETE(s->bsdf->texture);
+    //                A3_SAFE_DELETE(s->bsdf);
+    //            }
 
-                A3_SAFE_DELETE(s);
-            }
-        }
+    //            A3_SAFE_DELETE(s);
+    //        }
+    //    }
 
-        A3_SAFE_DELETE(scene);
-    }
+    //    A3_SAFE_DELETE(scene);
+    //}
 
     return;
 }
