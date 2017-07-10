@@ -299,6 +299,7 @@ void a3IPCRenderer::render(const a3Scene* scene)
                     // 生成光线
                     camera->castRay(&sampleTentFilter, &ray);
 
+                    // 可视化渲染光线
                     if(x == 0 && y == 0 && z == 0)
                         tempRay = ray;
 
