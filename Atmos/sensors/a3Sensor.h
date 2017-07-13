@@ -32,7 +32,7 @@ public:
     // camera coordinate system
     t3Vector3f direction, up, right, lookat;
     // （同一坐标原点）从相机坐标系转换到世界坐标系
-    t3Matrix4x4 cameraToWorld;
+    t3Matrix4x4 cameraToWorld, rasterToCamera, cameraToScreen;
 
     a3Film* image;
 
