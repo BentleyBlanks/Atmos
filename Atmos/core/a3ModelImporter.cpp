@@ -202,7 +202,7 @@ public:
 
                 // init normals
                 triangle->n0.set(nx0, ny0, nz0);
-                triangle->n1.set(nx2, ny1, nz1);
+                triangle->n1.set(nx1, ny1, nz1);
                 triangle->n2.set(nx2, ny2, nz2);
                 
 
@@ -211,13 +211,11 @@ public:
                     float tx0 = attrib.texcoords[2 * idx0.texcoord_index + 0];
                     float ty0 = attrib.texcoords[2 * idx0.texcoord_index + 1];
 
+                    float tx1 = attrib.texcoords[2 * idx1.texcoord_index + 0];
+                    float ty1 = attrib.texcoords[2 * idx1.texcoord_index + 1];
 
                     float tx2 = attrib.texcoords[2 * idx2.texcoord_index + 0];
                     float ty2 = attrib.texcoords[2 * idx2.texcoord_index + 1];
-
-
-                    float tx1 = attrib.texcoords[2 * idx1.texcoord_index + 0];
-                    float ty1 = attrib.texcoords[2 * idx1.texcoord_index + 1];
 
                     // init 2d texture coordinate
                     triangle->vt0.set(tx0, ty0, 0);
