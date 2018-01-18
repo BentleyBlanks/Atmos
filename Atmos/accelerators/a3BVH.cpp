@@ -2,7 +2,7 @@
 #include <core/a3Ray.h>
 #include <shapes/a3Shape.h>
 #include <core/log/a3Log.h>
-#include <core/a3Intersection.h>
+#include <core/a3Record.h>
 
 //  TreeNode
 a3BVHTreeNode::a3BVHTreeNode() :leftChild(NULL), rightChild(NULL)
@@ -250,7 +250,7 @@ unsigned int a3BVH::linearBuild(a3BVHTreeNode* treeRoot, unsigned int* offset)
 }
 
 // 遍历
-bool a3BVH::intersect(const a3Ray& ray, a3Intersection* intersection) const
+bool a3BVH::intersect(const a3Ray& ray, a3IntersectRecord* intersection) const
 {
     if(!root) return false;
 
@@ -321,7 +321,7 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
                       const t3Vector3f &invDir, const unsigned int dirIsNeg[3],
                       a3Shape** shape) const
 {
-    if(a3RayBoxIntersect(node->bounds, ray, A3_TOLERANCE_FLOAT, *minT, invDir, dirIsNeg))
+    if(a3RayBoxIntersect(node->bounds, ray, A3_EPSILON_FLOAT, *minT, invDir, dirIsNeg))
     {
         // 叶子结点
         if(node->primitive)
@@ -331,7 +331,8 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
             float vtu = 0, vtv = 0;
 
             // 实际Ray Primitive相交测试
-            if(node->primitive->intersect(ray, &t, &u, &v, &vtu, &vtv) && t > A3_TOLERANCE_FLOAT && t < *minT)
+            //if(node->primitive->intersect(ray, &t, &u, &v, &vtu, &vtv) && t > A3_TOLERANCE_FLOAT && t < *minT)
+            if(node->primitive->intersect(ray, &t, &u, &v) && t > A3_EPSILON_FLOAT && t < *minT)
             {
                 *minT = t;
                 *shape = node->primitive;
@@ -371,7 +372,7 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
                       float* _u, float* _v, float* vtu, float* vtv,
                       const t3Vector3f &invDir, const unsigned int dirIsNeg[3]) const
 {
-    if(a3RayBoxIntersect(node->bounds, ray, A3_TOLERANCE_FLOAT, *minT, invDir, dirIsNeg))
+    if(a3RayBoxIntersect(node->bounds, ray, A3_EPSILON_FLOAT, *minT, invDir, dirIsNeg))
     {
         // 叶子结点
         if(node->primitive)
@@ -381,7 +382,8 @@ bool a3BVH::intersect(const a3Ray& ray, a3BVHTreeNode* node, float* minT,
             float vtu = 0, vtv = 0;
 
             // 实际Ray Primitive相交测试
-            if(node->primitive->intersect(ray, &t, &u, &v, &vtu, &vtv) && t > A3_TOLERANCE_FLOAT && t < *minT)
+            //if(node->primitive->intersect(ray, &t, &u, &v, &vtu, &vtv) && t > A3_TOLERANCE_FLOAT && t < *minT)
+            if(node->primitive->intersect(ray, &t, &u, &v) && t > A3_EPSILON_FLOAT && t < *minT)
                 return true;
         }
         else

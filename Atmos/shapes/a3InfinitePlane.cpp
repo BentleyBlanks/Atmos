@@ -1,29 +1,41 @@
 #include <shapes/a3InfinitePlane.h>
-#include <core./a3Ray.h>
-#include <core/a3Warp.h>
-#include <samples/a3LightSample.h>
-#include <core/random/a3Random.h>
+#include <core/a3Ray.h>
+#include <core/a3Record.h>
 
-a3InfinitePlane::a3InfinitePlane(const t3Vector3f& p, const t3Vector3f& normal)
-    :p(p), normal(normal.getNormalized()), a3Shape("a3InfinitePlane")
+a3InfinitePlane::a3InfinitePlane(const t3Matrix4x4 & objectToWorld, const t3Matrix4x4 & worldToObject)
+    : a3Shape(objectToWorld, worldToObject)
 {
-    aabb.set(t3Vector3f(-A3_INFINITY), t3Vector3f(A3_INFINITY));
+    name = "a3InfinitePlane";
 }
 
-
-void a3InfinitePlane::set(const t3Vector3f& p, const t3Vector3f& normal)
+a3InfinitePlane::~a3InfinitePlane()
 {
-    this->p = p;
-    this->normal = normal.getNormalized();
-
-    aabb.set(t3Vector3f(-A3_INFINITY), t3Vector3f(A3_INFINITY));
 }
 
-t3Vector3f a3InfinitePlane::sample(const a3LightSample& sample) const
+bool a3InfinitePlane::intersect(const a3Ray & _ray, float * t, float * u, float * v) const
 {
-    a3Random random;
+    a3Ray ray = _ray;
+    ray.transform(worldToObject);
 
-    return t3Vector3f(random.randomFloat() * A3_INFINITY, random.randomFloat() * A3_INFINITY, random.randomFloat() * A3_INFINITY);
+    //--!See https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-plane-and-ray-disk-intersection for detail
+    t3Vector3f normal(0, 1, 0);
+
+    // paralle or not
+    double denominator = normal.dot(ray.direction), tHit = 0.0f;
+
+    if(t3Math::Abs(denominator) > A3_EPSILON_FLOAT)
+    {
+        tHit = (-ray.origin).dot(normal) / denominator;
+
+        if(tHit < ray.minT || tHit > ray.maxT)
+            return false;
+
+        *t = tHit;
+
+        return true;
+    }
+
+    return false;
 }
 
 float a3InfinitePlane::area() const
@@ -31,34 +43,21 @@ float a3InfinitePlane::area() const
     return A3_INFINITY;
 }
 
-bool a3InfinitePlane::intersect(const a3Ray& ray, float* _t, float* _u, float* _v, float* _vtu, float* _vtv) const
+void a3InfinitePlane::sample(a3ShapeSamplingRecord & sRec) const
 {
-    // 规定与射线方向相对时可见 因此需要反转normal
-    // 判断圆盘与直线平行关系
-    t3Vector3d _normal(-normal), direction(ray.direction);
-
-    double denominator = (_normal).dot(direction), tHit = 0.0;
-
-    // 无限远平面不适用双面
-    //denominator = t3Math::Abs(denominator);
-
-    if(denominator > A3_TOLERANCE_DOUBLE)
-    {
-        t3Vector3d dir(p - ray.origin);
-
-        tHit = (dir.dot(_normal) / denominator);
-
-        if(tHit > ray.minT && tHit < ray.maxT)
-        {
-            *_t = tHit;
-            return true;
-        }
-    }
-
-    return false;
+    // can't be area light
+    sRec.p = t3Vector3f::zero();
+    sRec.pdf = pdf(sRec);
+    sRec.normal = getNormal(t3Vector3f::zero(), 0, 0);
 }
 
-t3Vector3f a3InfinitePlane::getNormal(const t3Vector3f& hitPoint, float u, float v) const
+float a3InfinitePlane::pdf(const a3ShapeSamplingRecord & sRec) const
 {
-    return normal;
+    // Not physically based
+    return 0.0f;
+}
+
+t3Vector3f a3InfinitePlane::getNormal(const t3Vector3f & hitPoint, float u, float v) const
+{
+    return objectToWorld * t3Vector3f(0, 1, 0);
 }

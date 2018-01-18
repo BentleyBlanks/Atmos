@@ -7,7 +7,7 @@ class a3Scene;
 class a3CameraSample;
 class a3Sensor;
 class a3Ray;
-class a3Intersection;
+class a3IntersectRecord;
 
 class a3Renderer
 {

@@ -1,0 +1,29 @@
+#include "a3EnvironmentLight.h"
+
+a3EnvironmentLight::a3EnvironmentLight(const std::string & filePath)
+{
+}
+
+a3EnvironmentLight::~a3EnvironmentLight()
+{
+}
+
+a3Spectrum a3EnvironmentLight::evalEnvironment(const a3Ray & ray) const
+{
+    return a3Spectrum();
+}
+
+a3Spectrum a3EnvironmentLight::sampleDirect(const a3DirectSamplingRecord & dRec) const
+{
+    return a3Spectrum();
+}
+
+bool a3EnvironmentLight::isEnvironment() const
+{
+    return false;
+}
+
+bool a3EnvironmentLight::isDeltaDistribution() const
+{
+    return false;
+}

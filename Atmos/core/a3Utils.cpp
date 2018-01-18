@@ -173,6 +173,16 @@ std::string a3HexToString(const std::string& stringHexString)
     return out.str();
 }
 
+void a3FuncNotImplementedError(const std::string & funcName, const std::string & className)
+{
+    std::string error = "Unimplemented ";
+    error += className;
+    error += "::";
+    error += funcName;
+    error += "method called";
+    a3Log::warning(error.c_str());
+}
+
 //#include <assert.h>
 
 //// --!Assert

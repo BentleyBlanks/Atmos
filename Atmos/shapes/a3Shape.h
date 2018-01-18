@@ -1,74 +1,50 @@
-﻿#ifndef A3_SHAPE_H
+#ifndef A3_SHAPE_H
 #define A3_SHAPE_H
 
-#include <core/a3Spectrum.h>
 #include <t3Math/core/t3Vector3.h>
+#include <t3Math/core/t3Matri4x4.h>
 #include <core/a3Settings.h>
+#include <core/a3Spectrum.h>
 #include <core/a3AABB.h>
-#include <lights/a3AreaLight.h>
+#include <bsdf/a3BSDF.h>
 
 class a3Ray;
-class a3BSDF;
-class a3LightSample;
-
+class a3ShapeSamplingRecord;
 class a3Shape
 {
 public:
-	a3Shape();
+    a3Shape(const t3Matrix4x4& objectToWorld, const t3Matrix4x4& worldToObject);
 
-    a3Shape(std::string name);
-    
-    // [u, v]用于三角形插值计算当前相交点的重心坐标系位置; [vtu, vtv]用于相交点的纹理坐标计算
-    virtual bool intersect(const a3Ray& ray, float* t, float* u, float* v, float* vtu, float* vtv) const;
+    virtual ~a3Shape();
 
-    virtual t3Vector3f getNormal(const t3Vector3f& hitPoint, float u, float v) const;
+    // ray intersection test for visibility queries
+    virtual bool intersect(const a3Ray& ray, float* t, float* u, float* v) const = 0;
 
-    virtual void print() const;
+    // compute the area
+    virtual float area() const = 0;
 
-    bool isEmitter() const;
+    // Sample a point on the surface of this shape instance
+    virtual void sample(a3ShapeSamplingRecord& sRec) const = 0;
 
-    // inline
-    const a3BSDF* getBSDF() const;
+    // Query the probability density of sample() for a particular point on the surface.
+    virtual float pdf(const a3ShapeSamplingRecord& sRec) const;
 
-    a3BSDF* getBSDF();
+    // return the normal vec from the point be hitted
+    virtual t3Vector3f getNormal(const t3Vector3f& hitPoint, float u, float v) const = 0;
 
-    bool hasBSDF() const;
+    // bsdf set/get
+    virtual void setBSDF(a3BSDF* bsdf);
 
-    void setBSDF(a3BSDF* bsdf);
+    virtual a3BSDF* getBSDF() const;
 
-    // 计算当前形状表面积
-    virtual float area() const;
+    t3Matrix4x4 objectToWorld, worldToObject;
 
-    float pdf(const t3Vector3f& p, const t3Vector3f& wi);
-
-    // 给定采样区间获取采样点
-    virtual t3Vector3f sample(const a3LightSample& sample) const;
-
-    virtual a3AreaLight* getAreaLight() const;
-
-	// 自发光系数
-	t3Vector3f emission;
-
-    // 折射率
-    float refractiveIndex;
-
-	// BSDF类型
-    a3BSDF* bsdf;
-
-    bool bIsEmitter;
-
-    // 包围盒
+    // Axis-Aligned Bounding Box
     a3AABB aabb;
-
-    // 是否使用单一面片法线
-    bool bUseFaceNormal;
-
-    bool bCalTextureCoordinate;
 
     std::string name;
 
-    // 释放时机与其余light生命周期一致 shape释放时对此不做操作
-    a3AreaLight* areaLight;
+    a3BSDF* bsdf;
 };
 
 #endif

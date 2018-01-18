@@ -3,6 +3,7 @@
 
 #include <core/a3Settings.h>
 #include <t3Math/core/t3Vector3.h>
+#include <t3Math/core/t3Matri4x4.h>
 
 class a3Ray
 {
@@ -28,6 +29,15 @@ public:
 	{
 		return origin + direction * t;
 	}
+
+    void transform(const t3Matrix4x4& m)
+    {
+        // point transform
+        origin = m * origin;
+
+        // special vector transform
+        direction = t3Matrix4x4::transform3x3(m, direction);
+    }
 
     void print() const
     {

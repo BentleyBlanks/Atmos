@@ -95,7 +95,6 @@ void A3_SAFE_DELETE_1DARRAY(T*& pointer)
 #define A3ASSERT(exp, errorMessage) assert(exp && errorMessage)
 #endif
 
-
 // ------------------------Deprecated------------------------
 // 弃用宏只在Windows平台上使用
 // 当然也可以选择将Deprecated宏全局关闭
@@ -175,10 +174,13 @@ void A3_SAFE_DELETE_1DARRAY(T*& pointer)
 #define A3_RADIAN_TO_DEGREE (180.0f/PI)
 #endif
 
-// 浮点数判断容差
-#define A3_TOLERANCE_INT 0
-#define A3_TOLERANCE_FLOAT 1e-6f
-#define A3_TOLERANCE_DOUBLE 1e-8
+// Correct the computation of float error 
+#define A3_EPSILON 1e-4f
+#define A3_EPSILON_INT 0
+#define A3_EPSILON_FLOAT 1e-6f
+#define A3_EPSILON_DOUBLE 1e-8
+// for shadow ray testing
+#define A3_EPSILON_SHADOW 1e-3f
 
 // --!详见 https://www.zhihu.com/question/41895326
 // Atmos全局相交测试模仿Mitsuba采用double精度

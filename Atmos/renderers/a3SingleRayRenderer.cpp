@@ -36,10 +36,10 @@ void a3SingleRayRenderer::render(const a3Scene* scene)
     // memory allocating
     a3Ray ray;
 
-    // 生成光线
+    // generate camera rays
     camera->castRay(&sample, &ray);
 
-    t3Vector3f color = integrator->li(ray, *scene);
+    t3Vector3f color = integrator->Li(ray, *scene);
 
     color.x = t3Math::clamp(color.x, 0.0f, 255.0f);
     color.y = t3Math::clamp(color.y, 0.0f, 255.0f);
@@ -59,25 +59,25 @@ bool a3SingleRayRenderer::check()
 {
     if(!camera)
     {
-        a3Log::error("a3SamplerRenderer::render()前camera: %d尚未分配指定\n", camera);
+        a3Log::error("Before a3SamplerRenderer::render() was called, camera: %d is not allocated\n", camera);
         return false;
     }
 
     if(!sampler)
     {
-        a3Log::error("a3SamplerRenderer::render()前sampler: %d尚未分配指定\n", sampler);
+        a3Log::error("Before a3SamplerRenderer::render() was called, sampler: %d is not allocated\n", sampler);
         return false;
     }
 
     if(!integrator)
     {
-        a3Log::error("a3SamplerRenderer::render()前integrator: %d尚未分配指定\n", integrator);
+        a3Log::error("Before a3SamplerRenderer::render() was called, integrator: %d is not allocated\n", integrator);
         return false;
     }
 
     if(singleRayX < 0 || singleRayY < 0)
     {
-        a3Log::error("a3SamplerRenderer::render()指定屏幕坐标(%d %d)有误", singleRayX, singleRayY);
+        a3Log::error("Error coordinates:(%d %d) when a3SamplerRenderer::render() was called", singleRayX, singleRayY);
 
         return false;
     }

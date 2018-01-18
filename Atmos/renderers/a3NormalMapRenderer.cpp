@@ -6,7 +6,7 @@
 #include <core/log/a3Log.h>
 #include <core/image/a3NormalMap.h>
 #include <core/a3Ray.h>
-#include <core/a3Intersection.h>
+#include <core/a3Record.h>
 
 #include <samples/a3Sampler.h>
 #include <samples/a3CameraSample.h>
@@ -79,7 +79,7 @@ bool a3NormalMapRenderer::check()
 
 t3Vector3f a3NormalMapRenderer::getNormal(const a3Scene* scene, a3Ray* ray, const a3CameraSample* sample)
 {
-    a3Intersection intersection;
+    a3IntersectRecord intersection;
 
     if(!scene->intersect(*ray, &intersection))
         // zero normal

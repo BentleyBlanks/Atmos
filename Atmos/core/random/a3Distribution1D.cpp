@@ -7,7 +7,7 @@ a3Distribution1D::a3Distribution1D(std::vector<float> _f)
 {
     if(_f.size() <= 0)
     {
-        a3Log::error("初始化a3Distribution1D中提供了空的数据集");
+        a3Log::error("a3Distribution1D():Empty data set");
     }
 
     // 全内容拷贝

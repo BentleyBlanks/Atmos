@@ -13,7 +13,7 @@
 #include <samples/a3CameraSample.h>
 
 //integrator
-#include <integrator/a3PathIntegrator.h>
+//#include <integrator/a3PathIntegrator.h>
 #include <integrator/a3DirectLighting.h>
 
 inline t3Vector3f a3Float3ToVec3(float* f3)
@@ -209,10 +209,10 @@ void a3IPCRenderer::initRenderer()
     switch(initMsg->integratorType)
     {
     case A3_INTEGRATOR_PATH:
-        integrator = new a3PathIntegrator(initMsg->russianRouletteDepth, initMsg->maxDepth);
+        //integrator = new a3PathIntegrator(initMsg->russianRouletteDepth, initMsg->maxDepth);
         break;
     case A3_INTEGRATOR_DIRECT_LIGHTING:
-        integrator = new a3DirectLightingIntegrator();
+        integrator = new a3DirectLighting();
         break;
     default:
         break;
@@ -303,7 +303,7 @@ void a3IPCRenderer::render(const a3Scene* scene)
                     if(x == 0 && y == 0 && z == 0)
                         tempRay = ray;
 
-                    color += integrator->li(ray, *scene) / spp;
+                    color += integrator->Li(ray, *scene) / spp;
                 }
 
                 // ¡Ÿ ±ø’º‰÷–setColor

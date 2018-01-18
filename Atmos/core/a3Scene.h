@@ -4,7 +4,8 @@
 #include <core/a3Settings.h>
 #include <core/a3Spectrum.h>
 
-class a3Intersection;
+class a3IntersectRecord;
+class a3LightSamplingRecord;
 class a3Shape;
 class a3Light;
 class a3Ray;
@@ -16,24 +17,28 @@ public:
 	a3Scene();
     ~a3Scene();
 
-    a3Spectrum le(const a3Ray& ray) const;
-
-    bool intersect(const a3Ray& ray, a3Intersection* intersection) const;
-
-    bool intersect(const a3Ray& ray) const;
-
     bool addShape(a3Shape* shape);
 
     bool addLight(a3Light* light);
 
-    bool isValid() const;
-
     bool check() const;
 
-    // 场景所有光源
+    // intersection with hit point detail
+    bool intersect(const a3Ray& ray, a3IntersectRecord* intersection) const;
+
+    // fast scene intersection test
+    bool intersect(const a3Ray& ray) const;
+
+    // Return the environment radiance for a ray that did not intersect any of the scene objects
+    a3Spectrum evalEnvironment(const a3Ray& ray) const;
+
+    // given a reference point in the scene, sample an emitter position that contributes towards it
+    a3Spectrum sampleDirect(a3LightSamplingRecord& dRec) const;
+    
+    // all lights in the scene
     std::vector<a3Light*> lights;
 
-    // 图元集合
+    // all shapes in the scene
     a3PrimitiveSet* primitiveSet;
 };
 

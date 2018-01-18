@@ -7,7 +7,7 @@
 #include <core/log/a3Log.h>
 #include <core/image/a3NormalMap.h>
 #include <core/a3Ray.h>
-#include <core/a3Intersection.h>
+#include <core/a3Record.h>
 #include <t3Math/core/t3Math.h>
 
 #include <samples/a3Sampler.h>
@@ -77,7 +77,7 @@ bool a3FresnelRenderer::check()
 
 float a3FresnelRenderer::getFresnel(const a3Scene* scene, a3Ray* ray, const a3CameraSample* sample)
 {
-    a3Intersection intersection;
+    a3IntersectRecord intersection;
 
     if(!scene->intersect(*ray, &intersection))
         // zero normal
@@ -87,22 +87,24 @@ float a3FresnelRenderer::getFresnel(const a3Scene* scene, a3Ray* ray, const a3Ca
 
     t3Vector3f normal = intersection.getNormal();
 
-    float n = obj->refractiveIndex;
+    // future added
+    ////float n = obj->refractiveIndex;
 
-    //float R0 = (1.0f - n) / (1.0 + n);
+    ////float R0 = (1.0f - n) / (1.0 + n);
 
-    //R0 = R0 * R0;
+    ////R0 = R0 * R0;
 
-    float costheta1 = normal.dot(-ray->direction);
+    //float costheta1 = normal.dot(-ray->direction);
 
-    //float probablity = R0 + (1 - R0) * t3Math::pow((1 - t3Math::Abs(costheta1)), 5);
+    ////float probablity = R0 + (1 - R0) * t3Math::pow((1 - t3Math::Abs(costheta1)), 5);
 
-    float sint = 1.0f / n * sqrtf(1.f - costheta1 * costheta1);
+    //float sint = 1.0f / n * sqrtf(1.f - costheta1 * costheta1);
 
-    float cost = sqrtf(1.f - sint * sint);
+    //float cost = sqrtf(1.f - sint * sint);
 
-    float probablity = a3FrDiel(costheta1, cost, 1.0f, n);
+    //float probablity = a3FrDiel(costheta1, cost, 1.0f, n);
 
-    return 1 - probablity;
+    //return 1 - probablity;
+    return 1;
 }
 

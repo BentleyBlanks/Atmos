@@ -1,4 +1,4 @@
-﻿#ifndef A3_SPHERE_H
+#ifndef A3_SPHERE_H
 #define A3_SPHERE_H
 
 #include <shapes/a3Shape.h>
@@ -6,23 +6,26 @@
 class a3Sphere : public a3Shape
 {
 public:
-	a3Sphere(const t3Vector3f& center, const float radius = 0.0f);
+    a3Sphere(const t3Matrix4x4& objectToWorld, const t3Matrix4x4& worldToObject, const float radius);
 
-    void set(const t3Vector3f& center, const float radius = 0.0f);
+    virtual ~a3Sphere();
 
-	bool intersect(const a3Ray& ray, float* t, float* u, float* v, float* vtu, float* vtv) const;
+    // ray intersection test for visibility queries
+    virtual bool intersect(const a3Ray& ray, float* t, float* u, float* v) const;
 
-    virtual t3Vector3f getNormal(const t3Vector3f& hitPoint, float u, float v) const;
-
-    virtual void print() const;
-
+    // compute the area
     virtual float area() const;
 
-    virtual t3Vector3f sample(const a3LightSample& sample) const;
+    // Sample a point on the surface of this shape instance
+    virtual void sample(a3ShapeSamplingRecord& sRec) const;
 
-	t3Vector3f center;
+    // return the normal vec from the point be hitted
+    virtual t3Vector3f getNormal(const t3Vector3f& hitPoint, float u, float v) const;
 
-	float radius;
+    float radius;
+
+    // initted by objectToWorld
+    t3Vector3f center;
 };
 
 #endif

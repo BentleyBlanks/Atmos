@@ -1,27 +1,29 @@
-﻿#ifndef A3_DISK_H
+#ifndef A3_DISK_H
 #define A3_DISK_H
 
 #include <shapes/a3Shape.h>
 
+class a3ShapeSamplingRecord;
+
 class a3Disk :public a3Shape
 {
 public:
-    a3Disk(const t3Vector3f& center, const float radius, const t3Vector3f& normal);
+    a3Disk(const t3Matrix4x4& objectToWorld, const t3Matrix4x4& worldToObject, const float radius);
 
-    void set(const t3Vector3f& center, const float radius, const t3Vector3f& normal);
+    virtual ~a3Disk();
 
-    virtual bool intersect(const a3Ray& ray, float* t, float* u, float* v, float* vtu, float* vtv) const;
+    // ray intersection test for visibility queries
+    virtual bool intersect(const a3Ray& ray, float* t, float* u, float* v) const;
 
-    //--! u1 u2参数未开放
-    virtual t3Vector3f getNormal(const t3Vector3f& hitPoint, float u, float v) const;
-
+    // compute the area
     virtual float area() const;
 
-    virtual t3Vector3f sample(const a3LightSample& sample) const;
+    // Sample a point on the surface of this shape instance
+    virtual void sample(a3ShapeSamplingRecord& sRec) const;
 
-    // 圆盘上中点及其朝向
-    t3Vector3f center, normal;
-    
+    // return the normal vec from the point be hitted
+    virtual t3Vector3f getNormal(const t3Vector3f& hitPoint, float u, float v) const;
+
     float radius;
 };
 

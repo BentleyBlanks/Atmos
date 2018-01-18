@@ -1,27 +1,32 @@
 #ifndef A3_INFINITE_PLANE_H
 #define A3_INFINITE_PLANE_H
 
-#include <shapes/a3Triangle.h>
-#include <t3Math/core/t3Matri4x4.h>
+#include <shapes/a3Shape.h>
 
-// 单面
+class a3ShapeSamplingRecord;
+
+// For Testing, not as the shape of light 
 class a3InfinitePlane :public a3Shape
 {
 public:
-    a3InfinitePlane(const t3Vector3f& p, const t3Vector3f& normal);
+    a3InfinitePlane(const t3Matrix4x4& objectToWorld, const t3Matrix4x4& worldToObject);
 
-    void set(const t3Vector3f& p, const t3Vector3f& normal);
+    virtual ~a3InfinitePlane();
 
-    virtual bool intersect(const a3Ray& ray, float* t, float* u, float* v, float* vtu, float* vtv) const;
+    // ray intersection test for visibility queries
+    virtual bool intersect(const a3Ray& ray, float* t, float* u, float* v) const;
 
-    virtual t3Vector3f getNormal(const t3Vector3f& hitPoint, float u, float v) const;
-
+    // compute the area
     virtual float area() const;
 
-    virtual t3Vector3f sample(const a3LightSample& sample) const;
+    // Sample a point on the surface of this shape instance
+    virtual void sample(a3ShapeSamplingRecord& sRec) const;
 
-    // 平面上一点及其朝向
-    t3Vector3f p, normal;
+    // Query the probability density of sample() for a particular point on the surface.
+    virtual float pdf(const a3ShapeSamplingRecord& sRec) const;
+
+    // return the normal vec from the point be hitted
+    virtual t3Vector3f getNormal(const t3Vector3f& hitPoint, float u, float v) const;
 };
 
-#endif
+#endif 

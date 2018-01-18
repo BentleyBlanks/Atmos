@@ -64,6 +64,9 @@ void a3GammaCorrection(float& r, float&g, float& b);
 // 伽马矫正
 void a3GammaCorrection(t3Vector3f& color);
 
+
+
+// ----------------------------------------------Math----------------------------------------------
 // 球坐标Theta:[0, 2pi]
 float a3SphericalTheta(const t3Vector3f &v);
 

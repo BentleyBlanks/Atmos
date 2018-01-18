@@ -85,6 +85,9 @@
     <Filter Include="ThirdParty\tinyobjloader">
       <UniqueIdentifier>{89f6cb69-224b-40db-a3fd-a95c7c56d909}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Atmos\renderers\Visualizer">
+      <UniqueIdentifier>{fce0c4ad-a8dd-4e75-a59c-cce7dc974b1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Atmos\accelerators\a3BVH.cpp">
@@ -97,15 +100,6 @@
       <Filter>Atmos\accelerators</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Atmos\bsdf\a3BSDF.cpp">
-      <Filter>Atmos\bsdf</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Conductor.cpp">
-      <Filter>Atmos\bsdf</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Dielectric.cpp">
-      <Filter>Atmos\bsdf</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Diffuse.cpp">
       <Filter>Atmos\bsdf</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Atmos\core\image\a3Film.cpp">
@@ -144,9 +138,6 @@
     <ClCompile Include="..\..\..\..\Atmos\core\random\a3Random.cpp">
       <Filter>Atmos\core\random</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\core\a3Intersection.cpp">
-      <Filter>Atmos\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\Atmos\core\a3ModelImporter.cpp">
       <Filter>Atmos\core</Filter>
     </ClCompile>
@@ -168,55 +159,13 @@
     <ClCompile Include="..\..\..\..\Atmos\core\a3BilinearInterpolation.cpp">
       <Filter>Atmos\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\integrator\a3DirectLighting.cpp">
-      <Filter>Atmos\integrator</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\Atmos\integrator\a3Integrator.cpp">
       <Filter>Atmos\integrator</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\integrator\a3PathIntegrator.cpp">
-      <Filter>Atmos\integrator</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\lights\a3AreaLight.cpp">
-      <Filter>Atmos\lights</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\lights\a3InfiniteAreaLight.cpp">
-      <Filter>Atmos\lights</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\lights\a3Light.cpp">
-      <Filter>Atmos\lights</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\lights\a3PointLight.cpp">
-      <Filter>Atmos\lights</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\lights\a3SpotLight.h.cpp">
-      <Filter>Atmos\lights</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Atmos\textures\a3Texture.cpp">
       <Filter>Atmos\textures</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Disk.cpp">
-      <Filter>Atmos\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\shapes\a3InfinitePlane.cpp">
-      <Filter>Atmos\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Plane.cpp">
-      <Filter>Atmos\shapes</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\Atmos\shapes\a3Shape.cpp">
-      <Filter>Atmos\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\shapes\a3ShapeSet.cpp">
-      <Filter>Atmos\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Sphere.cpp">
-      <Filter>Atmos\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Triangle.cpp">
-      <Filter>Atmos\shapes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\shapes\a3TriangleMesh.cpp">
       <Filter>Atmos\shapes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Atmos\sensors\a3PerspectiveSensor.cpp">
@@ -225,22 +174,10 @@
     <ClCompile Include="..\..\..\..\Atmos\sensors\a3Sensor.cpp">
       <Filter>Atmos\sensors</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\renderers\a3FresnelRenderer.cpp">
-      <Filter>Atmos\renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\renderers\a3GridRenderer.cpp">
-      <Filter>Atmos\renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\renderers\a3NormalMapRenderer.cpp">
-      <Filter>Atmos\renderers</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\Atmos\renderers\a3Renderer.cpp">
       <Filter>Atmos\renderers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Atmos\renderers\a3SamplerRenderer.cpp">
-      <Filter>Atmos\renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Atmos\renderers\a3SingleRayRenderer.cpp">
       <Filter>Atmos\renderers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\Atmos\samples\a3CameraSample.cpp">
@@ -276,6 +213,51 @@
     <ClCompile Include="..\..\..\..\Atmos\core\messageQueue\a3Message.inl">
       <Filter>Atmos\core\messageQueue</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\lights\a3Light.cpp">
+      <Filter>Atmos\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Disk.cpp">
+      <Filter>Atmos\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Rect.cpp">
+      <Filter>Atmos\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Sphere.cpp">
+      <Filter>Atmos\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\lights\a3AreaLight.cpp">
+      <Filter>Atmos\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3FresnelRenderer.cpp">
+      <Filter>Atmos\renderers\Visualizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3GridRenderer.cpp">
+      <Filter>Atmos\renderers\Visualizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3NormalMapRenderer.cpp">
+      <Filter>Atmos\renderers\Visualizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\renderers\a3SingleRayRenderer.cpp">
+      <Filter>Atmos\renderers\Visualizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Diffuse.cpp">
+      <Filter>Atmos\bsdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\integrator\a3DirectLighting.cpp">
+      <Filter>Atmos\integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3Triangle.cpp">
+      <Filter>Atmos\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\lights\a3EnvironmentLight.cpp">
+      <Filter>Atmos\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\core\a3Record.cpp">
+      <Filter>Atmos\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\shapes\a3InfinitePlane.cpp">
+      <Filter>Atmos\shapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Atmos\accelerators\a3BVH.h">
@@ -288,15 +270,6 @@
       <Filter>Atmos\accelerators</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\bsdf\a3BSDF.h">
-      <Filter>Atmos\bsdf</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Conductor.h">
-      <Filter>Atmos\bsdf</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Dielectric.h">
-      <Filter>Atmos\bsdf</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Diffuse.h">
       <Filter>Atmos\bsdf</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\core\image\a3Film.h">
@@ -335,9 +308,6 @@
     <ClInclude Include="..\..\..\..\Atmos\core\random\a3Random.h">
       <Filter>Atmos\core\random</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\core\a3Intersection.h">
-      <Filter>Atmos\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\core\a3ModelImporter.h">
       <Filter>Atmos\core</Filter>
     </ClInclude>
@@ -365,29 +335,8 @@
     <ClInclude Include="..\..\..\..\Atmos\core\a3Dimension.h">
       <Filter>Atmos\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\integrator\a3DirectLighting.h">
-      <Filter>Atmos\integrator</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\integrator\a3Integrator.h">
       <Filter>Atmos\integrator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\integrator\a3PathIntegrator.h">
-      <Filter>Atmos\integrator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\lights\a3AreaLight.h">
-      <Filter>Atmos\lights</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\lights\a3InfiniteAreaLight.h">
-      <Filter>Atmos\lights</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\lights\a3Light.h">
-      <Filter>Atmos\lights</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\lights\a3PointLight.h">
-      <Filter>Atmos\lights</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\lights\a3SpotLight.h">
-      <Filter>Atmos\lights</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\textures\a3CheckerBoard.h">
       <Filter>Atmos\textures</Filter>
@@ -401,28 +350,7 @@
     <ClInclude Include="..\..\..\..\Atmos\textures\a3Texture.h">
       <Filter>Atmos\textures</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Disk.h">
-      <Filter>Atmos\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\shapes\a3InfinitePlane.h">
-      <Filter>Atmos\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Plane.h">
-      <Filter>Atmos\shapes</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\shapes\a3Shape.h">
-      <Filter>Atmos\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\shapes\a3ShapeSet.h">
-      <Filter>Atmos\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Sphere.h">
-      <Filter>Atmos\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Triangle.h">
-      <Filter>Atmos\shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\shapes\a3TriangleMesh.h">
       <Filter>Atmos\shapes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\sensors\a3PerspectiveSensor.h">
@@ -431,22 +359,10 @@
     <ClInclude Include="..\..\..\..\Atmos\sensors\a3Sensor.h">
       <Filter>Atmos\sensors</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\renderers\a3FresnelRenderer.h">
-      <Filter>Atmos\renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\renderers\a3GridRenderer.h">
-      <Filter>Atmos\renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\renderers\a3NormalMapRenderer.h">
-      <Filter>Atmos\renderers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\renderers\a3Renderer.h">
       <Filter>Atmos\renderers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\renderers\a3SamplerRenderer.h">
-      <Filter>Atmos\renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Atmos\renderers\a3SingleRayRenderer.h">
       <Filter>Atmos\renderers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\samples\a3CameraSample.h">
@@ -514,6 +430,51 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\renderers\a3IPCRenderer.h">
       <Filter>Atmos\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\lights\a3Light.h">
+      <Filter>Atmos\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Sphere.h">
+      <Filter>Atmos\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Disk.h">
+      <Filter>Atmos\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Rect.h">
+      <Filter>Atmos\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\lights\a3AreaLight.h">
+      <Filter>Atmos\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3FresnelRenderer.h">
+      <Filter>Atmos\renderers\Visualizer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3GridRenderer.h">
+      <Filter>Atmos\renderers\Visualizer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3NormalMapRenderer.h">
+      <Filter>Atmos\renderers\Visualizer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\renderers\a3SingleRayRenderer.h">
+      <Filter>Atmos\renderers\Visualizer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\integrator\a3DirectLighting.h">
+      <Filter>Atmos\integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Diffuse.h">
+      <Filter>Atmos\bsdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3Triangle.h">
+      <Filter>Atmos\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\lights\a3EnvironmentLight.h">
+      <Filter>Atmos\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\core\a3Record.h">
+      <Filter>Atmos\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\shapes\a3InfinitePlane.h">
+      <Filter>Atmos\shapes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

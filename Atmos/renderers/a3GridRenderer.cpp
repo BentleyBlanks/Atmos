@@ -150,7 +150,7 @@ void a3GridRenderer::render(const a3Scene* scene)
                 // 生成光线
                 camera->castRay(&sampleTentFilter, &ray);
 
-                color += integrator->li(ray, *scene) / spp;
+                color += integrator->Li(ray, *scene) / spp;
             }
 
             // 临时空间中setColor

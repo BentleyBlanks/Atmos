@@ -28,6 +28,7 @@
     <ClInclude Include="..\..\..\..\test\fresnel.h" />
     <ClInclude Include="..\..\..\..\test\grid.h" />
     <ClInclude Include="..\..\..\..\test\integrator.h" />
+    <ClInclude Include="..\..\..\..\test\scenes.h" />
     <ClInclude Include="..\..\..\..\test\ipc.h" />
     <ClInclude Include="..\..\..\..\test\model.h" />
     <ClInclude Include="..\..\..\..\test\png.h" />

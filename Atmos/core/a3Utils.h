@@ -150,4 +150,7 @@ float a3HexToFloat(const std::string& floatHexString);
 // Convert a string representing an string in hexadecimal to a string.
 std::string a3HexToString(const std::string& stringHexString);
 
+// reporting that the given function is not implemented
+void a3FuncNotImplementedError(const std::string& funcName, const std::string& className);
+
 #endif

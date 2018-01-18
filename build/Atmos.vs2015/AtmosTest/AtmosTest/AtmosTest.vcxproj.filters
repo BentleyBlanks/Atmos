@@ -22,9 +22,6 @@
     <ClInclude Include="..\..\..\..\test\grid.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\test\integrator.h">
-      <Filter>test</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\test\model.h">
       <Filter>test</Filter>
     </ClInclude>
@@ -47,6 +44,12 @@
       <Filter>test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\test\editor.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\test\scenes.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\test\integrator.h">
       <Filter>test</Filter>
     </ClInclude>
   </ItemGroup>

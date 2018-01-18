@@ -46,7 +46,7 @@ public:
     // objects可后续添加
     void init();
 
-    virtual bool intersect(const a3Ray& ray, a3Intersection* intersection) const;
+    virtual bool intersect(const a3Ray& ray, a3IntersectRecord* intersection) const;
 
     virtual bool intersect(const a3Ray& ray) const;
 

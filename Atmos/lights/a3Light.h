@@ -2,52 +2,32 @@
 #define A3_LIGHT_H
 
 #include <t3Math/core/t3Matri4x4.h>
-#include <core/a3Ray.h>
-#include <core/a3Spectrum.h>
 #include <string>
+#include <core/a3Spectrum.h>
 
-class a3Scene;
-class a3LightSample;
-class a3VisibilityTester;
+class a3Ray;
+class a3LightSamplingRecord;
 
 class a3Light
 {
-public:
+public:    
     a3Light(std::string name);
 
     a3Light(const t3Matrix4x4& lightToWorld, std::string name);
 
     virtual ~a3Light();
 
-    // 从摄像机出发的正向光路上，给定相交平面信息返回光照辐射度
-    virtual a3Spectrum sampleL(t3Vector3f& wo,const t3Vector3f& p, 
-                               float* pdf, const a3LightSample& sample, a3VisibilityTester& vis) const = 0;
+    virtual a3Spectrum evalEnvironment(const a3Ray& ray) const;
 
-    // a function for infinite area light
-    virtual a3Spectrum le(const a3Ray& ray) const;
+    virtual a3Spectrum sampleDirect(a3LightSamplingRecord& dRec) const = 0;
 
-    virtual float pdf(const t3Vector3f&p, const t3Vector3f& wi) const;
+    virtual bool isEnvironment() const = 0;
 
-    // light power distribution is delta?
-    virtual bool isDiracDistribution() const = 0;
+    virtual bool isDeltaDistribution() const = 0;
 
     std::string name;
-protected:
+
     t3Matrix4x4 lightToWorld, worldToLight;
-};
-
-// from pbrt
-class a3VisibilityTester
-{
-public:
-    void setSegment(const t3Vector3f &p1, float eps1, 
-                    const t3Vector3f &p2, float eps2);
-
-    void setRay(const t3Vector3f& p, const t3Vector3f& direction, float eps);
-
-    bool occluded(const a3Scene *scene) const;
-
-    a3Ray ray;
 };
 
 #endif

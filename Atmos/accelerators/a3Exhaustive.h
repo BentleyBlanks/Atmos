@@ -6,7 +6,7 @@
 class a3Exhaustive :public a3PrimitiveSet
 {
 public:
-    virtual bool intersect(const a3Ray& ray, a3Intersection* intersection) const override;
+    virtual bool intersect(const a3Ray& ray, a3IntersectRecord* intersection) const override;
 
     virtual bool intersect(const a3Ray& ray) const override;
 };

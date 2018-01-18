@@ -11,8 +11,7 @@ public:
 
     ~a3Distribution1D();
 
-    // 给定u~U(0,1)，返回值满足指定pdf分布
-    // index表明被采样点所在区间序号 原函数中比重越大序号位置处 该位置被采样几率越大
+    // inverse method
     float sampleContinuous(float u, float* pdf, int* index = NULL);
 
 private:
