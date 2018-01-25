@@ -5,7 +5,7 @@
 #include <core/random/a3Random.h>
 #include <t3Math/core/t3Math.h>
 
-a3Triangle::a3Triangle() :v0(t3Vector3f::zero()), v1(t3Vector3f::zero()), v2(t3Vector3f::zero()), bEnableBackfaceCulling(false), a3Shape(t3Matrix4x4(), t3Matrix4x4())
+a3Triangle::a3Triangle() :v0(t3Vector3f::zero()), v1(t3Vector3f::zero()), v2(t3Vector3f::zero()), bEnableBackfaceCulling(false), a3Shape(t3Matrix4x4())
 {
     name = "a3Triangle";
 
@@ -17,7 +17,7 @@ a3Triangle::a3Triangle() :v0(t3Vector3f::zero()), v1(t3Vector3f::zero()), v2(t3V
                         t3Math::Max(v0.z, v1.z, v2.z)));
 }
 
-a3Triangle::a3Triangle(t3Vector3f v0, t3Vector3f v1, t3Vector3f v2) : v0(v0), v1(v1), v2(v2), bEnableBackfaceCulling(false), a3Shape(t3Matrix4x4(), t3Matrix4x4())
+a3Triangle::a3Triangle(t3Vector3f v0, t3Vector3f v1, t3Vector3f v2) : v0(v0), v1(v1), v2(v2), bEnableBackfaceCulling(false), a3Shape(t3Matrix4x4())
 {
     name = "a3Triangle";
 
@@ -126,7 +126,7 @@ void a3Triangle::sample(a3ShapeSamplingRecord & sRec) const
 
     sRec.p = b.x * v0 + b.y * v1 + (1.0 - b.x - b.y) * v2;
     sRec.normal = getNormal(t3Vector3f::zero(), b.x, b.y).getNormalized();
-    sRec.pdf = pdf(sRec);
+    sRec.pdf = 1 / area();
 }
 
 t3Vector3f a3Triangle::getNormal(const t3Vector3f & hitPoint, float u, float v) const

@@ -11,12 +11,25 @@ a3Diffuse::a3Diffuse(a3Spectrum R) :R(R)
     name = "a3Diffuse";
 }
 
+a3Spectrum a3Diffuse::eval(const a3BSDFSamplingRecord & bRec) const
+{
+    // guarantee wi, normal, wo in the same side
+    float cosThetai = bRec.wi.dot(bRec.its.getNormal());
+    float cosThetao = bRec.wo.dot(bRec.its.getNormal());
+
+    if(cosThetai <= 0 || cosThetao <= 0)
+        return a3Spectrum::zero();
+
+    // reflectance * pdf * cosTheta;
+    return R * pdf(bRec) * cosThetao;
+}
+
 a3Spectrum a3Diffuse::sample(a3BSDFSamplingRecord & bRec) const
 {
     static a3Random random;
 
     bRec.wo = a3UniformSampleHemisphere(random.randomFloat(), random.randomFloat());
-    bRec.pdf = T3MATH_INV_PI;
+    bRec.pdf = pdf(bRec);
     bRec.eta = eta;
 
     return R;

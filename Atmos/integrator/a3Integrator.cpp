@@ -3,7 +3,7 @@
 
 a3Spectrum a3Integrator::Li(const a3Ray & ray, const a3Scene & scene) const
 {
-    a3FuncNotImplementedError("a3Integrator", "Li");
+    a3FuncNotImplementedError("Li");
 
     return a3Spectrum();
 }

@@ -2,8 +2,8 @@
 #include <core/a3Ray.h>
 #include <core/a3Record.h>
 
-a3InfinitePlane::a3InfinitePlane(const t3Matrix4x4 & objectToWorld, const t3Matrix4x4 & worldToObject)
-    : a3Shape(objectToWorld, worldToObject)
+a3InfinitePlane::a3InfinitePlane(const t3Matrix4x4 & shapeToWorld)
+    : a3Shape(shapeToWorld)
 {
     name = "a3InfinitePlane";
 }
@@ -15,7 +15,7 @@ a3InfinitePlane::~a3InfinitePlane()
 bool a3InfinitePlane::intersect(const a3Ray & _ray, float * t, float * u, float * v) const
 {
     a3Ray ray = _ray;
-    ray.transform(worldToObject);
+    ray.transform(worldToShape);
 
     //--!See https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-plane-and-ray-disk-intersection for detail
     t3Vector3f normal(0, 1, 0);
@@ -59,5 +59,5 @@ float a3InfinitePlane::pdf(const a3ShapeSamplingRecord & sRec) const
 
 t3Vector3f a3InfinitePlane::getNormal(const t3Vector3f & hitPoint, float u, float v) const
 {
-    return objectToWorld * t3Vector3f(0, 1, 0);
+    return t3Matrix4x4::transform3x3(shapeToWorld, t3Vector3f(0, 1, 0)).getNormalized();
 }

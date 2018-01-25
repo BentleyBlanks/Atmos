@@ -1,10 +1,9 @@
 #include <shapes/a3Shape.h>
 #include <core/a3Ray.h>
-#include <core/log/a3Log.h>
 #include <core/a3Utils.h>
 
-a3Shape::a3Shape(const t3Matrix4x4 & objectToWorld, const t3Matrix4x4 & worldToObject)
-    :objectToWorld(objectToWorld), worldToObject(worldToObject), name("a3Shape")
+a3Shape::a3Shape(const t3Matrix4x4 & shapeToWorld)
+    :shapeToWorld(shapeToWorld), light(NULL), bsdf(NULL), worldToShape(shapeToWorld.getInverse()), name("a3Shape")
 {
 
 }
@@ -15,21 +14,21 @@ a3Shape::~a3Shape()
 
 bool a3Shape::intersect(const a3Ray & ray, float * t, float * u, float * v) const
 {
-    a3FuncNotImplementedError("a3Shape", "intersect");
+    a3FuncNotImplementedError();
 
     return false;
 }
 
 float a3Shape::area() const
 {
-    a3FuncNotImplementedError("a3Shape", "area");
+    a3FuncNotImplementedError();
 
     return 0.0f;
 }
 
 void a3Shape::sample(a3ShapeSamplingRecord & sRec) const
 {
-    a3FuncNotImplementedError("a3Shape", "sample");
+    a3FuncNotImplementedError();
 }
 
 float a3Shape::pdf(const a3ShapeSamplingRecord & sRec) const
@@ -39,17 +38,38 @@ float a3Shape::pdf(const a3ShapeSamplingRecord & sRec) const
 
 t3Vector3f a3Shape::getNormal(const t3Vector3f & hitPoint, float u, float v) const
 {
-    a3FuncNotImplementedError("a3Shape", "getNormal");
+    a3FuncNotImplementedError();
 
     return t3Vector3f::zero();
 }
 
 void a3Shape::setBSDF(a3BSDF* bsdf)
 {
-    this->bsdf = bsdf;
+    if(bsdf)
+        this->bsdf = bsdf;
+    else
+        a3NullPtrWarning("bsdf");
 }
 
-a3BSDF* a3Shape::getBSDF() const
+const a3BSDF* a3Shape::getBSDF() const
 {
     return bsdf;
+}
+
+void a3Shape::setLight(a3Light * light)
+{
+    if(light)
+        this->light = light;
+    else
+        a3NullPtrWarning("light");
+}
+
+a3Light * a3Shape::getLight() const
+{
+    return light;
+}
+
+bool a3Shape::isLight() const
+{
+    return light != NULL;
 }

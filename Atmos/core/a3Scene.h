@@ -17,6 +17,7 @@ public:
 	a3Scene();
     ~a3Scene();
 
+    // utility func
     bool addShape(a3Shape* shape);
 
     bool addLight(a3Light* light);
@@ -35,6 +36,9 @@ public:
     // given a reference point in the scene, sample an emitter position that contributes towards it
     a3Spectrum sampleDirect(a3LightSamplingRecord& dRec) const;
     
+    // returns radiance emitted into direction d
+    a3Spectrum Le(const t3Vector3f& d, const a3IntersectRecord& intersection) const;
+
     // all lights in the scene
     std::vector<a3Light*> lights;
 

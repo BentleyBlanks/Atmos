@@ -10,10 +10,11 @@
 
 class a3Ray;
 class a3ShapeSamplingRecord;
+class a3Light;
 class a3Shape
 {
 public:
-    a3Shape(const t3Matrix4x4& objectToWorld, const t3Matrix4x4& worldToObject);
+    a3Shape(const t3Matrix4x4& shapeToWorld);
 
     virtual ~a3Shape();
 
@@ -33,18 +34,29 @@ public:
     virtual t3Vector3f getNormal(const t3Vector3f& hitPoint, float u, float v) const = 0;
 
     // bsdf set/get
-    virtual void setBSDF(a3BSDF* bsdf);
+    void setBSDF(a3BSDF* bsdf);
 
-    virtual a3BSDF* getBSDF() const;
+    const a3BSDF* getBSDF() const;
 
-    t3Matrix4x4 objectToWorld, worldToObject;
+    // setted when attach a shape to a light
+    // manually called not recommended
+    void setLight(a3Light* light);
+
+    a3Light* getLight() const;
+
+    bool isLight() const;
+
+    t3Matrix4x4 shapeToWorld, worldToShape;
 
     // Axis-Aligned Bounding Box
     a3AABB aabb;
 
+    // RTTI
     std::string name;
 
     a3BSDF* bsdf;
+
+    a3Light* light;
 };
 
 #endif

@@ -1,4 +1,4 @@
-﻿#include <core/a3Record.h>
+﻿ #include <core/a3Record.h>
 #include <lights/a3AreaLight.h>
 #include <shapes/a3Shape.h>
 #include <bsdf/a3BSDF.h>
@@ -9,6 +9,11 @@ bool a3IntersectRecord::isValid() const
     return t != FLT_MAX;
 }
 
+bool a3IntersectRecord::isLight() const
+{
+    return shape->isLight();
+}
+
 t3Vector3f a3IntersectRecord::getNormal() const
 {
     if(shape)
@@ -16,7 +21,14 @@ t3Vector3f a3IntersectRecord::getNormal() const
     else
         return t3Vector3f::zero();
 }
-a3BSDF * a3IntersectRecord::getBSDF() const
+
+const a3BSDF * a3IntersectRecord::getBSDF() const
 {
     return shape->getBSDF();
+}
+
+a3Spectrum a3IntersectRecord::Le(const t3Vector3f & d) const
+{
+    a3Light* light = shape->getLight();
+    return light ? light->eval(*this, d) : a3Spectrum::zero();
 }

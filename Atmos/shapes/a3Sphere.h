@@ -6,7 +6,7 @@
 class a3Sphere : public a3Shape
 {
 public:
-    a3Sphere(const t3Matrix4x4& objectToWorld, const t3Matrix4x4& worldToObject, const float radius);
+    a3Sphere(const t3Matrix4x4& shapeToWorld, const float radius);
 
     virtual ~a3Sphere();
 

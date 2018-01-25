@@ -9,7 +9,7 @@ class a3ShapeSamplingRecord;
 class a3InfinitePlane :public a3Shape
 {
 public:
-    a3InfinitePlane(const t3Matrix4x4& objectToWorld, const t3Matrix4x4& worldToObject);
+    a3InfinitePlane(const t3Matrix4x4& shapeToWorld);
 
     virtual ~a3InfinitePlane();
 

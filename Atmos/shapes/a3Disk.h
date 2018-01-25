@@ -8,7 +8,7 @@ class a3ShapeSamplingRecord;
 class a3Disk :public a3Shape
 {
 public:
-    a3Disk(const t3Matrix4x4& objectToWorld, const t3Matrix4x4& worldToObject, const float radius);
+    a3Disk(const t3Matrix4x4& shapeToWorld, const float radius);
 
     virtual ~a3Disk();
 

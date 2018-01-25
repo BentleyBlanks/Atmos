@@ -8,6 +8,9 @@ class a3Diffuse : public a3BSDF
 public:
     a3Diffuse(a3Spectrum R = a3Spectrum::one());
 
+    // Evaluate the BSDF f(wi, wo)(f * cos * R)
+    virtual a3Spectrum eval(const a3BSDFSamplingRecord& bRec) const;
+
     // Sample the BSDF and return the importance weight
     virtual a3Spectrum sample(a3BSDFSamplingRecord& bRec) const;
 
@@ -18,6 +21,7 @@ public:
     virtual bool isDeltaDistribution() const;
 
     // Reflectance of Lambertion
+    //--!could be replaced by Texture
     a3Spectrum R;
 };
 

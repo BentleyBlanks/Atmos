@@ -4,12 +4,12 @@
 #include <core/a3Record.h>
 #include <core/random/a3Random.h>
 
-a3Sphere::a3Sphere(const t3Matrix4x4 & objectToWorld, const t3Matrix4x4 & worldToObject, const float radius)
-    :radius(radius), a3Shape(objectToWorld, worldToObject)
+a3Sphere::a3Sphere(const t3Matrix4x4 & shapeToWorld, const float radius)
+    :radius(radius), a3Shape(shapeToWorld)
 {
     name = "a3Sphere";
 
-    center = objectToWorld * t3Vector3f(0, 0, 0);
+    center = shapeToWorld * t3Vector3f(0, 0, 0);
 
     //aabb.set(t3Vector3f(center - radius), t3Vector3f(center + radius));
 }
@@ -56,10 +56,10 @@ void a3Sphere::sample(a3ShapeSamplingRecord & sRec) const
 {
     static a3Random r;
     // uniform sampling the disk
-    t3Vector3f sampledP = a3UniformSampleSphere(r.randomFloat(), r.randomFloat());
+    t3Vector3f sampledP = a3UniformSampleSphere(r.randomFloat(), r.randomFloat()) * radius;
 
-    sRec.p = objectToWorld * sampledP;
-    sRec.pdf = pdf(sRec);
+    sRec.p = shapeToWorld * sampledP;
+    sRec.pdf = 1 / area();
     sRec.normal = getNormal(sRec.p, 0, 0);
 }
 

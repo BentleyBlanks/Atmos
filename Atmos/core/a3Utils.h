@@ -2,6 +2,7 @@
 #define A3_UTILS_H
 
 #include <core/a3Settings.h>
+#include <core/log/a3Log.h>
 
 // wstring string convert
 std::wstring a3S2WS(const std::string& str);
@@ -150,7 +151,24 @@ float a3HexToFloat(const std::string& floatHexString);
 // Convert a string representing an string in hexadecimal to a string.
 std::string a3HexToString(const std::string& stringHexString);
 
+// Log
 // reporting that the given function is not implemented
-void a3FuncNotImplementedError(const std::string& funcName, const std::string& className);
+#define a3FuncNotImplementedError()\
+{\
+    std::string error = "Unimplemented ";\
+    error += __FUNCTION__;\
+    error += "() method called";\
+    a3Log::error(error.c_str());\
+}
 
+// reporting a warning that ptr is nullptr
+#define a3NullPtrWarning(ptrName)\
+{\
+    std::string error;\
+    error += __FUNCTION__;\
+    error += "() given ";\
+    error += ptrName;\
+    error += "is null";\
+    a3Log::warning(error.c_str());\
+}
 #endif
