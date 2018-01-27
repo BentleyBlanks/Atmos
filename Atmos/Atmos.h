@@ -33,7 +33,7 @@
 #include <sensors/a3PerspectiveSensor.h>
 
 //integrator
-//#include <integrator/a3PathIntegrator.h>
+#include <integrator/a3PathTracer.h>
 #include <integrator/a3DirectLighting.h>
 
 // bsdf

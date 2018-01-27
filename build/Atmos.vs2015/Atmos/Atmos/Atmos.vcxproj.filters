@@ -258,6 +258,9 @@
     <ClCompile Include="..\..\..\..\Atmos\shapes\a3InfinitePlane.cpp">
       <Filter>Atmos\shapes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\integrator\a3PathTracer.cpp">
+      <Filter>Atmos\integrator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Atmos\accelerators\a3BVH.h">
@@ -475,6 +478,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\shapes\a3InfinitePlane.h">
       <Filter>Atmos\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\integrator\a3PathTracer.h">
+      <Filter>Atmos\integrator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

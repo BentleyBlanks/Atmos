@@ -40,7 +40,7 @@ a3Spectrum a3Diffuse::sample(a3BSDFSamplingRecord & bRec) const
     // cosine weighted
     bRec.wo = a3CosineSampleHemisphere(random.randomFloat(), random.randomFloat());
     bRec.pdf = a3CosineSampleHemispherePdf(bRec.wo);
-    bRec.eta = eta;
+    bRec.eta = 1.0f;
 
     return R;
 }

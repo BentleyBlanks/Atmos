@@ -146,22 +146,23 @@ void main()
 
     // render
 #ifdef SAMPLER
-    a3SamplerRenderer* renderer = new a3SamplerRenderer(32);
+    a3SamplerRenderer* renderer = new a3SamplerRenderer(512);
     renderer->enableGammaCorrection = true;
     renderer->enableToneMapping = false;
 #endif
 
 #ifdef SINGLE_RAY
     a3SingleRayRenderer* renderer = new a3SingleRayRenderer();
-    renderer->singleRayX = 246;
-    renderer->singleRayY = 372;
+    renderer->singleRayX = 300;
+    renderer->singleRayY = 700;
 #endif
     renderer->sampler = new a3RandomSampler();
     renderer->camera = camera;
     
     a3DirectLighting* direcLighting = new a3DirectLighting(16, 0);
-
     renderer->integrator = direcLighting;
+    //a3PathTracer* pathTracer = new a3PathTracer();
+    //renderer->integrator = pathTracer;
 
     // rendering
     t3Timer timer;

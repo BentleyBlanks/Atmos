@@ -109,6 +109,8 @@ public:
     a3LightSamplingRecord(const t3Vector3f& hitPoint, const t3Vector3f& hitNormal)
         :hitPoint(hitPoint), hitNormal(hitNormal), distance(0.0f), pdf(0.0f), light(NULL){}
 
+    void set(const t3Vector3f& hitPoint, const t3Vector3f& hitNormal);
+
     // Reference point for direct sampling
     t3Vector3f hitPoint;
 

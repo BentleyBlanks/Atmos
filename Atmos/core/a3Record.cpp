@@ -42,3 +42,12 @@ t3Vector3f a3IntersectRecord::toLocal(const t3Vector3f & worldCoord)
 {
     return t3Matrix4x4::transform3x3(worldToLocal, worldCoord).getNormalized();
 }
+
+void a3LightSamplingRecord::set(const t3Vector3f & hitPoint, const t3Vector3f & hitNormal)
+{
+    light = NULL;
+    this->hitPoint = hitPoint;
+    this->hitNormal = hitNormal;
+    pdf = 0.0f;
+    distance = 0.0f;
+}

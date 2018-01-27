@@ -227,6 +227,7 @@
     <ClCompile Include="..\..\..\..\Atmos\core\random\a3Random.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\integrator\a3DirectLighting.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\integrator\a3Integrator.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\integrator\a3PathTracer.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\lights\a3AreaLight.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\lights\a3EnvironmentLight.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\lights\a3Light.cpp" />
@@ -288,6 +289,7 @@
     <ClInclude Include="..\..\..\..\Atmos\core\random\a3Random.h" />
     <ClInclude Include="..\..\..\..\Atmos\integrator\a3DirectLighting.h" />
     <ClInclude Include="..\..\..\..\Atmos\integrator\a3Integrator.h" />
+    <ClInclude Include="..\..\..\..\Atmos\integrator\a3PathTracer.h" />
     <ClInclude Include="..\..\..\..\Atmos\lights\a3AreaLight.h" />
     <ClInclude Include="..\..\..\..\Atmos\lights\a3EnvironmentLight.h" />
     <ClInclude Include="..\..\..\..\Atmos\lights\a3Light.h" />
