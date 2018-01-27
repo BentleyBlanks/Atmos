@@ -38,8 +38,8 @@
 
 // bsdf
 #include <bsdf/a3Diffuse.h>
-//#include <bsdf/a3Conductor.h>
-//#include <bsdf/a3Dielectric.h>
+#include <bsdf/a3Conductor.h>
+#include <bsdf/a3Dielectric.h>
 
 // core
 #include <core/log/a3Log.h>

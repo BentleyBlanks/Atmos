@@ -50,6 +50,8 @@ float a3UniformHemispherePdf();
 // Density of a3CosineSampleHemisphere() with respect to solid angles
 float a3CosineSampleHemispherePdf(const t3Vector3f& d);
 
+
+
 // ----------------------------------------------Post Effect----------------------------------------------
 // 局部空间色调映射
 void a3ToneMapping(t3Vector3f* colorList, int startX, int startY, int localWidth, int localHeight, int width, int height);
@@ -104,4 +106,7 @@ float a3FresnelDielectric(float cosi, float cost, const float &etai, const float
 
 // 绝缘体的菲涅尔反射项
 float a3FresnelConductor(float cosi, float cost, const float &etai, const float &etat);
+
+// get reflect vector in shading coordinates
+t3Vector3f a3GetReflect(const t3Vector3f& a);
 #endif

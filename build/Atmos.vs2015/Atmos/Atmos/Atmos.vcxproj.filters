@@ -261,6 +261,12 @@
     <ClCompile Include="..\..\..\..\Atmos\integrator\a3PathTracer.cpp">
       <Filter>Atmos\integrator</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Conductor.cpp">
+      <Filter>Atmos\bsdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Dielectric.cpp">
+      <Filter>Atmos\bsdf</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Atmos\accelerators\a3BVH.h">
@@ -481,6 +487,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Atmos\integrator\a3PathTracer.h">
       <Filter>Atmos\integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Conductor.h">
+      <Filter>Atmos\bsdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Dielectric.h">
+      <Filter>Atmos\bsdf</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

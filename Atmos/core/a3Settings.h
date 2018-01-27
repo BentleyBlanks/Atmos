@@ -181,6 +181,8 @@ void A3_SAFE_DELETE_1DARRAY(T*& pointer)
 #define A3_EPSILON_DOUBLE 1e-8
 // for shadow ray testing
 #define A3_EPSILON_SHADOW 1e-3f
+//for roundoff errors
+#define A3_EPSILON_DELTA 1e-3f
 
 // --!详见 https://www.zhihu.com/question/41895326
 // Atmos全局相交测试模仿Mitsuba采用double精度

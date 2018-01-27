@@ -12,12 +12,12 @@
 a3DirectLighting::a3DirectLighting(int numBxdfSamples, int numLightSamples)
     : numBxdfSamples(numBxdfSamples), numLightSamples(numLightSamples)
 {
-    float sum = numBxdfSamples + numLightSamples;
+    int sum = numBxdfSamples + numLightSamples;
 
     weightBSDF = 1.0f / numBxdfSamples;
     weightLight = 1.0f / numLightSamples;
-    fracBSDF = numBxdfSamples / sum;
-    fracLight = numLightSamples / sum;
+    fracBSDF = numBxdfSamples / (float) sum;
+    fracLight = numLightSamples / (float) sum;
 }
 
 a3DirectLighting::~a3DirectLighting()
@@ -37,8 +37,9 @@ a3Spectrum a3DirectLighting::Li(const a3Ray & ray, const a3Scene & scene) const
         return L;
     }
 
-    // possibly include emitted radiance
-    L += scene.Le(-ray.direction, its);
+    if(its.isLight())
+        // possibly include emitted radiance
+        L += scene.Le(-ray.direction, its);
 
     // Estimate Direct Lighting
     a3LightSamplingRecord lRec(its.p, its.getNormal());

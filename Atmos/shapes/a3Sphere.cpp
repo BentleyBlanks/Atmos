@@ -65,7 +65,7 @@ void a3Sphere::sample(a3ShapeSamplingRecord & sRec) const
 
 t3Vector3f a3Sphere::getNormal(const t3Vector3f & hitPoint, float u, float v) const
 {
-    return (hitPoint - center).normalize();
+    return (hitPoint - center).getNormalized();
 }
 
 t3Matrix4x4 a3Sphere::getShadeToWorld(const a3IntersectRecord & its) const

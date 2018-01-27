@@ -202,6 +202,8 @@
     <ClCompile Include="..\..\..\..\Atmos\accelerators\a3Exhaustive.h.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\accelerators\a3PrimitiveSet.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\bsdf\a3BSDF.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Conductor.cpp" />
+    <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Dielectric.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\bsdf\a3Diffuse.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\core\a3AABB.cpp" />
     <ClCompile Include="..\..\..\..\Atmos\core\a3BilinearInterpolation.cpp" />
@@ -262,6 +264,8 @@
     <ClInclude Include="..\..\..\..\Atmos\accelerators\a3PrimitiveSet.h" />
     <ClInclude Include="..\..\..\..\Atmos\Atmos.h" />
     <ClInclude Include="..\..\..\..\Atmos\bsdf\a3BSDF.h" />
+    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Conductor.h" />
+    <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Dielectric.h" />
     <ClInclude Include="..\..\..\..\Atmos\bsdf\a3Diffuse.h" />
     <ClInclude Include="..\..\..\..\Atmos\core\a3AABB.h" />
     <ClInclude Include="..\..\..\..\Atmos\core\a3BilinearInterpolation.h" />

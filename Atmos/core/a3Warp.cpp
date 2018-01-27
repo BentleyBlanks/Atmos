@@ -529,3 +529,10 @@ float a3FresnelConductor(float cosi, float cost, const float &etai, const float 
         ((etai * cosi) + (etat * cost));
     return (Rparl*Rparl + Rperp*Rperp) / 2.f;
 }
+
+t3Vector3f a3GetReflect(const t3Vector3f& wi)
+{
+    // -wo + 2 * dot(wo, normal) * normal
+    // left-handed->normal(0, 1, 0)
+    return t3Vector3f(-wi.x, wi.y, -wi.z);
+}

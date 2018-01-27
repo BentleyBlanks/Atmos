@@ -41,7 +41,7 @@ a3Spectrum a3AreaLight::sampleDirect(a3LightSamplingRecord & lRec) const
 
     lRec.d = lRec.hitPoint - lRec.p;
     lRec.distance = lRec.d.length();
-    lRec.d.normalize();
+    lRec.d /= lRec.distance;
 
     // light to the hitPoint respect to normal on light
     float cosTheta = t3Math::Abs(lRec.normal.dot(lRec.d));
