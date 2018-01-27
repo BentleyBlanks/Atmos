@@ -4,9 +4,11 @@
 #include <core/a3Settings.h>
 #include <core/a3Spectrum.h>
 #include <t3Math/core/t3Vector2.h>
+#include <t3Math/core/t3Matri4x4.h>
 
 class a3Shape;
 class a3BSDF;
+class a3Light;
 
 // -------------------------BSDF-------------------------
 // Container for all information related to a surface intersection
@@ -29,6 +31,15 @@ public:
 
     // get the hit shape's bsdf
     const a3BSDF* getBSDF() const;
+
+    // convert the local vector to world
+    t3Vector3f toWorld(const t3Vector3f& localCoord);
+
+    // convert the world vector to local
+    t3Vector3f toLocal(const t3Vector3f& worldCoord);
+
+    // world local convertion matrix
+    t3Matrix4x4 localToWorld, worldToLocal;
 
     /// Distance traveled along the ray
     float t;
@@ -67,6 +78,9 @@ class a3BSDFSamplingRecord
 {
 public:
     // parameter not required in constructor would be updated when BSDF Sampling
+    a3BSDFSamplingRecord(const a3IntersectRecord &its, const t3Vector3f& wi)
+        :its(its), wi(wi) {}
+
     a3BSDFSamplingRecord(const a3IntersectRecord &its, const t3Vector3f& wi, const t3Vector3f& wo)
         :its(its), wi(wi), wo(wo) {}
 
@@ -93,13 +107,16 @@ class a3LightSamplingRecord
 public:
     // parameter not required in constructor would be updated when Light Sampling
     a3LightSamplingRecord(const t3Vector3f& hitPoint, const t3Vector3f& hitNormal)
-        :hitPoint(hitPoint), hitNormal(hitNormal), distance(0.0f), pdf(0.0f) {}
+        :hitPoint(hitPoint), hitNormal(hitNormal), distance(0.0f), pdf(0.0f), light(NULL){}
 
     // Reference point for direct sampling
     t3Vector3f hitPoint;
 
     // normal vector associated with the reference point
     t3Vector3f hitNormal;
+
+    /// the light be sampled
+    a3Light* light;
 
     /// Sampled position
     t3Vector3f p;

@@ -36,8 +36,14 @@ public:
     // given a reference point in the scene, sample an emitter position that contributes towards it
     a3Spectrum sampleDirect(a3LightSamplingRecord& dRec) const;
     
+    // evaluate the probability density of the direct sampling
+    float pdfLightDirect(const a3LightSamplingRecord& Rec) const;
+
     // returns radiance emitted into direction d
     a3Spectrum Le(const t3Vector3f& d, const a3IntersectRecord& intersection) const;
+
+    // Return the scene's environment emitter (if there is one)
+    a3Light* getEnvironmentLight() const;
 
     // all lights in the scene
     std::vector<a3Light*> lights;

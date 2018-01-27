@@ -23,27 +23,32 @@ enum a3CosineSampleHemisphereType
     A3UNIFORM_SAMPLE_HEMISPHERE_CARTESIAN
 };
 
-// 笛卡尔坐标系转换为极坐标系
+// Uniformly sample a vector on a 2D disk
 t3Vector2f a3UniformSampleDisk(float u1, float u2, a3UniformSampleDiskType type = A3UNIFORM_SAMPLE_DISK_CONCENTRIC);
 
-// 均匀分布整体球采样
+// Uniformly sample a vector on the unit sphere with respect to solid angles
 t3Vector3f a3UniformSampleSphere(float u1, float u2);
 
-// 均匀分布半球采样
+// Uniformly sample a vector on the unit hemisphere with respect to solid angles
 t3Vector3f a3UniformSampleHemisphere(float u1, float u2);
 
-// Cosine-Weighted半球采样
+// Sample a cosine-weighted vector on the unit hemisphere with respect to solid angles
 t3Vector3f a3CosineSampleHemisphere(float u1, float u2, a3CosineSampleHemisphereType type = A3UNIFORM_SAMPLE_HEMISPHERE_PROJECTED);
 
-// 均匀采样圆锥
+// sampled cone uniformly with square sample
 t3Vector3f a3UniformSampleCone(float u1, float u2, float cosThetaMax);
 
-// 均匀分布采样三角形
+// Convert an uniformly distributed square sample into barycentric coordinates
 t3Vector2f a3UniformSampleTriangle(float u1, float u2);
 
 // 均匀采样球概率分布
 float a3UniformSpherePdf();
 
+// 均匀采样半球概率分布
+float a3UniformHemispherePdf();
+
+// Density of a3CosineSampleHemisphere() with respect to solid angles
+float a3CosineSampleHemispherePdf(const t3Vector3f& d);
 
 // ----------------------------------------------Post Effect----------------------------------------------
 // 局部空间色调映射
@@ -82,8 +87,8 @@ bool a3SolveQuadratic(float A, float B, float C, float* t0, float* t1);
 // 计算判别式求解二次方程d(若有解则t0 <= t1)
 bool a3SolveQuadraticDouble(double A, double B, double C, double* t0, double* t1);
 
-// 多重重要性采样启发算法
-float a3PowerHeuristic(int nf, float fPdf, int ng, float gPdf);
+// 多重重要性采样
+float a3MiWeight(float fPdf, float gPdf);
 
 // [Tools]转Fov为apretureWidth/Height(度)
 float a3FovToApretureSizeDeg(float fov);

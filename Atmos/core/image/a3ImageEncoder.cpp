@@ -120,11 +120,11 @@ public:
         if(error)
         {
             a3Log::error("Encoder error %d: %s\n", error, lodepng_error_text(error));
-            a3Log::error("Image %s.png saved failed\n", fileName.c_str());
+            a3Log::error("Image %s saved failed\n", fileName.c_str());
         }
         else
         {
-            a3Log::success("Image %s.png saved succeed\n", fileName.c_str());
+            a3Log::success("Image %s saved succeed\n", fileName.c_str());
             a3Log::success("width:%d, height:%d\n", width, height);
         }
 #endif

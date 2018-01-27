@@ -11,7 +11,7 @@
 void main()
 {
     // camera
-    a3Film* image = new a3Film(768, 768, "../../../../resources/results/direct.png");
+    a3Film* image = new a3Film(768, 768, "../../../../resources/results/bb.png");
 
     a3PerspectiveSensor* camera = new a3PerspectiveSensor(t3Vector3f(0, -3, 18), 
                                                           t3Vector3f(0, -3, 0), 
@@ -146,19 +146,22 @@ void main()
 
     // render
 #ifdef SAMPLER
-    a3SamplerRenderer* renderer = new a3SamplerRenderer(256);
+    a3SamplerRenderer* renderer = new a3SamplerRenderer(32);
     renderer->enableGammaCorrection = true;
     renderer->enableToneMapping = false;
 #endif
 
 #ifdef SINGLE_RAY
     a3SingleRayRenderer* renderer = new a3SingleRayRenderer();
-    renderer->singleRayX = 642;
-    renderer->singleRayY = 444;
+    renderer->singleRayX = 246;
+    renderer->singleRayY = 372;
 #endif
     renderer->sampler = new a3RandomSampler();
     renderer->camera = camera;
-    renderer->integrator = new a3DirectLighting();
+    
+    a3DirectLighting* direcLighting = new a3DirectLighting(16, 0);
+
+    renderer->integrator = direcLighting;
 
     // rendering
     t3Timer timer;

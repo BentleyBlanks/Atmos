@@ -9,6 +9,7 @@
 #include <bsdf/a3BSDF.h>
 
 class a3Ray;
+class a3IntersectRecord;
 class a3ShapeSamplingRecord;
 class a3Light;
 class a3Shape
@@ -27,11 +28,14 @@ public:
     // Sample a point on the surface of this shape instance
     virtual void sample(a3ShapeSamplingRecord& sRec) const = 0;
 
-    // Query the probability density of sample() for a particular point on the surface.
+    // Query the probability density of sample() for a particular point on the surface
     virtual float pdf(const a3ShapeSamplingRecord& sRec) const;
 
     // return the normal vec from the point be hitted
     virtual t3Vector3f getNormal(const t3Vector3f& hitPoint, float u, float v) const = 0;
+
+    // shading coordinates to world(would be replaced in the future)
+    virtual t3Matrix4x4 getShadeToWorld(const a3IntersectRecord& its) const;
 
     // bsdf set/get
     void setBSDF(a3BSDF* bsdf);

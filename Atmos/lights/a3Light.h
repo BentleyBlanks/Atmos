@@ -26,6 +26,9 @@ public:
     // given a reference point in the scene, sample an emitter position that contributes towards it.
     virtual a3Spectrum sampleDirect(a3LightSamplingRecord& dRec) const = 0;
     
+    // evaluate the probability density of the direct sampling method
+    virtual float pdf(const a3LightSamplingRecord& dRec) const = 0;
+
     // is this an environment emitter
     virtual bool isEnvironment() const = 0;
 

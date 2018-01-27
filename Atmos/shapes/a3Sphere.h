@@ -21,6 +21,9 @@ public:
 
     // return the normal vec from the point be hitted
     virtual t3Vector3f getNormal(const t3Vector3f& hitPoint, float u, float v) const;
+    
+    // shading coordinates to world(would be replaced in the future)
+    virtual t3Matrix4x4 getShadeToWorld(const a3IntersectRecord& its) const;
 
     float radius;
 

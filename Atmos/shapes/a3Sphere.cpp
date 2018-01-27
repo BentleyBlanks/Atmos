@@ -67,3 +67,14 @@ t3Vector3f a3Sphere::getNormal(const t3Vector3f & hitPoint, float u, float v) co
 {
     return (hitPoint - center).normalize();
 }
+
+t3Matrix4x4 a3Sphere::getShadeToWorld(const a3IntersectRecord & its) const
+{
+    t3Vector3f normal = getNormal(its.p, 0, 0), x, z;
+    a3OrthonomalSystem(normal, x, z);
+
+    return t3Matrix4x4(x.x, normal.x, z.x, 0,
+                       x.y, normal.y, z.y, 0,
+                       x.z, normal.z, z.z, 0,
+                       0, 0, 0, 1);
+}

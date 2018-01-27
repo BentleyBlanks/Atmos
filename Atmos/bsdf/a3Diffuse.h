@@ -14,7 +14,7 @@ public:
     // Sample the BSDF and return the importance weight
     virtual a3Spectrum sample(a3BSDFSamplingRecord& bRec) const;
 
-    //  Compute the probability of sampling wo (given wi)
+    // Compute the probability of sampling wo (given wi, BSDF(wi, wo) * costheta)
     virtual float pdf(const a3BSDFSamplingRecord& bRec) const;
 
     // if delta distribution

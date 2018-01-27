@@ -18,7 +18,7 @@ a3AreaLight::~a3AreaLight()
 
 a3Spectrum a3AreaLight::eval(const a3IntersectRecord & its, const t3Vector3f & d) const
 {
-    if(its.getNormal().dot(d) > 0.0f)
+    if(its.getNormal().dot(d) >= 0.0f)
         return radiance;
     else
         return a3Spectrum::zero();
@@ -50,11 +50,35 @@ a3Spectrum a3AreaLight::sampleDirect(a3LightSamplingRecord & lRec) const
 
     // light and hitPoint are oriented correctly with respect to each other
     if(lRec.normal.dot(lRec.d) >= 0.0f && 
-       lRec.hitNormal.dot(lRec.d) <= 0.0f &&
+       lRec.hitNormal.dot(lRec.d) < 0.0f &&
        lRec.pdf != 0.0f)
         return radiance / lRec.pdf;
     else
         return a3Spectrum::zero();
+}
+
+float a3AreaLight::pdf(const a3LightSamplingRecord & lRec) const
+{
+    a3ShapeSamplingRecord sRec;
+    if(shape)
+    {
+        float sPdf = shape->pdf(sRec);
+
+        // light to the hitPoint respect to normal on light
+        float cosTheta = t3Math::Abs(lRec.normal.dot(lRec.d));
+
+        // pdf area to solid angle
+        float pdf = cosTheta != 0 ? sPdf * lRec.distance * lRec.distance / cosTheta : 0.0f;
+
+        // Check that the emitter and receiver are oriented correctly with respect to each other
+        if(lRec.normal.dot(lRec.d) >= 0.0f &&
+           lRec.hitNormal.dot(lRec.d) < 0.0f)
+            return pdf;
+        else
+            return 0.0f;
+    }
+    else
+        return 0.0f;
 }
 
 bool a3AreaLight::isEnvironment() const

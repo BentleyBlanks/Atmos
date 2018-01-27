@@ -32,3 +32,13 @@ a3Spectrum a3IntersectRecord::Le(const t3Vector3f & d) const
     a3Light* light = shape->getLight();
     return light ? light->eval(*this, d) : a3Spectrum::zero();
 }
+
+t3Vector3f a3IntersectRecord::toWorld(const t3Vector3f & localCoord)
+{
+    return t3Matrix4x4::transform3x3(localToWorld, localCoord).getNormalized();
+}
+
+t3Vector3f a3IntersectRecord::toLocal(const t3Vector3f & worldCoord)
+{
+    return t3Matrix4x4::transform3x3(worldToLocal, worldCoord).getNormalized();
+}

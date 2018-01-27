@@ -48,6 +48,11 @@ a3Spectrum a3EnvironmentLight::sampleDirect(a3LightSamplingRecord& dRec) const
         return a3Spectrum::zero();
 }
 
+float a3EnvironmentLight::pdf(const a3LightSamplingRecord & dRec) const
+{
+    return 0.0f;
+}
+
 bool a3EnvironmentLight::isEnvironment() const
 {
     return true;

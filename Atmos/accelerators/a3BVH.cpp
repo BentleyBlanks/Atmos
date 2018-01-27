@@ -250,7 +250,7 @@ unsigned int a3BVH::linearBuild(a3BVHTreeNode* treeRoot, unsigned int* offset)
 }
 
 // 遍历
-bool a3BVH::intersect(const a3Ray& ray, a3IntersectRecord* intersection) const
+bool a3BVH::intersect(const a3Ray& ray, a3IntersectRecord* its) const
 {
     if(!root) return false;
 
@@ -268,27 +268,25 @@ bool a3BVH::intersect(const a3Ray& ray, a3IntersectRecord* intersection) const
 
     if(intersect(ray, root, &minT, &u, &v, &vtu, &vtv, inverseDirection, dirIsNeg, &shape))
     {
-        intersection->t = minT;
+        // intersection point
+        its->t = minT;
+        its->p = (ray) (minT);
+        its->shape = shape;
 
-        // 接触点初始化
-        intersection->p = (ray) (minT);
+        // would be set if there are triangles
+        its->u = u;
+        its->v = v;
 
-        intersection->shape = shape;
-
-        // 求交测试若遇到三角形那么[u, v]将被赋值
-        intersection->u = u;
-        intersection->v = v;
-
-        // 若有纹理存在则纹理坐标将被赋值
-        intersection->vtu = vtu;
-        intersection->vtv = vtv;
+        // if existed texture coord
+        its->vtu = vtu;
+        its->vtv = vtv;
 
         return true;
     }
     else
     {
         // 用于valid判断
-        intersection->t = A3_INFINITY;
+        its->t = A3_INFINITY;
 
         return false;
     }

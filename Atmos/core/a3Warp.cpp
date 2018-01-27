@@ -5,7 +5,7 @@ t3Vector2f a3UniformSampleDisk(float u1, float u2, a3UniformSampleDiskType type)
 {
     if(type == A3UNIFORM_SAMPLE_DISK_CONCENTRIC)
     {
-        float phi, r, u, v;
+/*        float phi, r, u, v;
         // (a,b) is now on [-1,1]ˆ2
         float a = 2 * u1 - 1;
         float b = 2 * u2 - 1;
@@ -46,13 +46,38 @@ t3Vector2f a3UniformSampleDisk(float u1, float u2, a3UniformSampleDiskType type)
             }
         }
 
-        u = r* cos(phi);
-        v = r* sin(phi);
+        u = r * t3Math::cosRad(phi);
+        v = r * t3Math::sinRad(phi);
         return t3Vector2f(u, v);
+*/
+        float r1 = 2.0f * u1 - 1.0f;
+        float r2 = 2.0f * u2 - 1.0f;
+
+        /* Modified concencric map code with less branching (by Dave Cline), see
+        http://psgraphics.blogspot.ch/2011/01/improved-code-for-concentric-map.html */
+        float phi, r;
+        if(r1 == 0 && r2 == 0)
+        {
+            r = phi = 0;
+        }
+        else if(r1*r1 > r2*r2)
+        {
+            r = r1;
+            phi = (T3MATH_PI / 4.0f) * (r2 / r1);
+        }
+        else
+        {
+            r = r2;
+            phi = (T3MATH_PI / 2.0f) - (r1 / r2) * (T3MATH_PI / 4.0f);
+        }
+
+        float cosPhi = t3Math::cosRad(phi), sinPhi = t3Math::sinRad(phi);
+
+        return t3Vector2f(r * cosPhi, r * sinPhi);
     }
     else if(type == A3UNIFORM_SAMPLE_DISK_CARTESIAN)
     {
-        float r = sqrtf(u1);
+        float r = t3Math::sqrt(u1);
 
         float theta = 2.0f * T3MATH_PI * u2;
 
@@ -78,7 +103,8 @@ t3Vector3f a3UniformSampleSphere(float u1, float u2)
     float x = r * t3Math::cosRad(phi);
     float y = r * t3Math::sinRad(phi);
 
-    return t3Vector3f(x, y, z);
+    // to left-handed
+    return t3Vector3f(x, z, y);
 }
 
 // 均匀分布半球采样
@@ -89,7 +115,9 @@ t3Vector3f a3UniformSampleHemisphere(float u1, float u2)
     float phi = 2 * T3MATH_PI * u2;
     float x = r * t3Math::cosRad(phi);
     float y = r * t3Math::sinRad(phi);
-    return t3Vector3f(x, y, z);
+
+    // to left-handed
+    return t3Vector3f(x, z, y);
 }
 
 // Cosine-Weighted半球采样
@@ -99,14 +127,15 @@ t3Vector3f a3CosineSampleHemisphere(float u1, float u2, a3CosineSampleHemisphere
     {
         t3Vector2f p = a3UniformSampleDisk(u1, u2);
 
-        float z = t3Math::sqrt(t3Math::Max(0.f, 1.f - p.x*p.x - p.y*p.y));
+        float z = t3Math::sqrt(t3Math::Max(1e-6f, 1.f - p.x*p.x - p.y*p.y));
 
-        return t3Vector3f(p.x, p.y, z);
+        // to left-handed
+        return t3Vector3f(p.x, z, p.y);
     }
     else if(type == A3UNIFORM_SAMPLE_HEMISPHERE_CARTESIAN)
     {
-        float sintheta = t3Math::sinRad(0.5 * t3Math::acosRad(1 - 2 * u1));
-        float costheta = t3Math::cosRad(0.5 * t3Math::acosRad(1 - 2 * u1));
+        float sintheta = t3Math::sinRad(0.5f * t3Math::acosRad(1 - 2 * u1));
+        float costheta = t3Math::cosRad(0.5f * t3Math::acosRad(1 - 2 * u1));
 
         float v = 2 * T3MATH_PI * u2;
 
@@ -115,7 +144,8 @@ t3Vector3f a3CosineSampleHemisphere(float u1, float u2, a3CosineSampleHemisphere
 
         float z = costheta;
 
-        return t3Vector3f(x, y, z);
+        // to left-handed
+        return t3Vector3f(x, z, y);
     }
     else
     {
@@ -136,7 +166,8 @@ t3Vector3f a3UniformSampleCone(float u1, float u2, float cosThetaMax)
     float y = t3Math::sinRad(phi) * sintheta;
     float z = costheta;
 
-    return t3Vector3f(x, y, z);
+    // to left-handed
+    return t3Vector3f(x, z, y);
 }
 
 t3Vector2f a3UniformSampleTriangle(float u1, float u2)
@@ -147,6 +178,22 @@ t3Vector2f a3UniformSampleTriangle(float u1, float u2)
     float v = u2 * sqrtu1;
 
     return t3Vector2f(u, v);
+}
+
+float a3UniformSpherePdf()
+{
+    return 1.f / (4.f * T3MATH_PI);
+}
+
+float a3UniformHemispherePdf()
+{
+    return 1 / (2.f * T3MATH_PI);
+}
+
+float a3CosineSampleHemispherePdf(const t3Vector3f & d)
+{
+    // in local system return 1/pi * cosTheta
+    return T3MATH_INV_PI * d.dot(t3Vector3f(0, 1, 0));
 }
 
 // ----------------------------------------------Post Effect----------------------------------------------
@@ -210,13 +257,13 @@ void a3OrthonomalSystem(const t3Vector3f& v1, t3Vector3f& v2, t3Vector3f& v3)
     if(t3Math::Abs(v1.x) > t3Math::Abs(v1.y))
     {
         // 向y = 0平面投影, 找到一个垂直于原向量的单位向量
-        float invLen = 1.f / sqrtf(v1.x * v1.x + v1.z * v1.z);
+        float invLen = 1.f / t3Math::sqrt(v1.x * v1.x + v1.z * v1.z);
         v2 = t3Vector3f(-v1.z * invLen, 0.0f, v1.x * invLen);
     }
     else
     {
         // 向x = 0平面投影, 找到一个垂直于原向量的单位向量
-        float invLen = 1.0f / sqrtf(v1.y * v1.y + v1.z * v1.z);
+        float invLen = 1.0f / t3Math::sqrt(v1.y * v1.y + v1.z * v1.z);
         v2 = t3Vector3f(0.0f, v1.z * invLen, -v1.y * invLen);
     }
 
@@ -315,15 +362,10 @@ bool a3SolveQuadraticDouble(double A, double B, double C, double* t0, double* t1
     return true;
 }
 
-float a3PowerHeuristic(int nf, float fPdf, int ng, float gPdf)
+float a3MiWeight(float pdfA, float pdfB)
 {
-    float f = nf * fPdf, g = ng * gPdf;
-    return (f*f) / (f*f + g*g);
-}
-
-float a3UniformSpherePdf()
-{
-    return 1.f / (4.f * T3MATH_PI);
+    pdfA *= pdfA; pdfB *= pdfB;
+    return pdfA / (pdfA + pdfB);
 }
 
 float a3FovToApretureSizeDeg(float fov)
