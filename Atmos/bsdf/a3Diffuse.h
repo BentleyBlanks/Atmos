@@ -1,5 +1,4 @@
-#ifndef A3_DIFFUSE_BSDF_H
-#define A3_DIFFUSE_BSDF_H
+#pragma once
 
 #include <bsdf/a3BSDF.h>
 
@@ -25,5 +24,3 @@ public:
     //--!could be replaced by Texture
     a3Spectrum R;
 };
-
-#endif

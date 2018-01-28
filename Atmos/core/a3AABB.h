@@ -1,5 +1,4 @@
-﻿#ifndef A3_AABB_H
-#define A3_AABB_H
+﻿#pragma once
 
 #include <t3Math/core/t3Vector3.h>
 #include <core/a3Settings.h>
@@ -60,5 +59,3 @@ public:
 };
 
 #include <core/a3AABB.inl>
-
-#endif

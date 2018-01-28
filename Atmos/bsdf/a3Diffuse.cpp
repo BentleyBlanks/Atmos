@@ -31,14 +31,12 @@ a3Spectrum a3Diffuse::sample(a3BSDFSamplingRecord & bRec) const
     if(cosThetai <= 0)
         return a3Spectrum::zero();
 
-    static a3Random random;
-
-    //bRec.wo = a3UniformSampleHemisphere(random.randomFloat(), random.randomFloat());
+    //bRec.wo = a3UniformSampleHemisphere(a3Random::randomFloat(), a3Random::randomFloat());
     //bRec.pdf = a3UniformHemispherePdf();
 
     // local system
     // cosine weighted
-    bRec.wo = a3CosineSampleHemisphere(random.randomFloat(), random.randomFloat()).getNormalized();
+    bRec.wo = a3CosineSampleHemisphere(a3Random::randomFloat(), a3Random::randomFloat()).getNormalized();
     bRec.pdf = a3CosineSampleHemispherePdf(bRec.wo);
     bRec.eta = 1.0f;
 

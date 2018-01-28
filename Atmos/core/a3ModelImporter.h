@@ -1,5 +1,4 @@
-﻿#ifndef A3_MODELIMPORTER_H
-#define A3_MODELIMPORTER_H
+﻿#pragma once
 
 #include <vector>
 
@@ -21,5 +20,3 @@ private:
 
     //a3Scene* scene
 };
-
-#endif

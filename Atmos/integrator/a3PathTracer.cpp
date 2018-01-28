@@ -19,8 +19,6 @@ a3PathTracer::~a3PathTracer()
 
 a3Spectrum a3PathTracer::Li(const a3Ray & r, const a3Scene & scene) const
 {
-    static a3Random random;
-
     a3Spectrum L;
     a3IntersectRecord its;
     a3Ray ray(r);
@@ -155,7 +153,7 @@ a3Spectrum a3PathTracer::Li(const a3Ray & r, const a3Scene & scene) const
         if(depth++ >= rrDepth)
         {
             float q = t3Math::Min(0.95f, a3RGB2Luminance(throughput));
-            if(random.randomFloat() >= q)
+            if(a3Random::randomFloat() >= q)
                 break;
             throughput /= q;
         }

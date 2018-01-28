@@ -1,5 +1,4 @@
-#ifndef A3_DISTRUBUTION2D_H
-#define A3_DISTRUBUTION2D_H
+#pragma once
 
 #include <vector>
 
@@ -26,5 +25,3 @@ private:
     // 二维数组宽高
     int width, height;
 };
-
-#endif

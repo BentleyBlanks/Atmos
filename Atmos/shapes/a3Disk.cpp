@@ -46,9 +46,8 @@ bool a3Disk::intersect(const a3Ray & _ray, float * t, float * u, float * v) cons
 
 void a3Disk::sample(a3ShapeSamplingRecord & sRec) const
 {
-    static a3Random r;
     // uniform sampling the disk
-    t3Vector2f sampledP = a3UniformSampleDisk(r.randomFloat(), r.randomFloat());
+    t3Vector2f sampledP = a3UniformSampleDisk(a3Random::randomFloat(), a3Random::randomFloat());
 
     sRec.p = shapeToWorld * t3Vector3f(sampledP.x * radius, 0.0f, sampledP.y * radius);
     sRec.pdf = 1 / area();

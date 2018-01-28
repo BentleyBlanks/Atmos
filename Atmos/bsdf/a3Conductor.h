@@ -1,5 +1,4 @@
-#ifndef A3_CONDUCTOR_H
-#define A3_CONDUCTOR_H
+#pragma once
 
 #include <bsdf/a3BSDF.h>
 
@@ -24,5 +23,3 @@ public:
     // specular refelctance
     a3Spectrum R;
 };
-
-#endif

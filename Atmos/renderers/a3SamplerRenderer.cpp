@@ -79,6 +79,7 @@ void a3SamplerRenderer::render(const a3Scene* scene)
 
             // 临时空间中setColor
             colorList[x + y * imageWidth] = color;
+            //colorList[x + y * imageWidth] = a3Spectrum(a3Random::randomFloat(), r.randomFloat(), r.randomFloat());
         }
     }
     a3Log::print("\n");

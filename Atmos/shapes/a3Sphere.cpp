@@ -54,9 +54,8 @@ float a3Sphere::area() const
 
 void a3Sphere::sample(a3ShapeSamplingRecord & sRec) const
 {
-    static a3Random r;
     // uniform sampling the disk
-    t3Vector3f sampledP = a3UniformSampleSphere(r.randomFloat(), r.randomFloat()) * radius;
+    t3Vector3f sampledP = a3UniformSampleSphere(a3Random::randomFloat(), a3Random::randomFloat()) * radius;
 
     sRec.p = shapeToWorld * sampledP;
     sRec.pdf = 1 / area();

@@ -90,7 +90,7 @@ void main()
     t3Matrix4x4 sphereM1, sphereM2;
     sphereM1.set(1, 0, 0, 2.5,
                  0, 1, 0, -7.5,
-                 0, 0, 1, -2,
+                 0, 0, 1, -10,
                  0, 0, 0, 1);
 
     sphereM2.set(1, 0, 0, -2.5,
@@ -141,19 +141,19 @@ void main()
     scene->addLight(areaLight);
     scene->addShape(light);
 
-    //scene->addShape(top);
-    //scene->addShape(bottom);
-    //scene->addShape(left);
-    //scene->addShape(right);
+    scene->addShape(top);
+    scene->addShape(bottom);
+    scene->addShape(left);
+    scene->addShape(right);
     scene->addShape(forward);
 
-    //scene->addShape(sphere1);
-    //scene->addShape(sphere2);
+    scene->addShape(sphere1);
+    scene->addShape(sphere2);
 #endif
 
     // render
 #ifdef SAMPLER
-    a3SamplerRenderer* renderer = new a3SamplerRenderer(32);
+    a3SamplerRenderer* renderer = new a3SamplerRenderer(64);
     renderer->enableGammaCorrection = true;
     renderer->enableToneMapping = false;
 #endif
@@ -166,7 +166,7 @@ void main()
     renderer->sampler = new a3RandomSampler();
     renderer->camera = camera;
     
-    a3DirectLighting* direcLighting = new a3DirectLighting(16, 0);
+    a3DirectLighting* direcLighting = new a3DirectLighting(5, 5);
     renderer->integrator = direcLighting;
     //a3PathTracer* pathTracer = new a3PathTracer();
     //renderer->integrator = pathTracer;

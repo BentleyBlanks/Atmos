@@ -1,5 +1,4 @@
-﻿#ifndef A3_AABB_INL
-#define A3_AABB_INL
+﻿#pragma once
 
 #include <core/a3AABB.h>
 
@@ -27,5 +26,4 @@ bool a3AABB::operator!=(const a3AABB& bbox) const
     return bbox.min != min || bbox.max != max;
 }
 
-#endif
 

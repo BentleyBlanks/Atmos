@@ -122,7 +122,7 @@ float a3Triangle::area() const
 void a3Triangle::sample(a3ShapeSamplingRecord & sRec) const
 {
     a3Random r;
-    t3Vector2f b = a3UniformSampleTriangle(r.randomFloat(), r.randomFloat());
+    t3Vector2f b = a3UniformSampleTriangle(a3Random::randomFloat(), a3Random::randomFloat());
 
     sRec.p = b.x * v0 + b.y * v1 + (1.0 - b.x - b.y) * v2;
     sRec.normal = getNormal(t3Vector3f::zero(), b.x, b.y).getNormalized();

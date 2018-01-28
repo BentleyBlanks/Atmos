@@ -107,9 +107,9 @@ void main()
             a3Log::info("Grid[%d / %d] Rendering: %8.2f \r", currentGrid, levelX * levelY, (float) x / gridWidth * 100);
             for(int y = 0; y < gridHeight; y++)
             {
-                bufferPointer[(x + y * gridWidth) * 3 + 0] = r.randomFloat();
-                bufferPointer[(x + y * gridWidth) * 3 + 1] = r.randomFloat();
-                bufferPointer[(x + y * gridWidth) * 3 + 2] = r.randomFloat();
+                bufferPointer[(x + y * gridWidth) * 3 + 0] = a3Random::randomFloat();
+                bufferPointer[(x + y * gridWidth) * 3 + 1] = a3Random::randomFloat();
+                bufferPointer[(x + y * gridWidth) * 3 + 2] = a3Random::randomFloat();
             }
         }
         a3Log::print("\n");

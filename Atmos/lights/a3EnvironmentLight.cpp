@@ -30,11 +30,10 @@ a3Spectrum a3EnvironmentLight::evalEnvironment(const a3Ray & ray) const
 a3Spectrum a3EnvironmentLight::sampleDirect(a3LightSamplingRecord& dRec) const
 {
     // IS in the future
-    static a3Random r;
 
     dRec.pdf = 1 / (4 * PI);
     dRec.distance = A3_INFINITY;
-    dRec.d = a3UniformSampleSphere(r.randomFloat(), r.randomFloat());
+    dRec.d = a3UniformSampleSphere(a3Random::randomFloat(), a3Random::randomFloat());
 
     // texture
     if(image)

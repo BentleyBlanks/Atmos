@@ -80,7 +80,6 @@ a3Spectrum a3DirectLighting::Li(const a3Ray & ray, const a3Scene & scene) const
     }
 
     
-    //int sum = 0;
     // ===========================================BSDF Sampling===========================================
     for(int i = 0; i < numBxdfSamples; i++)
     {
@@ -137,6 +136,5 @@ a3Spectrum a3DirectLighting::Li(const a3Ray & ray, const a3Scene & scene) const
         L += value * bsdfValue * weight;
     }
 
-    //a3Log::warning("Sum:%d\n", sum);
     return L;
 }

@@ -1,5 +1,4 @@
-#ifndef A3_DISTRUBUTION1D_H
-#define A3_DISTRUBUTION1D_H
+#pragma once
 
 #include <vector>
 
@@ -23,5 +22,3 @@ private:
     // 给定分段函数在定义域内的积分值
     float functionIntegral;
 };
-
-#endif
