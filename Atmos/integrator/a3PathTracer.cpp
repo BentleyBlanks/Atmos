@@ -41,8 +41,9 @@ a3Spectrum a3PathTracer::Li(const a3Ray & r, const a3Scene & scene) const
             break;
         }
 
-        // possibly include emitted radiance
-        L += scene.Le(-ray.direction, its);
+        if(its.isLight())
+            // possibly include emitted radiance
+            L += throughput * scene.Le(-ray.direction, its);
 
         const a3BSDF* bsdf = its.getBSDF();
         if(!bsdf)

@@ -26,6 +26,9 @@ public:
     // Is the intersected shape also a emitter?
     bool isLight() const;
 
+    // get the light ptr from the shape(if exsited)
+    a3Light* getLight() const;
+
     // get the normal vector on hit point 
     t3Vector3f getNormal() const;
 

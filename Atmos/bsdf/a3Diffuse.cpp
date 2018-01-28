@@ -21,7 +21,7 @@ a3Spectrum a3Diffuse::eval(const a3BSDFSamplingRecord & bRec) const
     if(cosThetai <= 0 || cosThetao <= 0)
         return a3Spectrum::zero();
 
-    // reflectance * pdf * cosTheta;
+    // reflectance * bsdf(wi, wo);
     return R * pdf(bRec);
 }
 
@@ -34,14 +34,15 @@ a3Spectrum a3Diffuse::sample(a3BSDFSamplingRecord & bRec) const
     static a3Random random;
 
     //bRec.wo = a3UniformSampleHemisphere(random.randomFloat(), random.randomFloat());
-    //bRec.pdf = a3UniformHemispherePdf() * bRec.wo.y;
+    //bRec.pdf = a3UniformHemispherePdf();
 
     // local system
     // cosine weighted
-    bRec.wo = a3CosineSampleHemisphere(random.randomFloat(), random.randomFloat());
+    bRec.wo = a3CosineSampleHemisphere(random.randomFloat(), random.randomFloat()).getNormalized();
     bRec.pdf = a3CosineSampleHemispherePdf(bRec.wo);
     bRec.eta = 1.0f;
 
+    //return R * 2 * bRec.wo.y;
     return R;
 }
 
@@ -54,6 +55,7 @@ float a3Diffuse::pdf(const a3BSDFSamplingRecord & bRec) const
         return 0.0f;
 
     // cosine weighted pdf
+    //return a3UniformHemispherePdf();
     return a3CosineSampleHemispherePdf(bRec.wo);
 }
 

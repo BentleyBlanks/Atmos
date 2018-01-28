@@ -186,7 +186,7 @@ void A3_SAFE_DELETE_1DARRAY(T*& pointer)
 
 // --!详见 https://www.zhihu.com/question/41895326
 // Atmos全局相交测试模仿Mitsuba采用double精度
-#define A3_RAY_BIAS 1e-3f
+#define A3_RAY_BIAS 1e-4f
 
 // 默认最大跟踪路径深度
 #define A3_DEFAULT_MAX_DEPTH -1

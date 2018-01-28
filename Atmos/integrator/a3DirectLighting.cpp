@@ -2,6 +2,7 @@
 #include <bsdf/a3BSDF.h>
 
 // core
+#include <core/log/a3Log.h>
 #include <core/a3Ray.h>
 #include <core/a3Scene.h>
 #include <core/a3Record.h>
@@ -53,7 +54,7 @@ a3Spectrum a3DirectLighting::Li(const a3Ray & ray, const a3Scene & scene) const
     {
         for(int i = 0; i < numLightSamples; i++)
         {        
-            // direct illumination
+            // get (L / lightPdf) in direct illumination
             a3Spectrum value = scene.sampleDirect(lRec);
 
             if(value != a3Spectrum::zero())
@@ -79,6 +80,7 @@ a3Spectrum a3DirectLighting::Li(const a3Ray & ray, const a3Scene & scene) const
     }
 
     
+    //int sum = 0;
     // ===========================================BSDF Sampling===========================================
     for(int i = 0; i < numBxdfSamples; i++)
     {
@@ -112,7 +114,8 @@ a3Spectrum a3DirectLighting::Li(const a3Ray & ray, const a3Scene & scene) const
             if(!bsdfIts.isLight())
                 continue;
 
-            lRec.light = bsdfIts.shape->getLight();
+            //sum++;
+            lRec.light = bsdfIts.getLight();
             value = bsdfIts.Le(-bsdfRay.direction);
         }
         else
@@ -134,5 +137,6 @@ a3Spectrum a3DirectLighting::Li(const a3Ray & ray, const a3Scene & scene) const
         L += value * bsdfValue * weight;
     }
 
+    //a3Log::warning("Sum:%d\n", sum);
     return L;
 }

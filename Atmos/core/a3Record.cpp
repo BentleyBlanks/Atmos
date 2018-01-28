@@ -14,6 +14,14 @@ bool a3IntersectRecord::isLight() const
     return shape->isLight();
 }
 
+a3Light * a3IntersectRecord::getLight() const
+{
+    if(shape && isLight())
+        return shape->getLight();
+    else
+        return NULL;
+}
+
 t3Vector3f a3IntersectRecord::getNormal() const
 {
     if(shape)

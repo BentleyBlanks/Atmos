@@ -8,19 +8,20 @@ class a3Diffuse : public a3BSDF
 public:
     a3Diffuse(a3Spectrum R = a3Spectrum::one());
 
-    // Evaluate the BSDF f(wi, wo)(f * cos * R)
+    // evaluate the BSDF f(wi, wo)(f * cos * R)
     virtual a3Spectrum eval(const a3BSDFSamplingRecord& bRec) const;
 
-    // Sample the BSDF and return the importance weight
+    // sample the BSDF and return the importance weight
+    // returned value has divided by the probability density of the sample
     virtual a3Spectrum sample(a3BSDFSamplingRecord& bRec) const;
 
-    // Compute the probability of sampling wo (given wi, BSDF(wi, wo) * costheta)
+    // compute the probability of sampling wo (given wi, BSDF(wi, wo) * costheta)
     virtual float pdf(const a3BSDFSamplingRecord& bRec) const;
 
     // if delta distribution
     virtual bool isDeltaDistribution() const;
 
-    // Reflectance of Lambertion
+    // reflectance of Lambertion
     //--!could be replaced by Texture
     a3Spectrum R;
 };

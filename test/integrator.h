@@ -1,8 +1,6 @@
 #include <Atmos.h>
 
 // Renderer
-#define SAMPLER
-//#define SINGLE_RAY
 
 // Light
 //#define ENVIRONMENT_LIGHT
@@ -90,7 +88,7 @@ void main()
     t3Matrix4x4 sphereM1, sphereM2;
     sphereM1.set(1, 0, 0, 2.5,
                  0, 1, 0, -7.5,
-                 0, 0, 1, -10,
+                 0, 0, 1, -2,
                  0, 0, 0, 1);
 
     sphereM2.set(1, 0, 0, -2.5,
@@ -102,15 +100,14 @@ void main()
     a3Disk* bottom = new a3Disk(bottomM, 40);
     a3Disk* left = new a3Disk(leftM, 40);
     a3Disk* right = new a3Disk(rightM, 40);
-    a3Disk* forward = new a3Disk(forwardM, 40);
 
     // spheres
     a3Sphere* sphere1 = new a3Sphere(sphereM1, 2.5);
     a3Sphere* sphere2 = new a3Sphere(sphereM2, 1.5);
 
     // light
-    a3Disk* light = new a3Disk(areaM, 1.5);
-    a3AreaLight* areaLight = new a3AreaLight(light, a3Spectrum(10), areaM);
+    a3Disk* light = new a3Disk(areaM, 1);
+    //a3Sphere* light = new a3Sphere(areaM, 1);
 
     // material
     a3Diffuse* topD = new a3Diffuse();
@@ -131,23 +128,15 @@ void main()
     right->setBSDF(rightD);
     forward->setBSDF(forwardD);
 
-    //sphere1->setBSDF(sphereD1);
-    //sphere2->setBSDF(sphereD2);
-    sphere1->setBSDF(conductor1);
-    sphere2->setBSDF(conductor2);
+    sphere1->setBSDF(sphereD1);
+    sphere2->setBSDF(sphereD2);
 
     // scene
     scene->addLight(areaLight);
     scene->addShape(light);
 
-    scene->addShape(top);
-    scene->addShape(bottom);
-    scene->addShape(left);
-    scene->addShape(right);
     scene->addShape(forward);
 
-    scene->addShape(sphere1);
-    scene->addShape(sphere2);
 #endif
 
     // render
@@ -159,16 +148,13 @@ void main()
 
 #ifdef SINGLE_RAY
     a3SingleRayRenderer* renderer = new a3SingleRayRenderer();
-    renderer->singleRayX = 296;
-    renderer->singleRayY = 522;
 #endif
     renderer->sampler = new a3RandomSampler();
     renderer->camera = camera;
     
-    //a3DirectLighting* direcLighting = new a3DirectLighting(16, 0);
-    //renderer->integrator = direcLighting;
-    a3PathTracer* pathTracer = new a3PathTracer();
-    renderer->integrator = pathTracer;
+    renderer->integrator = direcLighting;
+    //a3PathTracer* pathTracer = new a3PathTracer();
+    //renderer->integrator = pathTracer;
 
     // rendering
     t3Timer timer;
