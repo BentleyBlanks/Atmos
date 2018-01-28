@@ -1,6 +1,8 @@
 #include <Atmos.h>
 
 // Renderer
+#define SAMPLER
+//#define SINGLE_RAY
 
 // Light
 //#define ENVIRONMENT_LIGHT
@@ -100,6 +102,7 @@ void main()
     a3Disk* bottom = new a3Disk(bottomM, 40);
     a3Disk* left = new a3Disk(leftM, 40);
     a3Disk* right = new a3Disk(rightM, 40);
+    a3Disk* forward = new a3Disk(forwardM, 40);
 
     // spheres
     a3Sphere* sphere1 = new a3Sphere(sphereM1, 2.5);
@@ -108,6 +111,7 @@ void main()
     // light
     a3Disk* light = new a3Disk(areaM, 1);
     //a3Sphere* light = new a3Sphere(areaM, 1);
+    a3AreaLight* areaLight = new a3AreaLight(light, a3Spectrum(10), areaM);
 
     // material
     a3Diffuse* topD = new a3Diffuse();
@@ -130,13 +134,21 @@ void main()
 
     sphere1->setBSDF(sphereD1);
     sphere2->setBSDF(sphereD2);
+    //sphere1->setBSDF(conductor1);
+    //sphere2->setBSDF(conductor2);
 
     // scene
     scene->addLight(areaLight);
     scene->addShape(light);
 
+    //scene->addShape(top);
+    //scene->addShape(bottom);
+    //scene->addShape(left);
+    //scene->addShape(right);
     scene->addShape(forward);
 
+    //scene->addShape(sphere1);
+    //scene->addShape(sphere2);
 #endif
 
     // render
@@ -148,10 +160,13 @@ void main()
 
 #ifdef SINGLE_RAY
     a3SingleRayRenderer* renderer = new a3SingleRayRenderer();
+    renderer->singleRayX = 493;
+    renderer->singleRayY = 445;
 #endif
     renderer->sampler = new a3RandomSampler();
     renderer->camera = camera;
     
+    a3DirectLighting* direcLighting = new a3DirectLighting(16, 0);
     renderer->integrator = direcLighting;
     //a3PathTracer* pathTracer = new a3PathTracer();
     //renderer->integrator = pathTracer;
