@@ -1,5 +1,4 @@
-#ifndef A3_IPCRENDERER_H
-#define A3_IPCRENDERER_H
+#pragma once
 
 #include <renderers/a3Renderer.h>
 #include <core/a3Settings.h>
@@ -91,5 +90,3 @@ private:
     a3MessageQueueIPC ipcC2S, ipcS2C;
     a3S2CInitMessage* initMsg;
 };
-
-#endif

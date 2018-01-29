@@ -1,5 +1,4 @@
-﻿#ifndef ATMOS_SETTINGS_H
-#define ATMOS_SETTINGS_H
+﻿#pragma once
 
 // ------------------------Platforms------------------------
 // 宏定义借鉴于:
@@ -248,5 +247,3 @@ extern a3Version atmosVersion;
 // Deprecated
 // log借鉴于box2d的b2Log
 A3_DEPRECATED void t2Log(const char* string, ...);
-
-#endif

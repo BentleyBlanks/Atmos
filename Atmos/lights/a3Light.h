@@ -1,5 +1,4 @@
-﻿#ifndef A3_LIGHT_H
-#define A3_LIGHT_H
+﻿#pragma once
 
 #include <t3Math/core/t3Matri4x4.h>
 #include <string>
@@ -39,5 +38,3 @@ public:
 
     t3Matrix4x4 lightToWorld, worldToLight;
 };
-
-#endif

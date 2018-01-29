@@ -1,5 +1,4 @@
-#ifndef A3_DISK_H
-#define A3_DISK_H
+#pragma once
 
 #include <shapes/a3Shape.h>
 
@@ -26,5 +25,3 @@ public:
 
     float radius;
 };
-
-#endif

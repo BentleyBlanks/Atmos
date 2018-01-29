@@ -1,5 +1,4 @@
-#ifndef A3_DIRECTLIGHTING_H
-#define A3_DIRECTLIGHTING_H
+#pragma once
 
 #include <integrator/a3Integrator.h>
 
@@ -19,5 +18,3 @@ public:
     float fracBSDF, fracLight;
     float weightBSDF, weightLight;
 };
-
-#endif

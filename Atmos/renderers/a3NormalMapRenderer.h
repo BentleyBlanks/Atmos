@@ -1,5 +1,4 @@
-#ifndef A3_NORMALMAPRENDERER_H
-#define A3_NORMALMAPRENDERER_H
+#pragma once
 
 #include <renderers/a3Renderer.h>
 
@@ -25,5 +24,3 @@ public:
     // 生成的法线贴图
     a3NormalMap* normalMap;
 };
-
-#endif

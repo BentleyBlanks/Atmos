@@ -1,5 +1,4 @@
-﻿#ifndef A3_WARP_H
-#define A3_WARP_H
+﻿#pragma once
 
 #include <t3Math/core/t3Vector2.h>
 #include <t3Math/core/t3Vector3.h>
@@ -109,4 +108,3 @@ float a3FresnelConductor(float cosi, float cost, const float &etai, const float 
 
 // get reflect vector in shading coordinates
 t3Vector3f a3GetReflect(const t3Vector3f& a);
-#endif

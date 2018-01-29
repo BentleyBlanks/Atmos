@@ -1,5 +1,4 @@
-#ifndef A3_SHAPE_H
-#define A3_SHAPE_H
+#pragma once
 
 #include <t3Math/core/t3Vector3.h>
 #include <t3Math/core/t3Matri4x4.h>
@@ -62,5 +61,3 @@ public:
 
     a3Light* light;
 };
-
-#endif

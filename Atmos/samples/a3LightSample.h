@@ -1,5 +1,4 @@
-﻿#ifndef A3_CAMERASAMPLE_H
-#define A3_CAMERASAMPLE_H
+﻿#pragma once
 
 class a3LightSample
 {
@@ -8,5 +7,3 @@ public:
 
     float uPos[2];
 };
-
-#endif

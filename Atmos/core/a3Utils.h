@@ -1,5 +1,4 @@
-#ifndef A3_UTILS_H
-#define A3_UTILS_H
+#pragma once
 
 #include <core/a3Settings.h>
 #include <core/log/a3Log.h>
@@ -171,4 +170,3 @@ std::string a3HexToString(const std::string& stringHexString);
     error += "is null";\
     a3Log::warning(error.c_str());\
 }
-#endif

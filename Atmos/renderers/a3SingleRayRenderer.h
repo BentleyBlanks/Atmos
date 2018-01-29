@@ -1,5 +1,4 @@
-#ifndef A3_SINGLERAYRENDERER_H
-#define A3_SINGLERAYRENDERER_H
+#pragma once
 
 #include <renderers/a3Renderer.h>
 
@@ -35,5 +34,3 @@ public:
     // 屏幕上需发射单一射线位置
     int singleRayX, singleRayY;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef A3_IMAGETEXTURE_H
-#define A3_IMAGETEXTURE_H
+#pragma once
 
 #include <core/log/a3Log.h>
 #include <textures/a3Texture.h>
@@ -37,5 +36,3 @@ inline a3ImageTexture<a3Spectrum>* a3CreateImageTexture(const char* filePath)
 
     return texture;
 }
-
-#endif

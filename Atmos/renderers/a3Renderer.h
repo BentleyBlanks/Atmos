@@ -1,5 +1,4 @@
-﻿#ifndef A3_RENDERER_H
-#define A3_RENDERER_H
+﻿#pragma once
 
 #include <t3Math/core/t3Vector3.h>
 
@@ -22,5 +21,3 @@ public:
 
     float progress;
 };
-
-#endif

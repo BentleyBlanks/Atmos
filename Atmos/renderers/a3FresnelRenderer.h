@@ -1,5 +1,4 @@
-﻿#ifndef A3_FRESNELRENDERER_H
-#define A3_FRESNELRENDERER_H
+﻿#pragma once
 
 #include <renderers/a3Renderer.h>
 
@@ -25,5 +24,3 @@ public:
     // 生成的菲涅尔贴图
     a3Film* image;
 };
-
-#endif

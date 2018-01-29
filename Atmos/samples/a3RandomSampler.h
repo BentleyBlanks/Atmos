@@ -1,5 +1,4 @@
-﻿#ifndef A3_RANDOMSAMPLER_H
-#define A3_RANDOMSAMPLER_H
+﻿#pragma once
 
 #include <samples/a3Sampler.h>
 
@@ -13,5 +12,3 @@ public:
     // 当前采样点
     int x, y;
 };
-
-#endif

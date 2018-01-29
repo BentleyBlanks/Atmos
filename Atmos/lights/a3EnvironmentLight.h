@@ -1,5 +1,4 @@
-#ifndef A3_ENVIRONMENT_LIGHT_H
-#define A3_ENVIRONMENT_LIGHT_H
+#pragma once
 
 #include <lights/a3Light.h>
 #include <t3Math/core/t3Matri4x4.h>
@@ -32,5 +31,3 @@ public:
     // image based lighting
     a3ImageDecoder* image;
 };
-
-#endif 

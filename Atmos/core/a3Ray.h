@@ -1,5 +1,4 @@
-﻿#ifndef A3_RAY_H
-#define A3_RAY_H
+﻿#pragma once
 
 #include <core/a3Settings.h>
 #include <t3Math/core/t3Vector3.h>
@@ -55,5 +54,3 @@ public:
 
     float time;
 };
-
-#endif

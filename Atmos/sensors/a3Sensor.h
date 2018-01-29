@@ -1,5 +1,4 @@
-﻿#ifndef A3_CAMERA_H
-#define A3_CAMERA_H
+﻿#pragma once
 
 #include <t3Math/core/t3Vector2.h>
 #include <t3Math/core/t3Vector3.h>
@@ -55,5 +54,3 @@ public:
     float focalDistance;
     float lensRadius;
 };
-
-#endif

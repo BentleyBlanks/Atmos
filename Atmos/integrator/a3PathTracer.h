@@ -1,5 +1,4 @@
-#ifndef A3_PATHTRACER_H
-#define A3_PATHTRACER_H
+#pragma once
 
 #include <core/a3Spectrum.h>
 #include <integrator/a3Integrator.h>
@@ -21,5 +20,3 @@ public:
     int maxDepth;
     int rrDepth;
 };
-
-#endif

@@ -1,5 +1,4 @@
-﻿#ifndef A3_PERSPECTIVECAMERA_H
-#define A3_PERSPECTIVECAMERA_H
+﻿#pragma once
 
 #include <sensors/a3Sensor.h>
 
@@ -33,5 +32,3 @@ public:
 
     //a3Random* random;
 };
-
-#endif

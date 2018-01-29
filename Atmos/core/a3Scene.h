@@ -1,5 +1,4 @@
-﻿#ifndef A3_SCENE_H
-#define A3_SCENE_H
+﻿#pragma once
 
 #include <core/a3Settings.h>
 #include <core/a3Spectrum.h>
@@ -51,5 +50,3 @@ public:
     // all shapes in the scene
     a3PrimitiveSet* primitiveSet;
 };
-
-#endif

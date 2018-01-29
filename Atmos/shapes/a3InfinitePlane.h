@@ -1,5 +1,4 @@
-#ifndef A3_INFINITE_PLANE_H
-#define A3_INFINITE_PLANE_H
+#pragma once
 
 #include <shapes/a3Shape.h>
 
@@ -28,5 +27,3 @@ public:
     // return the normal vec from the point be hitted
     virtual t3Vector3f getNormal(const t3Vector3f& hitPoint, float u, float v) const;
 };
-
-#endif 

@@ -1,5 +1,4 @@
-#ifndef A3_AREA_LIGHT_H
-#define A3_AREA_LIGHT_H
+#pragma once
 
 #include <lights/a3Light.h>
 #include <t3Math/core/t3Matri4x4.h>
@@ -40,5 +39,3 @@ public:
 
     a3Spectrum radiance;
 };
-
-#endif 

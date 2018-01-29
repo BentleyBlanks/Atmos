@@ -1,5 +1,4 @@
-﻿#ifndef A3_GRIDRENDERER_H
-#define A3_GRIDRENDERER_H
+﻿#pragma once
 
 #include <renderers/a3Renderer.h>
 #include <core/a3Settings.h>
@@ -77,5 +76,3 @@ public:
     // 真实图像大小的宽高
     int imageWidth, imageHeight;
 };
-
-#endif

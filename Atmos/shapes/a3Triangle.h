@@ -1,5 +1,4 @@
-#ifndef A3_TRIANGLE_H
-#define A3_TRIANGLE_H
+#pragma once
 
 #include <shapes/a3Shape.h>
 class a3Triangle :public a3Shape
@@ -43,5 +42,3 @@ public:
 
     bool bEnableBackfaceCulling;
 };
-
-#endif

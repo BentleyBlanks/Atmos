@@ -1,5 +1,4 @@
-﻿#ifndef A3_SAMPLER_H
-#define A3_SAMPLER_H
+﻿#pragma once
 
 #include <core/a3Settings.h>
 
@@ -13,5 +12,3 @@ public:
     // 默认均匀采样
     virtual int getMoreSamples(int x, int y, a3CameraSample* sample, a3CameraSample* sampleFilter = NULL) = 0;
 };
-
-#endif

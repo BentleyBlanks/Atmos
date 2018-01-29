@@ -1,5 +1,4 @@
-﻿#ifndef A3_SAMPLERRENDERER_H
-#define A3_SAMPLERRENDERER_H
+﻿#pragma once
 
 #include <renderers/a3Renderer.h>
 #include <core/a3Spectrum.h>
@@ -48,5 +47,3 @@ public:
     // color list for temp use
     a3Spectrum* colorList;
 };
-
-#endif

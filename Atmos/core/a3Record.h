@@ -1,5 +1,4 @@
-﻿#ifndef A3_INTERSECTION_H
-#define A3_INTERSECTION_H
+﻿#pragma once
 
 #include <core/a3Settings.h>
 #include <core/a3Spectrum.h>
@@ -141,5 +140,3 @@ public:
     // 2D sample position associated with the record
     //t3Vector2f uv;
 };
-
-#endif

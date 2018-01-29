@@ -1,5 +1,4 @@
-#ifndef A3_SPHERE_H
-#define A3_SPHERE_H
+#pragma once
 
 #include <shapes/a3Shape.h>
 
@@ -30,5 +29,3 @@ public:
     // initted by objectToWorld
     t3Vector3f center;
 };
-
-#endif

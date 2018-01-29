@@ -1,5 +1,4 @@
-﻿#ifndef A3_TEXTURE_H
-#define A3_TEXTURE_H
+﻿#pragma once
 
 template<class T>
 class a3Texture
@@ -9,5 +8,3 @@ public:
 
     virtual T evaluate(float u, float v) const = 0;
 };
-
-#endif

@@ -1,5 +1,4 @@
-﻿#ifndef A3_CONSTANTTEXTURE_H
-#define A3_CONSTANTTEXTURE_H
+﻿#pragma once
 
 #include <textures/a3Texture.h>
 
@@ -16,5 +15,3 @@ public:
 
     T value;
 };
-
-#endif
