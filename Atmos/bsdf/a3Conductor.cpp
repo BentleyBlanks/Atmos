@@ -21,7 +21,7 @@ a3Spectrum a3Conductor::eval(const a3BSDFSamplingRecord & bRec) const
 
     if(cosThetai <= 0 || 
        cosThetao <= 0 ||
-       t3Math::Abs(reflect.dot(bRec.wo) -1 > A3_EPSILON_DELTA))
+       t3Math::Abs(reflect.dot(bRec.wo) -1) > A3_EPSILON_DELTA)
         return a3Spectrum::zero();
 
 
@@ -51,7 +51,7 @@ float a3Conductor::pdf(const a3BSDFSamplingRecord & bRec) const
 
     if(cosThetai <= 0 ||
        cosThetao <= 0 ||
-       t3Math::Abs(reflect.dot(bRec.wo) - 1 > A3_EPSILON_DELTA))
+       t3Math::Abs(reflect.dot(bRec.wo) - 1) > A3_EPSILON_DELTA)
         return 0.0f;
 
     return 1.0f;

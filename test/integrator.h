@@ -109,15 +109,19 @@ void main()
     a3Sphere* sphere2 = new a3Sphere(sphereM2, 1.5);
 
     // light
-    a3Disk* light = new a3Disk(areaM, 1);
+    a3Disk* light = new a3Disk(areaM, 1.5);
     //a3Sphere* light = new a3Sphere(areaM, 1);
     a3AreaLight* areaLight = new a3AreaLight(light, a3Spectrum(10), areaM);
 
     // material
     a3Diffuse* topD = new a3Diffuse();
     a3Diffuse* bottomD = new a3Diffuse();
-    a3Diffuse* leftD = new a3Diffuse(a3Spectrum(1.0, 0.2, 0.2));
-    a3Diffuse* rightD = new a3Diffuse(a3Spectrum(0.2, 1.0, 0.2));
+    a3Diffuse* leftD = new a3Diffuse();
+    leftD->R = a3Spectrum(1.0, 0.2, 0.2);
+
+    a3Diffuse* rightD = new a3Diffuse();
+    rightD->R = a3Spectrum(0.2, 1.0, 0.2);
+
     a3Diffuse* forwardD = new a3Diffuse();
 
     a3Diffuse* sphereD1 = new a3Diffuse();
@@ -125,6 +129,11 @@ void main()
 
     a3Conductor* conductor1 = new a3Conductor();
     a3Conductor* conductor2 = new a3Conductor();
+    conductor2->k = a3Spectrum(1.0f);
+    conductor2->eta = a3Spectrum(5.0f);
+
+    a3Dielectric* dielectric1 = new a3Dielectric();
+    a3Dielectric* dielectric2 = new a3Dielectric();
 
     top->setBSDF(topD);
     bottom->setBSDF(bottomD);
@@ -132,10 +141,12 @@ void main()
     right->setBSDF(rightD);
     forward->setBSDF(forwardD);
 
-    sphere1->setBSDF(sphereD1);
-    sphere2->setBSDF(sphereD2);
+    //sphere1->setBSDF(sphereD1);
+    //sphere2->setBSDF(sphereD2);
     //sphere1->setBSDF(conductor1);
     //sphere2->setBSDF(conductor2);
+    sphere1->setBSDF(dielectric1);
+    sphere2->setBSDF(dielectric2);
 
     // scene
     scene->addLight(areaLight);
@@ -153,23 +164,23 @@ void main()
 
     // render
 #ifdef SAMPLER
-    a3SamplerRenderer* renderer = new a3SamplerRenderer(64);
+    a3SamplerRenderer* renderer = new a3SamplerRenderer(32);
     renderer->enableGammaCorrection = true;
     renderer->enableToneMapping = false;
 #endif
 
 #ifdef SINGLE_RAY
     a3SingleRayRenderer* renderer = new a3SingleRayRenderer();
-    renderer->singleRayX = 493;
-    renderer->singleRayY = 445;
+    renderer->singleRayX = 281;
+    renderer->singleRayY = 527;
 #endif
     renderer->sampler = new a3RandomSampler();
     renderer->camera = camera;
     
-    a3DirectLighting* direcLighting = new a3DirectLighting(5, 5);
-    renderer->integrator = direcLighting;
-    //a3PathTracer* pathTracer = new a3PathTracer();
-    //renderer->integrator = pathTracer;
+    //a3DirectLighting* direcLighting = new a3DirectLighting(1, 1);
+    //renderer->integrator = direcLighting;
+    a3PathTracer* pathTracer = new a3PathTracer();
+    renderer->integrator = pathTracer;
 
     // rendering
     t3Timer timer;
@@ -181,5 +192,5 @@ void main()
 
     a3Log::info("Cost time: %f sec", timer.difference());
 
-    getchar();
+    getchar(); 
 }

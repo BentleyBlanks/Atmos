@@ -93,9 +93,9 @@ a3Spectrum a3PathTracer::Li(const a3Ray & r, const a3Scene & scene) const
         t3Vector3f wo = its.toWorld(bRec.wo);
 
         // wo normal on the same side
-        t3Vector3f n = its.getNormal();
-        if(wo.dot(its.getNormal()) <= 0)
-            break;
+        //t3Vector3f n = its.getNormal();
+        //if(wo.dot(its.getNormal()) <= 0)
+        //    break;
 
         // would be set by a area light or a environment light
         a3Spectrum value;

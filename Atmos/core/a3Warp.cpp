@@ -579,9 +579,51 @@ a3Spectrum a3FresnelConductor(float cosThetaI, const a3Spectrum & eta, const a3S
     return 0.5f * (Rp2 + Rs2);
 }
 
+float a3FresnelDielectric(float _cosThetaI, float & _cosThetaT, float eta)
+{
+    if(eta == 1)
+    {
+        _cosThetaT = -_cosThetaI;
+        return 0.0f;
+    }
+
+    // Using Snell's law, calculate the squared sine of the
+    // angle between the normal and the transmitted ray
+    float scale = (_cosThetaI > 0) ? 1 / eta : eta,
+        cosThetaTSqr = 1 - (1 - _cosThetaI*_cosThetaI) * (scale*scale);
+
+    // Handle for total internal reflection
+    if(cosThetaTSqr <= 0.0f)
+    {
+        _cosThetaT = 0.0f;
+        return 1.0f;
+    }
+
+    // Find the absolute cosines of the incident/transmitted rays
+    float cosThetaI = t3Math::Abs(_cosThetaI);
+    float cosThetaT = t3Math::sqrt(cosThetaTSqr);
+
+    float Rs = (cosThetaI - eta * cosThetaT) / 
+               (cosThetaI + eta * cosThetaT);
+    float Rp = (eta * cosThetaI - cosThetaT) / 
+               (eta * cosThetaI + cosThetaT);
+
+    // maybe from interior to exterior
+    _cosThetaT = (_cosThetaI > 0) ? -cosThetaT : cosThetaT;
+
+    // No polarization -- return the unpolarized reflectance
+    return 0.5f * (Rs * Rs + Rp * Rp);
+}
+
 t3Vector3f a3GetReflect(const t3Vector3f& wi)
 {
     // -wo + 2 * dot(wo, normal) * normal
     // left-handed->normal(0, 1, 0)
     return t3Vector3f(-wi.x, wi.y, -wi.z);
+}
+
+t3Vector3f a3GetRefract(const t3Vector3f & wi, float cosThetaT, float eta)
+{
+    float scale = -(cosThetaT < 0 ? 1 / eta : eta);
+    return t3Vector3f(scale*wi.x, cosThetaT, scale*wi.z);
 }

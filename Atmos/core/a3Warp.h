@@ -107,5 +107,13 @@ float a3RGB2Luminance(const a3Spectrum& rgb);
 // at a planar interface having a complex - valued relative index of refraction
 a3Spectrum a3FresnelConductor(float cosThetai, const a3Spectrum& eta, const a3Spectrum& k);
 
+// Calculates the unpolarized Fresnel reflection coefficient
+// at a planar interface between two dielectrics
+float a3FresnelDielectric(float cosThetaI, float& cosThetaT, float eta);
+
 // get reflect vector in shading coordinates
 t3Vector3f a3GetReflect(const t3Vector3f& a);
+
+// get refract vector in shading coordinates
+// eta = interiorEta / exteriorEta
+t3Vector3f a3GetRefract(const t3Vector3f& wi, float cosThetaT, float eta);
