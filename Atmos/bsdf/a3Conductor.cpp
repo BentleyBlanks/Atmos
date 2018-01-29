@@ -3,9 +3,12 @@
 #include <core/a3Record.h>
 #include <core/a3Warp.h>
 
-a3Conductor::a3Conductor(a3Spectrum R)
-    :R(R)
+a3Conductor::a3Conductor()
 {
+    R = a3Spectrum::one();
+
+    eta = a3Spectrum::zero();
+    k = a3Spectrum::one();
 }
 
 a3Spectrum a3Conductor::eval(const a3BSDFSamplingRecord & bRec) const
@@ -22,7 +25,7 @@ a3Spectrum a3Conductor::eval(const a3BSDFSamplingRecord & bRec) const
         return a3Spectrum::zero();
 
 
-    return R;
+    return R * a3FresnelConductor(cosThetai, eta, k);
 }
 
 a3Spectrum a3Conductor::sample(a3BSDFSamplingRecord & bRec) const
@@ -35,7 +38,7 @@ a3Spectrum a3Conductor::sample(a3BSDFSamplingRecord & bRec) const
     bRec.eta = 1.0f;
     bRec.pdf = 1.0f;
 
-    return R;
+    return R * a3FresnelConductor(cosThetai, eta, k);
 }
 
 float a3Conductor::pdf(const a3BSDFSamplingRecord & bRec) const

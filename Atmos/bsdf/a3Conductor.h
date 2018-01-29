@@ -5,7 +5,7 @@
 class a3Conductor : public a3BSDF
 {
 public:
-    a3Conductor(a3Spectrum R = a3Spectrum::one());
+    a3Conductor();
 
     // evaluate the BSDF f(wi, wo)(f * cos * R)
     virtual a3Spectrum eval(const a3BSDFSamplingRecord& bRec) const;
@@ -22,4 +22,7 @@ public:
 
     // specular refelctance
     a3Spectrum R;
+
+    // interior refractive index of refraction, absorbtion
+    a3Spectrum eta, k;
 };

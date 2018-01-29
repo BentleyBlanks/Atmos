@@ -6,6 +6,7 @@
 #include <core/a3Warp.h>
 #include <core/random/a3Random.h>
 #include <core/image/a3NormalMap.h>
+#include <core/a3Utils.h>
 
 #include <sensors/a3Sensor.h>
 #include <lights/a3Light.h>
@@ -34,16 +35,6 @@ a3SamplerRenderer::~a3SamplerRenderer()
 
 }
 
-// pbrt划分渲染队列独立任务的渲染管线
-// |Task.run()| |Task.run()| ... |Task.run()|
-// ------------------------------------------
-// Task.run()
-//      sample = RandomSampler.getSubSampler()
-//      ray = Camera.generateRayDiffererntial(sample)
-//      intersection = Scene.Intersect(ray)
-//      spectrum = Intergrator.Li(intersection)
-//      File.AddSample(spectrum, sample)
-//      Reporter.Update()
 void a3SamplerRenderer::render(const a3Scene* scene)
 {
     if(!begin()) return;
@@ -60,24 +51,21 @@ void a3SamplerRenderer::render(const a3Scene* scene)
         {
             a3Spectrum color;
 
-            // 当前采样位置
             a3CameraSample sampleTentFilter, sample;
 
             for(int z = 0; z < spp; z++)
             {
-                // 获取下一个采样位置
+                // super sampling
                 sampler->getMoreSamples(x, y, &sample, &sampleTentFilter);
 
-                // memory allocating
                 a3Ray ray;
 
-                // 生成光线
+                // generate ray 
                 camera->castRay(&sampleTentFilter, &ray);
 
                 color += integrator->Li(ray, *scene) / spp;
             }
 
-            // 临时空间中setColor
             colorList[x + y * imageWidth] = color;
             //colorList[x + y * imageWidth] = a3Spectrum(a3Random::randomFloat(), r.randomFloat(), r.randomFloat());
         }
@@ -86,13 +74,14 @@ void a3SamplerRenderer::render(const a3Scene* scene)
 
     t3Timer timer;
     timer.start();
-    // 后期特效处理
+
     postEffect();
+
     timer.end();
 
     a3Log::info("Post Effec Cost: %f\n", timer.difference());
 
-    // 保存真实渲染图像文件
+    // saving the result to the assigned disk path
     camera->image->write();
 
     end();
@@ -181,19 +170,19 @@ bool a3SamplerRenderer::check()
 {
     if(!camera)
     {
-        a3Log::error("a3SamplerRenderer::render()前camera: %d尚未分配指定\n", camera);
+        a3Log::error("Before a3SamplerRenderer::render() was called, the camera: %d is not allocaed\n", camera);
         return false;
     }
 
     if(!sampler)
     {
-        a3Log::error("a3SamplerRenderer::render()前sampler: %d尚未分配指定\n", sampler);
+        a3Log::error("Before a3SamplerRenderer::render() was called, the sampler: %d is not allocaed\n", sampler);
         return false;
     }
 
     if(!integrator)
     {
-        a3Log::error("a3SamplerRenderer::render()前integrator: %d尚未分配指定\n", integrator);
+        a3Log::error("Before a3SamplerRenderer::render() was called, the integrator: %d is not allocaed\n", integrator);
         return false;
     }
 

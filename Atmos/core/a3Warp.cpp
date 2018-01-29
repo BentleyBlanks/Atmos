@@ -245,11 +245,22 @@ void a3GammaCorrection(t3Vector3f& color)
     //toneColor *= 255;
 }
 
+float a3RGBToSRGBComponent(float value)
+{
+    if(value <= (float) 0.0031308)
+        return (float) 12.92 * value;
+    return (float) 1.055  * std::pow(value, (float) (1.0 / 2.4)) - (float) 0.055;
+}
+
 void a3GammaCorrection(float& r, float&g, float& b)
 {
-    r = t3Math::pow(r, 1 / 2.2f);
-    g = t3Math::pow(g, 1 / 2.2f);
-    b = t3Math::pow(b, 1 / 2.2f);
+    //r = t3Math::pow(r, 1 / 2.2f);
+    //g = t3Math::pow(g, 1 / 2.2f);
+    //b = t3Math::pow(b, 1 / 2.2f);
+
+    r = a3RGBToSRGBComponent(r);
+    g = a3RGBToSRGBComponent(g);
+    b = a3RGBToSRGBComponent(b);
 }
 
 void a3OrthonomalSystem(const t3Vector3f& v1, t3Vector3f& v2, t3Vector3f& v3)
@@ -510,24 +521,62 @@ float a3RGB2Luminance(const a3Spectrum& rgb)
     return YWeight[0] * rgb.x + YWeight[1] * rgb.y + YWeight[2] * rgb.z;
 }
 
-// from pbrt's reflection.cpp line:59-67
-float a3FresnelDielectric(float cosi, float cost, const float &etai, const float &etat)
+//--!Deprecated fresnel complementation from pbrt2
+//// from pbrt's reflection.cpp line:59-67
+//float a3FresnelDielectric(float cosi, float cost, const float &etai, const float &etat)
+//{
+//    float Rparl = ((etat * cosi) - (etai * cost)) /
+//        ((etat * cosi) + (etai * cost));
+//    float Rperp = ((etai * cosi) - (etat * cost)) /
+//        ((etai * cosi) + (etat * cost));
+//    return (Rparl*Rparl + Rperp*Rperp) / 2.f;
+//}
+//
+//// from pbrt's reflection.cpp line:71-78
+//float a3FresnelConductor(float cosi, float cost, const float &etai, const float &etat)
+//{
+//    float Rparl = ((etat * cosi) - (etai * cost)) /
+//        ((etat * cosi) + (etai * cost));
+//    float Rperp = ((etai * cosi) - (etat * cost)) /
+//        ((etai * cosi) + (etat * cost));
+//    return (Rparl*Rparl + Rperp*Rperp) / 2.f;
+//}
+
+//--!would be replaced by a full complementation of a3Spectrum
+a3Spectrum a3SqrtSpectrum(const a3Spectrum & s)
 {
-    float Rparl = ((etat * cosi) - (etai * cost)) /
-        ((etat * cosi) + (etai * cost));
-    float Rperp = ((etai * cosi) - (etat * cost)) /
-        ((etai * cosi) + (etat * cost));
-    return (Rparl*Rparl + Rperp*Rperp) / 2.f;
+    a3Spectrum t(s);
+
+    t.x = t3Math::sqrt(t.x);
+    t.y = t3Math::sqrt(t.y);
+    t.z = t3Math::sqrt(t.z);
+
+    return t;
 }
 
-// from pbrt's reflection.cpp line:71-78
-float a3FresnelConductor(float cosi, float cost, const float &etai, const float &etat)
-{
-    float Rparl = ((etat * cosi) - (etai * cost)) /
-        ((etat * cosi) + (etai * cost));
-    float Rperp = ((etai * cosi) - (etat * cost)) /
-        ((etai * cosi) + (etat * cost));
-    return (Rparl*Rparl + Rperp*Rperp) / 2.f;
+a3Spectrum a3FresnelConductor(float cosThetaI, const a3Spectrum & eta, const a3Spectrum & k)
+{	
+    /* Modified from "Optics" by K.D. Moeller, University Science Books, 1988 */
+
+    float cosThetaI2 = cosThetaI*cosThetaI,
+        sinThetaI2 = 1 - cosThetaI2,
+        sinThetaI4 = sinThetaI2*sinThetaI2;
+
+    a3Spectrum temp1 = eta*eta - k*k - a3Spectrum(sinThetaI2),
+        a2pb2 = a3SqrtSpectrum(temp1*temp1 + k*k*eta*eta * 4),
+        a = a3SqrtSpectrum((a2pb2 + temp1) * 0.5f);
+
+    a3Spectrum term1 = a2pb2 + a3Spectrum(cosThetaI2),
+        term2 = a*(2 * cosThetaI);
+
+    a3Spectrum Rs2 = (term1 - term2) / (term1 + term2);
+
+    a3Spectrum term3 = a2pb2*cosThetaI2 + a3Spectrum(sinThetaI4),
+        term4 = term2*sinThetaI2;
+
+    a3Spectrum Rp2 = Rs2 * (term3 - term4) / (term3 + term4);
+
+    return 0.5f * (Rp2 + Rs2);
 }
 
 t3Vector3f a3GetReflect(const t3Vector3f& wi)

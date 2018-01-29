@@ -6,8 +6,10 @@
 #include <core/a3Record.h>
 #include <core/a3Record.h>
 
-a3Diffuse::a3Diffuse(a3Spectrum R) :R(R)
+a3Diffuse::a3Diffuse()
 {
+    R = a3Spectrum::one();
+
     name = "a3Diffuse";
 }
 

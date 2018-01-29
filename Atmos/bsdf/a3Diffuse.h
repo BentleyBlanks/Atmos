@@ -5,7 +5,7 @@
 class a3Diffuse : public a3BSDF
 {
 public:
-    a3Diffuse(a3Spectrum R = a3Spectrum::one());
+    a3Diffuse();
 
     // evaluate the BSDF f(wi, wo)(f * cos * R)
     virtual a3Spectrum eval(const a3BSDFSamplingRecord& bRec) const;

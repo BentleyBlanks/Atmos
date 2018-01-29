@@ -70,6 +70,9 @@ void a3GammaCorrection(float& r, float&g, float& b);
 // 伽马矫正
 void a3GammaCorrection(t3Vector3f& color);
 
+// convert linear rgb component to srgb
+float a3RGBToSRGBComponent(float value);
+
 
 
 // ----------------------------------------------Math----------------------------------------------
@@ -100,11 +103,9 @@ float a3FovToApretureSizeRad(float fov);
 // RGBSpectrum转为亮度/明度
 float a3RGB2Luminance(const a3Spectrum& rgb);
 
-// 导体的菲涅尔反射项
-float a3FresnelDielectric(float cosi, float cost, const float &etai, const float &etat);
-
-// 绝缘体的菲涅尔反射项
-float a3FresnelConductor(float cosi, float cost, const float &etai, const float &etat);
+// Calculates the unpolarized Fresnel reflection coefficient 
+// at a planar interface having a complex - valued relative index of refraction
+a3Spectrum a3FresnelConductor(float cosThetai, const a3Spectrum& eta, const a3Spectrum& k);
 
 // get reflect vector in shading coordinates
 t3Vector3f a3GetReflect(const t3Vector3f& a);
