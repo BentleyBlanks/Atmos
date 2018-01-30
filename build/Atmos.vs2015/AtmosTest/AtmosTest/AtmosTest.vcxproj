@@ -20,20 +20,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\test\aabb.h" />
-    <ClInclude Include="..\..\..\..\test\areaLight.h" />
-    <ClInclude Include="..\..\..\..\test\blender.h" />
     <ClInclude Include="..\..\..\..\test\coordinate.h" />
     <ClInclude Include="..\..\..\..\test\editor.h" />
     <ClInclude Include="..\..\..\..\test\exr.h" />
-    <ClInclude Include="..\..\..\..\test\fresnel.h" />
     <ClInclude Include="..\..\..\..\test\grid.h" />
     <ClInclude Include="..\..\..\..\test\integrator.h" />
+    <ClInclude Include="..\..\..\..\test\microfacet.h" />
     <ClInclude Include="..\..\..\..\test\scenes.h" />
     <ClInclude Include="..\..\..\..\test\ipc.h" />
     <ClInclude Include="..\..\..\..\test\model.h" />
     <ClInclude Include="..\..\..\..\test\png.h" />
     <ClInclude Include="..\..\..\..\test\ray.h" />
-    <ClInclude Include="..\..\..\..\test\render.h" />
     <ClInclude Include="..\..\..\..\test\renderQueue.h" />
     <ClInclude Include="..\..\..\..\test\util.h" />
   </ItemGroup>

@@ -19,7 +19,7 @@ public:
              float focalDistance, float lensRadius,
              a3Film* image);
 
-    virtual float castRay(const a3CameraSample* sample, a3Ray* ray) const;
+    virtual float castRay(const a3CameraSample* sample, a3Ray* ray) const = 0;
 
     void setCameraToWorld(const t3Vector3f& origin, const t3Vector3f& lookat, const t3Vector3f& up);
 

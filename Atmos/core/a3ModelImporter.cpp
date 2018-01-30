@@ -33,13 +33,13 @@ public:
 
         if(!scene)
         {
-            a3Log::error("无法打开文件%s\n", filePath);
+            a3Log::error("Can't open file: %s\n", filePath);
             return std::vector<a3Shape*>();
         }
 
         if(scene->mNumMeshes < 0)
         {
-            a3Log::error("模型%s中无任何图元对象\n", filePath);
+            a3Log::error("The model: %s don't have any primitives\n", filePath);
             return std::vector<a3Shape*>();
         }
 
@@ -49,7 +49,7 @@ public:
         {
             const struct aiMesh* mesh = scene->mMeshes[m];
 
-            a3Log::debug("faces: %d, vertices: %d, normals: %d\n", mesh->mNumFaces, mesh->mNumVertices, mesh->mNumVertices * 3);
+            a3Log::debug("Faces: %d, Vertices: %d, Normals: %d\n", mesh->mNumFaces, mesh->mNumVertices, mesh->mNumVertices * 3);
             // 仅支持三角形作为图元
             for(int i = 0; i < mesh->mNumFaces; i++)
             {
@@ -58,7 +58,7 @@ public:
                 int numIndices = mesh->mFaces[i].mNumIndices;
                 if(numIndices != 3)
                 {
-                    a3Log::error("Atmos仅支持三角形作为片元, 而当前模型面由%d个顶点组成\n", numIndices);
+                    a3Log::error("Atmos only supports triangles. The model imported have %d vertices\n", numIndices);
 
                     //A3_SAFE_DELETE(shapes);
 
@@ -114,7 +114,7 @@ public:
 
         if(!ret)
         {
-            a3Log::error("无法打开文件%s\n", filePath);
+            a3Log::error("Can't open file: %s\n", filePath);
             return std::vector<a3Shape*>();
         }
 
@@ -151,61 +151,75 @@ public:
                         }
                     }
 
-                    a3Log::error("Atmos仅支持三角形作为片元, 而当前模型面由%d个顶点组成\n", fv);
+                    a3Log::error("Atmos only supports triangles. The model imported have %d vertices\n", fv);
                     return std::vector<a3Shape*>();
                 }
 
-                // Loop over vertices in the face.
-                //for(size_t v = 0; v < fv; v++)
-                //{
                 // access to vertex
-                // -----------------------------v0-----------------------------
+                a3Triangle* triangle = new a3Triangle();
+
+                // -----------------------------indices-----------------------------
                 tinyobj::index_t idx0 = shapes[s].mesh.indices[index_offset + 0];
+                tinyobj::index_t idx1 = shapes[s].mesh.indices[index_offset + 1];
+                tinyobj::index_t idx2 = shapes[s].mesh.indices[index_offset + 2];
+
+                if(idx0.vertex_index == -1 || idx1.vertex_index == -1 || idx2.vertex_index == -1)
+                {
+                    a3Log::error("The model doesn't have any vertives\n");
+                    return std::vector<a3Shape*>();
+                }
+
+                // -----------------------------vertex component-----------------------------
                 float vx0 = attrib.vertices[3 * idx0.vertex_index + 0];
                 float vy0 = attrib.vertices[3 * idx0.vertex_index + 1];
                 float vz0 = attrib.vertices[3 * idx0.vertex_index + 2];
 
-                float nx0 = attrib.normals[3 * idx0.normal_index + 0];
-                float ny0 = attrib.normals[3 * idx0.normal_index + 1];
-                float nz0 = attrib.normals[3 * idx0.normal_index + 2];
-
-                // -----------------------------v1-----------------------------
-                tinyobj::index_t idx1 = shapes[s].mesh.indices[index_offset + 1];
                 float vx1 = attrib.vertices[3 * idx1.vertex_index + 0];
                 float vy1 = attrib.vertices[3 * idx1.vertex_index + 1];
                 float vz1 = attrib.vertices[3 * idx1.vertex_index + 2];
 
-                float nx1 = attrib.normals[3 * idx1.normal_index + 0];
-                float ny1 = attrib.normals[3 * idx1.normal_index + 1];
-                float nz1 = attrib.normals[3 * idx1.normal_index + 2];
-
-
-                // -----------------------------v2-----------------------------
-                tinyobj::index_t idx2 = shapes[s].mesh.indices[index_offset + 2];
                 float vx2 = attrib.vertices[3 * idx2.vertex_index + 0];
                 float vy2 = attrib.vertices[3 * idx2.vertex_index + 1];
                 float vz2 = attrib.vertices[3 * idx2.vertex_index + 2];
 
-                float nx2 = attrib.normals[3 * idx2.normal_index + 0];
-                float ny2 = attrib.normals[3 * idx2.normal_index + 1];
-                float nz2 = attrib.normals[3 * idx2.normal_index + 2];
+                // -----------------------------v0 v1 v2-----------------------------
+                t3Vector3f v0(vx0, vy0, vz0), v1(vx1, vy1, vz1), v2(vx2, vy2, vz2);
 
+                triangle->v0 = v0;
+                triangle->v1 = v1;
+                triangle->v2 = v2;
 
-                // -----------------------------Atmos triangle-----------------------------
-                // --!此处可用循环节省代码                
-                a3Triangle* triangle = new a3Triangle();
+                // using face normal if there are no vertex normal
+                t3Vector3f normal = (v1 - v0).getCrossed(v2 - v0).getNormalized();
 
-                // init vertices
-                triangle->v0.set(vx0, vy0, vz0);
-                triangle->v1.set(vx1, vy1, vz1);
-                triangle->v2.set(vx2, vy2, vz2);
+                // -----------------------------normal-----------------------------
+                if(idx0.normal_index != -1 && idx1.normal_index != -1 && idx2.normal_index != -1)
+                {
+                    float nx0 = attrib.normals[3 * idx0.normal_index + 0];
+                    float ny0 = attrib.normals[3 * idx0.normal_index + 1];
+                    float nz0 = attrib.normals[3 * idx0.normal_index + 2];
 
-                // init normals
-                triangle->n0.set(nx0, ny0, nz0);
-                triangle->n1.set(nx1, ny1, nz1);
-                triangle->n2.set(nx2, ny2, nz2);
+                    float nx1 = attrib.normals[3 * idx1.normal_index + 0];
+                    float ny1 = attrib.normals[3 * idx1.normal_index + 1];
+                    float nz1 = attrib.normals[3 * idx1.normal_index + 2];
+
+                    float nx2 = attrib.normals[3 * idx2.normal_index + 0];
+                    float ny2 = attrib.normals[3 * idx2.normal_index + 1];
+                    float nz2 = attrib.normals[3 * idx2.normal_index + 2];
+
+                    triangle->n0.set(nx0, ny0, nz0);
+                    triangle->n1.set(nx1, ny1, nz1);
+                    triangle->n2.set(nx2, ny2, nz2);
+                }
+                else
+                {
+                    // face normal
+                    triangle->n0 = normal;
+                    triangle->n2 = normal;
+                    triangle->n1 = normal;
+                }
                 
-
+                // texture indices
                 if(idx0.texcoord_index != -1 && idx1.texcoord_index != -1 && idx2.texcoord_index != -1)
                 {
                     float tx0 = attrib.texcoords[2 * idx0.texcoord_index + 0];

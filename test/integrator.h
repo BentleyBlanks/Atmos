@@ -164,7 +164,7 @@ void main()
 
     // render
 #ifdef SAMPLER
-    a3SamplerRenderer* renderer = new a3SamplerRenderer(32);
+    a3SamplerRenderer* renderer = new a3SamplerRenderer(4096);
     renderer->enableGammaCorrection = true;
     renderer->enableToneMapping = false;
 #endif

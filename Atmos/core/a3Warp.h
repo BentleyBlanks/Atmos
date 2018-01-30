@@ -40,10 +40,10 @@ t3Vector3f a3UniformSampleCone(float u1, float u2, float cosThetaMax);
 // Convert an uniformly distributed square sample into barycentric coordinates
 t3Vector2f a3UniformSampleTriangle(float u1, float u2);
 
-// 均匀采样球概率分布
+// uniform sample a normalized sphere
 float a3UniformSpherePdf();
 
-// 均匀采样半球概率分布
+// uniform sample a normalized hemisphere
 float a3UniformHemispherePdf();
 
 // Density of a3CosineSampleHemisphere() with respect to solid angles
