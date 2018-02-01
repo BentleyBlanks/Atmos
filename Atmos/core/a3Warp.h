@@ -114,6 +114,10 @@ float a3FresnelDielectric(float cosThetaI, float& cosThetaT, float eta);
 // get reflect vector in shading coordinates
 t3Vector3f a3GetReflect(const t3Vector3f& a);
 
+// giving surface normal to get reflect vector 
+t3Vector3f a3GetReflect(const t3Vector3f& a, const t3Vector3f& normal);
+
 // get refract vector in shading coordinates
 // eta = interiorEta / exteriorEta
 t3Vector3f a3GetRefract(const t3Vector3f& wi, float cosThetaT, float eta);
+

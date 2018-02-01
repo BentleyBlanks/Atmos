@@ -22,7 +22,7 @@ class a3ModelImporter::a3Importer
 public:
     a3Importer() :scene(NULL){}
 
-    std::vector<a3Shape*> load(const char* filePath)
+    std::vector<a3Shape*> load(const char* filePath, bool convertHandness)
     {
 #ifdef A3_MODEL_IMPORTOR_ASSIMP
 
@@ -120,8 +120,8 @@ public:
 
         a3Log::debug("Total vertices: %d, normals : %d\n texcorrds : %d\n",
             (int) attrib.vertices.size() / 3,
-                     (int) attrib.normals.size() / 3,
-                     (int) attrib.texcoords.size() / 2);
+            (int) attrib.normals.size() / 3,
+            (int) attrib.texcoords.size() / 2);
 
         std::vector<a3Shape*> triShapes;
         // Loop over shapes
@@ -183,7 +183,20 @@ public:
                 float vz2 = attrib.vertices[3 * idx2.vertex_index + 2];
 
                 // -----------------------------v0 v1 v2-----------------------------
-                t3Vector3f v0(vx0, vy0, vz0), v1(vx1, vy1, vz1), v2(vx2, vy2, vz2);
+                t3Vector3f v0, v1, v2;
+
+                if(convertHandness)
+                {
+                    v0.set(vx0, vz0, vy0);
+                    v1.set(vx1, vz1, vy1);
+                    v2.set(vx2, vz2, vy2);
+                }
+                else
+                {
+                    v0.set(vx0, vy0, vz0);
+                    v1.set(vx1, vy1, vz1);
+                    v2.set(vx2, vy2, vz2);
+                }
 
                 triangle->v0 = v0;
                 triangle->v1 = v1;
@@ -207,16 +220,35 @@ public:
                     float ny2 = attrib.normals[3 * idx2.normal_index + 1];
                     float nz2 = attrib.normals[3 * idx2.normal_index + 2];
 
-                    triangle->n0.set(nx0, ny0, nz0);
-                    triangle->n1.set(nx1, ny1, nz1);
-                    triangle->n2.set(nx2, ny2, nz2);
+                    if(convertHandness)
+                    {
+                        triangle->n0.set(nx0, nz0, ny0);
+                        triangle->n1.set(nx1, nz1, ny1);
+                        triangle->n2.set(nx2, nz2, ny2);
+                    }
+                    else
+                    {
+                        triangle->n0.set(nx0, ny0, nz0);
+                        triangle->n1.set(nx1, ny1, nz1);
+                        triangle->n2.set(nx2, ny2, nz2);
+                    }
                 }
                 else
                 {
-                    // face normal
-                    triangle->n0 = normal;
-                    triangle->n2 = normal;
-                    triangle->n1 = normal;
+                    if(convertHandness)
+                    {
+                        // face normal
+                        triangle->n0 = -normal;
+                        triangle->n1 = -normal;
+                        triangle->n2 = -normal;
+                    }
+                    else
+                    {
+                        // face normal
+                        triangle->n0 = normal;
+                        triangle->n1 = normal;
+                        triangle->n2 = normal;
+                    }
                 }
                 
                 // texture indices
@@ -258,6 +290,8 @@ public:
 a3ModelImporter::a3ModelImporter()
 {
     importer = new a3Importer();
+
+    convertHandness = false;
 }
 
 a3ModelImporter::~a3ModelImporter()
@@ -267,7 +301,7 @@ a3ModelImporter::~a3ModelImporter()
 
 std::vector<a3Shape*> a3ModelImporter::load(const char* filePath)
 {
-    return importer->load(filePath);
+    return importer->load(filePath, convertHandness);
 }
 
 

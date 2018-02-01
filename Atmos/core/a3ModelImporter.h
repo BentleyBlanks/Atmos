@@ -14,6 +14,8 @@ public:
 
     std::vector<a3Shape*> load(const char* filePath);
 
+    bool convertHandness;
+
 private:
     class a3Importer;
     a3Importer* importer;

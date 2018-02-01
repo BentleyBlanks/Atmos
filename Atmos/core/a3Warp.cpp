@@ -622,6 +622,12 @@ t3Vector3f a3GetReflect(const t3Vector3f& wi)
     return t3Vector3f(-wi.x, wi.y, -wi.z);
 }
 
+t3Vector3f a3GetReflect(const t3Vector3f & wi, const t3Vector3f & m)
+{
+    // reflect wi with respect to a given surface normal
+    return 2 * wi.dot(m) * t3Vector3f(m) - wi;
+}
+
 t3Vector3f a3GetRefract(const t3Vector3f & wi, float cosThetaT, float eta)
 {
     float scale = -(cosThetaT < 0 ? 1 / eta : eta);
