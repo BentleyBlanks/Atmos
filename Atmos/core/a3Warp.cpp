@@ -209,6 +209,28 @@ float a3SphericalPhi(const t3Vector3f &v)
     return (p < 0.f) ? p + 2.f * T3MATH_PI : p;
 }
 
+float a3SphericalCosPhi(const t3Vector3f & w)
+{
+    float sinTheta = a3SinTheta(w);
+    return (sinTheta == 0) ? 1 : t3Math::clamp<float>(w.x / sinTheta, -1, 1);
+}
+
+float a3SphericalSinPhi(const t3Vector3f & w)
+{
+    float sinTheta = a3SinTheta(w);
+    return (sinTheta == 0) ? 0 : t3Math::clamp<float>(w.z / sinTheta, -1, 1);
+}
+
+float a3SphericalCos2Phi(const t3Vector3f & w)
+{
+    return a3SphericalCosPhi(w) * a3SphericalCosPhi(w);
+}
+
+float a3SphericalSin2Phi(const t3Vector3f & w)
+{
+    return a3SphericalCosPhi(w) * a3SphericalCosPhi(w);
+}
+
 t3Vector3f a3Uncharted2Tonemap(t3Vector3f x)
 {
     float A = 0.15f;
@@ -250,6 +272,37 @@ float a3RGBToSRGBComponent(float value)
     if(value <= (float) 0.0031308)
         return (float) 12.92 * value;
     return (float) 1.055  * std::pow(value, (float) (1.0 / 2.4)) - (float) 0.055;
+}
+
+float a3CosTheta(const t3Vector3f & w)
+{
+    // normal(0, 1, 0)
+    return w.y;
+}
+
+float a3Cos2Theta(const t3Vector3f & w)
+{
+    return w.y * w.y;
+}
+
+float a3SinTheta(const t3Vector3f & w)
+{
+    return t3Math::sqrt(a3Sin2Theta(w));
+}
+
+float a3Sin2Theta(const t3Vector3f & w)
+{
+    return t3Math::Max<float>(0.0f, 1.0f - a3Cos2Theta(w));
+}
+
+float a3TanTheta(const t3Vector3f & w)
+{
+    return a3SinTheta(w) / a3Cos2Theta(w);;
+}
+
+float a3Tan2Theta(const t3Vector3f & w)
+{
+    return a3Sin2Theta(w) / a3Cos2Theta(w);
 }
 
 void a3GammaCorrection(float& r, float&g, float& b)
@@ -515,7 +568,7 @@ void a3ToneMapping(t3Vector3f* colorList, int startX, int startY, int localWidth
 #undef LUM
 }
 
-float a3RGB2Luminance(const a3Spectrum& rgb)
+float a3RGBToLuminance(const a3Spectrum& rgb)
 {
     const float YWeight[3] = {0.212671f, 0.715160f, 0.072169f};
     return YWeight[0] * rgb.x + YWeight[1] * rgb.y + YWeight[2] * rgb.z;
@@ -615,6 +668,7 @@ float a3FresnelDielectric(float _cosThetaI, float & _cosThetaT, float eta)
     return 0.5f * (Rs * Rs + Rp * Rp);
 }
 
+// ----------------------------------------------Geometry----------------------------------------------
 t3Vector3f a3GetReflect(const t3Vector3f& wi)
 {
     // -wo + 2 * dot(wo, normal) * normal
@@ -625,7 +679,7 @@ t3Vector3f a3GetReflect(const t3Vector3f& wi)
 t3Vector3f a3GetReflect(const t3Vector3f & wi, const t3Vector3f & m)
 {
     // reflect wi with respect to a given surface normal
-    return 2 * wi.dot(m) * t3Vector3f(m) - wi;
+    return 2 * wi.dot(m) * m - wi;
 }
 
 t3Vector3f a3GetRefract(const t3Vector3f & wi, float cosThetaT, float eta)

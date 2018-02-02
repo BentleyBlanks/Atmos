@@ -130,7 +130,7 @@ a3Spectrum a3PathTracer::Li(const a3Ray & r, const a3Scene & scene) const
 
         // Keep track of the throughput and relative refractive index along the path
         throughput *= bsdfValue;
-        eta *= bRec.eta;
+        //eta *= bRec.eta;
 
         // If a light was hit, estimate the local illumination and weight using the power heuristic
         if(hitLight)
@@ -141,7 +141,7 @@ a3Spectrum a3PathTracer::Li(const a3Ray & r, const a3Scene & scene) const
             // Multiple importance sampling
             float weight = a3MiWeight(bRec.pdf, lightPdf);
 
-            L += throughput * value * bsdfValue * weight;
+            L += throughput * value * weight;
         }
 
         // ===========================================Indirect illumination===========================================
@@ -152,7 +152,7 @@ a3Spectrum a3PathTracer::Li(const a3Ray & r, const a3Scene & scene) const
         // Russian roulette Stop with at least some probability to avoid getting stuck
         if(depth++ >= rrDepth)
         {
-            float q = t3Math::Min(0.95f, a3RGB2Luminance(throughput));
+            float q = t3Math::Min(0.95f, a3RGBToLuminance(throughput));
             if(a3Random::randomFloat() >= q)
                 break;
             throughput /= q;

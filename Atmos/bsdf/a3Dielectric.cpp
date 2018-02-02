@@ -16,8 +16,8 @@ a3Dielectric::a3Dielectric()
 a3Spectrum a3Dielectric::eval(const a3BSDFSamplingRecord & bRec) const
 {
     float cosThetaT;
-    float cosThetaI = bRec.wi.dot(t3Vector3f(0, 1, 0));
-    float cosThetaO = bRec.wo.dot(t3Vector3f(0, 1, 0));
+    float cosThetaI = a3CosTheta(bRec.wi);
+    float cosThetaO = a3CosTheta(bRec.wo);
 
     float f = a3FresnelDielectric(cosThetaI, cosThetaT, eta);
 
@@ -50,7 +50,7 @@ a3Spectrum a3Dielectric::eval(const a3BSDFSamplingRecord & bRec) const
 a3Spectrum a3Dielectric::sample(a3BSDFSamplingRecord & bRec) const
 {
     float cosThetaT;
-    float cosThetaI = bRec.wi.dot(t3Vector3f(0, 1, 0));
+    float cosThetaI = a3CosTheta(bRec.wi);
 
     float f = a3FresnelDielectric(cosThetaI, cosThetaT, eta);
 
@@ -79,8 +79,8 @@ a3Spectrum a3Dielectric::sample(a3BSDFSamplingRecord & bRec) const
 float a3Dielectric::pdf(const a3BSDFSamplingRecord & bRec) const
 {
     float cosThetaT;
-    float cosThetaI = bRec.wi.dot(t3Vector3f(0, 1, 0));
-    float cosThetaO = bRec.wo.dot(t3Vector3f(0, 1, 0));
+    float cosThetaI = a3CosTheta(bRec.wi);
+    float cosThetaO = a3CosTheta(bRec.wo);
 
     float f = a3FresnelDielectric(cosThetaI, cosThetaT, eta);
 

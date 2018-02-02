@@ -35,7 +35,7 @@ void main()
                  0, 0, 1, 0,
                  0, 0, 0, 1);
 
-    sphereM4.set(1, 0, 0, 1.75,
+    sphereM4.set(1, 0, 0, 1.25,
                  0, 1, 0, 0,
                  0, 0, 1, 0,
                  0, 0, 0, 1);
@@ -60,6 +60,8 @@ void main()
     a3AreaLight* l5 = new a3AreaLight(sphere5, a3Spectrum(1.23457), sphereM5);
 
     a3ModelImporter importer;
+    importer.convertHandness = false;
+
     std::vector<a3Shape*> plate1 = importer.load("../../../../resources/models/MIS/plate1.obj");
     std::vector<a3Shape*> plate2 = importer.load("../../../../resources/models/MIS/plate2.obj");
     std::vector<a3Shape*> plate3 = importer.load("../../../../resources/models/MIS/plate3.obj");
@@ -67,7 +69,14 @@ void main()
     std::vector<a3Shape*> floor = importer.load("../../../../resources/models/MIS/floor.obj");
 
     // material
-    a3Diffuse* diffuse = new a3Diffuse();
+    //a3Diffuse* p = new a3Diffuse();
+    a3RoughConductor* plateBSDF = new a3RoughConductor();
+    plateBSDF->alphaX = 0.1;
+    plateBSDF->alphaY = 0.1;
+    plateBSDF->R = a3Spectrum(1);
+    //plateBSDF->eta = a3Spectrum(0.200438, 0.924033, 1.10221);
+    //plateBSDF->k = a3Spectrum(3.91295, 2.45285, 2.14219);
+
     a3Diffuse* floarDiffuss = new a3Diffuse();
     floarDiffuss->R.set(0.4, 0.4, 0.4);
 
@@ -75,25 +84,25 @@ void main()
 
     for(auto s : plate1)
     {
-        s->setBSDF(diffuse);
+        s->setBSDF(plateBSDF);
         scene->addShape(s);
     }
 
     for(auto s : plate2)
     {
-        s->setBSDF(diffuse);
+        s->setBSDF(plateBSDF);
         scene->addShape(s);
     }
 
     for(auto s : plate3)
     {
-        s->setBSDF(diffuse);
+        s->setBSDF(plateBSDF);
         scene->addShape(s);
     }
 
     for(auto s : plate4)
     {
-        s->setBSDF(diffuse);
+        s->setBSDF(plateBSDF);
         scene->addShape(s);
     }
 
@@ -121,7 +130,7 @@ void main()
 
     // render
 #ifdef SAMPLER
-    a3SamplerRenderer* renderer = new a3SamplerRenderer(256);
+    a3SamplerRenderer* renderer = new a3SamplerRenderer(64);
     renderer->enableGammaCorrection = true;
     renderer->enableToneMapping = false;
 #endif
@@ -134,7 +143,7 @@ void main()
     renderer->sampler = new a3RandomSampler();
     renderer->camera = camera;
 
-    a3DirectLighting* direcLighting = new a3DirectLighting(16, 16);
+    a3DirectLighting* direcLighting = new a3DirectLighting(0, 5);
     renderer->integrator = direcLighting;
     //a3PathTracer* pathTracer = new a3PathTracer();
     //renderer->integrator = pathTracer;

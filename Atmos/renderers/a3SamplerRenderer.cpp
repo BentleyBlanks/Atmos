@@ -45,7 +45,7 @@ void a3SamplerRenderer::render(const a3Scene* scene)
 #pragma omp parallel for schedule(dynamic)
     for(int x = 0; x < imageWidth; x++)
     {
-        a3Log::info("Spp:%d    Rendering: %8.2f \r", spp, (double) x / imageWidth * 100);
+        a3Log::info("Spp:%d    Rendering: %.2f%% \r", spp, (float) x / imageWidth * 100);
 
         for(int y = 0; y < imageHeight; y++)
         {

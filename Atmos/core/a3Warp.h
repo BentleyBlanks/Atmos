@@ -4,21 +4,21 @@
 #include <t3Math/core/t3Vector3.h>
 #include <core/a3Spectrum.h>
 
-// --!公共函数
+// Public Function for convenient computation
 // ----------------------------------------------Sampling----------------------------------------------
 enum a3UniformSampleDiskType
 {
-    // --!Peter Shirley提出的变换更小的解法 https://mediatech.aalto.fi/~jaakko/T111-5310/K2013/JGT-97.pdf
+    // --!Peter Shirley's solution https://mediatech.aalto.fi/~jaakko/T111-5310/K2013/JGT-97.pdf
     A3UNIFORM_SAMPLE_DISK_CONCENTRIC = 0,
-    // 概率密度转换得到的笛卡尔表达
+    // common solution to uniform sample a disk
     A3UNIFORM_SAMPLE_DISK_CARTESIAN
 };
 
 enum a3CosineSampleHemisphereType
 {
-    // 于圆盘上均匀采样投影至半球满足Cosine-Weighted
+    // uniform sample a disk then projectd to hemisphere to cosine-weighted sample a hemisphere
     A3UNIFORM_SAMPLE_HEMISPHERE_PROJECTED = 0,
-    // 概率密度转换得到的笛卡尔表达
+    // common solution to cosine-weighted sample a hemisphere
     A3UNIFORM_SAMPLE_HEMISPHERE_CARTESIAN
 };
 
@@ -52,22 +52,22 @@ float a3CosineSampleHemispherePdf(const t3Vector3f& d);
 
 
 // ----------------------------------------------Post Effect----------------------------------------------
-// 局部空间色调映射
+// map one set of colors to another to approximate the appearance of high dynamic range image
 void a3ToneMapping(t3Vector3f* colorList, int startX, int startY, int localWidth, int localHeight, int width, int height);
 
-// 色调映射(需要保证colorList指针已指向线性空间 大小为width * height)
+// map one set of colors to another to approximate the appearance of high dynamic range image
 void a3ToneMapping(t3Vector3f* colorList, int width, int height);
 
-// float数组的三通道Buffer
+// map one set of colors to another to approximate the appearance of high dynamic range image
 void a3ToneMapping(float* buffer, int width, int height);
 
-// 未启用的Tone Mapping
+// the tonemapping used in Unchared
 void a3UncharedTonemap(t3Vector3f& color, float eyeAdaption = 4);
 
-// 伽马矫正(三分量)
+// do gamma correction to convert linear space to srgb
 void a3GammaCorrection(float& r, float&g, float& b);
 
-// 伽马矫正
+// do gamma correction to convert linear space to srgb
 void a3GammaCorrection(t3Vector3f& color);
 
 // convert linear rgb component to srgb
@@ -76,32 +76,44 @@ float a3RGBToSRGBComponent(float value);
 
 
 // ----------------------------------------------Math----------------------------------------------
-// 球坐标Theta:[0, 2pi]
-float a3SphericalTheta(const t3Vector3f &v);
+// spherical coordinate's theta:[0, 2pi]
+float a3SphericalTheta(const t3Vector3f &w);
 
-// 球坐标Phi:[-pi, +pi]
-float a3SphericalPhi(const t3Vector3f &v);
+// spherical coordinate's phi:[-pi, +pi]
+float a3SphericalPhi(const t3Vector3f &w);
 
-// 给定v1坐标轴 与v2v3构建一正交坐标系(返回单位向量)
+// spherical coordinate's cosphi
+float a3SphericalCosPhi(const t3Vector3f &w);
+
+// spherical coordinate's cosphi
+float a3SphericalSinPhi(const t3Vector3f &w); 
+
+// spherical coordinate's cos2phi
+float a3SphericalCos2Phi(const t3Vector3f &w);
+
+// spherical coordinate's sin2phi
+float a3SphericalSin2Phi(const t3Vector3f &w);
+
+// get a orthonomal system, the v2 v3 are perpendicular to v1
 void a3OrthonomalSystem(const t3Vector3f& v1, t3Vector3f& v2, t3Vector3f& v3);
 
-// 计算判别式求解二次方程f(若有解则t0 <= t1)
+// solving quadratic(exist a solution if t0 <= t1)
 bool a3SolveQuadratic(float A, float B, float C, float* t0, float* t1);
 
-// 计算判别式求解二次方程d(若有解则t0 <= t1)
+// solving quadratic(exist a solution if t0 <= t1)
 bool a3SolveQuadraticDouble(double A, double B, double C, double* t0, double* t1);
 
-// 多重重要性采样
+// Multiple importance sampling's herostic function
 float a3MiWeight(float fPdf, float gPdf);
 
-// [Tools]转Fov为apretureWidth/Height(度)
+// convert fov to apretureWidth/Height(Degree)
 float a3FovToApretureSizeDeg(float fov);
 
-// [Tools]转Fov为apretureWidth/Height(弧度)
+// convert fov to apretureWidth/Height(Radians)
 float a3FovToApretureSizeRad(float fov);
 
-// RGBSpectrum转为亮度/明度
-float a3RGB2Luminance(const a3Spectrum& rgb);
+// conbert RGBSpectrum to Luminance
+float a3RGBToLuminance(const a3Spectrum& rgb);
 
 // Calculates the unpolarized Fresnel reflection coefficient 
 // at a planar interface having a complex - valued relative index of refraction
@@ -111,6 +123,27 @@ a3Spectrum a3FresnelConductor(float cosThetai, const a3Spectrum& eta, const a3Sp
 // at a planar interface between two dielectrics
 float a3FresnelDielectric(float cosThetaI, float& cosThetaT, float eta);
 
+// get costheta in shading coordinate
+float a3CosTheta(const t3Vector3f& w);
+
+// get costheta * costheta in shading coordinate
+float a3Cos2Theta(const t3Vector3f& w);
+
+// get sintheta in shading coordinate
+float a3SinTheta(const t3Vector3f& w);
+
+// get sintheta * sintheta in shading coordinate
+float a3Sin2Theta(const t3Vector3f& w);
+
+// get tantheta in shading coordinate
+float a3TanTheta(const t3Vector3f& w);
+
+// get tantheta * tantheta in shading coordinate
+float a3Tan2Theta(const t3Vector3f& w);
+
+
+
+// ----------------------------------------------Geometry----------------------------------------------
 // get reflect vector in shading coordinates
 t3Vector3f a3GetReflect(const t3Vector3f& a);
 

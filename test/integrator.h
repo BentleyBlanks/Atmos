@@ -1,8 +1,8 @@
 #include <Atmos.h>
 
 // Renderer
-#define SAMPLER
-//#define SINGLE_RAY
+//#define SAMPLER
+#define SINGLE_RAY
 
 // Light
 //#define ENVIRONMENT_LIGHT
@@ -124,8 +124,10 @@ void main()
 
     a3Diffuse* forwardD = new a3Diffuse();
 
-    a3Diffuse* sphereD1 = new a3Diffuse();
-    a3Diffuse* sphereD2 = new a3Diffuse();
+    //a3Diffuse* sphereD1 = new a3Diffuse();
+    //a3Diffuse* sphereD2 = new a3Diffuse();
+    a3RoughConductor* sphereD1 = new a3RoughConductor();
+    a3RoughConductor* sphereD2 = new a3RoughConductor();
 
     a3Conductor* conductor1 = new a3Conductor();
     a3Conductor* conductor2 = new a3Conductor();
@@ -141,12 +143,12 @@ void main()
     right->setBSDF(rightD);
     forward->setBSDF(forwardD);
 
-    //sphere1->setBSDF(sphereD1);
-    //sphere2->setBSDF(sphereD2);
+    sphere1->setBSDF(sphereD1);
+    sphere2->setBSDF(sphereD2);
     //sphere1->setBSDF(conductor1);
     //sphere2->setBSDF(conductor2);
-    sphere1->setBSDF(dielectric1);
-    sphere2->setBSDF(dielectric2);
+    //sphere1->setBSDF(dielectric1);
+    //sphere2->setBSDF(dielectric2);
 
     // scene
     scene->addLight(areaLight);
@@ -164,20 +166,20 @@ void main()
 
     // render
 #ifdef SAMPLER
-    a3SamplerRenderer* renderer = new a3SamplerRenderer(4096);
+    a3SamplerRenderer* renderer = new a3SamplerRenderer(64);
     renderer->enableGammaCorrection = true;
     renderer->enableToneMapping = false;
 #endif
 
 #ifdef SINGLE_RAY
     a3SingleRayRenderer* renderer = new a3SingleRayRenderer();
-    renderer->singleRayX = 281;
-    renderer->singleRayY = 527;
+    renderer->singleRayX = 255;
+    renderer->singleRayY = 555;
 #endif
     renderer->sampler = new a3RandomSampler();
     renderer->camera = camera;
     
-    //a3DirectLighting* direcLighting = new a3DirectLighting(1, 1);
+    //a3DirectLighting* direcLighting = new a3DirectLighting(32, 0);
     //renderer->integrator = direcLighting;
     a3PathTracer* pathTracer = new a3PathTracer();
     renderer->integrator = pathTracer;
