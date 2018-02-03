@@ -2,8 +2,7 @@
 
 A Physically Based Renderer.(Not Finished Yet)
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/29702466352/in/dateposted-public/" title="Test_000027"><img src="https://c1.staticflickr.com/9/8459/29702466352_4639ce4d29_c.jpg" width="800" height="450" alt="Test_000027"></a><!-- <script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script> -->
-
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/29702466352/in/dateposted-public/" title="Test_000027"><img src="https://c1.staticflickr.com/9/8459/29702466352_4639ce4d29_c.jpg" width="800" height="450" alt="Test_000027"></a>
 
 Video's([Youtube](https://www.youtube.com/watch?v=d6pLWDCjvSk)  ||  [Youku](http://v.youku.com/v_show/id_XMTczMjI3NjY1Mg==.html#paction)) rendering was done by the [Atmos Renderer](https://github.com/BentleyBlanks/Atmos), water and other physics simulation were exported from [Blender](https://www.blender.org/). The [AtmosMovie](https://github.com/BentleyBlanks/AtmosMovie) was responsible for the auto-rendering. 120 frames in all, cost 25.3h.
 
@@ -11,7 +10,7 @@ Video's([Youtube](https://www.youtube.com/watch?v=d6pLWDCjvSk)  ||  [Youku](http
 
 Also developed an [Atmos Editor](https://github.com/BentleyBlanks/AtmosVisualizer/tree/master/AtmosVisualizer/AtmosEditor), supports multiple camera to set up the matrials, shapes, lights...And preview the final result in real-time camera.
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26185532778/in/dateposted-public/" title="QQ图片20180203211712"><img src="https://farm5.staticflickr.com/4749/26185532778_100b0788c9_c.jpg" width="800" height="438" alt="QQ图片20180203211712"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26185532778/in/dateposted-public/" title="QQ图片20180203211712"><img src="https://farm5.staticflickr.com/4749/26185532778_100b0788c9_c.jpg" width="800" height="438" alt="QQ图片20180203211712"></a>
 
 ## Build
 
@@ -40,7 +39,7 @@ All thirdyparty libs are compiled by Visual Studio 2015.
 
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26942251805/in/dateposted-public/" title="spotlight path"><img src="https://farm8.staticflickr.com/7375/26942251805_de9dfcb41d_b.jpg" width="700" height="700" alt="spotlight path"></a>
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/39159840355/in/dateposted-public/" title="atmosPath 4096"><img src="https://farm5.staticflickr.com/4750/39159840355_a649dd0632_b.jpg" width="768" height="768" alt="atmosPath 4096"></a>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26185801198/in/dateposted-public/" title="atmosPath"><img src="https://farm5.staticflickr.com/4768/26185801198_d38d7cc821_b.jpg" width="700" height="700" alt="atmosPath"></a>
 
 ## Features
 
