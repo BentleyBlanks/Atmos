@@ -9,6 +9,10 @@ Video's([Youtube](https://www.youtube.com/watch?v=d6pLWDCjvSk)  ||  [Youku](http
 
 > In 2016, this demo and the Atmos Renderer, were as my graduation project from JiangNan University.
 
+Also developed an [Atmos Editor](https://github.com/BentleyBlanks/AtmosVisualizer/tree/master/AtmosVisualizer/AtmosEditor), supports multiple camera to set up the matrials, shapes, lights...And preview the final result in real-time camera.
+
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26185532778/in/dateposted-public/" title="QQ图片20180203211712"><img src="https://farm5.staticflickr.com/4749/26185532778_100b0788c9_c.jpg" width="800" height="438" alt="QQ图片20180203211712"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
 ## Build
 
 All thirdyparty libs are compiled by Visual Studio 2015. 
@@ -30,17 +34,13 @@ All thirdyparty libs are compiled by Visual Studio 2015.
 
 ## ScreenShots
 
-![](https://farm8.staticflickr.com/7249/26683877470_3b0a728e81_o.png)
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26683877470/in/dateposted-public/" title="path dieletric texture"><img src="https://farm8.staticflickr.com/7249/26683877470_b2f5d1ab20_b.jpg" width="700" height="700" alt="path dieletric texture"></a>
 
-SPP = 256, width: 700 height: 700  [Flickr](https://www.flickr.com/photos/134486032@N03/26683877470/in/dateposted-public/)
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26495924673/in/dateposted-public/" title="hello"><img src="https://farm8.staticflickr.com/7531/26495924673_9cf7cebd2f_b.jpg" width="700" height="700" alt="hello"></a>
 
-![](https://farm8.staticflickr.com/7531/26495924673_9cf7cebd2f_b.jpg)
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26942251805/in/dateposted-public/" title="spotlight path"><img src="https://farm8.staticflickr.com/7375/26942251805_de9dfcb41d_b.jpg" width="700" height="700" alt="spotlight path"></a>
 
-SPP = 256 width: 700 height 700  [Flickr](https://www.flickr.com/photos/134486032@N03/26336584694/in/dateposted-public/)
-
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/26942251805/in/dateposted-public/" title="spotlight path"><img src="https://farm8.staticflickr.com/7375/26942251805_de9dfcb41d_b.jpg" width="700" height="700" alt="spotlight path"></a><!-- <script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script> -->
-
-SPP = 256 width: 900 height 900  [Flickr](https://www.flickr.com/photos/134486032@N03/26942251805/in/dateposted-public/)
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/134486032@N03/39159840355/in/dateposted-public/" title="atmosPath 4096"><img src="https://farm5.staticflickr.com/4750/39159840355_a649dd0632_b.jpg" width="768" height="768" alt="atmosPath 4096"></a>
 
 ## Features
 
